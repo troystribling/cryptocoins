@@ -35,14 +35,14 @@ xcode-select --install
 ## Create Virtual Environment in Project Directory
 
 ```
-pyenv virtualenv 3.6.1 data
+pyenv virtualenv 3.6.1 cryptocoins
 pyenv local 3.6.1
 ```
 
 ## Activate Virtual Environment
 
 ```
-pyenv activate data
+pyenv activate cryptocoins
 ```
 
 ## Install Packages
