@@ -1,0 +1,18 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ApplicationRunner	poloniex.py	/^from autobahn.twisted.wamp import ApplicationSession, ApplicationRunner$/;"	i
+ApplicationSession	poloniex.py	/^from autobahn.twisted.wamp import ApplicationSession, ApplicationRunner$/;"	i
+Failure	poloniex.py	/^from twisted.python.failure import Failure$/;"	i
+PoloniexWAMPClient	poloniex.py	/^class PoloniexWAMPClient(ApplicationSession):$/;"	c
+inlineCallbacks	poloniex.py	/^from twisted.internet.defer import inlineCallbacks$/;"	i
+onDisconnect	poloniex.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexWAMPClient
+onJoin	poloniex.py	/^    def onJoin(self, details):$/;"	m	class:PoloniexWAMPClient
+onTicker	poloniex.py	/^    def onTicker(*args, **kwargs):$/;"	m	class:PoloniexWAMPClient
+onUserError	poloniex.py	/^    def onUserError(self, fail, msg):$/;"	m	class:PoloniexWAMPClient
+reactor	poloniex.py	/^from twisted.internet import reactor$/;"	i
+runner	poloniex.py	/^runner = ApplicationRunner(u"wss:\/\/api.poloniex.com", "realm1")$/;"	v
+wamp	poloniex.py	/^from autobahn import wamp$/;"	i
