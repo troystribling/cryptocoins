@@ -25,7 +25,7 @@ class PoloniexWAMPClient(ApplicationSession):
     @wamp.subscribe(u"ticker")
     def onTicker(*args, **kwargs):
         print(f"Got Event {args}, {kwargs}")
-        self.ticker_event_count += 1
+        self.ticker_event_count = self.ticker_event_count + 1
         if self.ticker_event_count % self.ticker_events_per_file == 0:
             self.ticker_events_file_queue.put(self.ticker_events)
             self.ticker_events = []
