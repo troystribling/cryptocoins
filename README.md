@@ -48,10 +48,10 @@ pyenv activate cryptocoins
 ## Install Packages
 
 ```
+pip install git+ssh://git@github.com/troystribling/autobahn-python.git
 pip install -r requirements.txt
 ```
 
 ## Start Editing
 
 If ```atom``` is used start from the command line in the project directory to be sure the virtual environment is recognized during the editing session.
-
