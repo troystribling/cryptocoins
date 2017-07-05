@@ -24,8 +24,8 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, en
     else:
         end_date = parse(end_date)
 
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket(bucket)
+    s3_client = boto3.client('s3')
+    s3_resource = boto3.resource('s3')
 
     for day in daterange(start_date, end_date):
         day_dir = day.strftime('%Y%m%d')
@@ -33,11 +33,11 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, en
         local_day_dir = f"{local_dir}/{day_dir}"
         if not os.path.exists(local_day_dir):
             os.makedirs(local_day_dir)
-        remote_objects = bucket.objects.filter(Prefix=remote_day_dir)
+        remote_objects = s3_resource.Bucket(bucket).objects.filter(Prefix=remote_day_dir)
         for remote_object in remote_objects:
             remote_file_name = remote_object.key
             local_file_name = f"{local_day_dir}/{os.path.basename(remote_file_name)}"
             print(f'DOWNLOADING: {remote_file_name} to {local_file_name}')
             with open(local_file_name, 'wb') as local_file:
-                s3.download_fileobj(bucket, remote_file_name, local_file)
+                s3_client.download_fileobj(bucket, remote_file_name, local_file)
             call(f'lzop -d {local_file_name}', shell=True)
