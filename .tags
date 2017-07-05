@@ -16,7 +16,10 @@ boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 date	cryptocoins/export_data.py	/^from datetime import date$/;"	i
-down_load_from_s3	cryptocoins/import_data.py	/^def down_load_from_s3(start_date, end_date, bucket, remote_dir, local_dir):$/;"	f
+date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
+daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
+download_from_s3	cryptocoins/import_data.py	/^def download_from_s3(bucket, remote_dir, local_dir, start_date=None, end_date=None):$/;"	f
+download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, end_date=None):$/;"	f
 export_data	poloniex.py	/^from cryptocoins import export_data$/;"	i
 export_ticker_to_s3	poloniex.py	/^    def export_ticker_to_s3(self):$/;"	m	class:PoloniexWAMPClient
 json	poloniex.py	/^import json$/;"	i
@@ -25,10 +28,13 @@ onJoin	poloniex.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexWA
 onTicker	poloniex.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:PoloniexWAMPClient
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
+parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
 runner	poloniex.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
+tempfile	cryptocoins/import_data.py	/^import tempfile$/;"	i
 ticker_event_to_json	poloniex.py	/^    def ticker_event_to_json(self, ticker_event):$/;"	m	class:PoloniexWAMPClient
 time	poloniex.py	/^from time import time$/;"	i
+timedelta	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 upload_file_to_s3	cryptocoins/export_data.py	/^def upload_file_to_s3(bucket, path, local_path):$/;"	f
 upload_to_s3	cryptocoins/export_data.py	/^def upload_to_s3(bucket, path, data):$/;"	f
 wamp	poloniex.py	/^from autobahn import wamp$/;"	i

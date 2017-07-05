@@ -23,4 +23,3 @@ def upload_file_to_s3(bucket, path, local_path):
     bucket = s3.Bucket(bucket)
     remote_object = f"{path}/{date.today().strftime('%Y%m%d')}/{os.path.basename(local_path)}"
     bucket.put_object(Key=remote_object, Body=open(local_path, 'rb'))
-    print(f'LOCAL:{local_path}, UPLOAD:{remote_object}')
