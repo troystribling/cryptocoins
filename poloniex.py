@@ -14,7 +14,7 @@ class PoloniexWAMPClient(ApplicationSession):
     def __init__(self, *args, **kwargs):
         ApplicationSession.__init__(self, *args, **kwargs)
         self.ticker_event_count = 0
-        self.ticker_events_per_file = 10
+        self.ticker_events_per_file = 2000
         self.ticker_events = []
         self.ticker_events_file_queue = Queue()
         self.thread_pool = ThreadPoolExecutor(max_workers=20)
@@ -43,7 +43,7 @@ class PoloniexWAMPClient(ApplicationSession):
 
     def export_ticker_to_s3(self):
         ticker_data = [self.ticker_event_to_json(ticker_event) for ticker_event in self.ticker_events_file_queue.get()]
-        export_data.upload_to_s3('gly.fish', 'cryptocoins/poloniex', ticker_data)
+        export_data.upload_to_s3('gly.fish', 'cryptocoins/poloniex/ticker', ticker_data)
 
     def ticker_event_to_json(self, ticker_event):
         return json.dumps({

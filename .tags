@@ -15,13 +15,15 @@ boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
-date	cryptocoins/export_data.py	/^from datetime import date$/;"	i
+date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
+datetime	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 download_from_s3	cryptocoins/import_data.py	/^def download_from_s3(bucket, remote_dir, local_dir, start_date=None, end_date=None):$/;"	f
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, end_date=None):$/;"	f
 export_data	poloniex.py	/^from cryptocoins import export_data$/;"	i
 export_ticker_to_s3	poloniex.py	/^    def export_ticker_to_s3(self):$/;"	m	class:PoloniexWAMPClient
+json	cryptocoins/import_data.py	/^import json$/;"	i
 json	poloniex.py	/^import json$/;"	i
 onDisconnect	poloniex.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexWAMPClient
 onJoin	poloniex.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexWAMPClient
@@ -29,6 +31,7 @@ onTicker	poloniex.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:Polo
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
+read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
 runner	poloniex.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
 tempfile	cryptocoins/import_data.py	/^import tempfile$/;"	i
