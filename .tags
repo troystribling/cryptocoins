@@ -4,59 +4,84 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ApplicationRunner	poloniex/poloniex_book.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
-ApplicationRunner	poloniex/poloniex_ticker.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
-ApplicationSession	poloniex/poloniex_book.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
-ApplicationSession	poloniex/poloniex_ticker.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
-PoloniexBookClient	poloniex/poloniex_book.py	/^class PoloniexBookClient(ApplicationSession):$/;"	c
-PoloniexTickerClient	poloniex/poloniex_ticker.py	/^class PoloniexTickerClient(ApplicationSession):$/;"	c
-Queue	poloniex/poloniex_book.py	/^from multiprocessing import Queue$/;"	i
-Queue	poloniex/poloniex_ticker.py	/^from multiprocessing import Queue$/;"	i
-ThreadPoolExecutor	poloniex/poloniex_book.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
-ThreadPoolExecutor	poloniex/poloniex_ticker.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
-__init__	poloniex/poloniex_book.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
-__init__	poloniex/poloniex_ticker.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
-asyncio	poloniex/poloniex_book.py	/^import asyncio$/;"	i
-asyncio	poloniex/poloniex_ticker.py	/^import asyncio$/;"	i
+ApplicationRunner	poloniex/book.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
+ApplicationRunner	poloniex/ticker.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
+ApplicationSession	poloniex/book.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
+ApplicationSession	poloniex/ticker.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
+PoloniexBookClient	poloniex/book.py	/^class PoloniexBookClient(ApplicationSession):$/;"	c
+PoloniexTickerClient	poloniex/ticker.py	/^class PoloniexTickerClient(ApplicationSession):$/;"	c
+Queue	poloniex/book.py	/^from multiprocessing import Queue$/;"	i
+Queue	poloniex/ticker.py	/^from multiprocessing import Queue$/;"	i
+ThreadPoolExecutor	poloniex/book.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
+ThreadPoolExecutor	poloniex/ticker.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
+__init__	poloniex/book.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
+__init__	poloniex/ticker.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
+aiohttp	cryptocoins/import_data.py	/^import aiohttp$/;"	i
+aiohttp	poloniex/trades.py	/^import aiohttp$/;"	i
+aiohttp	poloniex/volume.py	/^import aiohttp$/;"	i
+asyncio	cryptocoins/import_data.py	/^import asyncio$/;"	i
+asyncio	poloniex/book.py	/^import asyncio$/;"	i
+asyncio	poloniex/ticker.py	/^import asyncio$/;"	i
+asyncio	poloniex/trades.py	/^import asyncio$/;"	i
+asyncio	poloniex/volume.py	/^import asyncio$/;"	i
 boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
+currency_pairs	poloniex/trades.py	/^currency_pairs = ['BTC_ETH']$/;"	v
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
 datetime	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 download_from_s3	cryptocoins/import_data.py	/^def download_from_s3(bucket, remote_dir, local_dir, start_date=None, end_date=None):$/;"	f
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, end_date=None):$/;"	f
-export_data	poloniex/poloniex_book.py	/^from cryptocoins import export_data$/;"	i
-export_data	poloniex/poloniex_ticker.py	/^from cryptocoins import export_data$/;"	i
-export_ticker_to_s3	poloniex/poloniex_book.py	/^    def export_ticker_to_s3(self):$/;"	m	class:PoloniexBookClient
-export_to_s3	poloniex/poloniex_ticker.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTickerClient
+event_to_json	poloniex/book.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexBookClient
+event_to_json	poloniex/ticker.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexTickerClient
+export_data	poloniex/book.py	/^from cryptocoins import export_data$/;"	i
+export_data	poloniex/ticker.py	/^from cryptocoins import export_data$/;"	i
+export_data	poloniex/trades.py	/^from cryptocoins import import_data, export_data$/;"	i
+export_to_s3	poloniex/book.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexBookClient
+export_to_s3	poloniex/ticker.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTickerClient
+http_get	cryptocoins/import_data.py	/^async def http_get(session, url):$/;"	f
+import_data	poloniex/trades.py	/^from cryptocoins import import_data, export_data$/;"	i
+import_data	poloniex/volume.py	/^from cryptocoins import import_data$/;"	i
+itertools	poloniex/trades.py	/^import itertools$/;"	i
 json	cryptocoins/import_data.py	/^import json$/;"	i
-json	poloniex/poloniex_book.py	/^import json$/;"	i
-json	poloniex/poloniex_ticker.py	/^import json$/;"	i
-onBookBTC_ETH	poloniex/poloniex_book.py	/^    def onBookBTC_ETH(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
-onDisconnect	poloniex/poloniex_book.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexBookClient
-onDisconnect	poloniex/poloniex_ticker.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexTickerClient
-onJoin	poloniex/poloniex_book.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexBookClient
-onJoin	poloniex/poloniex_ticker.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexTickerClient
-onTicker	poloniex/poloniex_ticker.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
+json	poloniex/book.py	/^import json$/;"	i
+json	poloniex/ticker.py	/^import json$/;"	i
+loop	poloniex/trades.py	/^loop = asyncio.get_event_loop()$/;"	v
+loop	poloniex/volume.py	/^loop = asyncio.get_event_loop()$/;"	v
+onBook	poloniex/book.py	/^    def onBook(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
+onDisconnect	poloniex/book.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexBookClient
+onDisconnect	poloniex/ticker.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexTickerClient
+onJoin	poloniex/book.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexBookClient
+onJoin	poloniex/ticker.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexTickerClient
+onTicker	poloniex/ticker.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
+poll	poloniex/trades.py	/^async def poll():$/;"	f
+poll	poloniex/volume.py	/^async def poll():$/;"	f
+poll_seconds	poloniex/trades.py	/^poll_seconds = 10.0$/;"	v
+poll_seconds	poloniex/volume.py	/^poll_seconds = 10.0$/;"	v
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
-runner	poloniex/poloniex_book.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
-runner	poloniex/poloniex_ticker.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
-sys	poloniex/poloniex_book.py	/^import sys$/;"	i
-sys	poloniex/poloniex_ticker.py	/^import sys$/;"	i
+results_per_file	poloniex/trades.py	/^results_per_file = 5$/;"	v
+runner	poloniex/book.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
+runner	poloniex/ticker.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
+session	poloniex/trades.py	/^session = aiohttp.ClientSession(loop=loop)$/;"	v
+session	poloniex/volume.py	/^session = aiohttp.ClientSession(loop=loop)$/;"	v
+sys	poloniex/book.py	/^import sys$/;"	i
+sys	poloniex/ticker.py	/^import sys$/;"	i
+sys	poloniex/trades.py	/^import sys$/;"	i
+sys	poloniex/volume.py	/^import sys$/;"	i
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
 tempfile	cryptocoins/import_data.py	/^import tempfile$/;"	i
-ticker_event_to_json	poloniex/poloniex_ticker.py	/^    def ticker_event_to_json(self, ticker_event):$/;"	m	class:PoloniexTickerClient
-time	poloniex/poloniex_book.py	/^from time import time$/;"	i
-time	poloniex/poloniex_ticker.py	/^from time import time$/;"	i
+time	poloniex/book.py	/^from time import time$/;"	i
+time	poloniex/ticker.py	/^from time import time$/;"	i
+time	poloniex/trades.py	/^from time import time$/;"	i
 timedelta	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 upload_file_to_s3	cryptocoins/export_data.py	/^def upload_file_to_s3(bucket, path, local_path):$/;"	f
 upload_to_s3	cryptocoins/export_data.py	/^def upload_to_s3(bucket, path, data):$/;"	f
-wamp	poloniex/poloniex_book.py	/^from autobahn import wamp$/;"	i
-wamp	poloniex/poloniex_ticker.py	/^from autobahn import wamp$/;"	i
+wamp	poloniex/book.py	/^from autobahn import wamp$/;"	i
+wamp	poloniex/ticker.py	/^from autobahn import wamp$/;"	i
 write_to_compressed_file	cryptocoins/export_data.py	/^def write_to_compressed_file(data):$/;"	f

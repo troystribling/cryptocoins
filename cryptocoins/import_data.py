@@ -2,6 +2,8 @@ import tempfile
 import os
 import boto3
 import json
+import asyncio
+import aiohttp
 
 from subprocess import call
 from datetime import timedelta, date
@@ -53,3 +55,9 @@ def read_from_file(file_name):
         for line in file:
             items.append(json.loads(line))
     return items
+
+async def http_get(session, url):
+    with aiohttp.Timeout(10):
+        async with session.get(url) as response:
+            assert response.status == 200
+            return await response.read()

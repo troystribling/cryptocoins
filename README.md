@@ -3,6 +3,7 @@
 ```
 brew install pyenv
 brew install pyenv-virtualenv
+brew install lzop
 ```
 
 ## Initialize pyenv and pyenv-virtualenv
