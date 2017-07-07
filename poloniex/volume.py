@@ -1,21 +1,29 @@
-import asyncio
-import aiohttp
+from time import sleep
+from urllib.request import urlopen
+
 import sys
 
 if '../cryptocoins' not in sys.path:
     sys.path.append('../cryptocoins')
 
-from cryptocoins import import_data
+from cryptocoins import export_data
 
-loop = asyncio.get_event_loop()
-session = aiohttp.ClientSession(loop=loop)
-
+results_per_file = 5
 poll_seconds = 10.0
 
-async def poll():
+def poll():
+    total_results_count = 0
+    results = []
     while True:
-        content = await import_data.http_get(session, 'https://poloniex.com/public?command=return24hVolume')
-        print(content)
-        await asyncio.sleep(poll_seconds)
+        total_results_count += 1
+        url = 'https://poloniex.com/public?command=return24hVolume'
+        response = urlopen(url)
+        assert response.status == 200
+        result = response.read().decode("utf-8")
+        results.append(result)
+        if total_results_count % results_per_file == 0:
+            export_data.upload_to_s3('gly.fish', 'cryptocoins/poloniex/volume', results)
+            results = []
+        sleep(poll_seconds)
 
-loop.run_until_complete(poll())
+poll()

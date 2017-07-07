@@ -17,17 +17,14 @@ ThreadPoolExecutor	poloniex/ticker.py	/^from concurrent.futures import ThreadPoo
 __init__	poloniex/book.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
 __init__	poloniex/ticker.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
 aiohttp	cryptocoins/import_data.py	/^import aiohttp$/;"	i
-aiohttp	poloniex/trades.py	/^import aiohttp$/;"	i
-aiohttp	poloniex/volume.py	/^import aiohttp$/;"	i
 asyncio	cryptocoins/import_data.py	/^import asyncio$/;"	i
 asyncio	poloniex/book.py	/^import asyncio$/;"	i
 asyncio	poloniex/ticker.py	/^import asyncio$/;"	i
-asyncio	poloniex/trades.py	/^import asyncio$/;"	i
-asyncio	poloniex/volume.py	/^import asyncio$/;"	i
 boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
+currencies	cryptocompare/coin_compare.py	/^currencies = [1182, 7605]$/;"	v
 currency_pairs	poloniex/trades.py	/^currency_pairs = ['BTC_ETH']$/;"	v
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
@@ -37,20 +34,18 @@ download_from_s3	cryptocoins/import_data.py	/^def download_from_s3(bucket, remot
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, end_date=None):$/;"	f
 event_to_json	poloniex/book.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexBookClient
 event_to_json	poloniex/ticker.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexTickerClient
+export_data	cryptocompare/coin_compare.py	/^from cryptocoins import export_data$/;"	i
+export_data	cryptocompare/coin_list.py	/^from cryptocoins import export_data$/;"	i
 export_data	poloniex/book.py	/^from cryptocoins import export_data$/;"	i
 export_data	poloniex/ticker.py	/^from cryptocoins import export_data$/;"	i
-export_data	poloniex/trades.py	/^from cryptocoins import import_data, export_data$/;"	i
+export_data	poloniex/trades.py	/^from cryptocoins import export_data$/;"	i
+export_data	poloniex/volume.py	/^from cryptocoins import export_data$/;"	i
 export_to_s3	poloniex/book.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexBookClient
 export_to_s3	poloniex/ticker.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTickerClient
 http_get	cryptocoins/import_data.py	/^async def http_get(session, url):$/;"	f
-import_data	poloniex/trades.py	/^from cryptocoins import import_data, export_data$/;"	i
-import_data	poloniex/volume.py	/^from cryptocoins import import_data$/;"	i
-itertools	poloniex/trades.py	/^import itertools$/;"	i
 json	cryptocoins/import_data.py	/^import json$/;"	i
 json	poloniex/book.py	/^import json$/;"	i
 json	poloniex/ticker.py	/^import json$/;"	i
-loop	poloniex/trades.py	/^loop = asyncio.get_event_loop()$/;"	v
-loop	poloniex/volume.py	/^loop = asyncio.get_event_loop()$/;"	v
 onBook	poloniex/book.py	/^    def onBook(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
 onDisconnect	poloniex/book.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexBookClient
 onDisconnect	poloniex/ticker.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexTickerClient
@@ -60,28 +55,42 @@ onTicker	poloniex/ticker.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	cla
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
-poll	poloniex/trades.py	/^async def poll():$/;"	f
-poll	poloniex/volume.py	/^async def poll():$/;"	f
+poll	cryptocompare/coin_compare.py	/^def poll():$/;"	f
+poll	cryptocompare/coin_list.py	/^def poll():$/;"	f
+poll	poloniex/trades.py	/^def poll():$/;"	f
+poll	poloniex/volume.py	/^def poll():$/;"	f
+poll_seconds	cryptocompare/coin_compare.py	/^poll_seconds = 10.0$/;"	v
+poll_seconds	cryptocompare/coin_list.py	/^poll_seconds = 3600$/;"	v
 poll_seconds	poloniex/trades.py	/^poll_seconds = 10.0$/;"	v
 poll_seconds	poloniex/volume.py	/^poll_seconds = 10.0$/;"	v
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
 results_per_file	poloniex/trades.py	/^results_per_file = 5$/;"	v
+results_per_file	poloniex/volume.py	/^results_per_file = 5$/;"	v
 runner	poloniex/book.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
 runner	poloniex/ticker.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
-session	poloniex/trades.py	/^session = aiohttp.ClientSession(loop=loop)$/;"	v
-session	poloniex/volume.py	/^session = aiohttp.ClientSession(loop=loop)$/;"	v
+sleep	cryptocompare/coin_compare.py	/^from time import time, sleep$/;"	i
+sleep	cryptocompare/coin_list.py	/^from time import sleep$/;"	i
+sleep	poloniex/trades.py	/^from time import time, sleep$/;"	i
+sleep	poloniex/volume.py	/^from time import sleep$/;"	i
+sys	cryptocompare/coin_compare.py	/^import sys$/;"	i
+sys	cryptocompare/coin_list.py	/^import sys$/;"	i
 sys	poloniex/book.py	/^import sys$/;"	i
 sys	poloniex/ticker.py	/^import sys$/;"	i
 sys	poloniex/trades.py	/^import sys$/;"	i
 sys	poloniex/volume.py	/^import sys$/;"	i
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
 tempfile	cryptocoins/import_data.py	/^import tempfile$/;"	i
+time	cryptocompare/coin_compare.py	/^from time import time, sleep$/;"	i
 time	poloniex/book.py	/^from time import time$/;"	i
 time	poloniex/ticker.py	/^from time import time$/;"	i
-time	poloniex/trades.py	/^from time import time$/;"	i
+time	poloniex/trades.py	/^from time import time, sleep$/;"	i
 timedelta	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 upload_file_to_s3	cryptocoins/export_data.py	/^def upload_file_to_s3(bucket, path, local_path):$/;"	f
 upload_to_s3	cryptocoins/export_data.py	/^def upload_to_s3(bucket, path, data):$/;"	f
+urlopen	cryptocompare/coin_compare.py	/^from urllib.request import urlopen$/;"	i
+urlopen	cryptocompare/coin_list.py	/^from urllib.request import urlopen$/;"	i
+urlopen	poloniex/trades.py	/^from urllib.request import urlopen$/;"	i
+urlopen	poloniex/volume.py	/^from urllib.request import urlopen$/;"	i
 wamp	poloniex/book.py	/^from autobahn import wamp$/;"	i
 wamp	poloniex/ticker.py	/^from autobahn import wamp$/;"	i
 write_to_compressed_file	cryptocoins/export_data.py	/^def write_to_compressed_file(data):$/;"	f
