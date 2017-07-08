@@ -17,7 +17,9 @@ def poll():
         for currency in currencies:
             url = f'https://www.cryptocompare.com/api/data/coinsnapshotfullbyid/?id={currency}'
             response = urlopen(url)
-            assert response.status == 200
+            if response.status != 200:
+                print(f"HTTP ERROR: status = {response.status}")
+                continue
             result = response.read().decode("utf-8")
             results.append(result)
             sleep(1)

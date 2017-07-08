@@ -18,7 +18,9 @@ def poll():
         total_results_count += 1
         url = 'https://poloniex.com/public?command=return24hVolume'
         response = urlopen(url)
-        assert response.status == 200
+        if response.status != 200:
+            print(f"HTTP ERROR: status = {response.status}")
+            continue
         result = response.read().decode("utf-8")
         results.append(result)
         if total_results_count % results_per_file == 0:

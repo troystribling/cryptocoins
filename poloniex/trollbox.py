@@ -10,34 +10,33 @@ from multiprocessing import Queue
 from cryptocoins import export_data
 from time import time
 
-import json
-
 from autobahn import wamp
 from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner
 
-class PoloniexBookClient(ApplicationSession):
+class PoloniexTrollboxClient(ApplicationSession):
 
     def __init__(self, *args, **kwargs):
         ApplicationSession.__init__(self, *args, **kwargs)
         self.event_count = 0
-        self.events_per_file = 200
+        self.events_per_file = 20
         self.events = []
         self.events_file_queue = Queue()
         self.thread_pool = ThreadPoolExecutor(max_workers=20)
-        self.currency_pairs = ['BTC_ETH']
 
     async def onJoin(self, details):
         print('Session Attached')
-        for currency_pair in self.currency_pairs:
-            subscription = await self.subscribe(self.onBook, currency_pair)
+        subscriptions = await self.subscribe(self)
+        for subscription in subscriptions:
             if isinstance(subscription, wamp.protocol.Subscription):
                 print(f"Subscribed to '{subscription.topic}' with id '{subscription.id}'")
             else:
                 print(f"Failed to subscribe '{subscription}'")
 
-    def onBook(self, *args, **kwargs):
+    @wamp.subscribe(u"trollbox")
+    def onTicker(self, *args, **kwargs):
+        print(f'{args}, {kwargs}')
         self.event_count += 1
-        self.events.append({**{"book": list(args), "timestamp" : time()}, "seq" : kwargs["seq"]})
+        self.events.append(args + (time(),))
         if self.event_count % self.events_per_file == 0:
             self.events_file_queue.put(self.events)
             self.events = []
@@ -48,11 +47,20 @@ class PoloniexBookClient(ApplicationSession):
         asyncio.get_event_loop().stop()
 
     def export_to_s3(self):
-        book_data = [self.event_to_json(event) for event in self.events_file_queue.get()]
-        export_data.upload_to_s3('gly.fish', 'cryptocoins/poloniex/book', book_data)
+        events = [self.event_to_json(event) for event in self.events_file_queue.get()]
+        print(events)
+        export_data.upload_to_s3('gly.fish', 'cryptocoins/poloniex/trollbox', events)
 
     def event_to_json(self, event):
-        return json.dumps(event)
+        return json.dumps({
+            'type' : event[0],
+            'messageNumber' : event[1],
+            'username' : event[2],
+            'highest_bid' : event[3],
+            'message' : event[4],
+            'reputation' : event[5],
+            'timestamp' : event[6]
+        })
 
 runner = ApplicationRunner(u'wss://api.poloniex.com', 'realm1')
-runner.run(PoloniexBookClient)
+runner.run(PoloniexTrollboxClient)

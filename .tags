@@ -6,26 +6,33 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 ApplicationRunner	poloniex/book.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
 ApplicationRunner	poloniex/ticker.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
+ApplicationRunner	poloniex/trollbox.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
 ApplicationSession	poloniex/book.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
 ApplicationSession	poloniex/ticker.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
+ApplicationSession	poloniex/trollbox.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
 PoloniexBookClient	poloniex/book.py	/^class PoloniexBookClient(ApplicationSession):$/;"	c
 PoloniexTickerClient	poloniex/ticker.py	/^class PoloniexTickerClient(ApplicationSession):$/;"	c
+PoloniexTrollboxClient	poloniex/trollbox.py	/^class PoloniexTrollboxClient(ApplicationSession):$/;"	c
 Queue	poloniex/book.py	/^from multiprocessing import Queue$/;"	i
 Queue	poloniex/ticker.py	/^from multiprocessing import Queue$/;"	i
+Queue	poloniex/trollbox.py	/^from multiprocessing import Queue$/;"	i
 ThreadPoolExecutor	poloniex/book.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
 ThreadPoolExecutor	poloniex/ticker.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
+ThreadPoolExecutor	poloniex/trollbox.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
 __init__	poloniex/book.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
 __init__	poloniex/ticker.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
+__init__	poloniex/trollbox.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexTrollboxClient
 aiohttp	cryptocoins/import_data.py	/^import aiohttp$/;"	i
 asyncio	cryptocoins/import_data.py	/^import asyncio$/;"	i
 asyncio	poloniex/book.py	/^import asyncio$/;"	i
 asyncio	poloniex/ticker.py	/^import asyncio$/;"	i
+asyncio	poloniex/trollbox.py	/^import asyncio$/;"	i
 boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 currencies	cryptocompare/coin_compare.py	/^currencies = [1182, 7605]$/;"	v
-currency_pairs	poloniex/trades.py	/^currency_pairs = ['BTC_ETH']$/;"	v
+currency_pairs	poloniex/trades.py	/^currency_pairs = ['BTC_ETH', 'USDT_BTC', 'USDT_ETH', 'ETH_GNO', 'BTC_LTC']$/;"	v
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
@@ -34,24 +41,31 @@ download_from_s3	cryptocoins/import_data.py	/^def download_from_s3(bucket, remot
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, end_date=None):$/;"	f
 event_to_json	poloniex/book.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexBookClient
 event_to_json	poloniex/ticker.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexTickerClient
+event_to_json	poloniex/trollbox.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexTrollboxClient
 export_data	cryptocompare/coin_compare.py	/^from cryptocoins import export_data$/;"	i
 export_data	cryptocompare/coin_list.py	/^from cryptocoins import export_data$/;"	i
 export_data	poloniex/book.py	/^from cryptocoins import export_data$/;"	i
 export_data	poloniex/ticker.py	/^from cryptocoins import export_data$/;"	i
 export_data	poloniex/trades.py	/^from cryptocoins import export_data$/;"	i
+export_data	poloniex/trollbox.py	/^from cryptocoins import export_data$/;"	i
 export_data	poloniex/volume.py	/^from cryptocoins import export_data$/;"	i
 export_to_s3	poloniex/book.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexBookClient
 export_to_s3	poloniex/ticker.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTickerClient
+export_to_s3	poloniex/trollbox.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTrollboxClient
 http_get	cryptocoins/import_data.py	/^async def http_get(session, url):$/;"	f
 json	cryptocoins/import_data.py	/^import json$/;"	i
 json	poloniex/book.py	/^import json$/;"	i
 json	poloniex/ticker.py	/^import json$/;"	i
+json	poloniex/trollbox.py	/^import json$/;"	i
 onBook	poloniex/book.py	/^    def onBook(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
 onDisconnect	poloniex/book.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexBookClient
 onDisconnect	poloniex/ticker.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexTickerClient
+onDisconnect	poloniex/trollbox.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexTrollboxClient
 onJoin	poloniex/book.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexBookClient
 onJoin	poloniex/ticker.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexTickerClient
+onJoin	poloniex/trollbox.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexTrollboxClient
 onTicker	poloniex/ticker.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
+onTicker	poloniex/trollbox.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:PoloniexTrollboxClient
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
@@ -68,6 +82,7 @@ results_per_file	poloniex/trades.py	/^results_per_file = 5$/;"	v
 results_per_file	poloniex/volume.py	/^results_per_file = 5$/;"	v
 runner	poloniex/book.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
 runner	poloniex/ticker.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
+runner	poloniex/trollbox.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
 sleep	cryptocompare/coin_compare.py	/^from time import time, sleep$/;"	i
 sleep	cryptocompare/coin_list.py	/^from time import sleep$/;"	i
 sleep	poloniex/trades.py	/^from time import time, sleep$/;"	i
@@ -77,6 +92,7 @@ sys	cryptocompare/coin_list.py	/^import sys$/;"	i
 sys	poloniex/book.py	/^import sys$/;"	i
 sys	poloniex/ticker.py	/^import sys$/;"	i
 sys	poloniex/trades.py	/^import sys$/;"	i
+sys	poloniex/trollbox.py	/^import sys$/;"	i
 sys	poloniex/volume.py	/^import sys$/;"	i
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
 tempfile	cryptocoins/import_data.py	/^import tempfile$/;"	i
@@ -84,6 +100,7 @@ time	cryptocompare/coin_compare.py	/^from time import time, sleep$/;"	i
 time	poloniex/book.py	/^from time import time$/;"	i
 time	poloniex/ticker.py	/^from time import time$/;"	i
 time	poloniex/trades.py	/^from time import time, sleep$/;"	i
+time	poloniex/trollbox.py	/^from time import time$/;"	i
 timedelta	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 upload_file_to_s3	cryptocoins/export_data.py	/^def upload_file_to_s3(bucket, path, local_path):$/;"	f
 upload_to_s3	cryptocoins/export_data.py	/^def upload_to_s3(bucket, path, data):$/;"	f
@@ -93,4 +110,5 @@ urlopen	poloniex/trades.py	/^from urllib.request import urlopen$/;"	i
 urlopen	poloniex/volume.py	/^from urllib.request import urlopen$/;"	i
 wamp	poloniex/book.py	/^from autobahn import wamp$/;"	i
 wamp	poloniex/ticker.py	/^from autobahn import wamp$/;"	i
+wamp	poloniex/trollbox.py	/^from autobahn import wamp$/;"	i
 write_to_compressed_file	cryptocoins/export_data.py	/^def write_to_compressed_file(data):$/;"	f
