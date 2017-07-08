@@ -20,7 +20,7 @@ class PoloniexBookClient(ApplicationSession):
     def __init__(self, *args, **kwargs):
         ApplicationSession.__init__(self, *args, **kwargs)
         self.event_count = 0
-        self.events_per_file = 200
+        self.events_per_file = 2000
         self.events = []
         self.events_file_queue = Queue()
         self.thread_pool = ThreadPoolExecutor(max_workers=20)
