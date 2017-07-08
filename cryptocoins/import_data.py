@@ -13,10 +13,7 @@ def daterange(date1, date2):
     for n in range(int((date2 - date1).days) + 1):
         yield date1 + timedelta(n)
 
-def download_from_s3(bucket, remote_dir, local_dir, start_date=None, end_date=None):
-    download_from_s3_to_files(bucket, remote_dir, local_dir=local_dir, start_date=start_date, end_date=end_date)
-
-def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, end_date=None):
+def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):
     if start_date is None:
         start_date = date.today()
     else:
@@ -47,6 +44,8 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, start_date=None, en
                 s3_client.download_fileobj(bucket, remote_file_name, local_file)
             call(f'lzop -d {local_file_name}', shell=True)
             os.unlink(local_file_name)
+            if download_limit != None and downloaded_file_count >= download_limit:
+                break
     print(f'DOWNLOADED {downloaded_file_count} files from {remote_dir} to {local_dir}')
 
 def read_from_file(file_name):
