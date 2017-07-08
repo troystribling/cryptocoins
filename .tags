@@ -87,7 +87,7 @@ poll	cryptocompare/coin_list.py	/^def poll():$/;"	f
 poll	poloniex/trades.py	/^def poll():$/;"	f
 poll	poloniex/volume.py	/^def poll():$/;"	f
 poll_seconds	cryptocompare/coin_compare.py	/^poll_seconds = 3600.0$/;"	v
-poll_seconds	cryptocompare/coin_list.py	/^poll_seconds = 3600$/;"	v
+poll_seconds	cryptocompare/coin_list.py	/^poll_seconds = 86400$/;"	v
 poll_seconds	poloniex/trades.py	/^poll_seconds = 60.0$/;"	v
 poll_seconds	poloniex/volume.py	/^poll_seconds = 60.0$/;"	v
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f

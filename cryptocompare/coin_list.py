@@ -8,7 +8,7 @@ if '../cryptocoins' not in sys.path:
 
 from cryptocoins import export_data
 
-poll_seconds = 3600
+poll_seconds = 86400
 
 def poll():
     while True:
