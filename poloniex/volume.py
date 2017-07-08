@@ -8,7 +8,7 @@ if '../cryptocoins' not in sys.path:
 
 from cryptocoins import export_data
 
-results_per_file = 60
+results_per_file = 150
 poll_seconds = 60.0
 
 def poll():

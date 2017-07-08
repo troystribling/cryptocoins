@@ -88,7 +88,7 @@ poll	poloniex/trades.py	/^def poll():$/;"	f
 poll	poloniex/volume.py	/^def poll():$/;"	f
 poll_seconds	cryptocompare/coin_compare.py	/^poll_seconds = 3600.0$/;"	v
 poll_seconds	cryptocompare/coin_list.py	/^poll_seconds = 86400$/;"	v
-poll_seconds	poloniex/trades.py	/^poll_seconds = 60.0$/;"	v
+poll_seconds	poloniex/trades.py	/^poll_seconds = 300.0$/;"	v
 poll_seconds	poloniex/volume.py	/^poll_seconds = 60.0$/;"	v
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
 remote_dir	notebooks/data_import.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_compare'$/;"	v
@@ -97,8 +97,8 @@ remote_dir	notebooks/data_import.py	/^remote_dir = 'cryptocoins\/poloniex\/book'
 remote_dir	notebooks/data_import.py	/^remote_dir = 'cryptocoins\/poloniex\/ticker'$/;"	v
 remote_dir	notebooks/data_import.py	/^remote_dir = 'cryptocoins\/poloniex\/trades'$/;"	v
 remote_dir	notebooks/data_import.py	/^remote_dir = 'cryptocoins\/poloniex\/volume'$/;"	v
-results_per_file	poloniex/trades.py	/^results_per_file = 30$/;"	v
-results_per_file	poloniex/volume.py	/^results_per_file = 60$/;"	v
+results_per_file	poloniex/trades.py	/^results_per_file = 100$/;"	v
+results_per_file	poloniex/volume.py	/^results_per_file = 150$/;"	v
 runner	poloniex/book.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
 runner	poloniex/ticker.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
 runner	poloniex/trollbox.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v

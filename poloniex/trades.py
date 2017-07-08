@@ -7,8 +7,8 @@ if '../cryptocoins' not in sys.path:
 
 from cryptocoins import export_data
 
-results_per_file = 30
-poll_seconds = 60.0
+results_per_file = 100
+poll_seconds = 300.0
 currency_pairs = ['BTC_ETH', 'USDT_BTC', 'USDT_ETH', 'ETH_GNO', 'BTC_LTC']
 
 def poll():
