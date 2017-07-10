@@ -34,9 +34,11 @@ call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 currencies	cryptocompare/coin_compare.py	/^currencies = [1182, 7605]$/;"	v
 currency_pairs	poloniex/trades.py	/^currency_pairs = ['BTC_ETH', 'USDT_BTC', 'USDT_ETH', 'ETH_GNO', 'BTC_LTC']$/;"	v
-data	notebooks/import_data.py	/^data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
+data	notebooks/import_data.py	/^data = import_data.read_from_file(os.path.join(local_dir, date_dir, files[0]))$/;"	v
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
+date_dir	notebooks/import_data.py	/^date_dir = '20170707'$/;"	v
+date_dir	notebooks/import_data.py	/^date_dir = '20170708'$/;"	v
 daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
 datetime	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
@@ -53,9 +55,7 @@ export_data	poloniex/volume.py	/^from cryptocoins import export_data$/;"	i
 export_to_s3	poloniex/book.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexBookClient
 export_to_s3	poloniex/ticker.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTickerClient
 export_to_s3	poloniex/trollbox.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTrollboxClient
-files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, folder_date))$/;"	v
-folder_date	notebooks/import_data.py	/^folder_date = '20170707'$/;"	v
-folder_date	notebooks/import_data.py	/^folder_date = '20170708'$/;"	v
+files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, date_dir))$/;"	v
 http_get	cryptocoins/import_data.py	/^async def http_get(session, url):$/;"	f
 import_data	notebooks/import_data.py	/^from cryptocoins import import_data$/;"	i
 json	cryptocoins/import_data.py	/^import json$/;"	i
