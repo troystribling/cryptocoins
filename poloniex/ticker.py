@@ -11,7 +11,8 @@ from cryptocoins import export_data
 from time import time
 
 from autobahn import wamp
-from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner
+from autobahn.asyncio.wamp import ApplicationSession
+from cryptocoins.autobahn_autoreconnect import AutoreconnectingApplicationRunner
 
 class PoloniexTickerClient(ApplicationSession):
 
@@ -43,7 +44,6 @@ class PoloniexTickerClient(ApplicationSession):
 
     def onDisconnect(self):
         print('ERROR: Disconnected')
-        asyncio.get_event_loop().stop()
 
     def export_to_s3(self):
         ticker_data = [self.event_to_json(event) for event in self.events_file_queue.get()]
@@ -64,5 +64,5 @@ class PoloniexTickerClient(ApplicationSession):
             'timestamp' : event[10]
         })
 
-runner = ApplicationRunner(u'wss://api.poloniex.com', 'realm1')
+runner = AutoreconnectingApplicationRunner(u'wss://api.poloniex.com', 'realm1', open_handshake_timeout=90, auto_ping_interval=10, auto_ping_timeout=90)
 runner.run(PoloniexTickerClient)

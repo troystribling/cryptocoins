@@ -13,7 +13,8 @@ from time import time
 import json
 
 from autobahn import wamp
-from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner
+from autobahn.asyncio.wamp import ApplicationSession
+from cryptocoins.autobahn_autoreconnect import AutoreconnectingApplicationRunner
 
 class PoloniexBookClient(ApplicationSession):
 
@@ -45,7 +46,6 @@ class PoloniexBookClient(ApplicationSession):
 
     def onDisconnect(self):
         print('ERROR: Disconnected')
-        asyncio.get_event_loop().stop()
 
     def export_to_s3(self):
         book_data = [self.event_to_json(event) for event in self.events_file_queue.get()]
@@ -54,5 +54,5 @@ class PoloniexBookClient(ApplicationSession):
     def event_to_json(self, event):
         return json.dumps(event)
 
-runner = ApplicationRunner(u'wss://api.poloniex.com', 'realm1')
+runner = AutoreconnectingApplicationRunner(u'wss://api.poloniex.com', 'realm1', open_handshake_timeout=90, auto_ping_interval=10, auto_ping_timeout=90)
 runner.run(PoloniexBookClient)
