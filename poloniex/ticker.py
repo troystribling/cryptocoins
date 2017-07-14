@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import Queue
 from cryptocoins import export_data
 from time import time
+from datetime import datetime
 
 from autobahn import wamp
 from autobahn.asyncio.wamp import ApplicationSession
@@ -25,13 +26,13 @@ class PoloniexTickerClient(ApplicationSession):
         self.thread_pool = ThreadPoolExecutor(max_workers=20)
 
     async def onJoin(self, details):
-        print('Session Attached')
+        print(f'{datetime.now()}: Session Attached')
         subscriptions = await self.subscribe(self)
         for subscription in subscriptions:
             if isinstance(subscription, wamp.protocol.Subscription):
-                print(f"Subscribed to '{subscription.topic}' with id '{subscription.id}'")
+                print(f"{datetime.now()}: Subscribed to '{subscription.topic}' with id '{subscription.id}'")
             else:
-                print(f"Failed to subscribe '{subscription}'")
+                print(f"{datetime.now()}: Failed to subscribe '{subscription}'")
 
     @wamp.subscribe(u"ticker")
     def onTicker(self, *args, **kwargs):
@@ -43,7 +44,7 @@ class PoloniexTickerClient(ApplicationSession):
             asyncio.get_event_loop().run_in_executor(self.thread_pool, self.export_to_s3)
 
     def onDisconnect(self):
-        print('ERROR: Disconnected')
+        print(f'{datetime.now()}: ERROR Disconnected')
 
     def export_to_s3(self):
         ticker_data = [self.event_to_json(event) for event in self.events_file_queue.get()]

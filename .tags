@@ -55,7 +55,10 @@ date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 date_dir	notebooks/import_data.py	/^date_dir = '20170707'$/;"	v
 date_dir	notebooks/import_data.py	/^date_dir = '20170708'$/;"	v
 daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
+datetime	cryptocoins/autobahn_autoreconnect.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
+datetime	poloniex/book.py	/^from datetime import datetime$/;"	i
+datetime	poloniex/ticker.py	/^from datetime import datetime$/;"	i
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
 event_to_json	poloniex/book.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexBookClient
 event_to_json	poloniex/ticker.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexTickerClient

@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import Queue
 from cryptocoins import export_data
 from time import time
+from datetime import datetime
 
 import json
 
@@ -28,13 +29,13 @@ class PoloniexBookClient(ApplicationSession):
         self.currency_pairs = ['BTC_ETH']
 
     async def onJoin(self, details):
-        print('Session Attached')
+        print(f'{datetime.now()}: Session Attached')
         for currency_pair in self.currency_pairs:
             subscription = await self.subscribe(self.onBook, currency_pair)
             if isinstance(subscription, wamp.protocol.Subscription):
-                print(f"Subscribed to '{subscription.topic}' with id '{subscription.id}'")
+                print(f"{datetime.now()}: Subscribed to '{subscription.topic}' with id '{subscription.id}'")
             else:
-                print(f"Failed to subscribe '{subscription}'")
+                print(f"{datetime.now()}: Failed to subscribe '{subscription}'")
 
     def onBook(self, *args, **kwargs):
         self.event_count += 1
@@ -45,7 +46,7 @@ class PoloniexBookClient(ApplicationSession):
             asyncio.get_event_loop().run_in_executor(self.thread_pool, self.export_to_s3)
 
     def onDisconnect(self):
-        print('ERROR: Disconnected')
+        print(f'{datetime.now()}: ERROR Disconnected')
 
     def export_to_s3(self):
         book_data = [self.event_to_json(event) for event in self.events_file_queue.get()]

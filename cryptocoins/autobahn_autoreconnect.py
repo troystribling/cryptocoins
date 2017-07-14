@@ -38,6 +38,7 @@ from autobahn.asyncio.websocket import WampWebSocketClientFactory
 
 import asyncio
 import txaio
+from datetime import datetime
 
 txaio.use_asyncio()
 
@@ -146,7 +147,7 @@ class AutoreconnectingApplicationRunner(object):
         self._auto_ping_interval = auto_ping_interval
         self._auto_ping_timeout = auto_ping_timeout
 
-        print(f"CONFIG: open_handshake_timeout={self._open_handshake_timeout}, auto_ping_interval={self._auto_ping_interval}, auto_ping_timeout={self._auto_ping_timeout}")
+        print(f'{datetime.now()}: CONFIG open_handshake_timeout={self._open_handshake_timeout}, auto_ping_interval={self._auto_ping_interval}, auto_ping_timeout={self._auto_ping_timeout}')
 
         self._isSecure, self._host, self._port, _, _, _ = parseWsUrl(url)
 
@@ -215,15 +216,15 @@ class AutoreconnectingApplicationRunner(object):
                 _, protocol = await self._loop.create_connection(self._transport_factory, self._host, self._port, ssl=self._ssl)
                 protocol.is_closed.add_done_callback(self._reconnect)
                 self._active_protocol = protocol
-                print('Connection Succeeded')
+                print(f'{datetime.now()}: Connection Succeeded')
                 return
             except OSError:
-                print('ERROR: Connection failed')
+                print(f'{datetime.now()}: ERROR Connection failed')
                 if self._retry_strategy.retry():
                     retry_interval = self._retry_strategy.get_retry_interval()
-                    print(f'Retry in {retry_interval} seconds')
+                    print(f'{datetime.now()}: Retry in {retry_interval} seconds')
                 else:
-                    print('Exceeded retry count aborting')
+                    print(f'{datetime.now()}: ERROR Exceeded retry count aborting')
                     self._loop.stop()
                     raise ExceededRetryCount()
 
@@ -231,11 +232,11 @@ class AutoreconnectingApplicationRunner(object):
                 self._retry_strategy.increase_retry_interval()
 
     def _reconnect(self, f):
-        print('ERROR: Connection lost')
+        print(f'{datetime.now()}: ERROR Connection lost')
         if not self._closing:
             asyncio.ensure_future(self._connect(), loop=self._loop)
         else:
-            print('ERROR: Closing Connection')
+            print(f'{datetime.now()}: ERROR Closing Connection')
 
     def stop(self, *args):
         self._loop.stop()
