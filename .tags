@@ -73,6 +73,13 @@ export_data	poloniex/volume.py	/^from cryptocoins import export_data$/;"	i
 export_to_s3	poloniex/book.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexBookClient
 export_to_s3	poloniex/ticker.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTickerClient
 export_to_s3	poloniex/trollbox.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTrollboxClient
+file_path	cryptocompare/coin_compare.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
+file_path	cryptocompare/coin_list.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
+file_path	poloniex/book.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
+file_path	poloniex/ticker.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
+file_path	poloniex/trades.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
+file_path	poloniex/trollbox.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
+file_path	poloniex/volume.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
 files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, date_dir))$/;"	v
 get_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def get_retry_interval(self):$/;"	m	class:BackoffStrategy
 get_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def get_retry_interval(self):$/;"	m	class:IReconnectStrategy
@@ -103,7 +110,14 @@ onTicker	poloniex/ticker.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	cla
 onTicker	poloniex/trollbox.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:PoloniexTrollboxClient
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
+os	cryptocompare/coin_compare.py	/^import os$/;"	i
+os	cryptocompare/coin_list.py	/^import os$/;"	i
 os	notebooks/import_data.py	/^%aimport os$/;"	i
+os	poloniex/book.py	/^import os$/;"	i
+os	poloniex/ticker.py	/^import os$/;"	i
+os	poloniex/trades.py	/^import os$/;"	i
+os	poloniex/trollbox.py	/^import os$/;"	i
+os	poloniex/volume.py	/^import os$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
 parseWsUrl	cryptocoins/autobahn_autoreconnect.py	/^    from autobahn.websocket.protocol import parseWsUrl$/;"	i
 parseWsUrl	cryptocoins/autobahn_autoreconnect.py	/^    from autobahn.websocket.util import parse_url as parseWsUrl$/;"	i

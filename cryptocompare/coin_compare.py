@@ -1,9 +1,10 @@
 from time import time, sleep
 from urllib.request import urlopen
 
+import os
 import sys
-if '../cryptocoins' not in sys.path:
-    sys.path.append('../cryptocoins')
+file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))
+sys.path.append(os.path.join(file_path, '..'))
 
 from cryptocoins import export_data
 

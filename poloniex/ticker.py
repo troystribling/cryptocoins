@@ -2,8 +2,10 @@ import asyncio
 import json
 import sys
 
-if '../cryptocoins' not in sys.path:
-    sys.path.append('../cryptocoins')
+import os
+import sys
+file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))
+sys.path.append(os.path.join(file_path, '..'))
 
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import Queue
