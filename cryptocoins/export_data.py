@@ -1,9 +1,12 @@
 import tempfile
 import os
 import boto3
+import sys
+import requests
 
 from subprocess import call
 from datetime import date, datetime
+from urllib.request import urlopen
 
 def upload_to_s3(bucket, path, data):
     local_path = write_to_compressed_file(data)
@@ -26,3 +29,14 @@ def upload_file_to_s3(bucket, path, local_path):
     bucket.put_object(Key=remote_object, Body=open(local_path, 'rb'))
     os.unlink(local_path)
     print(f'{datetime.now()}: UPLOADED to {remote_object}')
+
+def getURL(url):
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text
+    except:
+        print(sys.exc_info())
+        return None
+    else:
+        return response
