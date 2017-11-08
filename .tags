@@ -4,184 +4,48 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ApplicationRunner	poloniex/trollbox.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
-ApplicationSession	poloniex/book.py	/^from autobahn.asyncio.wamp import ApplicationSession$/;"	i
-ApplicationSession	poloniex/ticker.py	/^from autobahn.asyncio.wamp import ApplicationSession$/;"	i
-ApplicationSession	poloniex/trollbox.py	/^from autobahn.asyncio.wamp import ApplicationSession, ApplicationRunner$/;"	i
-AutoreconnectingApplicationRunner	cryptocoins/autobahn_autoreconnect.py	/^class AutoreconnectingApplicationRunner(object):$/;"	c
-AutoreconnectingApplicationRunner	poloniex/book.py	/^from cryptocoins.autobahn_autoreconnect import AutoreconnectingApplicationRunner$/;"	i
-AutoreconnectingApplicationRunner	poloniex/ticker.py	/^from cryptocoins.autobahn_autoreconnect import AutoreconnectingApplicationRunner$/;"	i
-BackoffStrategy	cryptocoins/autobahn_autoreconnect.py	/^class BackoffStrategy(IReconnectStrategy):$/;"	c
-ComponentConfig	cryptocoins/autobahn_autoreconnect.py	/^from autobahn.wamp.types import ComponentConfig$/;"	i
-ExceededRetryCount	cryptocoins/autobahn_autoreconnect.py	/^class ExceededRetryCount(Exception):$/;"	c
-IReconnectStrategy	cryptocoins/autobahn_autoreconnect.py	/^class IReconnectStrategy(object):$/;"	c
-NoRetryStrategy	cryptocoins/autobahn_autoreconnect.py	/^class NoRetryStrategy(IReconnectStrategy):$/;"	c
-PoloniexBookClient	poloniex/book.py	/^class PoloniexBookClient(ApplicationSession):$/;"	c
-PoloniexTickerClient	poloniex/ticker.py	/^class PoloniexTickerClient(ApplicationSession):$/;"	c
-PoloniexTrollboxClient	poloniex/trollbox.py	/^class PoloniexTrollboxClient(ApplicationSession):$/;"	c
-Queue	poloniex/book.py	/^from multiprocessing import Queue$/;"	i
-Queue	poloniex/ticker.py	/^from multiprocessing import Queue$/;"	i
-Queue	poloniex/trollbox.py	/^from multiprocessing import Queue$/;"	i
-TenSecondStrategy	cryptocoins/autobahn_autoreconnect.py	/^class TenSecondStrategy(IReconnectStrategy):$/;"	c
-ThreadPoolExecutor	poloniex/book.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
-ThreadPoolExecutor	poloniex/ticker.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
-ThreadPoolExecutor	poloniex/trollbox.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
-WampWebSocketClientFactory	cryptocoins/autobahn_autoreconnect.py	/^from autobahn.asyncio.websocket import WampWebSocketClientFactory$/;"	i
-__init__	cryptocoins/autobahn_autoreconnect.py	/^    def __init__(self):$/;"	m	class:TenSecondStrategy
-__init__	cryptocoins/autobahn_autoreconnect.py	/^    def __init__(self, initial_interval=0.5, max_interval=512, factor=2):$/;"	m	class:BackoffStrategy
-__init__	cryptocoins/autobahn_autoreconnect.py	/^    def __init__(self, url, realm, extra=None, serializers=None, debug_app=False,$/;"	m	class:AutoreconnectingApplicationRunner
-__init__	poloniex/book.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
-__init__	poloniex/ticker.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
-__init__	poloniex/trollbox.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:PoloniexTrollboxClient
-_connect	cryptocoins/autobahn_autoreconnect.py	/^    async def _connect(self):$/;"	m	class:AutoreconnectingApplicationRunner
-_create_app_session	cryptocoins/autobahn_autoreconnect.py	/^        def _create_app_session():$/;"	f	function:AutoreconnectingApplicationRunner.run
-_reconnect	cryptocoins/autobahn_autoreconnect.py	/^    def _reconnect(self, f):$/;"	m	class:AutoreconnectingApplicationRunner
 aiohttp	cryptocoins/import_data.py	/^import aiohttp$/;"	i
-asyncio	cryptocoins/autobahn_autoreconnect.py	/^import asyncio$/;"	i
-asyncio	cryptocoins/import_data.py	/^import asyncio$/;"	i
-asyncio	poloniex/book.py	/^import asyncio$/;"	i
-asyncio	poloniex/ticker.py	/^import asyncio$/;"	i
-asyncio	poloniex/trollbox.py	/^import asyncio$/;"	i
+asyncio	crypto_compare.py	/^import asyncio$/;"	i
 boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
 bucket_name	notebooks/import_data.py	/^bucket_name = 'gly.fish'$/;"	v
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
-currencies	cryptocompare/coin_compare.py	/^currencies = [1182, 7605]$/;"	v
-currency_pairs	poloniex/trades.py	/^currency_pairs = ['BTC_ETH', 'USDT_BTC', 'USDT_ETH', 'ETH_GNO', 'BTC_LTC']$/;"	v
-data	notebooks/import_data.py	/^data = import_data.read_from_file(os.path.join(local_dir, date_dir, files[0]))$/;"	v
+coin_compare	crypto_compare.py	/^def coin_compare():$/;"	f
+coin_list	crypto_compare.py	/^def coin_list():$/;"	f
+data	notebooks/import_data.py	/^data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
-date_dir	notebooks/import_data.py	/^date_dir = '20170707'$/;"	v
-date_dir	notebooks/import_data.py	/^date_dir = '20170708'$/;"	v
 daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
-datetime	cryptocoins/autobahn_autoreconnect.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
-datetime	poloniex/book.py	/^from datetime import datetime$/;"	i
-datetime	poloniex/ticker.py	/^from datetime import datetime$/;"	i
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
-event_to_json	poloniex/book.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexBookClient
-event_to_json	poloniex/ticker.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexTickerClient
-event_to_json	poloniex/trollbox.py	/^    def event_to_json(self, event):$/;"	m	class:PoloniexTrollboxClient
-export_data	cryptocompare/coin_compare.py	/^from cryptocoins import export_data$/;"	i
-export_data	cryptocompare/coin_list.py	/^from cryptocoins import export_data$/;"	i
-export_data	poloniex/book.py	/^from cryptocoins import export_data$/;"	i
-export_data	poloniex/ticker.py	/^from cryptocoins import export_data$/;"	i
-export_data	poloniex/trades.py	/^from cryptocoins import export_data$/;"	i
-export_data	poloniex/trollbox.py	/^from cryptocoins import export_data$/;"	i
-export_data	poloniex/volume.py	/^from cryptocoins import export_data$/;"	i
-export_to_s3	poloniex/book.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexBookClient
-export_to_s3	poloniex/ticker.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTickerClient
-export_to_s3	poloniex/trollbox.py	/^    def export_to_s3(self):$/;"	m	class:PoloniexTrollboxClient
-file_path	cryptocompare/coin_compare.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
-file_path	cryptocompare/coin_list.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
-file_path	poloniex/book.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
-file_path	poloniex/ticker.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
-file_path	poloniex/trades.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
-file_path	poloniex/trollbox.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
-file_path	poloniex/volume.py	/^file_path = os.path.dirname(os.path.join(os.getcwd(), __file__))$/;"	v
-files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, date_dir))$/;"	v
-get_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def get_retry_interval(self):$/;"	m	class:BackoffStrategy
-get_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def get_retry_interval(self):$/;"	m	class:IReconnectStrategy
-get_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def get_retry_interval(self):$/;"	m	class:TenSecondStrategy
+export_data	crypto_compare.py	/^from cryptocoins import export_data$/;"	i
+files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, folder_date))$/;"	v
+folder_date	notebooks/import_data.py	/^folder_date = '20170708'$/;"	v
+getURL	cryptocoins/export_data.py	/^def getURL(url):$/;"	f
 http_get	cryptocoins/import_data.py	/^async def http_get(session, url):$/;"	f
 import_data	notebooks/import_data.py	/^from cryptocoins import import_data$/;"	i
-increase_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def increase_retry_interval(self):$/;"	m	class:BackoffStrategy
-increase_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def increase_retry_interval(self):$/;"	m	class:IReconnectStrategy
-increase_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def increase_retry_interval(self):$/;"	m	class:TenSecondStrategy
 json	cryptocoins/import_data.py	/^import json$/;"	i
-json	poloniex/book.py	/^import json$/;"	i
-json	poloniex/ticker.py	/^import json$/;"	i
-json	poloniex/trollbox.py	/^import json$/;"	i
 local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, 'cryptocompare\/coin_compare')$/;"	v
 local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, 'cryptocompare\/coin_list')$/;"	v
-local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, 'poloniex\/book')$/;"	v
-local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, 'poloniex\/ticker')$/;"	v
-local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, 'poloniex\/trades')$/;"	v
-local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, 'poloniex\/volume')$/;"	v
-onBook	poloniex/book.py	/^    def onBook(self, *args, **kwargs):$/;"	m	class:PoloniexBookClient
-onDisconnect	poloniex/book.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexBookClient
-onDisconnect	poloniex/ticker.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexTickerClient
-onDisconnect	poloniex/trollbox.py	/^    def onDisconnect(self):$/;"	m	class:PoloniexTrollboxClient
-onJoin	poloniex/book.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexBookClient
-onJoin	poloniex/ticker.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexTickerClient
-onJoin	poloniex/trollbox.py	/^    async def onJoin(self, details):$/;"	m	class:PoloniexTrollboxClient
-onTicker	poloniex/ticker.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:PoloniexTickerClient
-onTicker	poloniex/trollbox.py	/^    def onTicker(self, *args, **kwargs):$/;"	m	class:PoloniexTrollboxClient
+loop	crypto_compare.py	/^loop = asyncio.get_event_loop()$/;"	v
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
-os	cryptocompare/coin_compare.py	/^import os$/;"	i
-os	cryptocompare/coin_list.py	/^import os$/;"	i
 os	notebooks/import_data.py	/^%aimport os$/;"	i
-os	poloniex/book.py	/^import os$/;"	i
-os	poloniex/ticker.py	/^import os$/;"	i
-os	poloniex/trades.py	/^import os$/;"	i
-os	poloniex/trollbox.py	/^import os$/;"	i
-os	poloniex/volume.py	/^import os$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
-parseWsUrl	cryptocoins/autobahn_autoreconnect.py	/^    from autobahn.websocket.protocol import parseWsUrl$/;"	i
-parseWsUrl	cryptocoins/autobahn_autoreconnect.py	/^    from autobahn.websocket.util import parse_url as parseWsUrl$/;"	i
-poll	cryptocompare/coin_compare.py	/^def poll():$/;"	f
-poll	cryptocompare/coin_list.py	/^def poll():$/;"	f
-poll	poloniex/trades.py	/^def poll():$/;"	f
-poll	poloniex/volume.py	/^def poll():$/;"	f
-poll_seconds	cryptocompare/coin_compare.py	/^poll_seconds = 3600.0$/;"	v
-poll_seconds	cryptocompare/coin_list.py	/^poll_seconds = 86400$/;"	v
-poll_seconds	poloniex/trades.py	/^poll_seconds = 300.0$/;"	v
-poll_seconds	poloniex/volume.py	/^poll_seconds = 60.0$/;"	v
-protocol	cryptocoins/autobahn_autoreconnect.py	/^from autobahn.wamp import protocol$/;"	i
+poll_daily	crypto_compare.py	/^async def poll_daily():$/;"	f
+poll_hourly	crypto_compare.py	/^async def poll_hourly():$/;"	f
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_compare'$/;"	v
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_list'$/;"	v
-remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/poloniex\/book'$/;"	v
-remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/poloniex\/ticker'$/;"	v
-remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/poloniex\/trades'$/;"	v
-remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/poloniex\/volume'$/;"	v
-reset_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def reset_retry_interval(self):$/;"	m	class:BackoffStrategy
-reset_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def reset_retry_interval(self):$/;"	m	class:IReconnectStrategy
-reset_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def reset_retry_interval(self):$/;"	m	class:NoRetryStrategy
-reset_retry_interval	cryptocoins/autobahn_autoreconnect.py	/^    def reset_retry_interval(self):$/;"	m	class:TenSecondStrategy
-results_per_file	poloniex/trades.py	/^results_per_file = 100$/;"	v
-results_per_file	poloniex/volume.py	/^results_per_file = 150$/;"	v
-retry	cryptocoins/autobahn_autoreconnect.py	/^    def retry(self):$/;"	m	class:BackoffStrategy
-retry	cryptocoins/autobahn_autoreconnect.py	/^    def retry(self):$/;"	m	class:IReconnectStrategy
-retry	cryptocoins/autobahn_autoreconnect.py	/^    def retry(self):$/;"	m	class:NoRetryStrategy
-retry	cryptocoins/autobahn_autoreconnect.py	/^    def retry(self):$/;"	m	class:TenSecondStrategy
-run	cryptocoins/autobahn_autoreconnect.py	/^    def run(self, make):$/;"	m	class:AutoreconnectingApplicationRunner
-runner	poloniex/book.py	/^runner = AutoreconnectingApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1', open_handshake_timeout=90, auto_ping_interval=10, auto_ping_timeout=90)$/;"	v
-runner	poloniex/ticker.py	/^runner = AutoreconnectingApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1', open_handshake_timeout=90, auto_ping_interval=10, auto_ping_timeout=90)$/;"	v
-runner	poloniex/trollbox.py	/^runner = ApplicationRunner(u'wss:\/\/api.poloniex.com', 'realm1')$/;"	v
-signal	cryptocoins/autobahn_autoreconnect.py	/^import signal$/;"	i
-sleep	cryptocompare/coin_compare.py	/^from time import time, sleep$/;"	i
-sleep	cryptocompare/coin_list.py	/^from time import sleep$/;"	i
-sleep	poloniex/trades.py	/^from time import time, sleep$/;"	i
-sleep	poloniex/volume.py	/^from time import sleep$/;"	i
-stop	cryptocoins/autobahn_autoreconnect.py	/^    def stop(self, *args):$/;"	m	class:AutoreconnectingApplicationRunner
-sys	cryptocompare/coin_compare.py	/^import sys$/;"	i
-sys	cryptocompare/coin_list.py	/^import sys$/;"	i
-sys	poloniex/book.py	/^import sys$/;"	i
-sys	poloniex/ticker.py	/^import sys$/;"	i
-sys	poloniex/trades.py	/^import sys$/;"	i
-sys	poloniex/trollbox.py	/^import sys$/;"	i
-sys	poloniex/volume.py	/^import sys$/;"	i
+requests	cryptocoins/export_data.py	/^import requests$/;"	i
+sleep	crypto_compare.py	/^from time import sleep$/;"	i
+sys	cryptocoins/export_data.py	/^import sys$/;"	i
 tempdir	notebooks/import_data.py	/^tempdir = tempfile.gettempdir()$/;"	v
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
-tempfile	cryptocoins/import_data.py	/^import tempfile$/;"	i
 tempfile	notebooks/import_data.py	/^%aimport tempfile$/;"	i
-time	cryptocompare/coin_compare.py	/^from time import time, sleep$/;"	i
-time	poloniex/book.py	/^from time import time$/;"	i
-time	poloniex/ticker.py	/^from time import time$/;"	i
-time	poloniex/trades.py	/^from time import time, sleep$/;"	i
-time	poloniex/trollbox.py	/^from time import time$/;"	i
 timedelta	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
-txaio	cryptocoins/autobahn_autoreconnect.py	/^import txaio$/;"	i
 upload_file_to_s3	cryptocoins/export_data.py	/^def upload_file_to_s3(bucket, path, local_path):$/;"	f
 upload_to_s3	cryptocoins/export_data.py	/^def upload_to_s3(bucket, path, data):$/;"	f
-urlopen	cryptocompare/coin_compare.py	/^from urllib.request import urlopen$/;"	i
-urlopen	cryptocompare/coin_list.py	/^from urllib.request import urlopen$/;"	i
-urlopen	poloniex/trades.py	/^from urllib.request import urlopen$/;"	i
-urlopen	poloniex/volume.py	/^from urllib.request import urlopen$/;"	i
-wamp	poloniex/book.py	/^from autobahn import wamp$/;"	i
-wamp	poloniex/ticker.py	/^from autobahn import wamp$/;"	i
-wamp	poloniex/trollbox.py	/^from autobahn import wamp$/;"	i
+urlopen	cryptocoins/export_data.py	/^from urllib.request import urlopen$/;"	i
 write_to_compressed_file	cryptocoins/export_data.py	/^def write_to_compressed_file(data):$/;"	f

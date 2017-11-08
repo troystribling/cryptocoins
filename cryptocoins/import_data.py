@@ -1,17 +1,17 @@
-import tempfile
 import os
 import boto3
 import json
-import asyncio
 import aiohttp
 
 from subprocess import call
 from datetime import timedelta, date
 from dateutil.parser import parse
 
+
 def daterange(date1, date2):
     for n in range(int((date2 - date1).days) + 1):
         yield date1 + timedelta(n)
+
 
 def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):
     if start_date is None:
@@ -39,14 +39,19 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
         for remote_object in remote_objects:
             downloaded_file_count += 1
             remote_file_name = remote_object.key
+
             local_file_name = f"{local_day_dir}/{os.path.basename(remote_file_name)}"
+
             with open(local_file_name, 'wb') as local_file:
-                s3_client.download_fileobj(bucket, remote_file_name, local_file)
+                s3_client.download_fileobj(bucket,
+                                           remote_file_name,
+                                           local_file)
             call(f'lzop -d {local_file_name}', shell=True)
             os.unlink(local_file_name)
-            if download_limit != None and downloaded_file_count >= download_limit:
+            if download_limit is not None and downloaded_file_count >= download_limit:
                 break
     print(f'DOWNLOADED {downloaded_file_count} files from {remote_dir} to {local_dir}')
+
 
 def read_from_file(file_name):
     items = []
@@ -54,6 +59,7 @@ def read_from_file(file_name):
         for line in file:
             items.append(json.loads(line))
     return items
+
 
 async def http_get(session, url):
     with aiohttp.Timeout(10):
