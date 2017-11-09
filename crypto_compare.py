@@ -1,7 +1,7 @@
 from time import sleep
 import asyncio
-from cryptocoins import export_data
 
+from cryptocoins import export_data
 
 async def poll_daily():
         coin_list()
@@ -9,7 +9,6 @@ async def poll_daily():
 
 
 async def poll_hourly():
-    coin_compare()
     await asyncio.sleep(3600)
 
 
@@ -18,9 +17,7 @@ def coin_list():
     print(f"FETCH COIN LIST FROM: {url}")
     result = export_data.getURL(url)
     if result is not None:
-        export_data.upload_to_s3('gly.fish',
-                                 'cryptocoins/cryptocompare/coin_list',
-                                 [result])
+        export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_list', [result])
     else:
         print("coint_list request failed")
 
@@ -36,9 +33,7 @@ def coin_compare():
             results.append(result)
             sleep(1)
     if results:
-        export_data.upload_to_s3('gly.fish',
-                                 'cryptocoins/cryptocompare/coin_compare',
-                                 results)
+        export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_compare', results)
     else:
         print("REQUESTS HAVE NO RESULTS")
 

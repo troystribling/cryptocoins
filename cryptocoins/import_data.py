@@ -28,7 +28,6 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
     s3_resource = boto3.resource('s3')
 
     downloaded_file_count = 0
-
     for day in daterange(start_date, end_date):
         day_dir = day.strftime('%Y%m%d')
         remote_day_dir = f"{remote_dir}/{day_dir}"
@@ -43,9 +42,7 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
             local_file_name = f"{local_day_dir}/{os.path.basename(remote_file_name)}"
 
             with open(local_file_name, 'wb') as local_file:
-                s3_client.download_fileobj(bucket,
-                                           remote_file_name,
-                                           local_file)
+                s3_client.download_fileobj(bucket, remote_file_name, local_file)
             call(f'lzop -d {local_file_name}', shell=True)
             os.unlink(local_file_name)
             if download_limit is not None and downloaded_file_count >= download_limit:

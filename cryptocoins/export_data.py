@@ -6,11 +6,12 @@ import requests
 
 from subprocess import call
 from datetime import date, datetime
-from urllib.request import urlopen
+
 
 def upload_to_s3(bucket, path, data):
     local_path = write_to_compressed_file(data)
     upload_file_to_s3(bucket, path, local_path)
+
 
 def write_to_compressed_file(data):
     file_name_prefix = datetime.utcnow().strftime('%Y%m%d-%H%M%S-')
@@ -22,6 +23,7 @@ def write_to_compressed_file(data):
     os.unlink(file.name)
     return f'{file.name}.lzo'
 
+
 def upload_file_to_s3(bucket, path, local_path):
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(bucket)
@@ -29,6 +31,7 @@ def upload_file_to_s3(bucket, path, local_path):
     bucket.put_object(Key=remote_object, Body=open(local_path, 'rb'))
     os.unlink(local_path)
     print(f'{datetime.now()}: UPLOADED to {remote_object}')
+
 
 def getURL(url):
     try:
