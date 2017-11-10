@@ -4,6 +4,8 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+__depends__	migrations/20171110_01_sMLWW-create-coin-list-table.py	/^__depends__ = {}$/;"	v
+__depends__	migrations/20171110_02_u9YuS-create-coin-compare-table.py	/^__depends__ = {}$/;"	v
 aiohttp	cryptocoins/import_data.py	/^import aiohttp$/;"	i
 asyncio	crypto_compare.py	/^import asyncio$/;"	i
 boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
@@ -12,8 +14,9 @@ bucket_name	notebooks/import_data.py	/^bucket_name = 'gly.fish'$/;"	v
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 coin_compare	crypto_compare.py	/^def coin_compare():$/;"	f
+coin_data	notebooks/import_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
 coin_list	crypto_compare.py	/^def coin_list():$/;"	f
-data	notebooks/import_data.py	/^data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
+compare_data	notebooks/import_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
@@ -41,6 +44,10 @@ remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_list'$/;"	v
 requests	cryptocoins/export_data.py	/^import requests$/;"	i
 sleep	crypto_compare.py	/^from time import sleep$/;"	i
+step	migrations/20171110_01_sMLWW-create-coin-list-table.py	/^from yoyo import step$/;"	i
+step	migrations/20171110_02_u9YuS-create-coin-compare-table.py	/^from yoyo import step$/;"	i
+steps	migrations/20171110_01_sMLWW-create-coin-list-table.py	/^steps = [$/;"	v
+steps	migrations/20171110_02_u9YuS-create-coin-compare-table.py	/^steps = [$/;"	v
 sys	cryptocoins/export_data.py	/^import sys$/;"	i
 tempdir	notebooks/import_data.py	/^tempdir = tempfile.gettempdir()$/;"	v
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i

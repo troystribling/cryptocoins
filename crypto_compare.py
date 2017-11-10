@@ -3,6 +3,7 @@ import asyncio
 
 from cryptocoins import export_data
 
+
 async def poll_daily():
         coin_list()
         await asyncio.sleep(86400)
@@ -13,7 +14,7 @@ async def poll_hourly():
 
 
 def coin_list():
-    url = 'https://www.cryptocompare.com/api/data/coinlist/'
+    url = 'https://min-api.cryptocompare.com/data/all/coinlist'
     print(f"FETCH COIN LIST FROM: {url}")
     result = export_data.getURL(url)
     if result is not None:
