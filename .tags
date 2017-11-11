@@ -4,57 +4,69 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-Queue	crypto_compare.py	/^from multiprocessing import Queue$/;"	i
-ThreadPoolExecutor	crypto_compare.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
-__depends__	migrations/20171110_01_sMLWW-create-coin-list-table.py	/^__depends__ = {}$/;"	v
+Queue	crypto_compare_collect.py	/^from multiprocessing import Queue$/;"	i
+ThreadPoolExecutor	crypto_compare_collect.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
+__depends__	migrations/20171110_01_sMLWW-create-coins-table.py	/^__depends__ = {}$/;"	v
 __depends__	migrations/20171110_02_u9YuS-create-exchanges-table.py	/^__depends__ = {}$/;"	v
+__depends__	migrations/20171111_01_ryOd4-add-import-table.py	/^__depends__ = {}$/;"	v
+__depends__	migrations/20171111_02_ZzMu1-add-currency-pairs-table.py	/^__depends__ = {'20171111_01_ryOd4-add-import-table'}$/;"	v
 aiohttp	cryptocoins/import_data.py	/^import aiohttp$/;"	i
-asyncio	crypto_compare.py	/^import asyncio$/;"	i
+asyncio	crypto_compare_collect.py	/^import asyncio$/;"	i
 boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
 bucket_name	notebooks/import_data.py	/^bucket_name = 'gly.fish'$/;"	v
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 coin_data	notebooks/import_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
-coin_list	crypto_compare.py	/^def coin_list():$/;"	f
-coin_snapshot_full	crypto_compare.py	/^def coin_snapshot_full():$/;"	f
+coin_list	crypto_compare_collect.py	/^def coin_list():$/;"	f
+coin_snapshot_full	crypto_compare_collect.py	/^def coin_snapshot_full():$/;"	f
 compare_data	notebooks/import_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
+date	cryptocoins/utils.py	/^from datetime import date, datetime$/;"	i
+date_prefix	cryptocoins/utils.py	/^def date_prefix(file_date):$/;"	f
 daterange	cryptocoins/import_data.py	/^def daterange(date1, date2):$/;"	f
 datetime	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
+datetime	cryptocoins/utils.py	/^from datetime import date, datetime$/;"	i
+day_dir	cryptocoins/utils.py	/^def day_dir(file_date):$/;"	f
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
-export_data	crypto_compare.py	/^from cryptocoins import export_data$/;"	i
+export_data	crypto_compare_collect.py	/^from cryptocoins import export_data$/;"	i
 files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, folder_date))$/;"	v
 folder_date	notebooks/import_data.py	/^folder_date = '20171111'$/;"	v
 getURL	cryptocoins/export_data.py	/^def getURL(url):$/;"	f
-http_get	cryptocoins/import_data.py	/^async def http_get(session, url):$/;"	f
+import_data	crypto_compare_import.py	/^from cryptocoins import import_data$/;"	i
 import_data	notebooks/import_data.py	/^from cryptocoins import import_data$/;"	i
 json	cryptocoins/import_data.py	/^import json$/;"	i
 local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, 'cryptocompare\/coin_list')$/;"	v
 local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, 'cryptocompare\/coin_snapshot_full')$/;"	v
-loop	crypto_compare.py	/^loop = asyncio.get_event_loop()$/;"	v
+loop	crypto_compare_collect.py	/^loop = asyncio.get_event_loop()$/;"	v
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
 os	notebooks/import_data.py	/^import os$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
-poll_coin_snapshot_full	crypto_compare.py	/^async def poll_coin_snapshot_full():$/;"	f
-poll_coinlist	crypto_compare.py	/^async def poll_coinlist():$/;"	f
+poll_coin_snapshot_full	crypto_compare_collect.py	/^async def poll_coin_snapshot_full():$/;"	f
+poll_coinlist	crypto_compare_collect.py	/^async def poll_coinlist():$/;"	f
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_list'$/;"	v
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_snapshot_full'$/;"	v
 requests	cryptocoins/export_data.py	/^import requests$/;"	i
-sleep	crypto_compare.py	/^from time import sleep$/;"	i
-step	migrations/20171110_01_sMLWW-create-coin-list-table.py	/^from yoyo import step$/;"	i
+sleep	crypto_compare_collect.py	/^from time import sleep$/;"	i
+step	migrations/20171110_01_sMLWW-create-coins-table.py	/^from yoyo import step$/;"	i
 step	migrations/20171110_02_u9YuS-create-exchanges-table.py	/^from yoyo import step$/;"	i
-steps	migrations/20171110_01_sMLWW-create-coin-list-table.py	/^steps = [$/;"	v
+step	migrations/20171111_01_ryOd4-add-import-table.py	/^from yoyo import step$/;"	i
+step	migrations/20171111_02_ZzMu1-add-currency-pairs-table.py	/^from yoyo import step$/;"	i
+steps	migrations/20171110_01_sMLWW-create-coins-table.py	/^steps = [$/;"	v
 steps	migrations/20171110_02_u9YuS-create-exchanges-table.py	/^steps = [$/;"	v
+steps	migrations/20171111_01_ryOd4-add-import-table.py	/^steps = [$/;"	v
+steps	migrations/20171111_02_ZzMu1-add-currency-pairs-table.py	/^steps = [$/;"	v
 tempdir	notebooks/import_data.py	/^tempdir = tempfile.gettempdir()$/;"	v
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
 tempfile	notebooks/import_data.py	/^import tempfile$/;"	i
-thread_pool	crypto_compare.py	/^thread_pool = ThreadPoolExecutor(max_workers=20)$/;"	v
-threading	crypto_compare.py	/^import threading$/;"	i
+thread_pool	crypto_compare_collect.py	/^thread_pool = ThreadPoolExecutor(max_workers=20)$/;"	v
+threading	crypto_compare_collect.py	/^import threading$/;"	i
 timedelta	cryptocoins/import_data.py	/^from datetime import timedelta, date$/;"	i
 upload_file_to_s3	cryptocoins/export_data.py	/^def upload_file_to_s3(bucket, path, local_path):$/;"	f
 upload_to_s3	cryptocoins/export_data.py	/^def upload_to_s3(bucket, path, data):$/;"	f
+utils	cryptocoins/export_data.py	/^import .utils$/;"	i
+utils	cryptocoins/import_data.py	/^import .utils$/;"	i
 write_to_compressed_file	cryptocoins/export_data.py	/^def write_to_compressed_file(data):$/;"	f

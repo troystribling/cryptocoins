@@ -7,6 +7,7 @@ from subprocess import call
 from datetime import timedelta, date
 from dateutil.parser import parse
 
+import .utils
 
 def daterange(date1, date2):
     for n in range(int((date2 - date1).days) + 1):
@@ -29,7 +30,7 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
 
     downloaded_file_count = 0
     for day in daterange(start_date, end_date):
-        day_dir = day.strftime('%Y%m%d')
+        day_dir = utils.day_dir(day)
         remote_day_dir = f"{remote_dir}/{day_dir}"
         local_day_dir = f"{local_dir}/{day_dir}"
         if not os.path.exists(local_day_dir):
@@ -62,10 +63,3 @@ def read_from_file(file_name):
             else:
                 items.append(json_line)
     return items
-
-
-async def http_get(session, url):
-    with aiohttp.Timeout(10):
-        async with session.get(url) as response:
-            assert response.status == 200
-            return await response.read()
