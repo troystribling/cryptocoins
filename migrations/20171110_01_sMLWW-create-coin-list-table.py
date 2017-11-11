@@ -11,6 +11,7 @@ steps = [
          "("
          " id BIGINT, "
          " created_at TIMESTAMP WITH TIME ZONE,"
+         " algorithm TEXT,"
          " coin_name TEXT,"
          " full_name TEXT,"
          " fully_premined BOOLEAN,"

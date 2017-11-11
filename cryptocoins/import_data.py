@@ -54,7 +54,13 @@ def read_from_file(file_name):
     items = []
     with open(file_name, 'r') as file:
         for line in file:
-            items.append(json.loads(line))
+            try:
+                json_line = json.loads(line)
+            except ValueError:
+                print(f"FAILED TO PARSE JSON: '{line}''")
+                break
+            else:
+                items.append(json_line)
     return items
 
 

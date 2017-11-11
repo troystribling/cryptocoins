@@ -1,16 +1,18 @@
-from time import sleep
 import asyncio
 
 from cryptocoins import export_data
 
 
-async def poll_daily():
+async def poll_coinlist():
         coin_list()
         await asyncio.sleep(86400)
 
 
-async def poll_hourly():
-    await asyncio.sleep(3600)
+async def poll_coin_snapshot_full():
+    currencies = [1182, 7605]
+    for currency in currencies:
+        coin_snapshot_full(currency)
+        await asyncio.sleep(10)
 
 
 def coin_list():
@@ -23,22 +25,16 @@ def coin_list():
         print("coint_list request failed")
 
 
-def coin_compare():
-    results = []
-    currencies = [1182, 7605]
-    for currency in currencies:
-        url = f'https://www.cryptocompare.com/api/data/coinsnapshotfullbyid/?id={currency}'
-        print(f"FETCH COIN SNAP SHOT FROM: {url}")
-        result = export_data.getURL(url)
-        if result is not None:
-            results.append(result)
-            sleep(1)
-    if results:
-        export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_compare', results)
+def coin_snapshot_full(currency):
+    url = f'https://www.cryptocompare.com/api/data/coinsnapshotfullbyid/?id={currency}'
+    print(f"FETCH COIN SNAP SHOT FROM: {url}")
+    result = export_data.getURL(url)
+    if result is not None:
+        export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_snapshot_full', [result])
     else:
-        print("REQUESTS HAVE NO RESULTS")
+        print("coint_list request failed")
 
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(asyncio.gather(poll_daily(), poll_hourly()))
+loop.run_until_complete(asyncio.gather(poll_coinlist(), poll_coin_snapshot_full()))
 loop.close()

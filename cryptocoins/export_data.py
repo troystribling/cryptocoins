@@ -1,7 +1,6 @@
 import tempfile
 import os
 import boto3
-import sys
 import requests
 
 from subprocess import call
@@ -38,8 +37,8 @@ def getURL(url):
         response = requests.get(url)
         response.raise_for_status()
         return response.text
-    except:
-        print(sys.exc_info())
+    except requests.exceptions.RequestException as error:
+        print(error)
         return None
     else:
         return response

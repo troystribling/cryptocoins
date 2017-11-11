@@ -1,5 +1,5 @@
 """
-CREATE coin_snapshot table
+CREATE exchanges table
 """
 
 from yoyo import step
@@ -7,7 +7,7 @@ from yoyo import step
 __depends__ = {}
 
 steps = [
-    step("CREATE TABLE coin_snapshot"
+    step("CREATE TABLE exchanges"
          "("
          " id BIGINT, "
          " created_at TIMESTAMP WITH TIME ZONE,"
