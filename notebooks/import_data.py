@@ -3,6 +3,8 @@ import tempfile
 import os
 
 from cryptocoins import import_data
+from cryptocoins.models.imports import Imports
+from datetime import datetime
 
 bucket_name = 'gly.fish'
 tempdir = tempfile.gettempdir()

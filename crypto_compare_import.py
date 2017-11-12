@@ -5,6 +5,7 @@ import tempfile
 
 from cryptocoins import import_data
 from cryptocoins import utils
+from cryptocoins.models.imports import Imports
 
 
 start_date = utils.day_dir(date.today())
@@ -26,4 +27,6 @@ import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_
 
 files = os.listdir(os.path.join(local_dir, start_date))
 compare_data = import_data.read_from_file(os.path.join(local_dir, start_date, files[0]))
-compare_data[0]['Data']['Subs']
+print(compare_data[0]['Data'].keys())
+print(compare_data[0]['Data']['Subs'])
+print(compare_data[0]['Data']['StreamerDataRaw'])

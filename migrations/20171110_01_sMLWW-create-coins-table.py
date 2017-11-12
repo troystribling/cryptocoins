@@ -9,18 +9,13 @@ __depends__ = {}
 steps = [
     step("CREATE TABLE coins"
          "("
-         " id BIGINT, "
-         " created_at TIMESTAMP WITH TIME ZONE,"
-         " algorithm TEXT,"
+         " id SERIAL PRIMARY KEY, "
+         " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
          " coin_name TEXT,"
          " full_name TEXT,"
-         " fully_premined BOOLEAN,"
-         " coincompare_id BIGINT,"
+         " cryptocompare_id BIGINT,"
          " name TEXT,"
-         " proof_type TEXT,"
-         " symbol TEXT,"
-         " total_coin_supply BIGINT,"
-         " PRIMARY KEY (id)"
+         " symbol TEXT"
          ")", "DROP TABLE COINS"),
-    step("CREATE UNIQUE INDEX symbol_idx ON films (symbol)", "DROP INDEX symbol_idx")
+    step("CREATE UNIQUE INDEX coins_symbol_idx ON coins (symbol)", "DROP INDEX coins_symbol_idx")
 ]

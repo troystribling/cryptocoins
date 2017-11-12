@@ -9,9 +9,9 @@ __depends__ = {}
 steps = [
     step("CREATE TABLE exchanges"
          "("
-         " id BIGINT, "
-         " created_at TIMESTAMP WITH TIME ZONE,"
-         " name TEXT,"
-         " PRIMARY KEY (id)"
-         ")", "DROP TABLE exchanges")
+         " id SERIAL PRIMARY KEY, "
+         " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
+         " name TEXT"
+         ")", "DROP TABLE exchanges"),
+    step("CREATE UNIQUE INDEX exchanges_name_idx ON exchanges (name)", "DROP INDEX exchanges_name_idx")
 ]
