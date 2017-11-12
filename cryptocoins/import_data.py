@@ -1,17 +1,12 @@
 import os
 import boto3
 import json
-import aiohttp
 
 from subprocess import call
-from datetime import timedelta, date
+from datetime import date
 from dateutil.parser import parse
 
-import .utils
-
-def daterange(date1, date2):
-    for n in range(int((date2 - date1).days) + 1):
-        yield date1 + timedelta(n)
+import cryptocoins.utils as utils
 
 
 def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):
@@ -29,12 +24,13 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
     s3_resource = boto3.resource('s3')
 
     downloaded_file_count = 0
-    for day in daterange(start_date, end_date):
+    for day in utils.daterange(start_date, end_date):
         day_dir = utils.day_dir(day)
         remote_day_dir = f"{remote_dir}/{day_dir}"
         local_day_dir = f"{local_dir}/{day_dir}"
-        if not os.path.exists(local_day_dir):
-            os.makedirs(local_day_dir)
+        if os.path.exists(local_day_dir):
+            continue
+        os.makedirs(local_day_dir)
         remote_objects = s3_resource.Bucket(bucket).objects.filter(Prefix=remote_day_dir)
         for remote_object in remote_objects:
             downloaded_file_count += 1

@@ -1,15 +1,14 @@
 from time import sleep
 import asyncio
-import threading
 from concurrent.futures import ThreadPoolExecutor
-from multiprocessing import Queue
 
 from cryptocoins import export_data
 
 thread_pool = ThreadPoolExecutor(max_workers=20)
 loop = asyncio.get_event_loop()
 
-async def poll_coinlist():
+
+async def poll_coin_list():
         while True:
             loop.run_in_executor(thread_pool, coin_list)
             await asyncio.sleep(300)
@@ -45,4 +44,4 @@ def coin_snapshot_full():
 
 
 if __name__ == "__main__":
-    loop.run_until_complete(asyncio.gather(poll_coinlist(), poll_coin_snapshot_full()))
+    loop.run_until_complete(asyncio.gather(poll_coin_list(), poll_coin_snapshot_full()))

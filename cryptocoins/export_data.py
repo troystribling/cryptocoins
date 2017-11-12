@@ -5,7 +5,8 @@ import requests
 
 from subprocess import call
 from datetime import date, datetime
-import .utils
+
+from cryptocoins import utils
 
 
 def upload_to_s3(bucket, path, data):
