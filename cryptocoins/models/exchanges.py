@@ -1,6 +1,5 @@
 from peewee import Model, PostgresqlDatabase, DateTimeField, TextField
 
-
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
 

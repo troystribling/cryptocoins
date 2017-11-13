@@ -3,7 +3,6 @@ import tempfile
 import os
 
 from cryptocoins import import_data
-from cryptocoins.models.imports import Imports
 from datetime import datetime
 
 bucket_name = 'gly.fish'
@@ -28,4 +27,7 @@ folder_date = '20171111'
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)
 files = os.listdir(os.path.join(local_dir, folder_date))
 compare_data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))
-compare_data[0]['Data']['Subs']
+sub = compare_data[0]['Data']['Subs'][0]
+
+Exchanges.create_from_cryptocompare_ticker_subscription(sub)
+CurrencyPairs.create_from_cryptocompare_ticker_subscription(sub)

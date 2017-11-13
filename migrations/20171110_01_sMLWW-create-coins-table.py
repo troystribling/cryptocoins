@@ -15,7 +15,8 @@ steps = [
          " full_name TEXT,"
          " cryptocompare_id BIGINT,"
          " name TEXT,"
-         " symbol TEXT"
+         " symbol TEXT,"
+         " url TEXT"
          ")", "DROP TABLE COINS"),
     step("CREATE UNIQUE INDEX coins_symbol_idx ON coins (symbol)", "DROP INDEX coins_symbol_idx")
 ]

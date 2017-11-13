@@ -7,6 +7,7 @@ from datetime import date
 from dateutil.parser import parse
 
 import cryptocoins.utils as utils
+from cryptocoins.models.imports import Imports
 
 
 def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):
@@ -38,6 +39,7 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
 
             local_file_name = f"{local_day_dir}/{os.path.basename(remote_file_name)}"
 
+            Imports.create(remote_path=remote_file_name)
             with open(local_file_name, 'wb') as local_file:
                 s3_client.download_fileobj(bucket, remote_file_name, local_file)
             call(f'lzop -d {local_file_name}', shell=True)
