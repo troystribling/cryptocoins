@@ -51,11 +51,11 @@ bucket_name	crypto_compare_import.py	/^bucket_name = 'gly.fish'$/;"	v
 bucket_name	notebooks/import_data.py	/^bucket_name = 'gly.fish'$/;"	v
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
-coin_data	notebooks/import_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
+coin_data	notebooks/import_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 coin_list	crypto_compare_collect.py	/^def coin_list():$/;"	f
 coin_name	cryptocoins/models/coins.py	/^    coin_name = TextField(null=True)$/;"	v	class:Coins
 coin_snapshot_full	crypto_compare_collect.py	/^def coin_snapshot_full():$/;"	f
-compare_data	notebooks/import_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, folder_date, files[0]))$/;"	v
+compare_data	notebooks/import_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 create_from_cryptocompare_ticker_subscription	cryptocoins/models/currency_pairs.py	/^    def create_from_cryptocompare_ticker_subscription(cls, ticker_sub):$/;"	m	class:CurrencyPairs
 create_from_cryptocompare_ticker_subscription	cryptocoins/models/exchanges.py	/^    def create_from_cryptocompare_ticker_subscription(cls, ticker_sub):$/;"	m	class:Exchanges
 created_at	cryptocoins/models/coins.py	/^    created_at = DateTimeField()$/;"	v	class:Coins
@@ -76,21 +76,24 @@ database	cryptocoins/models/imports.py	/^database = PostgresqlDatabase('cryptoco
 date	crypto_compare_import.py	/^from datetime import date$/;"	i
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import date$/;"	i
+date_dir	cryptocoins/models/imports.py	/^    date_dir = TextField(null=True)$/;"	v	class:Imports
 date_prefix	cryptocoins/utils.py	/^def date_prefix(file_date):$/;"	f
 daterange	cryptocoins/utils.py	/^def daterange(date1, date2):$/;"	f
 datetime	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
-datetime	notebooks/import_data.py	/^from datetime import datetime$/;"	i
 day_dir	cryptocoins/utils.py	/^def day_dir(file_date):$/;"	f
+day_dir	notebooks/import_data.py	/^day_dir = utils.day_dir(folder_date)$/;"	v
 db_table	cryptocoins/models/coins.py	/^        db_table = 'coins'$/;"	v	class:Coins.Meta
 db_table	cryptocoins/models/currency_pairs.py	/^        db_table = 'currency_pairs'$/;"	v	class:CurrencyPairs.Meta
 db_table	cryptocoins/models/exchanges.py	/^        db_table = 'exchanges'$/;"	v	class:Exchanges.Meta
 db_table	cryptocoins/models/imports.py	/^        db_table = 'imports'$/;"	v	class:Imports.Meta
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
-end_date	crypto_compare_import.py	/^    end_date = sys.argv[2]$/;"	v
-end_date	crypto_compare_import.py	/^end_date = start_date$/;"	v
+end_date	crypto_compare_import.py	/^        end_date = parse(sys.argv[2])$/;"	v
+end_date	crypto_compare_import.py	/^    end_date = start_date$/;"	v
 export_data	crypto_compare_collect.py	/^from cryptocoins import export_data$/;"	i
-files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, folder_date))$/;"	v
-folder_date	notebooks/import_data.py	/^folder_date = '20171111'$/;"	v
+file_name	cryptocoins/models/imports.py	/^    file_name = TextField(null=True, unique=True)$/;"	v	class:Imports
+files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, day_dir))$/;"	v
+folder_date	notebooks/import_data.py	/^folder_date = parse('20171111')$/;"	v
+folder_date	notebooks/import_data.py	/^folder_date = parse('20171113')$/;"	v
 from_symbol	cryptocoins/models/currency_pairs.py	/^    from_symbol = TextField(index=True, null=True)$/;"	v	class:CurrencyPairs
 full_name	cryptocoins/models/coins.py	/^    full_name = TextField(null=True)$/;"	v	class:Coins
 getURL	cryptocoins/export_data.py	/^def getURL(url):$/;"	f
@@ -108,17 +111,19 @@ os	crypto_compare_import.py	/^import os$/;"	i
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
 os	notebooks/import_data.py	/^import os$/;"	i
+parse	crypto_compare_import.py	/^from dateutil.parser import parse$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
+parse	notebooks/import_data.py	/^from dateutil.parser import parse$/;"	i
 poll_coin_list	crypto_compare_collect.py	/^async def poll_coin_list():$/;"	f
 poll_coin_snapshot_full	crypto_compare_collect.py	/^async def poll_coin_snapshot_full():$/;"	f
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
+remote_dir	cryptocoins/models/imports.py	/^    remote_dir = TextField(null=True)$/;"	v	class:Imports
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_list'$/;"	v
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_snapshot_full'$/;"	v
-remote_path	cryptocoins/models/imports.py	/^    remote_path = TextField(null=True, unique=True)$/;"	v	class:Imports
 requests	cryptocoins/export_data.py	/^import requests$/;"	i
 sleep	crypto_compare_collect.py	/^from time import sleep$/;"	i
-start_date	crypto_compare_import.py	/^    start_date = sys.argv[1]$/;"	v
-start_date	crypto_compare_import.py	/^start_date = utils.day_dir(date.today())$/;"	v
+start_date	crypto_compare_import.py	/^        start_date = parse(sys.argv[1])$/;"	v
+start_date	crypto_compare_import.py	/^    start_date = date.today()$/;"	v
 step	migrations/20171110_01_sMLWW-create-coins-table.py	/^from yoyo import step$/;"	i
 step	migrations/20171110_02_u9YuS-create-exchanges-table.py	/^from yoyo import step$/;"	i
 step	migrations/20171111_01_ryOd4-create-imports-table.py	/^from yoyo import step$/;"	i
@@ -143,4 +148,5 @@ upload_to_s3	cryptocoins/export_data.py	/^def upload_to_s3(bucket, path, data):$
 utils	crypto_compare_import.py	/^from cryptocoins import utils$/;"	i
 utils	cryptocoins/export_data.py	/^from cryptocoins import utils$/;"	i
 utils	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
+utils	notebooks/import_data.py	/^from cryptocoins import utils$/;"	i
 write_to_compressed_file	cryptocoins/export_data.py	/^def write_to_compressed_file(data):$/;"	f
