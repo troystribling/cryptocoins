@@ -2,6 +2,7 @@ import sys
 import os
 from datetime import date
 import tempfile
+
 from dateutil.parser import parse
 
 from cryptocoins import import_data
@@ -16,20 +17,23 @@ bucket_name = 'gly.fish'
 
 def import_coin_snapshot_full():
     remote_dir = 'cryptocoins/cryptocompare/coin_snapshot_full'
-    local_dir = os.path.join(tempdir, 'cryptocompare/coin_snapshot_full')
+    local_dir = os.path.join(tempdir, remote_dir)
     import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=start_date, end_date=end_date)
     for day in utils.daterange(start_date, end_date):
         day_dir = utils.day_dir(day)
         data_files = os.listdir(os.path.join(local_dir, day_dir))
         for data_file in data_files:
             data_file_path = os.path.join(local_dir, day_dir, data_file)
-            Imports.create(remote_dir=remote_dir, date_dir=day_dir, file_name=data_file)
-            print(f"IMPORTING FILE: {data_file_path}")
+            if Imports.create_import(remote_dir=remote_dir, date_dir=day_dir, file_name=data_file) is None:
+                continue
             data = import_data.read_from_file(data_file_path)
+            if len(data) == 0:
+                print("ERROR: FILE IS EMPTY")
+                continue
             for subscription in data[0]['Data']['Subs']:
                 print(f"SUBSCRIPTION: {subscription}")
-                Exchanges.create_from_cryptocompare_ticker_subscription(subscription)
-                CurrencyPairs.create_from_cryptocompare_ticker_subscription(subscription)
+                Exchanges.create_using_cryptocompare_subscription(subscription)
+                CurrencyPairs.create_using_cryptocompare_subscription(subscription)
 
 
 if __name__ == "__main__":
@@ -42,6 +46,6 @@ if __name__ == "__main__":
     if len(sys.argv) > 2:
         end_date = parse(sys.argv[2])
 
-    import_coin_snapshot_full()
-
     print(f"IMPORTING {start_date} to {end_date}")
+
+    import_coin_snapshot_full()

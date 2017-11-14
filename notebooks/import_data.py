@@ -13,7 +13,7 @@ tempdir = tempfile.gettempdir()
 # %%
 # fetch cryptocompare coin_list
 remote_dir = 'cryptocoins/cryptocompare/coin_list'
-local_dir = os.path.join(tempdir, 'cryptocompare/coin_list')
+local_dir = os.path.join(tempdir, remote_dir)
 folder_date = parse('20171111')
 day_dir = utils.day_dir(folder_date)
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)
@@ -25,7 +25,7 @@ coin_data[0]['Data']['ETH']
 # %%
 # fetch cryptocompare coin_compare
 remote_dir = 'cryptocoins/cryptocompare/coin_snapshot_full'
-local_dir = os.path.join(tempdir, 'cryptocompare/coin_snapshot_full')
+local_dir = os.path.join(tempdir, remote_dir)
 folder_date = parse('20171113')
 day_dir = utils.day_dir(folder_date)
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)

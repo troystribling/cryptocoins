@@ -1,4 +1,4 @@
-from peewee import Model, PostgresqlDatabase, DateTimeField, TextField
+from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
@@ -21,7 +21,12 @@ class CurrencyPairs(BaseModel):
         )
 
     @classmethod
-    def create_from_cryptocompare_ticker_subscription(cls, ticker_sub):
-        components = ticker_sub.split("~")
+    def create_using_cryptocompare_subscription(cls, subscription):
+        components = subscription.split("~")
         if len(components) > 3:
-            cls.create(cryptocompare_subscription=ticker_sub, from_symbol=components[2], to_symbol=components[3])
+            try:
+                with database.atomic():
+                    return cls.create(cryptocompare_subscription=subscription, from_symbol=components[2], to_symbol=components[3])
+            except IntegrityError:
+                print(f"CURRENCY_PAIR EXISTS: {components[2]}, {components[3]}")
+                return None
