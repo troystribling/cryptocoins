@@ -50,7 +50,7 @@ __depends__	migrations/20171111_02_ZzMu1-create-currency-pairs-table.py	/^__depe
 asyncio	crypto_compare_collect.py	/^import asyncio$/;"	i
 boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
-bucket_name	crypto_compare_import.py	/^bucket_name = 'gly.fish'$/;"	v
+bucket_name	crypto_compare_import.py	/^    bucket_name = 'gly.fish'$/;"	v
 bucket_name	notebooks/import_data.py	/^bucket_name = 'gly.fish'$/;"	v
 call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
@@ -101,7 +101,8 @@ folder_date	notebooks/import_data.py	/^folder_date = parse('20171113')$/;"	v
 from_symbol	cryptocoins/models/currency_pairs.py	/^    from_symbol = TextField(index=True, null=True)$/;"	v	class:CurrencyPairs
 full_name	cryptocoins/models/coins.py	/^    full_name = TextField(null=True)$/;"	v	class:Coins
 getURL	cryptocoins/export_data.py	/^def getURL(url):$/;"	f
-import_coin_snapshot_full	crypto_compare_import.py	/^def import_coin_snapshot_full():$/;"	f
+import_coin_list	crypto_compare_import.py	/^def import_coin_list(bucket_name, start_date, end_date):$/;"	f
+import_coin_snapshot_full	crypto_compare_import.py	/^def import_coin_snapshot_full(bucket_name, start_date, end_date):$/;"	f
 import_data	crypto_compare_import.py	/^from cryptocoins import import_data$/;"	i
 import_data	notebooks/import_data.py	/^from cryptocoins import import_data$/;"	i
 indexes	cryptocoins/models/currency_pairs.py	/^        indexes = ($/;"	v	class:CurrencyPairs.Meta
@@ -138,7 +139,6 @@ steps	migrations/20171111_02_ZzMu1-create-currency-pairs-table.py	/^steps = [$/;
 sub	notebooks/import_data.py	/^sub = compare_data[0]['Data']['Subs'][0]$/;"	v
 symbol	cryptocoins/models/coins.py	/^    symbol = TextField(null=True, unique=True)$/;"	v	class:Coins
 sys	crypto_compare_import.py	/^import sys$/;"	i
-tempdir	crypto_compare_import.py	/^tempdir = tempfile.gettempdir()$/;"	v
 tempdir	notebooks/import_data.py	/^tempdir = tempfile.gettempdir()$/;"	v
 tempfile	crypto_compare_import.py	/^import tempfile$/;"	i
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
