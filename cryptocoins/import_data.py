@@ -1,12 +1,14 @@
 import os
 import boto3
 import json
+import tempfile
 
 from subprocess import call
 from datetime import date
 from dateutil.parser import parse
 
 import cryptocoins.utils as utils
+from .models.imports import Imports
 
 
 def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):
@@ -53,3 +55,21 @@ def read_from_file(file_name):
             else:
                 items.append(json_line)
     return items
+
+def import_from_s3(bucket_name, start_date, end_date, remote_dir):
+    def decorator(process):
+        def wrapper():
+            tempdir = tempfile.gettempdir()
+            local_dir = os.path.join(tempdir, remote_dir)
+            download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=start_date, end_date=end_date)
+            for day in utils.daterange(start_date, end_date):
+                day_dir = utils.day_dir(day)
+                data_files = os.listdir(os.path.join(local_dir, day_dir))
+                for data_file in data_files:
+                    data_file_path = os.path.join(local_dir, day_dir, data_file)
+                    if Imports.create_import(remote_dir=remote_dir, date_dir=day_dir, file_name=data_file) is None:
+                        continue
+                    data = read_from_file(data_file_path)
+                    process(data)
+        return wrapper
+    return decorator
