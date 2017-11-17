@@ -21,3 +21,28 @@ class Coins(BaseModel):
 
     @classmethod
     def create_using_crytocompare_coinlist(cls, coin_list):
+        if 'CoinName' not in coin_list:
+            print(f"ERROR: 'CoinName' KEY IS MISSING FROM coin_list {coin_list}")
+            return
+        if 'Id' not in coin_list:
+            print(f"ERROR: 'Id' KEY IS MISSING FROM coin_list {coin_list}")
+            return
+        if 'FullName' not in coin_list:
+            print(f"ERROR: 'FullName' KEY IS MISSING FROM coin_list {coin_list}")
+            return
+        if 'Name' not in coin_list:
+            print(f"ERROR: 'Name' KEY IS MISSING FROM coin_list {coin_list}")
+            return
+        if 'Symbol' not in coin_list:
+            print(f"ERROR: 'Symbol' KEY IS MISSING FROM coin_list {coin_list}")
+            return
+        try:
+            with database.atomic():
+                return cls.create(coin_name=coin_list['CoinName'],
+                                  cryptocompare_id=coin_list['Id'],
+                                  full_name=coin_list['FullName'],
+                                  name=coin_list['Name'],
+                                  symbol=coin_list['Symbol'])
+        except IntegrityError:
+            print(f"COIN EXISTS: {coin_list['Symbol']}")
+            return None

@@ -45,9 +45,8 @@ def import_coin_list(data):
     if 'Data' not in data[0]:
         print("ERROR: Data KEY IS MISSING FROM import_coin_snapshot_full")
         return
-    for coin in data[0]['Data']:
+    for coin in data[0]['Data'].values():
         Coins.create_using_crytocompare_coinlist(coin)
-
 
 
 import_coin_snapshot_full()
