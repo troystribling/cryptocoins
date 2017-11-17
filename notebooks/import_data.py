@@ -6,6 +6,8 @@ from dateutil.parser import parse
 from cryptocoins import import_data
 from cryptocoins import utils
 
+from cryptocoins.models.coins import Coins
+
 
 bucket_name = 'gly.fish'
 tempdir = tempfile.gettempdir()
@@ -33,3 +35,7 @@ import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_
 files = os.listdir(os.path.join(local_dir, day_dir))
 compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))
 sub = compare_data[0]['Data']['Subs'][0]
+
+# %%
+for coin in Coins.select().order_by(Coins.rank.asc()):
+    print(coin.symbol)
