@@ -2,12 +2,11 @@ from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, Integrit
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
-class UnknownField(object):
-    def __init__(self, *_, **__): pass
 
 class BaseModel(Model):
     class Meta:
         database = database
+
 
 class Coins(BaseModel):
     coin_name = TextField(null=True)

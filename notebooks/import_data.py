@@ -37,5 +37,5 @@ compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files
 sub = compare_data[0]['Data']['Subs'][0]
 
 # %%
-for coin in Coins.select().order_by(Coins.rank.asc()):
-    print(coin.symbol)
+for coin in Coins.select().order_by(Coins.rank.asc()).limit(100):
+    print(coin.cryptocompare_id)

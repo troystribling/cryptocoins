@@ -33,7 +33,6 @@ def import_coin_snapshot_full(data):
         print("ERROR: Subs KEY IS MISSING FROM import_coin_snapshot_full")
         return
     for subscription in data[0]['Data']['Subs']:
-        print(f"SUBSCRIPTION: {subscription}")
         Exchanges.create_using_cryptocompare_subscription(subscription)
         CurrencyPairs.create_using_cryptocompare_subscription(subscription)
 

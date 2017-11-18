@@ -22,6 +22,5 @@ class Exchanges(BaseModel):
             try:
                 with database.atomic():
                     return cls.create(name=components[1])
-                print(f"CREATED EXCHANGE: {components[1]}")
             except IntegrityError:
                 return None

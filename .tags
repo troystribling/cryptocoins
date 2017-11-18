@@ -47,12 +47,10 @@ TextField	cryptocoins/models/currency_pairs.py	/^from peewee import Model, Postg
 TextField	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
 TextField	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
 ThreadPoolExecutor	crypto_compare_collect.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
-UnknownField	cryptocoins/models/coins.py	/^class UnknownField(object):$/;"	c
 __depends__	migrations/20171110_01_sMLWW-create-coins-table.py	/^__depends__ = {}$/;"	v
 __depends__	migrations/20171110_02_u9YuS-create-exchanges-table.py	/^__depends__ = {}$/;"	v
 __depends__	migrations/20171111_01_ryOd4-create-imports-table.py	/^__depends__ = {}$/;"	v
 __depends__	migrations/20171111_02_ZzMu1-create-currency-pairs-table.py	/^__depends__ = {}$/;"	v
-__init__	cryptocoins/models/coins.py	/^    def __init__(self, *_, **__): pass$/;"	m	class:UnknownField
 asyncio	crypto_compare_collect.py	/^import asyncio$/;"	i
 boto3	cryptocoins/export_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
@@ -63,7 +61,7 @@ call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 coin_data	notebooks/import_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 coin_list	crypto_compare_collect.py	/^def coin_list():$/;"	f
 coin_name	cryptocoins/models/coins.py	/^    coin_name = TextField(null=True)$/;"	v	class:Coins
-coin_snapshot_full	crypto_compare_collect.py	/^def coin_snapshot_full():$/;"	f
+coin_snapshot_full	crypto_compare_collect.py	/^def coin_snapshot_full(coin):$/;"	f
 compare_data	notebooks/import_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 create_import	cryptocoins/models/imports.py	/^    def create_import(cls, date_dir, file_name, remote_dir):$/;"	m	class:Imports
 create_using_cryptocompare_subscription	cryptocoins/models/currency_pairs.py	/^    def create_using_cryptocompare_subscription(cls, subscription):$/;"	m	class:CurrencyPairs
@@ -127,7 +125,7 @@ parse	crypto_compare_import.py	/^from dateutil.parser import parse$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
 parse	notebooks/import_data.py	/^from dateutil.parser import parse$/;"	i
 poll_coin_list	crypto_compare_collect.py	/^async def poll_coin_list():$/;"	f
-poll_coin_snapshot_full	crypto_compare_collect.py	/^async def poll_coin_snapshot_full():$/;"	f
+poll_coin_snapshot_full	crypto_compare_collect.py	/^async def poll_coin_snapshot_full(coin_limit):$/;"	f
 process_args	notebooks/python_exaples.py	/^def process_args(data):$/;"	f
 rank	cryptocoins/models/coins.py	/^    rank = BigIntegerField(null=True)$/;"	v	class:Coins
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
