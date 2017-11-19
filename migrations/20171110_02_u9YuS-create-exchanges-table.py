@@ -11,7 +11,10 @@ steps = [
          "("
          " id SERIAL PRIMARY KEY, "
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
-         " name TEXT"
+         " updated_at TIMESTAMP,"
+         " name TEXT,"
+         " volume_usd NUMERIC(21, 21),"
+         " rank BIGINT NOT NULL DEFAULT 1"
          ")", "DROP TABLE exchanges"),
     step("CREATE UNIQUE INDEX exchanges_name_idx ON exchanges (name)", "DROP INDEX exchanges_name_idx")
 ]

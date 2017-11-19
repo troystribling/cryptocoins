@@ -11,6 +11,7 @@ steps = [
          "("
          " id SERIAL PRIMARY KEY, "
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
+         " updated_at TIMESTAMP,"
          " coin_name TEXT,"
          " full_name TEXT,"
          " cryptocompare_id BIGINT,"
