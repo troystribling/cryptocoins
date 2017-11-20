@@ -1,4 +1,5 @@
 from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField
+from datetime import datetimeq
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
@@ -9,19 +10,20 @@ class BaseModel(Model):
 
 
 class Coins(BaseModel):
-    coin_name = TextField(null=True)
+    coin_name = TextField()
     created_at = DateTimeField()
-    cryptocompare_id = BigIntegerField(null=True)
-    full_name = TextField(null=True)
-    name = TextField(null=True)
-    rank = BigIntegerField(null=True)
-    symbol = TextField(null=True, unique=True)
+    cryptocompare_id = BigIntegerField()
+    full_name = TextField()
+    name = TextField()
+    rank = BigIntegerField()
+    symbol = TextField(unique=True)
+    updated_at = DateTimeField()
 
     class Meta:
         db_table = 'coins'
 
     @classmethod
-    def create_using_crytocompare_coinlist(cls, coin_list):
+    def create_or_update_using_crytocompare_coinlist(cls, coin_list):
         if 'CoinName' not in coin_list:
             print(f"ERROR: 'CoinName' KEY IS MISSING FROM coin_list {coin_list}")
             return
@@ -43,12 +45,13 @@ class Coins(BaseModel):
 
         try:
             with database.atomic():
-                return cls.create(coin_name=coin_list['CoinName'],
-                                  cryptocompare_id=coin_list['Id'],
-                                  full_name=coin_list['FullName'],
-                                  name=coin_list['Name'],
-                                  symbol=coin_list['Symbol'],
-                                  rank=coin_list['SortOrder'])
-            print(f"CREATED COIN: {coin_list['Symbol']}")
+                cls.create(coin_name=coin_list['CoinName'],
+                           cryptocompare_id=coin_list['Id'],
+                           full_name=coin_list['FullName'],
+                           name=coin_list['Name'],
+                           symbol=coin_list['Symbol'],
+                           rank=coin_list['SortOrder'])
         except IntegrityError:
-            return None
+            quuery = cls.update(updated_at=datetime.utcnow(),
+                                rank=coin_list['SortOrder'])
+            quuery.execute()

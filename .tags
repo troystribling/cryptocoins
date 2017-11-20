@@ -9,6 +9,8 @@ BaseModel	cryptocoins/models/currency_pairs.py	/^class BaseModel(Model):$/;"	c
 BaseModel	cryptocoins/models/exchanges.py	/^class BaseModel(Model):$/;"	c
 BaseModel	cryptocoins/models/imports.py	/^class BaseModel(Model):$/;"	c
 BigIntegerField	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
+BigIntegerField	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
+BigIntegerField	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField, DecimalField$/;"	i
 Coins	crypto_compare_collect.py	/^from cryptocoins.models.coins import Coins$/;"	i
 Coins	crypto_compare_historic.py	/^from cryptocoins.models.coins import Coins$/;"	i
 Coins	crypto_compare_import.py	/^from cryptocoins.models.coins import Coins$/;"	i
@@ -17,15 +19,16 @@ Coins	notebooks/import_data.py	/^from cryptocoins.models.coins import Coins$/;"	
 CurrencyPairs	crypto_compare_import.py	/^from cryptocoins.models.currency_pairs import CurrencyPairs$/;"	i
 CurrencyPairs	cryptocoins/models/currency_pairs.py	/^class CurrencyPairs(BaseModel):$/;"	c
 DateTimeField	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
-DateTimeField	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
-DateTimeField	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
+DateTimeField	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
+DateTimeField	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField, DecimalField$/;"	i
 DateTimeField	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
+DecimalField	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField, DecimalField$/;"	i
 Exchanges	crypto_compare_import.py	/^from cryptocoins.models.exchanges import Exchanges$/;"	i
 Exchanges	cryptocoins/models/exchanges.py	/^class Exchanges(BaseModel):$/;"	c
 Imports	cryptocoins/models/imports.py	/^class Imports(BaseModel):$/;"	c
 IntegrityError	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
-IntegrityError	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
-IntegrityError	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
+IntegrityError	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
+IntegrityError	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField, DecimalField$/;"	i
 IntegrityError	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
 Meta	cryptocoins/models/coins.py	/^    class Meta:$/;"	c	class:BaseModel
 Meta	cryptocoins/models/coins.py	/^    class Meta:$/;"	c	class:Coins
@@ -36,16 +39,16 @@ Meta	cryptocoins/models/exchanges.py	/^    class Meta:$/;"	c	class:Exchanges
 Meta	cryptocoins/models/imports.py	/^    class Meta:$/;"	c	class:BaseModel
 Meta	cryptocoins/models/imports.py	/^    class Meta:$/;"	c	class:Imports
 Model	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
-Model	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
-Model	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
+Model	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
+Model	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField, DecimalField$/;"	i
 Model	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
 PostgresqlDatabase	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
-PostgresqlDatabase	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
-PostgresqlDatabase	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
+PostgresqlDatabase	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
+PostgresqlDatabase	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField, DecimalField$/;"	i
 PostgresqlDatabase	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
 TextField	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
-TextField	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
-TextField	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
+TextField	cryptocoins/models/currency_pairs.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField$/;"	i
+TextField	cryptocoins/models/exchanges.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField, DecimalField$/;"	i
 TextField	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError$/;"	i
 ThreadPoolExecutor	crypto_compare_collect.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
 ThreadPoolExecutor	crypto_compare_historic.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
@@ -66,22 +69,21 @@ call	cryptocoins/export_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 coin_data	notebooks/import_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 coin_list	crypto_compare_collect.py	/^def coin_list():$/;"	f
-coin_name	cryptocoins/models/coins.py	/^    coin_name = TextField(null=True)$/;"	v	class:Coins
+coin_name	cryptocoins/models/coins.py	/^    coin_name = TextField()$/;"	v	class:Coins
 coin_price_history	crypto_compare_collect.py	/^def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=false):$/;"	f
 coin_snapshot	crypto_compare_collect.py	/^def coin_snapshot(from_currency, to_currency):$/;"	f
 coin_snapshot_full	crypto_compare_collect.py	/^def coin_snapshot_full(coin):$/;"	f
 compare_data	notebooks/import_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 create_import	cryptocoins/models/imports.py	/^    def create_import(cls, date_dir, file_name, remote_dir):$/;"	m	class:Imports
+create_or_update_using_crytocompare_coinlist	cryptocoins/models/coins.py	/^    def create_or_update_using_crytocompare_coinlist(cls, coin_list):$/;"	m	class:Coins
 create_using_cryptocompare_subscription	cryptocoins/models/currency_pairs.py	/^    def create_using_cryptocompare_subscription(cls, subscription):$/;"	m	class:CurrencyPairs
 create_using_cryptocompare_subscription	cryptocoins/models/exchanges.py	/^    def create_using_cryptocompare_subscription(cls, ticker_sub):$/;"	m	class:Exchanges
-create_using_crytocompare_coinlist	cryptocoins/models/coins.py	/^    def create_using_crytocompare_coinlist(cls, coin_list):$/;"	m	class:Coins
 created_at	cryptocoins/models/coins.py	/^    created_at = DateTimeField()$/;"	v	class:Coins
 created_at	cryptocoins/models/currency_pairs.py	/^    created_at = DateTimeField()$/;"	v	class:CurrencyPairs
 created_at	cryptocoins/models/exchanges.py	/^    created_at = DateTimeField()$/;"	v	class:Exchanges
 created_at	cryptocoins/models/imports.py	/^    created_at = DateTimeField()$/;"	v	class:Imports
 cryptocoins	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
-cryptocompare_id	cryptocoins/models/coins.py	/^    cryptocompare_id = BigIntegerField(null=True)$/;"	v	class:Coins
-cryptocompare_subscription	cryptocoins/models/currency_pairs.py	/^    cryptocompare_subscription = TextField(null=True)$/;"	v	class:CurrencyPairs
+cryptocompare_id	cryptocoins/models/coins.py	/^    cryptocompare_id = BigIntegerField()$/;"	v	class:Coins
 database	cryptocoins/models/coins.py	/^        database = database$/;"	v	class:BaseModel.Meta
 database	cryptocoins/models/coins.py	/^database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})$/;"	v
 database	cryptocoins/models/currency_pairs.py	/^        database = database$/;"	v	class:BaseModel.Meta
@@ -93,10 +95,11 @@ database	cryptocoins/models/imports.py	/^database = PostgresqlDatabase('cryptoco
 date	crypto_compare_import.py	/^from datetime import date$/;"	i
 date	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import date$/;"	i
-date_dir	cryptocoins/models/imports.py	/^    date_dir = TextField(null=True)$/;"	v	class:Imports
+date_dir	cryptocoins/models/imports.py	/^    date_dir = TextField()$/;"	v	class:Imports
 date_prefix	cryptocoins/utils.py	/^def date_prefix(file_date):$/;"	f
 daterange	cryptocoins/utils.py	/^def daterange(date1, date2):$/;"	f
 datetime	cryptocoins/export_data.py	/^from datetime import date, datetime$/;"	i
+datetime	cryptocoins/models/coins.py	/^from datetime import datetime$/;"	i
 day_dir	cryptocoins/utils.py	/^def day_dir(file_date):$/;"	f
 day_dir	notebooks/import_data.py	/^day_dir = utils.day_dir(folder_date)$/;"	v
 db_table	cryptocoins/models/coins.py	/^        db_table = 'coins'$/;"	v	class:Coins.Meta
@@ -112,12 +115,12 @@ end_date	crypto_compare_import.py	/^end_date = start_date$/;"	v
 export_data	crypto_compare_collect.py	/^from cryptocoins import export_data$/;"	i
 export_data	crypto_compare_historic.py	/^from cryptocoins import export_data$/;"	i
 export_data	notebooks/export_data.py	/^from cryptocoins import export_data$/;"	i
-file_name	cryptocoins/models/imports.py	/^    file_name = TextField(null=True, unique=True)$/;"	v	class:Imports
+file_name	cryptocoins/models/imports.py	/^    file_name = TextField(unique=True)$/;"	v	class:Imports
 files	notebooks/import_data.py	/^files = os.listdir(os.path.join(local_dir, day_dir))$/;"	v
 folder_date	notebooks/import_data.py	/^folder_date = parse('20171113')$/;"	v
 from_currency	notebooks/export_data.py	/^from_currency = 'BTC'$/;"	v
-from_symbol	cryptocoins/models/currency_pairs.py	/^    from_symbol = TextField(index=True, null=True)$/;"	v	class:CurrencyPairs
-full_name	cryptocoins/models/coins.py	/^    full_name = TextField(null=True)$/;"	v	class:Coins
+from_symbol	cryptocoins/models/currency_pairs.py	/^    from_symbol = TextField(index=True)$/;"	v	class:CurrencyPairs
+full_name	cryptocoins/models/coins.py	/^    full_name = TextField()$/;"	v	class:Coins
 getURL	cryptocoins/export_data.py	/^def getURL(url):$/;"	f
 import_coin_list	crypto_compare_import.py	/^def import_coin_list(data):$/;"	f
 import_coin_snapshot_full	crypto_compare_import.py	/^def import_coin_snapshot_full(data):$/;"	f
@@ -125,12 +128,13 @@ import_data	notebooks/import_data.py	/^from cryptocoins import import_data$/;"	i
 import_from_s3	cryptocoins/import_data.py	/^def import_from_s3(bucket_name, start_date, end_date, remote_dir):$/;"	f
 indexes	cryptocoins/models/currency_pairs.py	/^        indexes = ($/;"	v	class:CurrencyPairs.Meta
 json	cryptocoins/import_data.py	/^import json$/;"	i
+json	notebooks/export_data.py	/^import json$/;"	i
 limit	notebooks/export_data.py	/^limit = 100$/;"	v
 local_dir	notebooks/import_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 loop	crypto_compare_collect.py	/^loop = asyncio.get_event_loop()$/;"	v
 loop	crypto_compare_historic.py	/^loop = asyncio.get_event_loop()$/;"	v
-name	cryptocoins/models/coins.py	/^    name = TextField(null=True)$/;"	v	class:Coins
-name	cryptocoins/models/exchanges.py	/^    name = TextField(null=True, unique=True)$/;"	v	class:Exchanges
+name	cryptocoins/models/coins.py	/^    name = TextField()$/;"	v	class:Coins
+name	cryptocoins/models/exchanges.py	/^    name = TextField(unique=True)$/;"	v	class:Exchanges
 os	cryptocoins/export_data.py	/^import os$/;"	i
 os	cryptocoins/import_data.py	/^import os$/;"	i
 os	notebooks/export_data.py	/^import os$/;"	i
@@ -139,15 +143,19 @@ parse	crypto_compare_import.py	/^from dateutil.parser import parse$/;"	i
 parse	cryptocoins/import_data.py	/^from dateutil.parser import parse$/;"	i
 parse	notebooks/export_data.py	/^from dateutil.parser import parse$/;"	i
 parse	notebooks/import_data.py	/^from dateutil.parser import parse$/;"	i
+parsed_result	notebooks/export_data.py	/^parsed_result = json.loads(result)$/;"	v
 poll_coin_list	crypto_compare_collect.py	/^async def poll_coin_list():$/;"	f
 poll_coin_snapshot_full	crypto_compare_collect.py	/^async def poll_coin_snapshot_full(coin_limit):$/;"	f
 process_args	notebooks/python_exaples.py	/^def process_args(data):$/;"	f
-rank	cryptocoins/models/coins.py	/^    rank = BigIntegerField(null=True)$/;"	v	class:Coins
+rank	cryptocoins/models/coins.py	/^    rank = BigIntegerField()$/;"	v	class:Coins
+rank	cryptocoins/models/currency_pairs.py	/^    rank = BigIntegerField()$/;"	v	class:CurrencyPairs
+rank	cryptocoins/models/exchanges.py	/^    rank = BigIntegerField()$/;"	v	class:Exchanges
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
-remote_dir	cryptocoins/models/imports.py	/^    remote_dir = TextField(null=True)$/;"	v	class:Imports
+remote_dir	cryptocoins/models/imports.py	/^    remote_dir = TextField()$/;"	v	class:Imports
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_list'$/;"	v
 remote_dir	notebooks/import_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_snapshot_full'$/;"	v
 requests	cryptocoins/export_data.py	/^import requests$/;"	i
+result	notebooks/export_data.py	/^result = export_data.getURL(url)$/;"	v
 sleep	crypto_compare_collect.py	/^from time import sleep$/;"	i
 sleep	crypto_compare_historic.py	/^from time import sleep$/;"	i
 start_date	crypto_compare_import.py	/^    start_date = parse(sys.argv[1])$/;"	v
@@ -165,7 +173,7 @@ steps	migrations/20171111_02_ZzMu1-create-currency-pairs-table.py	/^steps = [$/;
 steps	migrations/20171118_01_Qe1O7-create-coins-price-history-table.py	/^steps = [$/;"	v
 steps	migrations/20171119_01_Q7XEW-create-currency-pairs-history-table.py	/^steps = [$/;"	v
 sub	notebooks/import_data.py	/^sub = compare_data[0]['Data']['Subs'][0]$/;"	v
-symbol	cryptocoins/models/coins.py	/^    symbol = TextField(null=True, unique=True)$/;"	v	class:Coins
+symbol	cryptocoins/models/coins.py	/^    symbol = TextField(unique=True)$/;"	v	class:Coins
 sys	crypto_compare_import.py	/^import sys$/;"	i
 tempdir	notebooks/import_data.py	/^tempdir = tempfile.gettempdir()$/;"	v
 tempfile	cryptocoins/export_data.py	/^import tempfile$/;"	i
@@ -176,13 +184,17 @@ thread_pool	crypto_compare_collect.py	/^thread_pool = ThreadPoolExecutor(max_wor
 thread_pool	crypto_compare_historic.py	/^thread_pool = ThreadPoolExecutor(max_workers=20)$/;"	v
 timedelta	cryptocoins/utils.py	/^from datetime import timedelta$/;"	i
 to_currency	notebooks/export_data.py	/^to_currency = 'USD'$/;"	v
-to_symbol	cryptocoins/models/currency_pairs.py	/^    to_symbol = TextField(index=True, null=True)$/;"	v	class:CurrencyPairs
+to_symbol	cryptocoins/models/currency_pairs.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CurrencyPairs
 top_currency_pairs	crypto_compare_collect.py	/^def top_currency_pairs(from_currency, limit=1000):$/;"	f
+updated_at	cryptocoins/models/coins.py	/^    updated_at = DateTimeField()$/;"	v	class:Coins
+updated_at	cryptocoins/models/currency_pairs.py	/^    updated_at = DateTimeField()$/;"	v	class:CurrencyPairs
+updated_at	cryptocoins/models/exchanges.py	/^    updated_at = DateTimeField()$/;"	v	class:Exchanges
 upload_file_to_s3	cryptocoins/export_data.py	/^def upload_file_to_s3(bucket, path, local_path):$/;"	f
 upload_to_s3	cryptocoins/export_data.py	/^def upload_to_s3(bucket, path, data):$/;"	f
 utils	cryptocoins/export_data.py	/^from cryptocoins import utils$/;"	i
 utils	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
 utils	notebooks/import_data.py	/^from cryptocoins import utils$/;"	i
+volume_usd	cryptocoins/models/exchanges.py	/^    volume_usd = DecimalField()$/;"	v	class:Exchanges
 wrapper	cryptocoins/import_data.py	/^        def wrapper():$/;"	f	function:import_from_s3.decorator
 wrapper	notebooks/python_exaples.py	/^        def wrapper():$/;"	f	function:decorator_with_args.decorator
 write_to_compressed_file	cryptocoins/export_data.py	/^def write_to_compressed_file(data):$/;"	f

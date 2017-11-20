@@ -2,6 +2,7 @@
 import tempfile
 import os
 from dateutil.parser import parse
+import json
 
 from cryptocoins import export_data
 
@@ -10,6 +11,7 @@ from_currency = 'BTC'
 to_currency = 'USD'
 url = f"https://www.cryptocompare.com/api/data/coinsnapshot/?fsym={from_currency}&tsym={to_currency}"
 result = export_data.getURL(url)
+parsed_result = json.loads(result)
 
 # %%
 from_currency = 'BTC'

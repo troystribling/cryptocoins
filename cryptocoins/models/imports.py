@@ -10,9 +10,9 @@ class BaseModel(Model):
 
 class Imports(BaseModel):
     created_at = DateTimeField()
-    date_dir = TextField(null=True)
-    file_name = TextField(null=True, unique=True)
-    remote_dir = TextField(null=True)
+    date_dir = TextField()
+    file_name = TextField(unique=True)
+    remote_dir = TextField()
 
     class Meta:
         db_table = 'imports'

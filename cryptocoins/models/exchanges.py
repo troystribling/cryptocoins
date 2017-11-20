@@ -1,4 +1,4 @@
-from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError
+from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField, DecimalField
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
@@ -10,7 +10,10 @@ class BaseModel(Model):
 
 class Exchanges(BaseModel):
     created_at = DateTimeField()
-    name = TextField(null=True, unique=True)
+    name = TextField(unique=True)
+    rank = BigIntegerField()
+    updated_at = DateTimeField()
+    volume_usd = DecimalField()
 
     class Meta:
         db_table = 'exchanges'
