@@ -50,10 +50,28 @@ def coin_snapshot(from_currency, to_currency):
     if result is not None:
         export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_snapshot', [result])
     else:
-        print(f"ERROR: coin_snapshot_full request failed for currency {coin.cryptocompare_id}")
+        print(f"ERROR: coin_snapshot_full request failed for currencies: {from_currency}, {to_currency}")
+
 
 def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=false):
-    url = f"https://www.cryptocompare.com/api/data/coinsnapshot/?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
+    url = f"https://www.cryptocompare.com/api/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
+    print(f"FETCH COIN PRICE HISTORY FROM: {url}")
+    result = export_data.getURL(url)
+    if result is not None:
+        export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_price_history', [result])
+    else:
+        print(f"ERROR: coin_price_history request failed for currencies {from_currency}, {to_currency}")
+
+
+def top_currency_pairs(from_currency, limit=1000):
+    url = f"https://www.cryptocompare.com/api/data/top/pairs?fsym={from_currency}&limit={limit}"
+    print(f"FETCH TOP CURRNCY PAIRS FROM: {url}")
+    result = export_data.getURL(url)
+    if result is not None:
+        export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/top_currency_pairs', [result])
+    else:
+        print(f"ERROR: coin_snapshot_full request failed for currency {from_currency}")
+
 
 if __name__ == "__main__":
     loop.run_until_complete(asyncio.gather(poll_coin_list(), poll_coin_snapshot_full(10)))
