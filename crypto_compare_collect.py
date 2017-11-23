@@ -54,7 +54,7 @@ def coin_snapshot(from_currency, to_currency):
 
 
 def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=false):
-    url = f"https://www.cryptocompare.com/api/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
+    url = f"https://min-api.cryptocompare.com/api/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
     print(f"FETCH COIN PRICE HISTORY FROM: {url}")
     result = export_data.getURL(url)
     if result is not None:
@@ -64,7 +64,7 @@ def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", a
 
 
 def top_currency_pairs(from_currency, limit=1000):
-    url = f"https://www.cryptocompare.com/api/data/top/pairs?fsym={from_currency}&limit={limit}"
+    url = f"https://min-api.cryptocompare.com/api/data/top/pairs?fsym={from_currency}&limit={limit}"
     print(f"FETCH TOP CURRNCY PAIRS FROM: {url}")
     result = export_data.getURL(url)
     if result is not None:

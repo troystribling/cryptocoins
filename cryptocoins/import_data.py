@@ -56,6 +56,7 @@ def read_from_file(file_name):
                 items.append(json_line)
     return items
 
+
 def import_from_s3(bucket_name, start_date, end_date, remote_dir):
     def decorator(process):
         def wrapper():

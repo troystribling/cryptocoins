@@ -1,4 +1,5 @@
-from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError
+from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField
+
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 

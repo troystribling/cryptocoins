@@ -1,5 +1,5 @@
-from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, IntegrityError, BigIntegerField
-from datetime import datetimeq
+from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField
+
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
@@ -18,9 +18,11 @@ class Coins(BaseModel):
     rank = BigIntegerField()
     symbol = TextField(unique=True)
     updated_at = DateTimeField()
+    volume_total_usd = DecimalField()
 
     class Meta:
         db_table = 'coins'
+
 
     @classmethod
     def create_or_update_using_crytocompare_coinlist(cls, coin_list):
@@ -42,7 +44,6 @@ class Coins(BaseModel):
         if 'SortOrder' not in coin_list:
             print(f"ERROR: 'SortOrder' KEY IS MISSING FROM coin_list {coin_list}")
             return
-
         try:
             with database.atomic():
                 cls.create(coin_name=coin_list['CoinName'],
@@ -52,6 +53,6 @@ class Coins(BaseModel):
                            symbol=coin_list['Symbol'],
                            rank=coin_list['SortOrder'])
         except IntegrityError:
-            quuery = cls.update(updated_at=datetime.utcnow(),
-                                rank=coin_list['SortOrder'])
-            quuery.execute()
+            query = cls.update(updated_at=datetime.utcnow(),
+                               rank=coin_list['SortOrder'])
+            query.execute()
