@@ -13,6 +13,7 @@ steps = [
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
          " name TEXT NOT NULL,"
          " url TEXT NOT NULL"
-         ")", "DROP TABLE imports"),
-    step("CREATE INDEX collections_name_idx ON collections (name)", "DROP INDEX collections_name_idx")
+         ")", "DROP TABLE collections"),
+    step("CREATE UNIQUE INDEX collections_name_created_at_idx ON collections (name, created_at)", "DROP INDEX collections_name_created_at_idx"),
+    step("CREATE INDEX collections_name_idx ON collections (name)", "DROP INDEX collections_name_idx"),
 ]

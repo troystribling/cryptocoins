@@ -23,7 +23,7 @@ steps = [
          " timestamp_epoc BIGINT NOT NULL,"
          " timestamp TIMESTAMP NOT NULL"
          ")", "DROP TABLE coins_price_history"),
-    step("CREATE INDEX coins_price_history_from_to_symbol_timestamp_idx ON coins_price_history (from_symbol, to_symbol, timestamp)", "DROP INDEX coins_price_history_from_to_symbol_timestamp_idx"),
+    step("CREATE UNIQUE INDEX coins_price_history_from_to_symbol_timestamp_idx ON coins_price_history (from_symbol, to_symbol, timestamp)", "DROP INDEX coins_price_history_from_to_symbol_timestamp_idx"),
     step("CREATE INDEX coins_price_history_from_symbol_idx ON coins_price_history (from_symbol)", "DROP INDEX coins_price_history_from_symbol_idx"),
     step("CREATE INDEX coins_price_history_to_symbol_idx ON coins_price_history (to_symbol)", "DROP INDEX coins_price_history_to_symbol_idx")
 ]

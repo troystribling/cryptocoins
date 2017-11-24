@@ -8,6 +8,7 @@ class BaseModel(Model):
     class Meta:
         database = database
 
+
 class CoinsPriceHistory(BaseModel):
     close_price_24_hour = DecimalField()
     created_at = DateTimeField()
@@ -25,5 +26,5 @@ class CoinsPriceHistory(BaseModel):
     class Meta:
         db_table = 'coins_price_history'
         indexes = (
-            (('from_symbol', 'to_symbol', 'timestamp'), False),
+            (('from_symbol', 'to_symbol', 'timestamp'), True),
         )

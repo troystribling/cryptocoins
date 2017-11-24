@@ -7,6 +7,7 @@ from subprocess import call
 from datetime import date, datetime
 
 from cryptocoins import utils
+from cryptocoins.models.collections import Collections
 
 
 def upload_to_s3(bucket, path, data):
@@ -34,7 +35,7 @@ def upload_file_to_s3(bucket, path, local_path):
     print(f'{datetime.now()}: UPLOADED to {remote_object}')
 
 
-def getURL(url):
+def fetch_url(url):
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -44,3 +45,17 @@ def getURL(url):
         return None
     else:
         return response
+
+
+def fetch_url_and_upload(process):
+    def wrapper(collection_name, url, bucket, path):
+        print(f"FETCH FROM: {url}")
+        if Collections.create_collection(name=collection_name, url=url) is None:
+            return
+        reult = fetch_url(url)
+        if result is not None:
+            processed_result = process(result)
+            upload_file_to_s3(bucket, path, processed_result)
+        else:
+            print(f"ERROR: REQUEST FAILED FOR URL {url}")
+    return wrapperabs

@@ -2,7 +2,7 @@ from time import sleep
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
-from cryptocoins import export_data
+from cryptocoins.export_data import fetcfetch_url_and_upload
 from cryptocoins.models.coins import Coins
 
 thread_pool = ThreadPoolExecutor(max_workers=20)
@@ -26,7 +26,7 @@ async def poll_coin_snapshot_full(coin_limit):
 def coin_list():
     url = 'https://min-api.cryptocompare.com/data/all/coinlist'
     print(f"FETCH COIN LIST FROM: {url}")
-    result = export_data.getURL(url)
+    result = export_data.fetch_url(url)
     if result is not None:
         export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_list', [result])
     else:
@@ -36,7 +36,7 @@ def coin_list():
 def coin_snapshot_full(coin):
     url = f"https://www.cryptocompare.com/api/data/coinsnapshotfullbyid/?id={coin.cryptocompare_id}""
     print(f"FETCH FULL COIN SNAP SHOT FROM: {url}")
-    result = export_data.getURL(url)
+    result = export_data.fetch_url(url)
     if result is not None:
         export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_snapshot_full', [result])
     else:
@@ -46,7 +46,7 @@ def coin_snapshot_full(coin):
 def coin_snapshot(from_currency, to_currency):
     url = f"https://www.cryptocompare.com/api/data/coinsnapshot/?fsym={from_currency}&tsym={to_currency}"
     print(f"FETCH COIN SNAP SHOT FROM: {url}")
-    result = export_data.getURL(url)
+    result = export_data.fetch_url(url)
     if result is not None:
         export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_snapshot', [result])
     else:
@@ -54,9 +54,9 @@ def coin_snapshot(from_currency, to_currency):
 
 
 def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=false):
-    url = f"https://min-api.cryptocompare.com/api/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
+    url = f"https://min-api.cryptocompare.com/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
     print(f"FETCH COIN PRICE HISTORY FROM: {url}")
-    result = export_data.getURL(url)
+    result = export_data.fetch_url(url)
     if result is not None:
         export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/coin_price_history', [result])
     else:
@@ -66,7 +66,7 @@ def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", a
 def top_currency_pairs(from_currency, limit=1000):
     url = f"https://min-api.cryptocompare.com/api/data/top/pairs?fsym={from_currency}&limit={limit}"
     print(f"FETCH TOP CURRNCY PAIRS FROM: {url}")
-    result = export_data.getURL(url)
+    result = export_data.fetch_url(url)
     if result is not None:
         export_data.upload_to_s3('gly.fish', 'cryptocoins/cryptocompare/top_currency_pairs', [result])
     else:

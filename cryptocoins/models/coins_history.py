@@ -8,6 +8,7 @@ class BaseModel(Model):
     class Meta:
         database = database
 
+
 class CoinsHistory(BaseModel):
     algorithm = TextField()
     block_number = BigIntegerField()
