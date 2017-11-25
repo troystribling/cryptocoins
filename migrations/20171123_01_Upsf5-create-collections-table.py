@@ -11,9 +11,10 @@ steps = [
          "("
          " id SERIAL PRIMARY KEY, "
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
-         " name TEXT NOT NULL,"
+         " path TEXT NOT NULL,"
+         " success BOOL NOT NULL DEFAULT false,"
          " url TEXT NOT NULL"
          ")", "DROP TABLE collections"),
-    step("CREATE UNIQUE INDEX collections_name_created_at_idx ON collections (name, created_at)", "DROP INDEX collections_name_created_at_idx"),
-    step("CREATE INDEX collections_name_idx ON collections (name)", "DROP INDEX collections_name_idx"),
+    step("CREATE UNIQUE INDEX collections_path_created_at_idx ON collections (path, created_at)", "DROP INDEX collections_path_created_at_idx"),
+    step("CREATE INDEX collections_path_idx ON collections (path)", "DROP INDEX collections_path_idx"),
 ]

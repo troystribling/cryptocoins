@@ -8,6 +8,7 @@ class BaseModel(Model):
     class Meta:
         database = database
 
+
 class Exchanges(BaseModel):
     created_at = DateTimeField()
     name = TextField(unique=True)

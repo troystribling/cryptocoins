@@ -1,29 +1,35 @@
-from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField
+from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BooleanField
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
+class UnknownField(object):
+    def __init__(self, *_, **__): pass
 
 class BaseModel(Model):
     class Meta:
         database = database
 
-
 class Collections(BaseModel):
     created_at = DateTimeField()
-    name = TextField(index=True)
+    path = TextField(index=True)
+    success = BooleanField()
     url = TextField()
 
     class Meta:
         db_table = 'collections'
         indexes = (
-            (('created_at', 'name'), True),
+            (('created_at', 'path'), True),
         )
 
     @classmethod
-    def create_collection(cls, name, url):
+    def create_collection(cls, path, url):
         try:
             with database.atomic():
-                return cls.create(name=name, url=url)
-        except IntegretyError:
-            print(f"ERROR COLLECTION EXISTS: {name}, {url}")
+                return cls.create(path=path, url=url)
+        except IntegrityError:
+            print(f"ERROR COLLECTION EXISTS: {path}, {created_at}")
             return None
+
+    def collection_successful(self):
+        query = Collections.update(success=True).where(Collections.created_at == self.created_at and Collections.path == self.path)
+        query.execute()
