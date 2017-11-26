@@ -21,10 +21,10 @@ bucket_name = 'gly.fish'
 print(f"IMPORTING {start_date} TO {end_date} FROM {bucket_name}")
 
 
-@import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/coin_snapshot_full')
-def import_coin_snapshot_full(data):
+@import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/coin_snapshot')
+def import_coin_snapshot(data):
     if len(data) != 1:
-        print("ERROR: FILE WROMG SIZE")
+        print("ERROR: FILE WRONG SIZE")
         return
     if 'Data' not in data[0]:
         print("ERROR: Data KEY IS MISSING FROM import_coin_snapshot_full")
@@ -32,9 +32,9 @@ def import_coin_snapshot_full(data):
     if 'Subs' not in data[0]['Data']:
         print("ERROR: Subs KEY IS MISSING FROM import_coin_snapshot_full")
         return
-    for subscription in data[0]['Data']['Subs']:
-        Exchanges.create_using_cryptocompare_subscription(subscription)
-        CurrencyPairs.create_using_cryptocompare_subscription(subscription)
+    coin_snapshot = data[0]['Data']
+    CoinsHistory.create_using_coin_snapshot(coin_snapshot)
+    ExchangesHistory.create_using_coin_snapshot(coin_snapshot)
 
 
 @import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/coin_list')
@@ -48,5 +48,5 @@ def import_coin_list(data):
         Coins.create_or_update_using_crytocompare_coinlist(coin)
 
 
-import_coin_snapshot_full()
+import_coin_snapshot()
 import_coin_list()

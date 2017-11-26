@@ -48,17 +48,18 @@ def fetch_url(url):
 
 
 def fetch_url_and_upload_to_s3(process):
-    def wrapper(url, bucket, path):
-        print(f"FETCH FROM: {url}")
-        collection = Collections.create_collection(path=path, url=url)
+    def wrapper(**params):
+        print(f"FETCH FROM: {params['url']}")
+        collection = Collections.create_collection(path=params['path'], url=params['url'])
         if collection is None:
-            print(f"ERROR: collection '{url}' exists")
+            print(f"ERROR: Collection with {params['url']} exists")
             return
-        result = fetch_url(url)
-        if result is not None:
-            processed_result = process(result)
-            upload_to_s3(bucket, path, processed_result)
+        response = fetch_url(params['url'])
+        if response is not None:
+            params['response'] = response
+            processed_response = process(params)
+            upload_to_s3(bucket=params['bucket'], path=params['path'], data=processed_response)
             collection.collection_successful()
         else:
-            print(f"ERROR: REQUEST FAILED FOR URL {url}")
+            print(f"ERROR: REQUEST FAILED FOR URL {params['url']}")
     return wrapper

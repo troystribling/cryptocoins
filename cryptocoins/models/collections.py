@@ -31,5 +31,5 @@ class Collections(BaseModel):
             return None
 
     def collection_successful(self):
-        query = Collections.update(success=True).where(Collections.created_at == self.created_at and Collections.path == self.path)
+        query = Collections.update(success=True).where(Collections.created_at == self.created_at & Collections.path == self.path)
         query.execute()
