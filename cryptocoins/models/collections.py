@@ -1,13 +1,12 @@
-from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BooleanField
+from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
-class UnknownField(object):
-    def __init__(self, *_, **__): pass
 
 class BaseModel(Model):
     class Meta:
         database = database
+
 
 class Collections(BaseModel):
     created_at = DateTimeField()
@@ -30,6 +29,14 @@ class Collections(BaseModel):
             print(f"ERROR COLLECTION EXISTS: {path}, {created_at}")
             return None
 
+    @classmethod
+    def get_with_id(cls, id):
+        try:
+            return Collections.get(Collections.id == id)
+        except Collections.DoesNotExist as error:
+            print(f"ERROR: Collection with id {id} does not exist")
+            return None
+
     def collection_successful(self):
-        query = Collections.update(success=True).where(Collections.created_at == self.created_at & Collections.path == self.path)
+        query = Collections.update(success=True).where((Collections.created_at == self.created_at) & (Collections.path == self.path))
         query.execute()

@@ -37,6 +37,19 @@ def fetch_coin_snapshot(params):
 
 fetch_coin_snapshot(url=url, bucket=bucket, path=path, to_currency=to_currency)
 
+# top_pairs
+# %%
+url = f"https://min-api.cryptocompare.com/data/top/pairs?fsym={from_currency}&limit={limit}"
+path = "cryptocoins/cryptocompare/top_pairs"
+
+
+@fetch_url_and_upload_to_s3
+def fetch_top_pairs(params):
+    return [params['response']]
+
+
+fetch_top_pairs(url=url, bucket=bucket, path=path)
+
 # histoday
 # %%
 allData = True
@@ -56,16 +69,3 @@ def fetch_histoday(params):
 
 
 fetch_histoday(url=url, bucket=bucket, path=path, to_currency=to_currency, from_currency=from_currency, exchange=exchange)
-
-# top_pairs
-# %%
-url = f"https://min-api.cryptocompare.com/api/data/top/pairs?fsym={from_currency}&limit={limit}"
-path = "cryptocoins/cryptocompare/top_pairs"
-
-
-@fetch_url_and_upload_to_s3
-def fetch_top_pairs(params):
-    return [params['response']]
-
-
-fetch_top_pairs(url=url, bucket=bucket, path=path)

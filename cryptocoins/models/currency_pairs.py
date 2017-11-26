@@ -29,4 +29,5 @@ class CurrencyPairs(BaseModel):
                 with database.atomic():
                     return cls.create(cryptocompare_subscription=subscription, from_symbol=components[2], to_symbol=components[3])
             except IntegrityError:
+                print(f"ERROR: CURRENCY PAIR EXISTS: {subscription}")
                 return None

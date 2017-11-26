@@ -23,7 +23,6 @@ class Coins(BaseModel):
     class Meta:
         db_table = 'coins'
 
-
     @classmethod
     def create_or_update_using_crytocompare_coinlist(cls, coin_list):
         if 'CoinName' not in coin_list:
