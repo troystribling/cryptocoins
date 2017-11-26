@@ -37,12 +37,6 @@ def fetch_histoday(params):
     new_result = json.dumps(parsed_response)
     return [new_result]
 
-@fetch_url_and_upload_to_s3
-def fetch_coin_snapshot(params):
-    parsed_response = json.loads(params['response'])
-    parsed_response['Symbol'] = params['to_currency']
-    new_result = json.dumps(parsed_response)
-    return [new_result]
 
 def coin_list():
     url = 'https://min-api.cryptocompare.com/data/all/coinlist'
@@ -55,7 +49,7 @@ def coin_snapshot(from_currency, to_currency):
     url = f"https://www.cryptocompare.com/api/data/coinsnapshot/?fsym={from_currency}&tsym={to_currency}"
     path = 'cryptocoins/cryptocompare/coin_snapshot'
     bucket = 'gly.fish'
-    fetch_coin_snapshot(url=url, bucket=bucket, path=path, to_currency=to_currency)
+    fetch_and_return(url=url, bucket=bucket, path=path, to_currency=to_currency)
 
 
 def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):

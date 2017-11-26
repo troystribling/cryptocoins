@@ -33,8 +33,8 @@ def import_coin_snapshot(data):
         print("ERROR: Subs KEY IS MISSING FROM import_coin_snapshot_full")
         return
     coin_snapshot = data[0]['Data']
-    CoinsHistory.create_using_coin_snapshot(coin_snapshot)
-    ExchangesHistory.create_using_coin_snapshot(coin_snapshot)
+    CoinsHistory.create_from_coin_snapshot(coin_snapshot)
+    ExchangesHistory.create_from_coin_snapshot(coin_snapshot)
 
 
 @import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/coin_list')

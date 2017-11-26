@@ -21,10 +21,11 @@ steps = [
          " volume_from_24_hour NUMERIC(21, 21) NOT NULL DEFAULT 0.0,"
          " volume_to_24_hour NUMERIC(21, 21) NOT NULL DEFAULT 0.0,"
          " open_price_24_hour NUMERIC(21, 21) NOT NULL DEFAULT 0.0,"
+         " close_price_24_hour NUMERIC(21, 21) NOT NULL DEFAULT 0.0,"
          " low_price_24_hour NUMERIC(21, 21) NOT NULL DEFAULT 0.0,"
          " high_price_24_hour NUMERIC(21, 21) NOT NULL DEFAULT 0.0,"
          " timestamp_epoc BIGINT NOT NULL,"
-         " timestamp TIMESTAMP NOT NULL"         
+         " timestamp TIMESTAMP NOT NULL"
          ")", "DROP TABLE coins_history"),
     step("CREATE INDEX coins_history_symbol_idx ON coins_history (symbol)", "DROP INDEX coins_history_symbol_idx")
 ]
