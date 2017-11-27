@@ -15,6 +15,7 @@ steps = [
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
          " from_symbol TEXT NOT NULL,"
          " to_symbol TEXT NOT NULL,"
+         " exchange TEXT NOT NULL,"
          " volume_from_24_hour NUMERIC(21, 21) NOT NULL DEFAULT 0.0,"
          " volume_to_24_hour NUMERIC(21, 21) NOT NULL DEFAULT 0.0"
          ")", "DROP TABLE currency_pairs_history"),
