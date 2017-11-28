@@ -61,9 +61,9 @@ url = f"https://min-api.cryptocompare.com/data/histoday?fsym={from_currency}&tsy
 @fetch_url_and_upload_to_s3
 def fetch_histoday(params):
     parsed_response = json.loads(params['response'])
-    parsed_response['CurrencyTo'] = params['to_currency']
-    parsed_response['CurrencyFrom'] = params['from_currency']
-    parsed_response['Exchange'] = params['exchange']
+    parsed_response['tsym'] = params['to_currency']
+    parsed_response['fsym'] = params['from_currency']
+    parsed_response['exchange'] = params['exchange']
     new_result = json.dumps(parsed_response)
     return [new_result]
 
