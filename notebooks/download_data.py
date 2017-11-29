@@ -6,7 +6,6 @@ from dateutil.parser import parse
 from cryptocoins import import_data
 from cryptocoins import utils
 
-from cryptocoins.models.collections import Collections
 bucket_name = 'gly.fish'
 tempdir = tempfile.gettempdir()
 

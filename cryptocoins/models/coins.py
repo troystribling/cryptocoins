@@ -1,4 +1,7 @@
+
 from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField
+
+from cryptocoins.utils import valid_params
 
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
@@ -25,24 +28,11 @@ class Coins(BaseModel):
 
     @classmethod
     def create_or_update_using_crytocompare_coinlist(cls, coin_list):
-        if 'CoinName' not in coin_list:
-            print(f"ERROR: 'CoinName' KEY IS MISSING FROM coin_list {coin_list}")
+        print(coin_list)
+        expected_keys = ['CoinName', 'Id', 'FullName', 'Name', 'Symbol', 'SortOrder']
+        if not valid_params(expected_params=expected_keys, params=coin_list):
             return
-        if 'Id' not in coin_list:
-            print(f"ERROR: 'Id' KEY IS MISSING FROM coin_list {coin_list}")
-            return
-        if 'FullName' not in coin_list:
-            print(f"ERROR: 'FullName' KEY IS MISSING FROM coin_list {coin_list}")
-            return
-        if 'Name' not in coin_list:
-            print(f"ERROR: 'Name' KEY IS MISSING FROM coin_list {coin_list}")
-            return
-        if 'Symbol' not in coin_list:
-            print(f"ERROR: 'Symbol' KEY IS MISSING FROM coin_list {coin_list}")
-            return
-        if 'SortOrder' not in coin_list:
-            print(f"ERROR: 'SortOrder' KEY IS MISSING FROM coin_list {coin_list}")
-            return
+
         try:
             with database.atomic():
                 cls.create(coin_name=coin_list['CoinName'],

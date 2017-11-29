@@ -51,8 +51,8 @@ class ExchangesHistory(BaseModel):
                 'low_price_24_hour': exchanges['LOW24HOUR'],
                 'name': exchanges['MARKET'],
                 'open_price_24_hour': exchanges['OPEN24HOUR'],
-                'close_price_24_hour': exchanges['PRICE']
-                'timestamp': datetime.fromtimestamp(int(timestamp_epoc))),
+                'close_price_24_hour': exchanges['PRICE'],
+                'timestamp': datetime.fromtimestamp(int(timestamp_epoc)),
                 'timestamp_epoc': timestamp_epoc,
                 'to_symbol': exchanges['TOSYMBOL'],
                 'volume_from_24_hour': exchanges['VOLUME24HOUR'],

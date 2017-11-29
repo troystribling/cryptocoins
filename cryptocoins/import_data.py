@@ -5,7 +5,6 @@ import tempfile
 
 from subprocess import call
 from datetime import date
-from dateutil.parser import parse
 
 import cryptocoins.utils as utils
 from .models.imports import Imports

@@ -57,7 +57,7 @@ class CoinsHistory(BaseModel):
                               high_price_24_hour=aggregated_data['HIGH24HOUR'],
                               low_price_24_hour=aggregated_data['LOW24HOUR'],
                               open_price_24_hour=aggregated_data['OPEN24HOUR'],
-                              close_price_24_hour=aggregated_data['PRICE']
+                              close_price_24_hour=aggregated_data['PRICE'],
                               volume_from_24_hour=aggregated_data['VOLUM24HOUR'],
                               volume_to_24_hour=aggregated_data['VOLUME24HOURTO'],
                               timestamp_epoc=timestamp_epoc,

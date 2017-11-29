@@ -4,8 +4,8 @@ from datetime import date
 from dateutil.parser import parse
 
 from cryptocoins.import_data import import_from_s3
-from cryptocoins.models.exchanges import Exchanges
-from cryptocoins.models.currency_pairs import CurrencyPairs
+from cryptocoins.models.exchanges_histsory import ExchangesHistory
+from cryptocoins.models.coins_history import CoinsHistory
 from cryptocoins.models.coins import Coins
 
 start_date = date.today()
