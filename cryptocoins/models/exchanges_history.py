@@ -1,6 +1,8 @@
 from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 
+from cryptocoins.utils import valid_params
+
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
 
@@ -34,14 +36,14 @@ class ExchangesHistory(BaseModel):
             return
         with database.atomic():
             for i in range(0, len(aggredated_data), batch_size):
-                model_params = [cls.exchange_to_model_params(exchange) for exchange in exchanges[i:i*batch_size]]
+                model_params = [cls.exchange_to_model_params(exchange) for exchange in exchanges[i:i * batch_size]]
                 cls.insert_many(model_params).execute
 
     @classmethod
     def exchange_to_model_params(cls, exchanges):
         expected_keys = ['FROMSYMBOL', 'HIGH24HOUR', 'LOW24HOUR', 'LASTUPDATE', 'MARKET'
                          'OPEN24HOUR', 'TOSYMBOL', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
-        if not valid_params(expected_params=expected_keys, params=exchanges)
+        if not valid_params(expected_params=expected_keys, params=exchanges):
             raise ValueError('ERROR: Exchange keys invalid')
         timestamp_epoc = exchanges['LASTUPDATE']
         return {'from_symbol': exchanges['FROMSYMBOL'],

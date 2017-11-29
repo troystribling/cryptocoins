@@ -32,7 +32,10 @@ class CoinsPriceHistory(BaseModel):
     @classmethod
     def create_from_histoday(cls, histoday, batch_size=100):
         with database.atomic():
-            for i in range(0, len(histoday), batch_size)
+            for i in range(0, len(histoday), batch_size):
+                model_params = [cls.histoday_to_model_parameters(exchange) for exchange in exchanges[i:i * batch_size]]
+                cls.insert_many(model_params).execute
+
 
     @classmethod
     def histoday_to_model_parameters(cls, histoday):

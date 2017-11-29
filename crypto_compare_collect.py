@@ -5,6 +5,8 @@ from concurrent.futures import ThreadPoolExecutor
 from cryptocoins.export_data import fetch_url_and_upload_to_s3
 from cryptocoins.models.coins import Coins
 
+from cryptocoins.utils import valid_params
+
 thread_pool = ThreadPoolExecutor(max_workers=20)
 loop = asyncio.get_event_loop()
 

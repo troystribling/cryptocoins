@@ -1,8 +1,53 @@
+# %%
 from cryptocoins.import_data import import_from_s3
 
-from cryptocoins.models.exchanges import Exchanges
-from cryptocoins.models.currency_pairs import CurrencyPairs
 from cryptocoins.models.coins import Coins
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.exchanges_history import ExchangesHistory
 from cryptocoins.models.coins_history import CoinsHistory
+
+# %%
+bucket_name = 'gly.fish'
+start_date = '20171125'
+end_date = '20171125'
+
+
+# %%
+# coin_list
+@import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/coin_snapshot')
+def import_coin_list(data):
+    for coin in data[0]['Data'].values():
+        Coins.create_or_update_using_crytocompare_coinlist(coin)
+
+
+import_coin_list()
+
+
+# %%
+# coin_snapshot
+@import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/coin_snapshot')
+def import_coin_snapshot(data):
+    coin_snapshot = data[0]['Data']
+    CoinsHistory.create_from_coin_snapshot(coin_snapshot)
+    ExchangesHistory.create_from_coin_snapshot(coin_snapshot)
+
+
+import_coin_snapshot()
+
+# %%
+# top_currency_pairs
+@import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/top_pairs')
+def import_coin_price_history(data):
+    coin_snapshot = data[0]['Data']
+
+
+import_coin_price_history()
+
+# %%
+# coin_price_history
+@import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/histoday')
+def import_coin_price_history(data):
+    coin_snapshot = data[0]['Data']
+
+
+import_coin_price_history()

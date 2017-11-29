@@ -1,5 +1,7 @@
 from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, DecimalField
 
+from cryptocoins.utils import valid_params
+
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
@@ -33,7 +35,7 @@ class CurrencyPairsHistory(BaseModel):
     @classmethod
     def top_pair_to_model_params(cls, top_pair):
         expected_keys = ['exchange', 'fromSymbol', 'toSymbol', 'volum24h', 'volume24hTo']
-        if not valid_params(expected_params=expected_keys, params=top_pair)
+        if not valid_params(expected_params=expected_keys, params=top_pair):
             raise ValueError('ERROR: Top')
         return {'from_symbol': top_pair['fromSymbol'],
                 'to_symbol': top_pair['toSymbol'],

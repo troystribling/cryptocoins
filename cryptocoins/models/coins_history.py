@@ -36,13 +36,13 @@ class CoinsHistory(BaseModel):
     def create_from_coin_snapshot(cls, coin_snapshot):
         expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward',
                          'NetHashesPerSecond', 'ProofType', 'TotalCoinsMined']
-        if not valid_params(expected_params=expected_keys, params=coin_snapshot)
+        if not valid_params(expected_params=expected_keys, params=coin_snapshot):
             return
 
         aggregated_data = coin_snapshot['AggregatedData']
         expected_keys = ['FROMSYMBOL', 'LOW24HOUR', 'OPEN24HOUR', 'LASTUPDATE',
                          'HIGH24HOUR', 'VOLUM24HOUR', 'VOLUME24HOURTO', 'PRICE']
-        if not valid_params(expected_params=expected_keys, params=aggregated_data)
+        if not valid_params(expected_params=expected_keys, params=aggregated_data):
             return
 
         timestamp_epoc = aggregated_data['LASTUPDATE']
