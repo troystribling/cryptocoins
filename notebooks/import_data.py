@@ -20,7 +20,6 @@ end_date = parse('20171125')
 @import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/coin_list')
 def import_coin_list(data):
     for coin in data[0]['Data'].values():
-        print(coin)
         Coins.create_or_update_using_crytocompare_coinlist(coin)
 
 

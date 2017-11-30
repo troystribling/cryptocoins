@@ -35,7 +35,7 @@ class ExchangesHistory(BaseModel):
             print("ERROR: Exchanges KEY IS MISSING FROM import_coin_snapshot_full")
             return
         with database.atomic():
-            for i in range(0, len(aggredated_data), batch_size):
+            for i in range(0, len(coin_snapshot), batch_size):
                 model_params = [cls.exchange_to_model_params(exchange) for exchange in exchanges[i:i * batch_size]]
                 cls.insert_many(model_params).execute
 

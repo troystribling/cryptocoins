@@ -1,5 +1,6 @@
 
 from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField
+from datetime import datetime
 
 from cryptocoins.utils import valid_params
 
@@ -28,7 +29,6 @@ class Coins(BaseModel):
 
     @classmethod
     def create_or_update_using_crytocompare_coinlist(cls, coin_list):
-        print(coin_list)
         expected_keys = ['CoinName', 'Id', 'FullName', 'Name', 'Symbol', 'SortOrder']
         if not valid_params(expected_params=expected_keys, params=coin_list):
             return
