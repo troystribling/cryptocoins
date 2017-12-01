@@ -215,7 +215,7 @@ end_date	crypto_compare_import.py	/^end_date = start_date$/;"	v
 end_date	notebooks/import_data.py	/^end_date = parse('20171125')$/;"	v
 exchange	cryptocoins/models/coins_price_history.py	/^    exchange = TextField()$/;"	v	class:CoinsPriceHistory
 exchange	notebooks/export_data.py	/^exchange = "CCCAGG"$/;"	v
-exchange_to_model_params	cryptocoins/models/exchanges_history.py	/^    def exchange_to_model_params(cls, exchanges):$/;"	m	class:ExchangesHistory
+exchange_to_model_params	cryptocoins/models/exchanges_history.py	/^    def exchange_to_model_params(cls, exchange):$/;"	m	class:ExchangesHistory
 exchanges	cryptocoins/models/currency_pairs_history.py	/^    exchanges = TextField()$/;"	v	class:CurrencyPairsHistory
 fetch_and_return	crypto_compare_collect.py	/^def fetch_and_return(params):$/;"	f
 fetch_coin_list	notebooks/export_data.py	/^def fetch_coin_list(params):$/;"	f

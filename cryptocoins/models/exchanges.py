@@ -26,5 +26,5 @@ class Exchanges(BaseModel):
                 with database.atomic():
                     return cls.create(name=components[1])
             except IntegrityError:
-                print(f"ERROR: EXCHANGE EXISTS: {subscription}")
+                print(f"ERROR: EXCHANGE EXISTS: {ticker_sub}")
                 return None

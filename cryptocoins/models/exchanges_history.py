@@ -40,20 +40,20 @@ class ExchangesHistory(BaseModel):
                 cls.insert_many(model_params).execute
 
     @classmethod
-    def exchange_to_model_params(cls, exchanges):
+    def exchange_to_model_params(cls, exchange):
         expected_keys = ['FROMSYMBOL', 'HIGH24HOUR', 'LOW24HOUR', 'LASTUPDATE', 'MARKET'
                          'OPEN24HOUR', 'TOSYMBOL', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
-        if not valid_params(expected_params=expected_keys, params=exchanges):
+        if not valid_params(expected_params=expected_keys, params=exchange):
             raise ValueError('ERROR: Exchange keys invalid')
-        timestamp_epoc = exchanges['LASTUPDATE']
-        return {'from_symbol': exchanges['FROMSYMBOL'],
-                'high_price_24_hour': exchanges['HIGH24HOUR'],
-                'low_price_24_hour': exchanges['LOW24HOUR'],
-                'name': exchanges['MARKET'],
-                'open_price_24_hour': exchanges['OPEN24HOUR'],
-                'close_price_24_hour': exchanges['PRICE'],
+        timestamp_epoc = exchange['LASTUPDATE']
+        return {'from_symbol': exchange['FROMSYMBOL'],
+                'high_price_24_hour': exchange['HIGH24HOUR'],
+                'low_price_24_hour': exchange['LOW24HOUR'],
+                'name': exchange['MARKET'],
+                'open_price_24_hour': exchange['OPEN24HOUR'],
+                'close_price_24_hour': exchange['PRICE'],
                 'timestamp': datetime.fromtimestamp(int(timestamp_epoc)),
                 'timestamp_epoc': timestamp_epoc,
-                'to_symbol': exchanges['TOSYMBOL'],
-                'volume_from_24_hour': exchanges['VOLUME24HOUR'],
-                'volume_to_24_hour': exchanges['VOLUME24HOURTO']}
+                'to_symbol': exchange['TOSYMBOL'],
+                'volume_from_24_hour': exchange['VOLUME24HOUR'],
+                'volume_to_24_hour': exchange['VOLUME24HOURTO']}

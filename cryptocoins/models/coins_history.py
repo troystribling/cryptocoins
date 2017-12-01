@@ -41,7 +41,7 @@ class CoinsHistory(BaseModel):
 
         aggregated_data = coin_snapshot['AggregatedData']
         expected_keys = ['FROMSYMBOL', 'LOW24HOUR', 'OPEN24HOUR', 'LASTUPDATE',
-                         'HIGH24HOUR', 'VOLUM24HOUR', 'VOLUME24HOURTO', 'PRICE']
+                         'HIGH24HOUR', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
         if not valid_params(expected_params=expected_keys, params=aggregated_data):
             return
 
@@ -58,7 +58,7 @@ class CoinsHistory(BaseModel):
                               low_price_24_hour=aggregated_data['LOW24HOUR'],
                               open_price_24_hour=aggregated_data['OPEN24HOUR'],
                               close_price_24_hour=aggregated_data['PRICE'],
-                              volume_from_24_hour=aggregated_data['VOLUM24HOUR'],
+                              volume_from_24_hour=aggregated_data['VOLUME24HOUR'],
                               volume_to_24_hour=aggregated_data['VOLUME24HOURTO'],
                               timestamp_epoc=timestamp_epoc,
                               timestamp=datetime.fromtimestamp(int(timestamp_epoc)))
