@@ -35,8 +35,8 @@ class CoinsPriceHistory(BaseModel):
     def create_from_histoday(cls, histoday, batch_size=100):
         with database.atomic():
             for i in range(0, len(histoday), batch_size):
-                model_params = [cls.histoday_to_model_parameters(exchange) for exchange in exchanges[i:i * batch_size]]
-                cls.insert_many(model_params).execute
+                model_params = [cls.histoday_to_model_parameters(record) for record in histoday[i:i + batch_size]]
+                cls.insert_many(model_params).execute()
 
     @classmethod
     def histoday_to_model_parameters(cls, histoday):
@@ -52,7 +52,7 @@ class CoinsPriceHistory(BaseModel):
                 'low_price_24_hour': histoday['low'],
                 'open_price_24_hour': histoday['open'],
                 'timestamp': datetime.fromtimestamp(int(timestamp_epoc)),
-                'timestamp_epoc':timestamp_epoc,
+                'timestamp_epoc': timestamp_epoc,
                 'to_symbol': histoday['tsym'],
                 'volume_from_24_hour': histoday['volumefrom'],
                 'volume_to_24_hour': histoday['volumeto']}

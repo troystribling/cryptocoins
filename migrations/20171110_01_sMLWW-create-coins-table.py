@@ -17,7 +17,7 @@ steps = [
          " cryptocompare_id BIGINT NOT NULL,"
          " name TEXT NOT NULL,"
          " symbol TEXT NOT NULL,"
-         " volume_total_usd NUMERIC(30, 15) NOT NULL DEFAULT 0.0,"
+         " volume_total_usd NUMERIC(36, 21) NOT NULL DEFAULT 0.0,"
          " rank BIGINT NOT NULL DEFAULT 1"
          ")", "DROP TABLE coins"),
     step("CREATE UNIQUE INDEX coins_symbol_idx ON coins (symbol)", "DROP INDEX coins_symbol_idx")

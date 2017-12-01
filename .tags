@@ -163,7 +163,8 @@ created_at	cryptocoins/models/imports.py	/^    created_at = DateTimeField()$/;"	
 cryptocoins	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
 cryptocompare_id	cryptocoins/models/coins.py	/^    cryptocompare_id = BigIntegerField()$/;"	v	class:Coins
 data	notebooks/download_data.py	/^data = compare_data[0]$/;"	v
-data	notebooks/download_data.py	/^data = compare_data[0]['Data']['Exchanges'][0]$/;"	v
+data	notebooks/download_data.py	/^data = compare_data[0]['Data']$/;"	v
+data	notebooks/download_data.py	/^data = compare_data[0]['Data']['Exchanges']$/;"	v
 database	cryptocoins/models/coins.py	/^        database = database$/;"	v	class:BaseModel.Meta
 database	cryptocoins/models/coins.py	/^database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})$/;"	v
 database	cryptocoins/models/coins_history.py	/^        database = database$/;"	v	class:BaseModel.Meta
@@ -247,6 +248,7 @@ import_coin_list	notebooks/import_data.py	/^def import_coin_list(data):$/;"	f
 import_coin_price_history	notebooks/import_data.py	/^def import_coin_price_history(data):$/;"	f
 import_coin_snapshot	crypto_compare_import.py	/^def import_coin_snapshot(data):$/;"	f
 import_coin_snapshot	notebooks/import_data.py	/^def import_coin_snapshot(data):$/;"	f
+import_currency_pairs_history	notebooks/import_data.py	/^def import_currency_pairs_history(data):$/;"	f
 import_data	notebooks/download_data.py	/^from cryptocoins import import_data$/;"	i
 import_from_s3	cryptocoins/import_data.py	/^def import_from_s3(bucket_name, start_date, end_date, remote_dir):$/;"	f
 indexes	cryptocoins/models/coins_price_history.py	/^        indexes = ($/;"	v	class:CoinsPriceHistory.Meta
