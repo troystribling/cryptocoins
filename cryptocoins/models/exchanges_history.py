@@ -29,11 +29,18 @@ class ExchangesHistory(BaseModel):
         db_table = 'exchanges_history'
 
     @classmethod
-    def create_from_coin_snapshot(cls, coin_snapshot, batch_size=100):
+    def create_from_coin_snapshot(cls, data, batch_size=100):
+        if 'Data' not in data:
+            print("ERROR: Data KEY IS MISSING FROM import_coin_snapshot")
+            return
+
+        coin_snapshot = data['Data']
+
         exchanges = coin_snapshot['Exchanges']
         if 'Exchanges' not in coin_snapshot:
-            print("ERROR: Exchanges KEY IS MISSING FROM import_coin_snapshot_full")
+            print("ERROR: Exchanges KEY IS MISSING FROM import_coin_snapshot")
             return
+
         with database.atomic():
             for i in range(0, len(exchanges), batch_size):
                 model_params = [cls.exchange_to_model_params(exchange) for exchange in exchanges[i:i + batch_size]]

@@ -5,10 +5,9 @@ from concurrent.futures import ThreadPoolExecutor
 from cryptocoins.export_data import fetch_url_and_upload_to_s3
 from cryptocoins.models.coins import Coins
 
-from cryptocoins.utils import valid_params
-
 thread_pool = ThreadPoolExecutor(max_workers=20)
 loop = asyncio.get_event_loop()
+bucket = 'gly.fish'
 
 
 async def poll_coin_list():
@@ -33,9 +32,9 @@ def fetch_and_return(params):
 @fetch_url_and_upload_to_s3
 def fetch_histoday(params):
     parsed_response = json.loads(params['response'])
-    parsed_response['CurrenctTo'] = params['to_currency']
+    parsed_response['CurrencyTo'] = params['to_currency']
     parsed_response['CurrencyFrom'] = params['from_currency']
-    parsed_response['Exchange'] = params['Exchange']
+    parsed_response['Exchange'] = params['exchange']
     new_result = json.dumps(parsed_response)
     return [new_result]
 
@@ -43,28 +42,24 @@ def fetch_histoday(params):
 def coin_list():
     url = 'https://min-api.cryptocompare.com/data/all/coinlist'
     path = "cryptocoins/cryptocompare/coin_list"
-    bucket = 'gly.fish'
     fetch_and_return(url=url, bucket=bucket, path=path)
 
 
 def coin_snapshot(from_currency, to_currency):
     url = f"https://www.cryptocompare.com/api/data/coinsnapshot/?fsym={from_currency}&tsym={to_currency}"
     path = 'cryptocoins/cryptocompare/coin_snapshot'
-    bucket = 'gly.fish'
     fetch_and_return(url=url, bucket=bucket, path=path, to_currency=to_currency)
 
 
 def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):
     url = f"https://min-api.cryptocompare.com/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
     path = 'cryptocoins/cryptocompare/histoday'
-    bucket = 'gly.fish'
     fetch_histoday(url=url, bucket=bucket, path=path, to_currency=to_currency, from_currency=from_currency, exchange=exchange)
 
 
 def top_currency_pairs(from_currency, limit=1000):
     url = f"https://min-api.cryptocompare.com/data/top/pairs?fsym={from_currency}&limit={limit}"
     path = 'cryptocoins/cryptocompare/top_pairs'
-    bucket = 'gly.fish'
     fetch_and_return(url=url, bucket=bucket, path=path)
 
 

@@ -11,44 +11,50 @@ tempdir = tempfile.gettempdir()
 
 
 # %%
-# fetch cryptocompare coin_list
+# fetch cryptocompare coin_list, coins
 remote_dir = 'cryptocoins/cryptocompare/coin_list'
 local_dir = os.path.join(tempdir, remote_dir)
-folder_date = parse('20171125')
+folder_date = parse('20171203')
 day_dir = utils.day_dir(folder_date)
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)
 files = os.listdir(os.path.join(local_dir, day_dir))
 coin_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))
+coins = coin_data[0]['Data']
+len(coins)
 
 # %%
-# fetch cryptocompare coin_snapshot
+# fetch cryptocompare coins_history, exchanges_history
 remote_dir = 'cryptocoins/cryptocompare/coin_snapshot'
 local_dir = os.path.join(tempdir, remote_dir)
-folder_date = parse('20171125')
+folder_date = parse('20171203')
 day_dir = utils.day_dir(folder_date)
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)
 files = os.listdir(os.path.join(local_dir, day_dir))
 compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))
-data = compare_data[0]['Data']['Exchanges']
+data = compare_data[0]['Data']
+exchanges = data['Exchanges']
+len(exchanges)
 
 # %%
-# fetch cryptocompare top_pairs
+# fetch cryptocompare top_pairs, currency_pairs_history
 remote_dir = 'cryptocoins/cryptocompare/top_pairs'
 local_dir = os.path.join(tempdir, remote_dir)
-folder_date = parse('20171126')
+folder_date = parse('20171203')
 day_dir = utils.day_dir(folder_date)
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)
 files = os.listdir(os.path.join(local_dir, day_dir))
 compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))
-data = compare_data[0]['Data']
+data = compare_data[0]
+len(data)
 
 # %%
-# fetch cryptocompare histoday
+# fetch cryptocompare histoday, coins_price_history
 remote_dir = 'cryptocoins/cryptocompare/histoday'
 local_dir = os.path.join(tempdir, remote_dir)
-folder_date = parse('20171126')
+folder_date = parse('20171203')
 day_dir = utils.day_dir(folder_date)
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)
 files = os.listdir(os.path.join(local_dir, day_dir))
 compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))
 data = compare_data[0]['Data']
+len(data)

@@ -26,7 +26,11 @@ class CurrencyPairsHistory(BaseModel):
         )
 
     @classmethod
-    def create_from_top_pairs(cls, top_pairs, batch_size=100):
+    def create_from_top_pairs(cls, data, batch_size=100):
+        if 'Data' not in data:
+            print("ERROR: Data KEY IS MISSING FROM top_pairs")
+            return
+        top_pairs = data['Data']
         with database.atomic():
             for i in range(0, len(top_pairs), batch_size):
                 model_params = [cls.top_pairs_to_model_params(top_pair) for top_pair in top_pairs[i:i + batch_size]]

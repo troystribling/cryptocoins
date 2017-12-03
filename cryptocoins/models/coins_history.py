@@ -33,7 +33,13 @@ class CoinsHistory(BaseModel):
         db_table = 'coins_history'
 
     @classmethod
-    def create_from_coin_snapshot(cls, coin_snapshot):
+    def create_from_coin_snapshot(cls, data):
+        if 'Data' not in data:
+            print("ERROR: Data KEY IS MISSING FROM coin_snapshot")
+            return
+
+        coin_snapshot = data['Data']
+
         expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward',
                          'NetHashesPerSecond', 'ProofType', 'TotalCoinsMined']
         if not valid_params(expected_params=expected_keys, params=coin_snapshot):
