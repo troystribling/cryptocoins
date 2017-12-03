@@ -227,7 +227,7 @@ get_with_id	cryptocoins/models/collections.py	/^    def get_with_id(cls, id):$/;
 high_price_24_hour	cryptocoins/models/coins_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:CoinsHistory
 high_price_24_hour	cryptocoins/models/coins_price_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 high_price_24_hour	cryptocoins/models/exchanges_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
-histoday_to_model_parameters	cryptocoins/models/coins_price_history.py	/^    def histoday_to_model_parameters(cls, histoday):$/;"	m	class:CoinsPriceHistory
+histoday_to_model_parameters	cryptocoins/models/coins_price_history.py	/^    def histoday_to_model_parameters(cls, histoday, from_symbol, to_symbol, exchange):$/;"	m	class:CoinsPriceHistory
 import_coin_list	crypto_compare_import.py	/^def import_coin_list(data):$/;"	f
 import_coin_list	notebooks/import_data.py	/^def import_coin_list(data):$/;"	f
 import_coin_price_history	notebooks/import_data.py	/^def import_coin_price_history(data):$/;"	f

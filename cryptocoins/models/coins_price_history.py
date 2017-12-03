@@ -33,26 +33,32 @@ class CoinsPriceHistory(BaseModel):
 
     @classmethod
     def create_from_histoday(cls, histoday, batch_size=100):
+        expected_keys = ['CurrencyFrom', 'CurrencyTo', 'Exchange', 'Data']
+        if not valid_params(expected_params=expected_keys, params=histoday):
+            raise ValueError('ERROR: histoday keys invalid')
+        records = histoday['Data']
+        from_symbol = histoday['CurrencyFrom']
+        to_symbol = histoday['CurrenctTo']
+        exchange = histoday['Exchange']
         with database.atomic():
-            for i in range(0, len(histoday), batch_size):
-                model_params = [cls.histoday_to_model_parameters(record) for record in histoday[i:i + batch_size]]
-                cls.insert_many(model_params).execute()
+            for i in range(0, len(records), batch_size):
+                model_params = [cls.histoday_to_model_parameters(record) for record in records[i:i + batch_size]]
+                cls.insert_many(model_params, from_symbol, to_symbol, exchange).execute()
 
     @classmethod
-    def histoday_to_model_parameters(cls, histoday):
-        expected_keys = ['time', 'close', 'high', 'low', 'open', 'volumefrom', 'volumeto', 'fsym',
-                         'tsym', 'exchange']
+    def histoday_to_model_parameters(cls, histoday, from_symbol, to_symbol, exchange):
+        expected_keys = ['time', 'close', 'high', 'low', 'open', 'volumefrom', 'volumeto']
         if not valid_params(expected_params=expected_keys, params=histoday):
             raise ValueError('ERROR: histoday keys invalid')
         timestamp_epoc = histoday['time']
         return {'close_price_24_hour': histoday['close'],
-                'exchange': histoday['exchange'],
-                'from_symbol': histoday['fsym'],
+                'exchange': exchange,
+                'from_symbol': from_symbol,
                 'high_price_24_hour': histoday['high'],
                 'low_price_24_hour': histoday['low'],
                 'open_price_24_hour': histoday['open'],
                 'timestamp': datetime.fromtimestamp(int(timestamp_epoc)),
                 'timestamp_epoc': timestamp_epoc,
-                'to_symbol': histoday['tsym'],
+                'to_symbol': to_symbol,
                 'volume_from_24_hour': histoday['volumefrom'],
                 'volume_to_24_hour': histoday['volumeto']}

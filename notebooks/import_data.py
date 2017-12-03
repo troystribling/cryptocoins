@@ -61,13 +61,13 @@ import_currency_pairs_history()
 
 # %%
 # coin_price_history
-start_date = parse('20171125')
-end_date = parse('20171125')
+start_date = parse('20171126')
+end_date = parse('20171126')
 
 
 @import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/histoday')
 def import_coin_price_history(data):
-    histoday = data[0]['Data']
+    histoday = data[0]
     CoinsPriceHistory.create_from_histoday(histoday)
 
 
