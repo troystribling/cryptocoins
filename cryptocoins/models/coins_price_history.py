@@ -32,18 +32,18 @@ class CoinsPriceHistory(BaseModel):
         )
 
     @classmethod
-    def create_from_histoday(cls, histoday, batch_size=100):
+    def create_from_histoday(cls, histoday, batch_size=1000):
         expected_keys = ['CurrencyFrom', 'CurrencyTo', 'Exchange', 'Data']
         if not valid_params(expected_params=expected_keys, params=histoday):
             raise ValueError('ERROR: histoday keys invalid')
         records = histoday['Data']
         from_symbol = histoday['CurrencyFrom']
-        to_symbol = histoday['CurrenctTo']
+        to_symbol = histoday['CurrencyTo']
         exchange = histoday['Exchange']
         with database.atomic():
             for i in range(0, len(records), batch_size):
-                model_params = [cls.histoday_to_model_parameters(record) for record in records[i:i + batch_size]]
-                cls.insert_many(model_params, from_symbol, to_symbol, exchange).execute()
+                model_params = [cls.histoday_to_model_parameters(record, from_symbol, to_symbol, exchange) for record in records[i:i + batch_size]]
+                cls.insert_many(model_params).execute()
 
     @classmethod
     def histoday_to_model_parameters(cls, histoday, from_symbol, to_symbol, exchange):

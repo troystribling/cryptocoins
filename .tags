@@ -134,7 +134,7 @@ compare_data	notebooks/download_data.py	/^compare_data = import_data.read_from_f
 create_collection	cryptocoins/models/collections.py	/^    def create_collection(cls, path, url):$/;"	m	class:Collections
 create_from_coin_snapshot	cryptocoins/models/coins_history.py	/^    def create_from_coin_snapshot(cls, coin_snapshot):$/;"	m	class:CoinsHistory
 create_from_coin_snapshot	cryptocoins/models/exchanges_history.py	/^    def create_from_coin_snapshot(cls, coin_snapshot, batch_size=100):$/;"	m	class:ExchangesHistory
-create_from_histoday	cryptocoins/models/coins_price_history.py	/^    def create_from_histoday(cls, histoday, batch_size=100):$/;"	m	class:CoinsPriceHistory
+create_from_histoday	cryptocoins/models/coins_price_history.py	/^    def create_from_histoday(cls, histoday, batch_size=1000):$/;"	m	class:CoinsPriceHistory
 create_from_top_pairs	cryptocoins/models/currency_pairs_history.py	/^    def create_from_top_pairs(cls, top_pairs, batch_size=100):$/;"	m	class:CurrencyPairsHistory
 create_import	cryptocoins/models/imports.py	/^    def create_import(cls, date_dir, file_name, remote_dir):$/;"	m	class:Imports
 create_or_update_using_crytocompare_coinlist	cryptocoins/models/coins.py	/^    def create_or_update_using_crytocompare_coinlist(cls, coin_list):$/;"	m	class:Coins
@@ -149,9 +149,9 @@ created_at	cryptocoins/models/exchanges_history.py	/^    created_at = DateTimeFi
 created_at	cryptocoins/models/imports.py	/^    created_at = DateTimeField()$/;"	v	class:Imports
 cryptocoins	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
 cryptocompare_id	cryptocoins/models/coins.py	/^    cryptocompare_id = BigIntegerField()$/;"	v	class:Coins
-data	notebooks/download_data.py	/^data = compare_data[0]$/;"	v
 data	notebooks/download_data.py	/^data = compare_data[0]['Data']$/;"	v
 data	notebooks/download_data.py	/^data = compare_data[0]['Data']['Exchanges']$/;"	v
+data	notebooks/download_data.py	/^data = len(compare_data[0]['Data'])$/;"	v
 database	cryptocoins/models/coins.py	/^        database = database$/;"	v	class:BaseModel.Meta
 database	cryptocoins/models/coins.py	/^database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})$/;"	v
 database	cryptocoins/models/coins_history.py	/^        database = database$/;"	v	class:BaseModel.Meta
