@@ -1,4 +1,4 @@
-from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField
+from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 
 from cryptocoins.utils import valid_params
@@ -53,18 +53,22 @@ class CoinsHistory(BaseModel):
 
         timestamp_epoc = aggregated_data['LASTUPDATE']
         with database.atomic():
-            return cls.create(algorithm=coin_snapshot['Algorithm'],
-                              block_number=coin_snapshot['BlockNumber'],
-                              block_reward=coin_snapshot['BlockReward'],
-                              net_hashes_per_second=coin_snapshot['NetHashesPerSecond'],
-                              proof_type=coin_snapshot['ProofType'],
-                              total_coins_mined=coin_snapshot['TotalCoinsMined'],
-                              symbol=aggregated_data['FROMSYMBOL'],
-                              high_price_24_hour=aggregated_data['HIGH24HOUR'],
-                              low_price_24_hour=aggregated_data['LOW24HOUR'],
-                              open_price_24_hour=aggregated_data['OPEN24HOUR'],
-                              close_price_24_hour=aggregated_data['PRICE'],
-                              volume_from_24_hour=aggregated_data['VOLUME24HOUR'],
-                              volume_to_24_hour=aggregated_data['VOLUME24HOURTO'],
-                              timestamp_epoc=timestamp_epoc,
-                              timestamp=datetime.fromtimestamp(int(timestamp_epoc)))
+            try:
+                return cls.create(algorithm=coin_snapshot['Algorithm'],
+                                  block_number=coin_snapshot['BlockNumber'],
+                                  block_reward=coin_snapshot['BlockReward'],
+                                  net_hashes_per_second=coin_snapshot['NetHashesPerSecond'],
+                                  proof_type=coin_snapshot['ProofType'],
+                                  total_coins_mined=coin_snapshot['TotalCoinsMined'],
+                                  symbol=aggregated_data['FROMSYMBOL'],
+                                  high_price_24_hour=aggregated_data['HIGH24HOUR'],
+                                  low_price_24_hour=aggregated_data['LOW24HOUR'],
+                                  open_price_24_hour=aggregated_data['OPEN24HOUR'],
+                                  close_price_24_hour=aggregated_data['PRICE'],
+                                  volume_from_24_hour=aggregated_data['VOLUME24HOUR'],
+                                  volume_to_24_hour=aggregated_data['VOLUME24HOURTO'],
+                                  timestamp_epoc=timestamp_epoc,
+                                  timestamp=datetime.fromtimestamp(int(timestamp_epoc)))
+            except IntegrityError as error:
+                print(f"ERROR: Coin History Update Exists: {error}")
+                return None

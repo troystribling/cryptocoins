@@ -12,9 +12,9 @@ BaseModel	cryptocoins/models/currency_pairs_history.py	/^class BaseModel(Model):
 BaseModel	cryptocoins/models/exchanges_history.py	/^class BaseModel(Model):$/;"	c
 BaseModel	cryptocoins/models/imports.py	/^class BaseModel(Model):$/;"	c
 BigIntegerField	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-BigIntegerField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-BigIntegerField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-BigIntegerField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+BigIntegerField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+BigIntegerField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+BigIntegerField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 BooleanField	cryptocoins/models/collections.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField$/;"	i
 Coins	crypto_compare_collect.py	/^from cryptocoins.models.coins import Coins$/;"	i
 Coins	crypto_compare_import.py	/^from cryptocoins.models.coins import Coins$/;"	i
@@ -37,25 +37,32 @@ CurrencyPairsHistory	cryptocoins/models/currency_pairs_history.py	/^class Curren
 CurrencyPairsHistory	notebooks/import_data.py	/^from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory$/;"	i
 CurrencyPairsHistory	notebooks/query_notebook.py	/^from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory$/;"	i
 DateTimeField	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-DateTimeField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-DateTimeField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+DateTimeField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+DateTimeField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 DateTimeField	cryptocoins/models/collections.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField$/;"	i
-DateTimeField	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, DecimalField$/;"	i
-DateTimeField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+DateTimeField	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, DecimalField$/;"	i
+DateTimeField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 DateTimeField	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField$/;"	i
 DecimalField	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-DecimalField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-DecimalField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-DecimalField	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, DecimalField$/;"	i
-DecimalField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+DecimalField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+DecimalField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+DecimalField	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, DecimalField$/;"	i
+DecimalField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 ExchangesHistory	crypto_compare_import.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
 ExchangesHistory	cryptocoins/models/exchanges_history.py	/^class ExchangesHistory(BaseModel):$/;"	c
 ExchangesHistory	notebooks/import_data.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
 ExchangesHistory	notebooks/query_notebook.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
 Imports	cryptocoins/models/imports.py	/^class Imports(BaseModel):$/;"	c
 IntegrityError	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+IntegrityError	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+IntegrityError	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 IntegrityError	cryptocoins/models/collections.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField$/;"	i
+IntegrityError	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, DecimalField$/;"	i
+IntegrityError	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 IntegrityError	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField$/;"	i
+InternalError	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+InternalError	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, DecimalField$/;"	i
+InternalError	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 Meta	cryptocoins/models/coins.py	/^    class Meta:$/;"	c	class:BaseModel
 Meta	cryptocoins/models/coins.py	/^    class Meta:$/;"	c	class:Coins
 Meta	cryptocoins/models/coins_history.py	/^    class Meta:$/;"	c	class:BaseModel
@@ -71,25 +78,25 @@ Meta	cryptocoins/models/exchanges_history.py	/^    class Meta:$/;"	c	class:Excha
 Meta	cryptocoins/models/imports.py	/^    class Meta:$/;"	c	class:BaseModel
 Meta	cryptocoins/models/imports.py	/^    class Meta:$/;"	c	class:Imports
 Model	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-Model	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-Model	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+Model	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+Model	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 Model	cryptocoins/models/collections.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField$/;"	i
-Model	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, DecimalField$/;"	i
-Model	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+Model	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, DecimalField$/;"	i
+Model	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 Model	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField$/;"	i
 PostgresqlDatabase	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-PostgresqlDatabase	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-PostgresqlDatabase	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+PostgresqlDatabase	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+PostgresqlDatabase	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 PostgresqlDatabase	cryptocoins/models/collections.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField$/;"	i
-PostgresqlDatabase	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, DecimalField$/;"	i
-PostgresqlDatabase	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+PostgresqlDatabase	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, DecimalField$/;"	i
+PostgresqlDatabase	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 PostgresqlDatabase	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField$/;"	i
 TextField	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-TextField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
-TextField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+TextField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+TextField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 TextField	cryptocoins/models/collections.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField$/;"	i
-TextField	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, DecimalField$/;"	i
-TextField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+TextField	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, DecimalField$/;"	i
+TextField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 TextField	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField$/;"	i
 ThreadPoolExecutor	crypto_compare_collect.py	/^from concurrent.futures import ThreadPoolExecutor$/;"	i
 __depends__	migrations/20171110_01_sMLWW-create-coins-table.py	/^__depends__ = {}$/;"	v
@@ -202,7 +209,7 @@ fetch_url_and_upload_to_s3	notebooks/export_data.py	/^from cryptocoins.export_da
 file_name	cryptocoins/models/imports.py	/^    file_name = TextField(unique=True)$/;"	v	class:Imports
 files	notebooks/download_data.py	/^files = os.listdir(os.path.join(local_dir, day_dir))$/;"	v
 folder_date	notebooks/download_data.py	/^folder_date = parse('20171203')$/;"	v
-from_currency	notebooks/export_data.py	/^from_currency = 'ETH'$/;"	v
+from_currency	notebooks/export_data.py	/^from_currency = 'BTC'$/;"	v
 from_symbol	cryptocoins/models/coins_price_history.py	/^    from_symbol = TextField(index=True)$/;"	v	class:CoinsPriceHistory
 from_symbol	cryptocoins/models/currency_pairs_history.py	/^    from_symbol = TextField(index=True)$/;"	v	class:CurrencyPairsHistory
 from_symbol	cryptocoins/models/exchanges_history.py	/^    from_symbol = TextField()$/;"	v	class:ExchangesHistory

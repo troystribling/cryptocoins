@@ -33,8 +33,8 @@ class Collections(BaseModel):
     def get_with_id(cls, id):
         try:
             return Collections.get(Collections.id == id)
-        except Collections.DoesNotExist as error:
-            print(f"ERROR: Collection with id {id} does not exist")
+        except IntegrityError as error:
+            print(f"ERROR: Collection with id {id} exists: : {error}")
             return None
 
     def collection_successful(self):

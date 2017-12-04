@@ -1,4 +1,4 @@
-from peewee import Model, PostgresqlDatabase, DateTimeField, TextField, BigIntegerField, DecimalField
+from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 
 from cryptocoins.utils import valid_params
@@ -44,7 +44,12 @@ class ExchangesHistory(BaseModel):
         with database.atomic():
             for i in range(0, len(exchanges), batch_size):
                 model_params = [cls.exchange_to_model_params(exchange) for exchange in exchanges[i:i + batch_size]]
-                cls.insert_many(model_params).execute()
+                try:
+                    cls.insert_many(model_params).execute()
+                except IntegrityError as error:
+                    print(f"ERROR: Exchange History Update Exists: {error}")
+                    continue
+
 
     @classmethod
     def exchange_to_model_params(cls, exchange):
