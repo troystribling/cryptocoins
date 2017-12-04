@@ -4,8 +4,6 @@ import json
 from cryptocoins.export_data import fetch_url_and_upload_to_s3
 
 bucket = 'gly.fish'
-from_currency = 'BTC'
-to_currency = 'USD'
 limit = 100
 
 # coin_snapshot
@@ -23,6 +21,8 @@ fetch_coin_list(url=url, bucket=bucket, path=path)
 
 # coin_snapshot
 # %%
+from_currency = 'ETH'
+to_currency = 'BTC'
 url = f"https://www.cryptocompare.com/api/data/coinsnapshot/?fsym={from_currency}&tsym={to_currency}"
 path = "cryptocoins/cryptocompare/coin_snapshot"
 
@@ -39,6 +39,8 @@ fetch_coin_snapshot(url=url, bucket=bucket, path=path, to_currency=to_currency)
 
 # top_pairs
 # %%
+from_currency = 'ETH'
+to_currency = 'USD'
 url = f"https://min-api.cryptocompare.com/data/top/pairs?fsym={from_currency}&limit={limit}"
 path = "cryptocoins/cryptocompare/top_pairs"
 
@@ -52,6 +54,8 @@ fetch_top_pairs(url=url, bucket=bucket, path=path)
 
 # histoday
 # %%
+from_currency = 'ETH'
+to_currency = 'USD'
 allData = True
 exchange = "CCCAGG"
 path = "cryptocoins/cryptocompare/histoday"
