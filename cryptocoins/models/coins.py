@@ -43,5 +43,5 @@ class Coins(BaseModel):
                            rank=coin_list['SortOrder'])
         except IntegrityError:
             query = cls.update(updated_at=datetime.utcnow(),
-                               rank=coin_list['SortOrder'])
+                               rank=coin_list['SortOrder']).where(Coins.symbol == coin_list['Symbol'])
             query.execute()

@@ -16,7 +16,7 @@ bucket_name = 'gly.fish'
 # %%
 # coin_list
 start_date = parse('20171203')
-end_date = parse('20171203')
+end_date = parse('20171204')
 
 
 @import_from_s3(bucket_name=bucket_name, start_date=start_date, end_date=end_date, remote_dir='cryptocoins/cryptocompare/coin_list')

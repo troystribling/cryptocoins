@@ -8,8 +8,9 @@ from cryptocoins.models.collections import Collections
 
 
 # %% coins
-for coin in Coins.raw('SELECT * FROM coins ORDER By rank ASC'):
+for coin in Coins.raw('SELECT symbol FROM coins ORDER BY rank ASC'):
     print(coin.symbol)
+
 
 # %% exchanges_history
 for exchange in ExchangesHistory.raw('SELECT * FROM exchanges_history ORDER BY volume_from_24_hour DESC'):
