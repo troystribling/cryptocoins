@@ -6,7 +6,7 @@ from cryptocoins.export_data import fetch_url_and_upload_to_s3
 bucket = 'gly.fish'
 limit = 100
 
-# coin_snapshot
+# coin_list
 # %%
 url = f"https://min-api.cryptocompare.com/data/all/coinlist"
 path = "cryptocoins/cryptocompare/coin_list"
