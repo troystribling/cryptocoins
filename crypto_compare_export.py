@@ -57,7 +57,7 @@ def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", a
     fetch_histoday(url=url, bucket=bucket, path=path, to_currency=to_currency, from_currency=from_currency, exchange=exchange)
 
 
-def top_currency_pairs(from_currency, limit=1000):
+def top_currency_pairs(from_currency, limit=100):
     url = f"https://min-api.cryptocompare.com/data/top/pairs?fsym={from_currency}&limit={limit}"
     path = 'cryptocoins/cryptocompare/top_pairs'
     fetch_and_return(url=url, bucket=bucket, path=path)

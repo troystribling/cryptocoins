@@ -1,4 +1,4 @@
-from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DateTimeField, TextField, BigIntegerField, DecimalField
+from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 
 from cryptocoins.utils import valid_params
