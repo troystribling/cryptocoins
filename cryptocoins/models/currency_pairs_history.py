@@ -52,12 +52,12 @@ class CurrencyPairsHistory(BaseModel):
                 'volume_to_24_hour': top_pair['volume24hTo']}
 
     @classmethod
-    def currency_pairs_for_coin(cls, coin):
+    def currency_pairs_for_coin(cls, coin, limit=10):
         query = "SELECT full_table.created_at, full_table.exchange, full_table.from_symbol, full_table.to_symbol, full_table.volume_from_24_hour" \
                 " FROM currency_pairs_history AS full_table" \
                 " INNER JOIN" \
                 " (SELECT MAX(id) AS latest_id, exchange, from_symbol, to_symbol FROM currency_pairs_history" \
                 " GROUP BY exchange, from_symbol, to_symbol HAVING from_symbol = %s)" \
                 " AS latest ON (full_table.id = latest.latest_id)" \
-                " ORDER BY full_table.volume_from_24_hour DESC"
-        return cls.raw(query, coin)
+                " ORDER BY full_table.volume_from_24_hour DESC LIMIT %s"
+        return cls.raw(query, coin, limit)

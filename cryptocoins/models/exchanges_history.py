@@ -69,3 +69,16 @@ class ExchangesHistory(BaseModel):
                 'to_symbol': exchange['TOSYMBOL'],
                 'volume_from_24_hour': exchange['VOLUME24HOUR'],
                 'volume_to_24_hour': exchange['VOLUME24HOURTO']}
+
+    @classmethod
+    def top_exchangesFor_coin(cls, coin, limlt=10):
+            query = "SELECT full_table.created_at, full_table.name, full_table.from_symbol," \
+                    " full_table.to_symbol, full_table.volume_from_24_hour" \
+                    " FROM exchanges_history AS full_table" \
+                    " INNER JOIN" \
+                    " (SELECT MAX(id) AS latest_id, name, from_symbol, to_symbol FROM exchanges_history GROUP" \
+                    " BY name, from_symbol, to_symbol HAVING from_symbol = %s)" \
+                    " AS latest ON (full_table.id = latest.latest_id)" \
+                    " ORDER BY full_table.volume_from_24_hour DESC LIMIT %s"
+
+            return ExchangesHistory.raw(query, coin, limit)

@@ -47,5 +47,5 @@ class Coins(BaseModel):
             query.execute()
 
     @classmethod
-    def top_coins(cls, limit):
+    def top_coins(cls, limit=10):
         return cls.raw("SELECT symbol FROM coins ORDER BY rank ASC LIMIT %s", limit)
