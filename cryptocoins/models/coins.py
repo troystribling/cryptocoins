@@ -45,3 +45,7 @@ class Coins(BaseModel):
             query = cls.update(updated_at=datetime.utcnow(),
                                rank=coin_list['SortOrder']).where(Coins.symbol == coin_list['Symbol'])
             query.execute()
+
+    @classmethod
+    def top_coins(cls, limit):
+        return cls.raw("SELECT symbol FROM coins ORDER BY rank ASC LIMIT %s", limit)
