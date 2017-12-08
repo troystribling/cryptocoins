@@ -37,6 +37,13 @@ class Collections(BaseModel):
             print(f"ERROR: Collection with id {id} exists: : {error}")
             return None
 
+    @classmethod
+    def last_successful_collection_for_url(cls, url):
+        query = "SELECT created_at, path, url, success FROM collections" \
+                " WHERE url = %s AND success = 'true'" \
+                " ORDER BY created_at LIMIT 1"
+        return cls.raw(query, url)
+
     def collection_successful(self):
         query = Collections.update(success=True).where((Collections.created_at == self.created_at) & (Collections.path == self.path))
         query.execute()

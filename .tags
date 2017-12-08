@@ -128,7 +128,6 @@ coin_name	cryptocoins/models/coins.py	/^    coin_name = TextField()$/;"	v	class:
 coin_price_history	crypto_compare_export.py	/^def coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):$/;"	f
 coin_snapshot	crypto_compare_export.py	/^def coin_snapshot(from_currency, to_currency):$/;"	f
 coins	notebooks/download_data.py	/^coins = coin_data[0]['Data']$/;"	v
-collecion	notebooks/query_notebook.py	/^collecion = Collections.raw(query, "cryptocoins\/cryptocompare\/coin_list")$/;"	v
 collection_successful	cryptocoins/models/collections.py	/^    def collection_successful(self):$/;"	m	class:Collections
 compare_data	notebooks/download_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 create_collection	cryptocoins/models/collections.py	/^    def create_collection(cls, path, url):$/;"	m	class:Collections
@@ -237,6 +236,7 @@ indexes	cryptocoins/models/currency_pairs_history.py	/^        indexes = ($/;"	v
 json	crypto_compare_export.py	/^import json$/;"	i
 json	cryptocoins/import_data.py	/^import json$/;"	i
 json	notebooks/export_data.py	/^import json$/;"	i
+last_successful_collection_for_url	cryptocoins/models/collections.py	/^    def last_successful_collection_for_url(cls, url):$/;"	m	class:Collections
 limit	notebooks/export_data.py	/^limit = 100$/;"	v
 local_dir	notebooks/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 loop	crypto_compare_export.py	/^loop = asyncio.get_event_loop()$/;"	v
@@ -275,6 +275,7 @@ remote_dir	notebooks/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare
 remote_dir	notebooks/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/histoday'$/;"	v
 remote_dir	notebooks/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/top_pairs'$/;"	v
 requests	cryptocoins/export_data.py	/^import requests$/;"	i
+result	notebooks/query_notebook.py	/^result = Collections.raw(query, "http:\/\/nothing")$/;"	v
 start_date	crypto_compare_import.py	/^start_date = parse(sys.argv[1]) if len(sys.argv) else date.today()$/;"	v
 start_date	notebooks/import_data.py	/^start_date = parse('20171203')$/;"	v
 step	migrations/20171110_01_sMLWW-create-coins-table.py	/^from yoyo import step$/;"	i
@@ -313,7 +314,7 @@ to_symbol	cryptocoins/models/currency_pairs_history.py	/^    to_symbol = TextFie
 to_symbol	cryptocoins/models/exchanges_history.py	/^    to_symbol = TextField()$/;"	v	class:ExchangesHistory
 top_coins	cryptocoins/models/coins.py	/^    def top_coins(cls, limit=10):$/;"	m	class:Coins
 top_currency_pairs	crypto_compare_export.py	/^def top_currency_pairs(from_currency, limit=100):$/;"	f
-top_exchangesFor_coin	cryptocoins/models/exchanges_history.py	/^    def top_exchangesFor_coin(cls, coin, limlt=10):$/;"	m	class:ExchangesHistory
+top_exchanges_for_coin	cryptocoins/models/exchanges_history.py	/^    def top_exchanges_for_coin(cls, coin, limlt=10):$/;"	m	class:ExchangesHistory
 top_pairs_to_model_params	cryptocoins/models/currency_pairs_history.py	/^    def top_pairs_to_model_params(cls, top_pair):$/;"	m	class:CurrencyPairsHistory
 total_coins_mined	cryptocoins/models/coins_history.py	/^    total_coins_mined = DecimalField()$/;"	v	class:CoinsHistory
 updated_at	cryptocoins/models/coins.py	/^    updated_at = DateTimeField()$/;"	v	class:Coins

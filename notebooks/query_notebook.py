@@ -40,6 +40,9 @@ for exchange in ExchangesHistory.raw(query, 'BTC', 10):
     print(exchange.created_at, exchange.name, exchange.from_symbol, exchange.to_symbol, exchange.volume_from_24_hour)
 
 
+# collections
 # %%
-query = "SELECT * FROM collections WHERE path = %s ORDER BY created_at ASC"
-collection = Collections.raw(query, "cryptocoins/cryptocompare/coin_list")
+query = "SELECT created_at FROM collections WHERE url = %s AND success = 'true' ORDER BY created_at LIMIT 1"
+
+result = Collections.raw(query, "http://nothing").scalar()
+result == None

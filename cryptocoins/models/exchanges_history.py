@@ -71,7 +71,7 @@ class ExchangesHistory(BaseModel):
                 'volume_to_24_hour': exchange['VOLUME24HOURTO']}
 
     @classmethod
-    def top_exchangesFor_coin(cls, coin, limlt=10):
+    def top_exchanges_for_coin(cls, coin, limlt=10):
             query = "SELECT full_table.created_at, full_table.name, full_table.from_symbol," \
                     " full_table.to_symbol, full_table.volume_from_24_hour" \
                     " FROM exchanges_history AS full_table" \
