@@ -42,7 +42,7 @@ class Collections(BaseModel):
         query = "SELECT created_at, path, url, success FROM collections" \
                 " WHERE url = %s AND success = 'true'" \
                 " ORDER BY created_at LIMIT 1"
-        return cls.raw(query, url)
+        return cls.raw(query, url).scalar()
 
     def collection_successful(self):
         query = Collections.update(success=True).where((Collections.created_at == self.created_at) & (Collections.path == self.path))
