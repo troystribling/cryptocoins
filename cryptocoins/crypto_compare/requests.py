@@ -33,8 +33,8 @@ def coin_snapshot_url(from_currency, to_currency):
     return f"https://www.cryptocompare.com/api/data/coinsnapshot/?fsym={from_currency}&tsym={to_currency}"
 
 
-def coin_price_history_utl(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):
-    return f"https://min-api.cryptocompare.com/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
+def coin_price_history_utl(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False, app_name='gly.fish'):
+    return f"https://min-api.cryptocompare.com/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}&extraParams={app_name}"
 
 
 # requests

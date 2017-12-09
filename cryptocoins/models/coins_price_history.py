@@ -48,7 +48,6 @@ class CoinsPriceHistory(BaseModel):
                 try:
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, InternalError) as error:
-                    print(f"ERROR: Coins Price History Update Exists: {error}")
                     continue
 
     @classmethod

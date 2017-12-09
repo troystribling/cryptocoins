@@ -16,10 +16,10 @@ BigIntegerField	cryptocoins/models/coins_history.py	/^from peewee import Model, 
 BigIntegerField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 BigIntegerField	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 BooleanField	cryptocoins/models/collections.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField$/;"	i
+Coins	crypto_compare_init.py	/^from cryptocoins.models.coins import Coins$/;"	i
 Coins	crypto_compare_poller.py	/^from cryptocoins.models.coins import Coins$/;"	i
 Coins	cryptocoins/crypto_compare/imports.py	/^from cryptocoins.models.coins import Coins$/;"	i
 Coins	cryptocoins/models/coins.py	/^class Coins(BaseModel):$/;"	c
-Coins	crypyo_compare_init.py	/^from cryptocoins.models.coins import Coins$/;"	i
 Coins	notebooks/import_data.py	/^from cryptocoins.models.coins import Coins$/;"	i
 Coins	notebooks/query_notebook.py	/^from cryptocoins.models.coins import Coins$/;"	i
 CoinsHistory	crypto_compare_poller.py	/^from cryptocoins.models.coins_history import CoinsHistory$/;"	i
@@ -35,10 +35,10 @@ Collections	crypto_compare_poller.py	/^from cryptocoins.models.collections impor
 Collections	cryptocoins/collect_data.py	/^from cryptocoins.models.collections import Collections$/;"	i
 Collections	cryptocoins/models/collections.py	/^class Collections(BaseModel):$/;"	c
 Collections	notebooks/query_notebook.py	/^from cryptocoins.models.collections import Collections$/;"	i
+CurrencyPairsHistory	crypto_compare_init.py	/^from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory$/;"	i
 CurrencyPairsHistory	crypto_compare_poller.py	/^from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory$/;"	i
 CurrencyPairsHistory	cryptocoins/crypto_compare/imports.py	/^from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory$/;"	i
 CurrencyPairsHistory	cryptocoins/models/currency_pairs_history.py	/^class CurrencyPairsHistory(BaseModel):$/;"	c
-CurrencyPairsHistory	crypyo_compare_init.py	/^from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory$/;"	i
 CurrencyPairsHistory	notebooks/import_data.py	/^from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory$/;"	i
 CurrencyPairsHistory	notebooks/query_notebook.py	/^from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory$/;"	i
 CurrencyPriceHistory	crypto_compare_poller.py	/^from cryptocoins.models.currency_price_history import CurrencyPriceHistory$/;"	i
@@ -132,7 +132,7 @@ close_price_24_hour	cryptocoins/models/exchanges_history.py	/^    close_price_24
 coin_data	notebooks/download_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 coin_list_url	cryptocoins/crypto_compare/requests.py	/^def coin_list_url():$/;"	f
 coin_name	cryptocoins/models/coins.py	/^    coin_name = TextField()$/;"	v	class:Coins
-coin_price_history_utl	cryptocoins/crypto_compare/requests.py	/^def coin_price_history_utl(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):$/;"	f
+coin_price_history_utl	cryptocoins/crypto_compare/requests.py	/^def coin_price_history_utl(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False, app_name='gly.fish'):$/;"	f
 coin_snapshot_url	cryptocoins/crypto_compare/requests.py	/^def coin_snapshot_url(from_currency, to_currency):$/;"	f
 coins	notebooks/download_data.py	/^coins = coin_data[0]['Data']$/;"	v
 collection_successful	cryptocoins/models/collections.py	/^    def collection_successful(self):$/;"	m	class:Collections
@@ -171,9 +171,9 @@ database	cryptocoins/models/exchanges_history.py	/^database = PostgresqlDatabase
 database	cryptocoins/models/imports.py	/^        database = database$/;"	v	class:BaseModel.Meta
 database	cryptocoins/models/imports.py	/^database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})$/;"	v
 date	crypto_compare_import.py	/^from datetime import date$/;"	i
+date	crypto_compare_init.py	/^from datetime import date$/;"	i
 date	cryptocoins/collect_data.py	/^from datetime import date, datetime$/;"	i
 date	cryptocoins/import_data.py	/^from datetime import date$/;"	i
-date	crypyo_compare_init.py	/^from datetime import date$/;"	i
 date_dir	cryptocoins/models/imports.py	/^    date_dir = TextField()$/;"	v	class:Imports
 date_prefix	cryptocoins/utils.py	/^def date_prefix(file_date):$/;"	f
 daterange	cryptocoins/utils.py	/^def daterange(date1, date2):$/;"	f
@@ -182,8 +182,8 @@ datetime	cryptocoins/models/coins.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/models/coins_history.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/models/coins_price_history.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/models/exchanges_history.py	/^from datetime import datetime$/;"	i
+day_dir	crypto_compare_init.py	/^from cryptocoins.utils import day_dir$/;"	i
 day_dir	cryptocoins/utils.py	/^def day_dir(file_date):$/;"	f
-day_dir	crypyo_compare_init.py	/^from cryptocoins.utils import day_dir$/;"	i
 day_dir	notebooks/download_data.py	/^day_dir = utils.day_dir(folder_date)$/;"	v
 db_table	cryptocoins/models/coins.py	/^        db_table = 'coins'$/;"	v	class:Coins.Meta
 db_table	cryptocoins/models/coins_history.py	/^        db_table = 'coins_history'$/;"	v	class:CoinsHistory.Meta
@@ -237,7 +237,7 @@ import_coin_snapshot	notebooks/import_data.py	/^def import_coin_snapshot(data):$
 import_currency_pairs_history	cryptocoins/crypto_compare/imports.py	/^def import_currency_pairs_history(data):$/;"	f
 import_currency_pairs_history	notebooks/import_data.py	/^def import_currency_pairs_history(data):$/;"	f
 import_data	notebooks/download_data.py	/^from cryptocoins import import_data$/;"	i
-import_date	crypyo_compare_init.py	/^import_date = date.today()$/;"	v
+import_date	crypto_compare_init.py	/^import_date = date.today()$/;"	v
 import_from_s3	cryptocoins/import_data.py	/^def import_from_s3(bucket_name, remote_dir):$/;"	f
 indexes	cryptocoins/models/coins_price_history.py	/^        indexes = ($/;"	v	class:CoinsPriceHistory.Meta
 indexes	cryptocoins/models/collections.py	/^        indexes = ($/;"	v	class:Collections.Meta
@@ -283,20 +283,20 @@ remote_dir	notebooks/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare
 remote_dir	notebooks/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_snapshot'$/;"	v
 remote_dir	notebooks/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/histoday'$/;"	v
 remote_dir	notebooks/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/top_pairs'$/;"	v
+request_coin_list	crypto_compare_init.py	/^from cryptocoins.crypto_compare.requests import request_coin_list$/;"	i
 request_coin_list	crypto_compare_poller.py	/^from cryptocoins.crypto_compare.requests import request_coin_list$/;"	i
 request_coin_list	cryptocoins/crypto_compare/requests.py	/^def request_coin_list():$/;"	f
-request_coin_list	crypyo_compare_init.py	/^from cryptocoins.crypto_compare.requests import request_coin_list$/;"	i
 request_coin_price_history	crypto_compare_poller.py	/^from cryptocoins.crypto_compare.requests import request_coin_price_history$/;"	i
 request_coin_price_history	cryptocoins/crypto_compare/requests.py	/^def request_coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):$/;"	f
+request_coin_snapshot	crypto_compare_init.py	/^from cryptocoins.crypto_compare.requests import request_coin_snapshot$/;"	i
 request_coin_snapshot	crypto_compare_poller.py	/^from cryptocoins.crypto_compare.requests import request_coin_snapshot$/;"	i
 request_coin_snapshot	cryptocoins/crypto_compare/requests.py	/^def request_coin_snapshot(from_currency, to_currency):$/;"	f
-request_coin_snapshot	crypyo_compare_init.py	/^from cryptocoins.crypto_compare.requests import request_coin_snapshot$/;"	i
+request_top_currency_pairs	crypto_compare_init.py	/^from cryptocoins.crypto_compare.requests import request_top_currency_pairs$/;"	i
 request_top_currency_pairs	crypto_compare_poller.py	/^from cryptocoins.crypto_compare.requests import request_top_currency_pairs$/;"	i
 request_top_currency_pairs	cryptocoins/crypto_compare/requests.py	/^def request_top_currency_pairs(from_currency, limit=100):$/;"	f
-request_top_currency_pairs	crypyo_compare_init.py	/^from cryptocoins.crypto_compare.requests import request_top_currency_pairs$/;"	i
 requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 result	notebooks/query_notebook.py	/^result = Collections.raw(query, "http:\/\/nothing")$/;"	v
-sleep	crypyo_compare_init.py	/^from time import sleep$/;"	i
+sleep	crypto_compare_init.py	/^from time import sleep$/;"	i
 start_date	crypto_compare_import.py	/^start_date = parse(sys.argv[1]) if len(sys.argv) else date.today()$/;"	v
 start_date	notebooks/import_data.py	/^start_date = parse('20171209')$/;"	v
 step	migrations/20171110_01_sMLWW-create-coins-table.py	/^from yoyo import step$/;"	i

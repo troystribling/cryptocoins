@@ -36,9 +36,10 @@ import_currency_pairs_history(import_date, import_date)
 
 # coins_history and exchanges_history
 print("INITIALIZE coins_history and exchanges_history")
-for coin in Coins.top_coins(limit=10):
-    for currency_pair in CurrencyPairsHistory.currency_pairs_for_coin(coin.symbol, limit=10):
-        print(f"FETCHING coin_snap_shot for currency pair {currency_pair.from_symbol()}, {currency_pair.to_symbol()}")
+for coin in Coins.top_coins(limit=50):
+    for currency_pair in CurrencyPairsHistory.currency_pairs_for_coin(coin.symbol, limit=20):
+        print(f"FETCHING coin_snap_shot for currency pair {currency_pair.from_symbol}, {currency_pair.to_symbol}")
         request_coin_snapshot(currency_pair.from_symbol(), currency_pair.to_symbol())
+        sleep(5.0)
 
 import_coin_snapshot(import_date, import_date)
