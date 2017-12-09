@@ -37,25 +37,25 @@ def coin_price_history_utl(from_currency, to_currency, limit=1, exchange="CCCAGG
 
 
 # requests
-def coin_list_request():
+def request_coin_list():
     url = coin_list_url()
     path = "cryptocoins/cryptocompare/coin_list"
     fetch_and_return(url=url, bucket=bucket, path=path)
 
 
-def coin_snapshot_request(from_currency, to_currency):
+def request_coin_snapshot(from_currency, to_currency):
     url = coin_snapshot_url(from_currency, to_currency)
     path = 'cryptocoins/cryptocompare/coin_snapshot'
     fetch_and_return(url=url, bucket=bucket, path=path, to_currency=to_currency)
 
 
-def coin_price_history_request(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):
+def request_coin_price_history(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):
     url = coin_price_history_utl(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False)
     path = 'cryptocoins/cryptocompare/histoday'
     fetch_histoday(url=url, bucket=bucket, path=path, to_currency=to_currency, from_currency=from_currency, exchange=exchange)
 
 
-def top_currency_pairs_request(from_currency, limit=100):
+def request_top_currency_pairs(from_currency, limit=100):
     url = top_currency_pairs(from_currency, limit=100)
     path = 'cryptocoins/cryptocompare/top_pairs'
     fetch_and_return(url=url, bucket=bucket, path=path)

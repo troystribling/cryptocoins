@@ -1,3 +1,7 @@
+import sys
+from datetime import date
+from dateutil.parser import parse
+
 from cryptocoins.import_data import import_from_s3
 
 from cryptocoins.models.coins import Coins
@@ -7,6 +11,11 @@ from cryptocoins.models.coins_history import CoinsHistory
 from cryptocoins.models.coins_price_history import CoinsPriceHistory
 
 bucket_name = 'gly.fish'
+
+print(f"IMPORTING {start_date} TO {end_date} FROM {bucket_name}")
+
+start_date = parse(sys.argv[1]) if len(sys.argv) else date.today()
+end_date = parse(sys.argv[2]) if len(sys.argv) > 2 else start_date
 
 print(f"IMPORTING {start_date} TO {end_date} FROM {bucket_name}")
 
@@ -46,3 +55,9 @@ def download_coin_price_history(data):
         print("ERROR: FILE WRONG SIZE")
     histoday = data[0]
     CoinsPriceHistory.create_from_histoday(histoday, batch_size=1000)
+
+
+import_coin_snapshot()
+import_coin_list()
+import_currency_pairs_history()
+import_coin_price_history()
