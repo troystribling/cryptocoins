@@ -2,15 +2,16 @@ import asyncio
 
 from concurrent.futures import ThreadPoolExecutor
 
-from cryptocoins.crypto_compare.request import request_coin_list
-from cryptocoins.crypto_compare.request import request_coin_snapshot
-from cryptocoins.crypto_compare.request import request_coin_price_history
-from cryptocoins.crypto_compare.request import request_top_currency_pairs
+from cryptocoins.crypto_compare.requests import request_coin_list
+from cryptocoins.crypto_compare.requests import request_coin_snapshot
+from cryptocoins.crypto_compare.requests import request_coin_price_history
+from cryptocoins.crypto_compare.requests import request_top_currency_pairs
 
 from cryptocoins.models.coins import Coins
 from cryptocoins.models.collections import Collections
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.exchanges_history import ExchangesHistory
+from cryptocoins.models.coins_history import CoinsHistory
 from cryptocoins.models.currency_price_history import CurrencyPriceHistory
 
 thread_pool = ThreadPoolExecutor(max_workers=20)

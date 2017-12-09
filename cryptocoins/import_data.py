@@ -56,9 +56,9 @@ def read_from_file(file_name):
     return items
 
 
-def import_from_s3(bucket_name, start_date, end_date, remote_dir):
+def import_from_s3(bucket_name, remote_dir):
     def decorator(process):
-        def wrapper():
+        def wrapper(start_date, end_date):
             tempdir = tempfile.gettempdir()
             local_dir = os.path.join(tempdir, remote_dir)
             download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=start_date, end_date=end_date)

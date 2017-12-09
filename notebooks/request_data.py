@@ -1,7 +1,7 @@
 # %%
 import json
 
-from cryptocoins.export_data import fetch_url_and_upload_to_s3
+from cryptocoins.collect_data import fetch_url_and_upload_to_s3
 
 bucket = 'gly.fish'
 limit = 100

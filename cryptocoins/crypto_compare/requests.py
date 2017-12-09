@@ -1,11 +1,8 @@
-import asyncio
 import json
-from concurrent.futures import ThreadPoolExecutor
-
-from cryptocoins.export_data import fetch_url_and_upload_to_s3
-from cryptocoins.models.coins import Coins
+from cryptocoins.collect_data import fetch_url_and_upload_to_s3
 
 bucket = 'gly.fish'
+
 
 # fetchers
 @fetch_url_and_upload_to_s3
@@ -22,15 +19,19 @@ def fetch_histoday(params):
     new_result = json.dumps(parsed_response)
     return [new_result]
 
+
 # request urls
 def coin_list_url():
     return 'https://min-api.cryptocompare.com/data/all/coinlist'
 
+
 def top_currency_pairs(from_currency, limit=100):
     return f"https://min-api.cryptocompare.com/data/top/pairs?fsym={from_currency}&limit={limit}"
 
+
 def coin_snapshot_url(from_currency, to_currency):
     return f"https://www.cryptocompare.com/api/data/coinsnapshot/?fsym={from_currency}&tsym={to_currency}"
+
 
 def coin_price_history_utl(from_currency, to_currency, limit=1, exchange="CCCAGG", allData=False):
     return f"https://min-api.cryptocompare.com/data/histoday?fsym={from_currency}&tsym={to_currency}&limit={limit}&e={exchange}&allData={allData}"
