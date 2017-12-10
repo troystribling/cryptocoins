@@ -335,7 +335,7 @@ to_symbol	cryptocoins/models/currency_pairs_history.py	/^    to_symbol = TextFie
 to_symbol	cryptocoins/models/exchanges_history.py	/^    to_symbol = TextField()$/;"	v	class:ExchangesHistory
 top_coins	cryptocoins/models/coins.py	/^    def top_coins(cls, limit=100):$/;"	m	class:Coins
 top_currency_pairs	cryptocoins/crypto_compare/requests.py	/^def top_currency_pairs(from_currency, limit=100):$/;"	f
-top_exchanges_for_coin	cryptocoins/models/exchanges_history.py	/^    def top_exchanges_for_coin(cls, coin, limlt=10):$/;"	m	class:ExchangesHistory
+top_exchanges_for_coin	cryptocoins/models/exchanges_history.py	/^    def top_exchanges_for_coin(cls, coin, limit=10):$/;"	m	class:ExchangesHistory
 top_pairs_to_model_params	cryptocoins/models/currency_pairs_history.py	/^    def top_pairs_to_model_params(cls, top_pair):$/;"	m	class:CurrencyPairsHistory
 total_coins_mined	cryptocoins/models/coins_history.py	/^    total_coins_mined = DecimalField()$/;"	v	class:CoinsHistory
 updated_at	cryptocoins/models/coins.py	/^    updated_at = DateTimeField()$/;"	v	class:Coins

@@ -37,7 +37,6 @@ class CoinsHistory(BaseModel):
         if 'Data' not in data:
             print("ERROR: Data KEY IS MISSING FROM coin_snapshot")
             return
-
         coin_snapshot = data['Data']
 
         expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward',

@@ -8,6 +8,7 @@ from cryptocoins.models.coins_price_history import CoinsPriceHistory
 
 bucket_name = 'gly.fish'
 
+
 @import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/coin_snapshot')
 def import_coin_snapshot(data):
     if len(data) != 1:

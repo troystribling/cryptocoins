@@ -33,13 +33,12 @@ class ExchangesHistory(BaseModel):
         if 'Data' not in data:
             print("ERROR: Data KEY IS MISSING FROM import_coin_snapshot")
             return
-
         coin_snapshot = data['Data']
 
-        exchanges = coin_snapshot['Exchanges']
         if 'Exchanges' not in coin_snapshot:
             print("ERROR: Exchanges KEY IS MISSING FROM import_coin_snapshot")
             return
+        exchanges = coin_snapshot['Exchanges']
 
         with database.atomic():
             for i in range(0, len(exchanges), batch_size):
@@ -49,7 +48,6 @@ class ExchangesHistory(BaseModel):
                 except IntegrityError as error:
                     print(f"ERROR: Exchange History Update Exists: {error}")
                     continue
-
 
     @classmethod
     def exchange_to_model_params(cls, exchange):
@@ -71,7 +69,7 @@ class ExchangesHistory(BaseModel):
                 'volume_to_24_hour': exchange['VOLUME24HOURTO']}
 
     @classmethod
-    def top_exchanges_for_coin(cls, coin, limlt=10):
+    def top_exchanges_for_coin(cls, coin, limit=10):
             query = "SELECT full_table.created_at, full_table.name, full_table.from_symbol," \
                     " full_table.to_symbol, full_table.volume_from_24_hour" \
                     " FROM exchanges_history AS full_table" \
@@ -80,5 +78,4 @@ class ExchangesHistory(BaseModel):
                     " BY name, from_symbol, to_symbol HAVING from_symbol = %s)" \
                     " AS latest ON (full_table.id = latest.latest_id)" \
                     " ORDER BY full_table.volume_from_24_hour DESC LIMIT %s"
-
             return ExchangesHistory.raw(query, coin, limit)
