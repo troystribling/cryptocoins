@@ -1,4 +1,4 @@
-from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField
+from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 
 from cryptocoins.utils import valid_params
@@ -49,6 +49,10 @@ class CoinsPriceHistory(BaseModel):
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, InternalError) as error:
                     continue
+                except DataError as error:
+                    print(f"ERROR: CoinsPriceHistory Precision failure for {records}: {error}")
+                    return None
+
 
     @classmethod
     def histoday_to_model_parameters(cls, histoday, from_symbol, to_symbol, exchange):

@@ -1,5 +1,4 @@
-
-from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField
+from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 
 from cryptocoins.utils import valid_params
@@ -45,6 +44,10 @@ class Coins(BaseModel):
             query = cls.update(updated_at=datetime.utcnow(),
                                rank=coin_list['SortOrder']).where(Coins.symbol == coin_list['Symbol'])
             query.execute()
+        except DataError as error:
+            print(f"ERROR: Coins Precision failure for {coin_list}: {error}")
+            return None
+
 
     @classmethod
     def top_coins(cls, limit=100):

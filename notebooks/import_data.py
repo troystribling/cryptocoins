@@ -30,8 +30,8 @@ import_coin_list(start_date, end_date)
 
 # %%
 # coin_snapshot, coin_history, exchantes_history
-start_date = parse('20171209')
-end_date = parse('20171209')
+start_date = parse('20171210')
+end_date = parse('20171210')
 
 
 @import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/coin_snapshot')

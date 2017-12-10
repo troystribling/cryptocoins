@@ -1,4 +1,4 @@
-from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BigIntegerField, DecimalField
+from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 
 from cryptocoins.utils import valid_params
@@ -12,7 +12,7 @@ class BaseModel(Model):
 
 
 class CoinsHistory(BaseModel):
-    algorithm = TextField()
+    algorithm = TextField(null=True)
     block_number = BigIntegerField()
     block_reward = DecimalField()
     created_at = DateTimeField()
@@ -21,7 +21,7 @@ class CoinsHistory(BaseModel):
     net_hashes_per_second = DecimalField()
     open_price_24_hour = DecimalField()
     close_price_24_hour = DecimalField()
-    proof_type = TextField()
+    proof_type = TextField(null=True)
     symbol = TextField(index=True)
     timestamp = DateTimeField()
     timestamp_epoc = BigIntegerField()
@@ -35,16 +35,19 @@ class CoinsHistory(BaseModel):
     @classmethod
     def create_from_coin_snapshot(cls, data):
         if 'Data' not in data:
-            print("ERROR: Data KEY IS MISSING FROM coin_snapshot")
+            print(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {data}")
             return
         coin_snapshot = data['Data']
-
         expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward',
                          'NetHashesPerSecond', 'ProofType', 'TotalCoinsMined']
         if not valid_params(expected_params=expected_keys, params=coin_snapshot):
             return
 
+        if 'AggregatedData' not in coin_snapshot:
+            print(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
+            return
         aggregated_data = coin_snapshot['AggregatedData']
+
         expected_keys = ['FROMSYMBOL', 'LOW24HOUR', 'OPEN24HOUR', 'LASTUPDATE',
                          'HIGH24HOUR', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
         if not valid_params(expected_params=expected_keys, params=aggregated_data):
@@ -69,5 +72,8 @@ class CoinsHistory(BaseModel):
                                   timestamp_epoc=timestamp_epoc,
                                   timestamp=datetime.fromtimestamp(int(timestamp_epoc)))
             except IntegrityError as error:
-                print(f"ERROR: Coin History Update Exists: {error}")
+                print(f"ERROR: CoinsHistory Update Exists for {coin_snapshot}: {error}")
+                return None
+            except DataError as error:
+                print(f"ERROR: CoinsHistory Precision failure for {coin_snapshot}: {error}")
                 return None

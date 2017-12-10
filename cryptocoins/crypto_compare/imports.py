@@ -24,7 +24,7 @@ def import_coin_list(data):
     if len(data) != 1:
         print("ERROR: FILE WRONG SIZE")
     if 'Data' not in data[0]:
-        print("ERROR: Data KEY IS MISSING FROM import_coin_snapshot_full")
+        print(f"ERROR: Data KEY IS MISSING FROM import_coin_snapshot_full: {data[0]}")
         return
     for coin in data[0]['Data'].values():
         Coins.create_or_update_using_crytocompare_coinlist(coin)
