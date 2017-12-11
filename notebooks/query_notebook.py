@@ -13,7 +13,7 @@ query = "SELECT symbol, rank FROM coins ORDER BY rank ASC LIMIT %s"
 for coin in Coins.raw(query, limit):
     print(coin.symbol, coin.rank)
 
-# coin_pairs_history
+# currency_pairs_history
 # %%
 query = "SELECT full_table.created_at, full_table.exchange, full_table.from_symbol, full_table.to_symbol, full_table.volume_from_24_hour" \
         " FROM currency_pairs_history AS full_table" \
@@ -32,11 +32,11 @@ query = "SELECT full_table.created_at, full_table.name, full_table.from_symbol, 
         " FROM exchanges_history AS full_table" \
         " INNER JOIN" \
         " (SELECT MAX(id) AS latest_id, name, from_symbol, to_symbol FROM exchanges_history GROUP" \
-        " BY name, from_symbol, to_symbol HAVING from_symbol = %s)" \
+        " BY name, from_symbol, to_symbol HAVING from_symbol = %s AND to_symbol = %s)" \
         " AS latest ON (full_table.id = latest.latest_id)" \
         " ORDER BY full_table.volume_from_24_hour DESC LIMIT %s"
 
-for exchange in ExchangesHistory.raw(query, 'BTC', 10):
+for exchange in ExchangesHistory.raw(query, 'BTC', 'USD', 10):
     print(exchange.created_at, exchange.name, exchange.from_symbol, exchange.to_symbol, exchange.volume_from_24_hour)
 
 
@@ -45,4 +45,4 @@ for exchange in ExchangesHistory.raw(query, 'BTC', 10):
 query = "SELECT created_at FROM collections WHERE url = %s AND success = 'true' ORDER BY created_at LIMIT 1"
 
 result = Collections.raw(query, "http://nothing")
-result == None
+result is None
