@@ -2,15 +2,14 @@
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.coins import Coins
 from cryptocoins.models.exchanges_history import ExchangesHistory
-from cryptocoins.models.coins_history import CoinsHistory
-from cryptocoins.models.coins_price_history import CoinsPriceHistory
 from cryptocoins.models.collections import Collections
 
+from cryptocoins.crypto_compare.requests import coin_price_history_url
 
 # coins
 # %%
 query = "SELECT symbol, rank FROM coins ORDER BY rank ASC LIMIT %s"
-for coin in Coins.raw(query, limit):
+for coin in Coins.raw(query, limit=100):
     print(coin.symbol, coin.rank)
 
 # currency_pairs_history
@@ -43,6 +42,6 @@ for exchange in ExchangesHistory.raw(query, 'BTC', 'USD', 10):
 # collections
 # %%
 query = "SELECT created_at FROM collections WHERE url = %s AND success = 'true' ORDER BY created_at LIMIT 1"
-
-result = Collections.raw(query, "http://nothing")
+url = coin_price_history_url('BTC', 'USD', allData='true')
+result = Collections.raw(query, url).scalar()
 result is None
