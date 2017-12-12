@@ -47,3 +47,7 @@ class Collections(BaseModel):
     def collection_successful(self):
         query = Collections.update(success=True).where((Collections.created_at == self.created_at) & (Collections.path == self.path))
         query.execute()
+
+    def lastest_collection_for(url):
+        query = "SELECT created_at FROM collections WHERE url = %s AND success = 'true' ORDER BY created_at LIMIT 1"
+        return Collections.raw(query, url).scalar()

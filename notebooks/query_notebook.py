@@ -43,5 +43,5 @@ for exchange in ExchangesHistory.raw(query, 'BTC', 'USD', 10):
 # %%
 query = "SELECT created_at FROM collections WHERE url = %s AND success = 'true' ORDER BY created_at LIMIT 1"
 url = coin_price_history_url('BTC', 'USD', allData='true')
-result = Collections.raw(query, url).scalar()
-result is None
+(collection_date) = Collections.raw(query, url).scalar()
+epoc_time = collection_date.strftime("%s")
