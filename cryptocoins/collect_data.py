@@ -4,7 +4,7 @@ import boto3
 import requests
 
 from subprocess import call
-from datetime import date, datetime
+from datetime import datetime
 
 from cryptocoins import utils
 from cryptocoins.models.collections import Collections
@@ -29,7 +29,7 @@ def write_to_compressed_file(data):
 def upload_file_to_s3(bucket, path, local_path):
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(bucket)
-    remote_object = f"{path}/{utils.day_dir(date.utcnow())}/{os.path.basename(local_path)}"
+    remote_object = f"{path}/{utils.day_dir(datetime.utcnow())}/{os.path.basename(local_path)}"
     bucket.put_object(Key=remote_object, Body=open(local_path, 'rb'))
     os.unlink(local_path)
     print(f'{datetime.now()}: UPLOADED to {remote_object}')
