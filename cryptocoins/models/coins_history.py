@@ -70,7 +70,7 @@ class CoinsHistory(BaseModel):
                                   volume_from_24_hour=aggregated_data['VOLUME24HOUR'],
                                   volume_to_24_hour=aggregated_data['VOLUME24HOURTO'],
                                   timestamp_epoc=timestamp_epoc,
-                                  timestamp=datetime.fromtimestamp(int(timestamp_epoc)))
+                                  timestamp=datetime.utcfromtimestamp(int(timestamp_epoc)))
             except IntegrityError as error:
                 print(f"ERROR: CoinsHistory Update Exists for {coin_snapshot}: {error}")
                 return None

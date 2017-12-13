@@ -12,7 +12,7 @@ from .models.imports import Imports
 
 def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):
     if start_date is None:
-        start_date = date.today()
+        start_date = date.utcnow()
 
     if end_date is None:
         end_date = start_date

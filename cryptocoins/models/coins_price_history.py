@@ -66,7 +66,7 @@ class CoinsPriceHistory(BaseModel):
                 'high_price_24_hour': histoday['high'],
                 'low_price_24_hour': histoday['low'],
                 'open_price_24_hour': histoday['open'],
-                'timestamp': datetime.fromtimestamp(int(timestamp_epoc)),
+                'timestamp': datetime.utcfromtimestamp(int(timestamp_epoc)),
                 'timestamp_epoc': timestamp_epoc,
                 'to_symbol': to_symbol,
                 'volume_from_24_hour': histoday['volumefrom'],

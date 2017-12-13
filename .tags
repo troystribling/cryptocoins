@@ -191,7 +191,6 @@ datetime	cryptocoins/models/coins.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/models/coins_history.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/models/coins_price_history.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/models/exchanges_history.py	/^from datetime import datetime$/;"	i
-day_dir	crypto_compare_collect.py	/^from cryptocoins.utils import day_dir$/;"	i
 day_dir	cryptocoins/utils.py	/^def day_dir(file_date):$/;"	f
 day_dir	notebooks/download_data.py	/^day_dir = utils.day_dir(folder_date)$/;"	v
 db_table	cryptocoins/models/coins.py	/^        db_table = 'coins'$/;"	v	class:Coins.Meta
@@ -207,6 +206,7 @@ decorator	notebooks/python_exaples.py	/^    def decorator(process):$/;"	f	functi
 decorator_with_args	notebooks/python_exaples.py	/^def decorator_with_args(a, b):$/;"	f
 decorator_with_kwargs	notebooks/python_exaples.py	/^def decorator_with_kwargs(**kwargs):$/;"	f
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
+end_date	crypto_compare_collect.py	/^end_date = date.utcnow()$/;"	v
 end_date	crypto_compare_import.py	/^end_date = parse(sys.argv[2]) if len(sys.argv) > 2 else start_date$/;"	v
 end_date	notebooks/import_data.py	/^end_date = parse('20171209')$/;"	v
 end_date	notebooks/import_data.py	/^end_date = parse('20171210')$/;"	v
@@ -250,7 +250,6 @@ import_coin_snapshot	notebooks/import_data.py	/^def import_coin_snapshot(data):$
 import_currency_pairs_history	cryptocoins/crypto_compare/imports.py	/^def import_currency_pairs_history(data):$/;"	f
 import_currency_pairs_history	notebooks/import_data.py	/^def import_currency_pairs_history(data):$/;"	f
 import_data	notebooks/download_data.py	/^from cryptocoins import import_data$/;"	i
-import_date	crypto_compare_collect.py	/^import_date = date.today()$/;"	v
 import_from_s3	cryptocoins/import_data.py	/^def import_from_s3(bucket_name, remote_dir):$/;"	f
 indexes	cryptocoins/models/coins_price_history.py	/^        indexes = ($/;"	v	class:CoinsPriceHistory.Meta
 indexes	cryptocoins/models/collections.py	/^        indexes = ($/;"	v	class:Collections.Meta
@@ -317,7 +316,8 @@ request_top_currency_pairs	crypto_compare_poll.py	/^from cryptocoins.crypto_comp
 request_top_currency_pairs	cryptocoins/crypto_compare/requests.py	/^def request_top_currency_pairs(from_currency, limit=100):$/;"	f
 requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 sleep	crypto_compare_collect.py	/^from time import sleep$/;"	i
-start_date	crypto_compare_import.py	/^start_date = parse(sys.argv[1]) if len(sys.argv) > 1 else date.today()$/;"	v
+start_date	crypto_compare_collect.py	/^start_date = date.utcnow()$/;"	v
+start_date	crypto_compare_import.py	/^start_date = parse(sys.argv[1]) if len(sys.argv) > 1 else date.utcnow()$/;"	v
 start_date	notebooks/import_data.py	/^start_date = parse('20171209')$/;"	v
 start_date	notebooks/import_data.py	/^start_date = parse('20171210')$/;"	v
 start_date	notebooks/import_data_debug.py	/^start_date = parse('20171210')$/;"	v

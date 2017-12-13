@@ -65,7 +65,7 @@ class ExchangesHistory(BaseModel):
                 'name': exchange['MARKET'],
                 'open_price_24_hour': exchange['OPEN24HOUR'],
                 'close_price_24_hour': exchange['PRICE'],
-                'timestamp': datetime.fromtimestamp(int(timestamp_epoc)),
+                'timestamp': datetime.utcfromtimestamp(int(timestamp_epoc)),
                 'timestamp_epoc': timestamp_epoc,
                 'to_symbol': exchange['TOSYMBOL'],
                 'volume_from_24_hour': exchange['VOLUME24HOUR'],
