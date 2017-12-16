@@ -49,7 +49,6 @@ pyenv activate cryptocoins
 ## Install Packages
 
 ```
-pip install git+ssh://git@github.com/troystribling/autobahn-python.git
 pip install -r requirements.txt
 ```
 
