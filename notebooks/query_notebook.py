@@ -1,4 +1,6 @@
 # %%
+from datetime import datetime
+
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.coins import Coins
 from cryptocoins.models.exchanges_history import ExchangesHistory
@@ -42,6 +44,9 @@ for exchange in ExchangesHistory.raw(query, 'BTC', 'USD', 10):
 # collections
 # %%
 query = "SELECT created_at FROM collections WHERE url = %s AND success = 'true' ORDER BY created_at LIMIT 1"
-url = coin_price_history_url('BTC', 'USD', allData='true')
+url_first = coin_price_history_url('BTC', 'USD', allData='true')
 (collection_date) = Collections.raw(query, url).scalar()
-epoc_time = collection_date.strftime("%s")
+collection_date.tzinfo is None
+current_time = datetime.utcnow()
+current_time - collection_date
+current_time.tzinfo

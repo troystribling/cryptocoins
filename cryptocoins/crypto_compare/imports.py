@@ -6,10 +6,8 @@ from cryptocoins.models.exchanges_history import ExchangesHistory
 from cryptocoins.models.coins_history import CoinsHistory
 from cryptocoins.models.coins_price_history import CoinsPriceHistory
 
-bucket_name = 'gly.fish'
 
-
-@import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/coin_snapshot')
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_snapshot')
 def import_coin_snapshot(data):
     if len(data) != 1:
         print("ERROR: FILE WRONG SIZE")
@@ -19,7 +17,7 @@ def import_coin_snapshot(data):
     ExchangesHistory.create_from_coin_snapshot(coin_snapshot)
 
 
-@import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/coin_list')
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_list')
 def import_coin_list(data):
     if len(data) != 1:
         print("ERROR: FILE WRONG SIZE")
@@ -30,7 +28,7 @@ def import_coin_list(data):
         Coins.create_or_update_using_crytocompare_coinlist(coin)
 
 
-@import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/top_pairs')
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/top_pairs')
 def import_currency_pairs_history(data):
     if len(data) != 1:
         print("ERROR: FILE WRONG SIZE")
@@ -38,7 +36,7 @@ def import_currency_pairs_history(data):
     CurrencyPairsHistory.create_from_top_pairs(top_pairs)
 
 
-@import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/histoday')
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/histoday')
 def import_coin_price_history(data):
     if len(data) != 1:
         print("ERROR: FILE WRONG SIZE")

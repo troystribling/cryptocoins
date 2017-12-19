@@ -12,28 +12,29 @@ from cryptocoins.crypto_compare.imports import import_currency_pairs_history
 
 from cryptocoins.models.coins import Coins
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
-from cryptocoins.models.exchanges_history import ExchangesHistory
 
 
-max_coins = 5
-max_pairs = 5
-max_exchanges = 5
+max_coins = 2
+max_pairs = 2
+max_exchanges = 2
+
+bucket_name = 'gly.fish'
 
 # coins
-start_date = datetime.utcnow()
+start_date = datetime.now()
 print(f"INITIALIZE coins {start_date}")
 
 request_coin_list()
 
-end_date = datetime.utcnow()
+end_date = datetime.now()
 print(f"COMPLETED coins {end_date}")
 
-import_coin_list(start_date, end_date)
+import_coin_list(bucket_name, start_date, end_date)
 sleep(10.0)
 
 
 # currency_pairs_history
-start_date = datetime.utcnow()
+start_date = datetime.now()
 print(f"INITIALIZE currency_pairs_history {start_date}")
 
 for coin in Coins.top_coins(limit=max_coins):
@@ -41,14 +42,14 @@ for coin in Coins.top_coins(limit=max_coins):
     request_top_currency_pairs(coin.symbol, limit=max_pairs)
     sleep(10.0)
 
-end_date = datetime.utcnow()
+end_date = datetime.now()
 print(f"COMPLETED currency_pairs_history {end_date}")
 
-import_currency_pairs_history(start_date, end_date)
+import_currency_pairs_history(bucket_name, start_date, end_date)
 
 
 # coins_history and exchanges_history
-start_date = datetime.utcnow()
+start_date = datetime.now()
 print(f"INITIALIZE coins_history and exchanges_history {start_date}")
 
 print("INITIALIZE coins_history and exchanges_history")
@@ -58,7 +59,7 @@ for coin in Coins.top_coins(limit=max_pairs):
         request_coin_snapshot(currency_pair.from_symbol, currency_pair.to_symbol)
         sleep(5.0)
 
-end_date = datetime.utcnow()
+end_date = datetime.now()
 print(f"COMPLETED coins_history and exchanges_history {end_date}")
 
-import_coin_snapshot(start_date, end_date)
+import_coin_snapshot(bucket_name, start_date, end_date)
