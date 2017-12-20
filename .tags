@@ -31,6 +31,7 @@ CoinsHistory	notebooks/import_data_debug.py	/^from cryptocoins.models.coins_hist
 CoinsPriceHistory	cryptocoins/crypto_compare/imports.py	/^from cryptocoins.models.coins_price_history import CoinsPriceHistory$/;"	i
 CoinsPriceHistory	cryptocoins/models/coins_price_history.py	/^class CoinsPriceHistory(BaseModel):$/;"	c
 CoinsPriceHistory	notebooks/import_data.py	/^from cryptocoins.models.coins_price_history import CoinsPriceHistory$/;"	i
+Collections	crypto_compare_collect_histoday.py	/^from cryptocoins.models.collections import Collections$/;"	i
 Collections	crypto_compare_poll.py	/^from cryptocoins.models.collections import Collections$/;"	i
 Collections	cryptocoins/collect_data.py	/^from cryptocoins.models.collections import Collections$/;"	i
 Collections	cryptocoins/models/collections.py	/^class Collections(BaseModel):$/;"	c
@@ -235,6 +236,7 @@ fetch_url_and_upload_to_s3	notebooks/request_data.py	/^from cryptocoins.collect_
 file_name	cryptocoins/models/imports.py	/^    file_name = TextField(unique=True)$/;"	v	class:Imports
 file_path	notebooks/import_data_debug.py	/^file_path = os.path.join(tempdir, local_file_path)$/;"	v
 files	notebooks/download_data.py	/^files = os.listdir(os.path.join(local_dir, day_dir))$/;"	v
+first_url	crypto_compare_collect_histoday.py	/^            first_url = coin_price_history_url(exchange.from_symbol, exchange.to_symbol, exchange=exchange.name, allData='true')$/;"	v
 folder_date	notebooks/download_data.py	/^folder_date = parse('20171203')$/;"	v
 from_currency	notebooks/request_data.py	/^from_currency = 'BTC'$/;"	v
 from_symbol	cryptocoins/models/coins_price_history.py	/^    from_symbol = TextField(index=True)$/;"	v	class:CoinsPriceHistory
@@ -263,6 +265,7 @@ json	cryptocoins/crypto_compare/requests.py	/^import json$/;"	i
 json	cryptocoins/import_data.py	/^import json$/;"	i
 json	notebooks/request_data.py	/^import json$/;"	i
 last_successful_collection_for_url	cryptocoins/models/collections.py	/^    def last_successful_collection_for_url(cls, url):$/;"	m	class:Collections
+last_url	crypto_compare_collect_histoday.py	/^            last_url = coin_price_history_url(exchange.from_symbol, exchange.to_symbol, exchange=exchange.name)$/;"	v
 lastest_collection_for	cryptocoins/models/collections.py	/^    def lastest_collection_for(url):$/;"	m	class:Collections
 limit	notebooks/request_data.py	/^limit = 100$/;"	v
 local_dir	notebooks/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
