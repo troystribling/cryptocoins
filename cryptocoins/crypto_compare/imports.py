@@ -41,4 +41,4 @@ def import_coin_price_history(data):
     if len(data) != 1:
         print("ERROR: FILE WRONG SIZE")
     histoday = data[0]
-    CoinsPriceHistory.create_from_histoday(histoday, batch_size=1000)
+    CoinsPriceHistory.create_from_histoday(histoday, batch_size=100)

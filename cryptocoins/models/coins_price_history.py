@@ -42,16 +42,18 @@ class CoinsPriceHistory(BaseModel):
         to_symbol = histoday['CurrencyTo']
         exchange = histoday['Exchange']
 
+        print(f"CoinsPriceHistory: {exchange}, {from_symbol}, {to_symbol}, {len(records)} records")
         with database.atomic():
             for i in range(0, len(records), batch_size):
                 model_params = [cls.histoday_to_model_parameters(record, from_symbol, to_symbol, exchange) for record in records[i:i + batch_size]]
                 try:
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, InternalError) as error:
+                    print(f"ERROR: CoinsPriceHistory record exists {records}: {error}")
                     continue
                 except DataError as error:
                     print(f"ERROR: CoinsPriceHistory Precision failure for {records}: {error}")
-                    return None
+                    continue
 
 
     @classmethod

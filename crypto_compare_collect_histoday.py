@@ -31,9 +31,9 @@ def request(exchange, from_symbol, to_symbol):
     last_url = coin_price_history_url(from_symbol, to_symbol, exchange=exchange)
     (last_collection_date) = Collections.lastest_collection_for(last_url)
     if last_collection_date is None:
-        print(f"REQUESTING FIRST histoday for  {datetime.now()}, {name}, {from_symbol}, {to_symbol}")
+        print(f"REQUESTING FIRST histoday for  {datetime.now() - first_collection_date}, {name}, {from_symbol}, {to_symbol}")
         return
-    print(f"REQUESTING histoday for  {datetime.now()}, {name}, {from_symbol}, {to_symbol}")
+    print(f"REQUESTING histoday for  {datetime.now() - last_collection_date}, {name}, {from_symbol}, {to_symbol}")
     return
 
 
