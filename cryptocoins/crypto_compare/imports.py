@@ -14,7 +14,7 @@ def import_coin_snapshot(data):
         return
     coin_snapshot = data[0]
     CoinsHistory.create_from_coin_snapshot(coin_snapshot)
-    ExchangesHistory.create_from_coin_snapshot(coin_snapshot)
+    ExchangesHistory.create_from_coin_snapshot(coin_snapshot, batch_size=100)
 
 
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_list')
@@ -33,7 +33,7 @@ def import_currency_pairs_history(data):
     if len(data) != 1:
         print("ERROR: FILE WRONG SIZE")
     top_pairs = data[0]
-    CurrencyPairsHistory.create_from_top_pairs(top_pairs)
+    CurrencyPairsHistory.create_from_top_pairs(top_pairs, batch_size=100)
 
 
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/histoday')

@@ -17,23 +17,25 @@ max_exchanges = 2
 bucket_name = 'gly.fish'
 
 # collect history
-start_date = datetime.now()
+start_date = datetime.utcnow()
 print(f"INITIALIZE histoday {start_date}")
 
 
 def request(exchange, from_symbol, to_symbol):
-    first_url = coin_price_history_url(from_symbol, to_symbol, exchange=exchange, allData='true')
-    (first_collection_date) = Collections.lastest_collection_for(first_url)
-    if first_collection_date is None:
-        print(f"REQUESTING ALL histoday for  {datetime.now()}, {exchange}, {from_symbol}, {to_symbol}")
+    meta = f"{exchange}/{from_symbol}/{to_symbol}"
+    path = 'cryptocoins/cryptocompare/histoday'
+    (last_collection_date) = Collections.lastest_collection_for_path_and_meta(path, meta)
+    if last_collection_date is None:
+        print(f"REQUESTING ALL histoday for  {datetime.utcnow()}, {exchange}, {from_symbol}, {to_symbol}")
         request_coin_price_history(from_symbol, to_symbol, exchange=exchange, allData='true')
         return
-    last_url = coin_price_history_url(from_symbol, to_symbol, exchange=exchange)
-    (last_collection_date) = Collections.lastest_collection_for(last_url)
-    if last_collection_date is None:
-        print(f"REQUESTING FIRST histoday for  {datetime.now() - first_collection_date}, {name}, {from_symbol}, {to_symbol}")
-        return
-    print(f"REQUESTING histoday for  {datetime.now() - last_collection_date}, {name}, {from_symbol}, {to_symbol}")
+    time_delta = datetime.utcnow() - last_collection_date
+    limit = time_delta.days - 1
+    if limit > 0:
+        print(f"REQUESTING histoday for  {time_delta.days} days ago, {exchange}, {from_symbol}, {to_symbol}")
+        request_coin_price_history(from_symbol, to_symbol, limit=limit, exchange=exchange, allData='false')
+    else:
+        print(f"COLLECT LIMIT < 0 SKIPPING COLLECTION {time_delta.days} DAYS AGO FOR, {exchange}, {from_symbol}, {to_symbol}")
     return
 
 
@@ -45,7 +47,7 @@ for coin in Coins.top_coins(limit=max_coins):
             request(exchange.name, exchange.from_symbol, exchange.to_symbol)
             sleep(2.0)
 
-end_date = datetime.now()
+end_date = datetime.utcnow()
 print(f"COMPLETED histoday {end_date}")
 
 import_coin_price_history(bucket_name, start_date, end_date)

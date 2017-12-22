@@ -55,7 +55,6 @@ class CoinsPriceHistory(BaseModel):
                     print(f"ERROR: CoinsPriceHistory Precision failure for {records}: {error}")
                     continue
 
-
     @classmethod
     def histoday_to_model_parameters(cls, histoday, from_symbol, to_symbol, exchange):
         expected_keys = ['time', 'close', 'high', 'low', 'open', 'volumefrom', 'volumeto']

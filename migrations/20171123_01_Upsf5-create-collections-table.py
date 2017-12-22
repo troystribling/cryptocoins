@@ -12,6 +12,7 @@ steps = [
          " id SERIAL PRIMARY KEY, "
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
          " path TEXT NOT NULL,"
+         " meta TEXT,"
          " success BOOL NOT NULL DEFAULT false,"
          " url TEXT NOT NULL"
          ")", "DROP TABLE collections"),

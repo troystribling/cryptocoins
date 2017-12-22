@@ -43,7 +43,6 @@ class CurrencyPairsHistory(BaseModel):
                     print(f"ERROR: CurrencyPairsHistory Precision failure for {top_pairs}: {error}")
                     return None
 
-
     @classmethod
     def top_pairs_to_model_params(cls, top_pair):
         expected_keys = ['exchange', 'fromSymbol', 'toSymbol', 'volume24h', 'volume24hTo']

@@ -46,7 +46,7 @@ for exchange in ExchangesHistory.raw(query, 'BTC', 'USD', 10):
 query = "SELECT created_at FROM collections WHERE url = %s AND success = 'true' ORDER BY created_at LIMIT 1"
 url_first = coin_price_history_url('BTC', 'USD', allData='true')
 (collection_date) = Collections.raw(query, url_first).scalar()
-collection_date is None
+collection_date
 current_time = datetime.utcnow()
-current_time - collection_date
-current_time.tzinfo
+time_delta = current_time - collection_date
+time_delta.days
