@@ -22,7 +22,8 @@ class CoinsHistory(BaseModel):
     open_price_24_hour = DecimalField()
     close_price_24_hour = DecimalField()
     proof_type = TextField(null=True)
-    symbol = TextField(index=True)
+    from_symbol = TextField(index=True)
+    to_symbol = TextField(index=True)
     timestamp = DateTimeField()
     timestamp_epoc = BigIntegerField()
     total_coins_mined = DecimalField()
@@ -31,6 +32,9 @@ class CoinsHistory(BaseModel):
 
     class Meta:
         db_table = 'coins_history'
+        indexes = (
+            (('from_symbol', 'to_symbol'), False),
+        )
 
     @classmethod
     def create_from_coin_snapshot(cls, data):
@@ -48,7 +52,7 @@ class CoinsHistory(BaseModel):
             return
         aggregated_data = coin_snapshot['AggregatedData']
 
-        expected_keys = ['FROMSYMBOL', 'LOW24HOUR', 'OPEN24HOUR', 'LASTUPDATE',
+        expected_keys = ['FROMSYMBOL', 'TOSYMBOL', 'LOW24HOUR', 'OPEN24HOUR', 'LASTUPDATE',
                          'HIGH24HOUR', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
         if not valid_params(expected_params=expected_keys, params=aggregated_data):
             return
@@ -62,7 +66,7 @@ class CoinsHistory(BaseModel):
                                   net_hashes_per_second=coin_snapshot['NetHashesPerSecond'],
                                   proof_type=coin_snapshot['ProofType'],
                                   total_coins_mined=coin_snapshot['TotalCoinsMined'],
-                                  symbol=aggregated_data['FROMSYMBOL'],
+                                  from_symbol=aggregated_data['FROMSYMBOL'],
                                   high_price_24_hour=aggregated_data['HIGH24HOUR'],
                                   low_price_24_hour=aggregated_data['LOW24HOUR'],
                                   open_price_24_hour=aggregated_data['OPEN24HOUR'],

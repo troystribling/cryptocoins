@@ -11,7 +11,8 @@ steps = [
          "("
          " id SERIAL PRIMARY KEY, "
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
-         " symbol TEXT NOT NULL,"
+         " from_symbol TEXT NOT NULL,"
+         " to_symbol TEXT NOT NULL,"
          " algorithm TEXT NULL,"
          " proof_type TEXT NULL,"
          " block_number BIGINT NOT NULL,"
@@ -27,5 +28,7 @@ steps = [
          " timestamp_epoc BIGINT NOT NULL,"
          " timestamp TIMESTAMP NOT NULL"
          ")", "DROP TABLE coins_history"),
-    step("CREATE INDEX coins_history_symbol_idx ON coins_history (symbol)", "DROP INDEX coins_history_symbol_idx")
+    step("CREATE INDEX coins_history_from_symbol_idx ON coins_history (from_symbol)", "DROP INDEX coins_history_from_symbol_idx"),
+    step("CREATE INDEX coins_history_to_symbol_idx ON coins_history (to_symbol)", "DROP INDEX coins_history_to_symbol_idx"),
+    step("CREATE INDEX coins_history_from_symbol_to_symbol_idx ON coins_history (from_symbol, to_symbol)", "DROP INDEX coins_history_from_symbol_to_symbol_idx"),
 ]
