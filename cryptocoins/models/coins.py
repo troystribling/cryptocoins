@@ -45,7 +45,7 @@ class Coins(BaseModel):
                                rank=coin_list['SortOrder']).where(Coins.symbol == coin_list['Symbol'])
             query.execute()
         except DataError as error:
-            print(f"ERROR: Coins Precision failure for {coin_list}: {error}")
+            print(f"DATABASE ERROR for Coin: {error}: {coin_list}")
             return None
 
 

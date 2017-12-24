@@ -26,8 +26,8 @@ class Collections(BaseModel):
         try:
             with database.atomic():
                 return cls.create(path=path, url=url, meta=meta)
-        except IntegrityError:
-            print(f"ERROR COLLECTION EXISTS: {path}, {created_at}")
+        except IntegrityError as error:
+            print(f"DATABASE ERROR for Collection with path: {error}: {path}, {created_at}")
             return None
 
     @classmethod
@@ -35,7 +35,7 @@ class Collections(BaseModel):
         try:
             return Collections.get(Collections.id == id)
         except IntegrityError as error:
-            print(f"ERROR: Collection with id {id} exists: : {error}")
+            print(f"DATABASE ERROR for Collection with id: {error}: {id}")
             return None
 
     @classmethod

@@ -38,46 +38,52 @@ class CoinsHistory(BaseModel):
 
     @classmethod
     def create_from_coin_snapshot(cls, data):
+        coin_snapshot = cls.coin_snapshot_to_model_parameters(data)
+        if coin_snapshot is None:
+            return
+        with database.atomic():
+            try:
+                return cls.create(**coin_snapshot)
+            except (IntegrityError, DataError) as error:
+                print(f"DATABASE ERROR for CoinsHistory: {error}: {coin_snapshot}")
+                return None
+
+    @classmethod
+    def coin_snapshot_to_model_parameters(cls, data):
         if 'Data' not in data:
             print(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {data}")
-            return
+            return None
         coin_snapshot = data['Data']
         expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward',
                          'NetHashesPerSecond', 'ProofType', 'TotalCoinsMined']
         if not valid_params(expected_params=expected_keys, params=coin_snapshot):
-            return
+            return None
 
         if 'AggregatedData' not in coin_snapshot:
             print(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
-            return
+            return None
         aggregated_data = coin_snapshot['AggregatedData']
 
         expected_keys = ['FROMSYMBOL', 'TOSYMBOL', 'LOW24HOUR', 'OPEN24HOUR', 'LASTUPDATE',
                          'HIGH24HOUR', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
         if not valid_params(expected_params=expected_keys, params=aggregated_data):
-            return
+            return None
 
         timestamp_epoc = aggregated_data['LASTUPDATE']
-        with database.atomic():
-            try:
-                return cls.create(algorithm=coin_snapshot['Algorithm'],
-                                  block_number=coin_snapshot['BlockNumber'],
-                                  block_reward=coin_snapshot['BlockReward'],
-                                  net_hashes_per_second=coin_snapshot['NetHashesPerSecond'],
-                                  proof_type=coin_snapshot['ProofType'],
-                                  total_coins_mined=coin_snapshot['TotalCoinsMined'],
-                                  from_symbol=aggregated_data['FROMSYMBOL'],
-                                  high_price_24_hour=aggregated_data['HIGH24HOUR'],
-                                  low_price_24_hour=aggregated_data['LOW24HOUR'],
-                                  open_price_24_hour=aggregated_data['OPEN24HOUR'],
-                                  close_price_24_hour=aggregated_data['PRICE'],
-                                  volume_from_24_hour=aggregated_data['VOLUME24HOUR'],
-                                  volume_to_24_hour=aggregated_data['VOLUME24HOURTO'],
-                                  timestamp_epoc=timestamp_epoc,
-                                  timestamp=datetime.utcfromtimestamp(int(timestamp_epoc)))
-            except IntegrityError as error:
-                print(f"ERROR: CoinsHistory Update Exists for {coin_snapshot}: {error}")
-                return None
-            except DataError as error:
-                print(f"ERROR: CoinsHistory Precision failure for {coin_snapshot}: {error}")
-                return None
+
+        return {'algorithm': coin_snapshot['Algorithm'],
+                'block_number': coin_snapshot['BlockNumber'],
+                'block_reward': coin_snapshot['BlockReward'],
+                'net_hashes_per_second': coin_snapshot['NetHashesPerSecond'],
+                'proof_type': coin_snapshot['ProofType'],
+                'total_coins_mined': coin_snapshot['TotalCoinsMined'],
+                'from_symbol': aggregated_data['FROMSYMBOL'],
+                'to_symbol': aggregated_data['TOSYMBOL'],
+                'high_price_24_hour': aggregated_data['HIGH24HOUR'],
+                'low_price_24_hour': aggregated_data['LOW24HOUR'],
+                'open_price_24_hour': aggregated_data['OPEN24HOUR'],
+                'close_price_24_hour': aggregated_data['PRICE'],
+                'volume_from_24_hour': aggregated_data['VOLUME24HOUR'],
+                'volume_to_24_hour': aggregated_data['VOLUME24HOURTO'],
+                'timestamp_epoc': timestamp_epoc,
+                'timestamp': datetime.utcfromtimestamp(int(timestamp_epoc))}

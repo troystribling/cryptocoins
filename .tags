@@ -145,6 +145,7 @@ coin_price_history_url	crypto_compare_collect_histoday.py	/^from cryptocoins.cry
 coin_price_history_url	cryptocoins/crypto_compare/requests.py	/^def coin_price_history_url(from_currency, to_currency, limit=1, exchange="CCCAGG", allData='false', app_name='gly.fish'):$/;"	f
 coin_price_history_url	notebooks/query_notebook.py	/^from cryptocoins.crypto_compare.requests import coin_price_history_url$/;"	i
 coin_snapshot	notebooks/import_data_debug.py	/^coin_snapshot = data[0]$/;"	v
+coin_snapshot_to_model_parameters	cryptocoins/models/coins_history.py	/^    def coin_snapshot_to_model_parameters(cls, data):$/;"	m	class:CoinsHistory
 coin_snapshot_url	cryptocoins/crypto_compare/requests.py	/^def coin_snapshot_url(from_currency, to_currency):$/;"	f
 coins	notebooks/download_data.py	/^coins = coin_data[0]['Data']$/;"	v
 collection_successful	cryptocoins/models/collections.py	/^    def collection_successful(self):$/;"	m	class:Collections
@@ -270,7 +271,7 @@ lastest_collection_for_path_and_meta	cryptocoins/models/collections.py	/^    def
 lastest_collection_for_url	cryptocoins/models/collections.py	/^    def lastest_collection_for_url(cls, url):$/;"	m	class:Collections
 limit	notebooks/request_data.py	/^limit = 100$/;"	v
 local_dir	notebooks/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
-local_file_path	notebooks/import_data_debug.py	/^local_file_path = "cryptocoins\/cryptocompare\/coin_snapshot\/20171210\/20171210-173000-9wb_2k6d"$/;"	v
+local_file_path	notebooks/import_data_debug.py	/^local_file_path = "\/var\/folders\/hc\/xc94zvls2pq_pw366sdbqlhr0000gn\/T\/cryptocoins\/cryptocompare\/coin_snapshot\/20171224\/20171224-154510-r5mlt7cj"$/;"	v
 loop	crypto_compare_poll.py	/^loop = asyncio.get_event_loop()$/;"	v
 low_price_24_hour	cryptocoins/models/coins_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:CoinsHistory
 low_price_24_hour	cryptocoins/models/coins_price_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory

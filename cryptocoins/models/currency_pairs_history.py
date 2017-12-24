@@ -36,12 +36,9 @@ class CurrencyPairsHistory(BaseModel):
                 model_params = [cls.top_pairs_to_model_params(top_pair) for top_pair in top_pairs[i:i + batch_size]]
                 try:
                     cls.insert_many(model_params).execute()
-                except (IntegrityError, InternalError) as error:
-                    print(f"ERROR: Currency Pair History Update Exists: {error}")
+                except (IntegrityError, InternalError, DataError) as error:
+                    print(f"DATABASE ERROR for CurrencyPairsHistory: {error}: {model_params}")
                     continue
-                except DataError as error:
-                    print(f"ERROR: CurrencyPairsHistory Precision failure for {top_pairs}: {error}")
-                    return None
 
     @classmethod
     def top_pairs_to_model_params(cls, top_pair):

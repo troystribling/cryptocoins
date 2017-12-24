@@ -45,12 +45,9 @@ class ExchangesHistory(BaseModel):
                 model_params = [cls.exchange_to_model_params(exchange) for exchange in exchanges[i:i + batch_size]]
                 try:
                     cls.insert_many(model_params).execute()
-                except IntegrityError as error:
-                    print(f"ERROR: Exchange History Update Exists: {error}")
+                except (IntegrityError, DataError) as error:
+                    print(f"DATABASE ERROR for ExchangesHistory: {error}: {exchanges}")
                     continue
-                except DataError as error:
-                    print(f"ERROR: ExchangesHistory Precision failure for {exchanges}: {error}")
-                    return None
 
     @classmethod
     def exchange_to_model_params(cls, exchange):
