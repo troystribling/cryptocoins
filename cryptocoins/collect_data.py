@@ -32,7 +32,7 @@ def upload_file_to_s3(bucket, path, local_path):
     remote_object = f"{path}/{utils.day_dir(datetime.utcnow())}/{os.path.basename(local_path)}"
     bucket.put_object(Key=remote_object, Body=open(local_path, 'rb'))
     os.unlink(local_path)
-    print(f'{datetime.now()}: UPLOADED to {remote_object}')
+    utils.log(f'{datetime.now()}: UPLOADED to {remote_object}')
 
 
 def fetch_url(url):
@@ -49,12 +49,12 @@ def fetch_url(url):
 
 def fetch_url_and_upload_to_s3(process):
     def wrapper(**params):
-        print(f"FETCH FROM: {params['url']}")
+        utils.log(f"FETCH FROM: {params['url']}")
         meta = params['meta'] if 'meta' in params else None
         created_collection = Collections.create_collection(path=params['path'], url=params['url'], meta=meta)
         collection = Collections.get_with_id(created_collection.id)
         if collection is None:
-            print(f"ERROR: Collection with {params['url']} exists")
+            utils.log(f"ERROR: Collection with {params['url']} exists")
             return
         response = fetch_url(params['url'])
         if response is not None:
@@ -63,5 +63,5 @@ def fetch_url_and_upload_to_s3(process):
             upload_to_s3(bucket=params['bucket'], path=params['path'], data=processed_response)
             collection.collection_successful()
         else:
-            print(f"ERROR: REQUEST FAILED FOR URL {params['url']}")
+            utils.log(f"ERROR: REQUEST FAILED FOR URL {params['url']}")
     return wrapper

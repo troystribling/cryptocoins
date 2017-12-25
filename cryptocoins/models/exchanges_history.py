@@ -1,7 +1,7 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 
-from cryptocoins.utils import valid_params
+from cryptocoins.utils import valid_params, log
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
@@ -31,12 +31,12 @@ class ExchangesHistory(BaseModel):
     @classmethod
     def create_from_coin_snapshot(cls, data, batch_size=100):
         if 'Data' not in data:
-            print(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {data}")
+            log(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {data}")
             return
         coin_snapshot = data['Data']
 
         if 'Exchanges' not in coin_snapshot:
-            print(f"ERROR: Exchanges KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
+            log(f"ERROR: Exchanges KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
             return
         exchanges = coin_snapshot['Exchanges']
 

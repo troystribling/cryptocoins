@@ -1,6 +1,5 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DataError, DateTimeField, TextField, DecimalField
-
-from cryptocoins.utils import valid_params
+from cryptocoins.utils import valid_params, log
 
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
@@ -28,7 +27,7 @@ class CurrencyPairsHistory(BaseModel):
     @classmethod
     def create_from_top_pairs(cls, data, batch_size=100):
         if 'Data' not in data:
-            print(f"ERROR: Data KEY IS MISSING FROM currency_pairs_history: {data}")
+            log(f"ERROR: Data KEY IS MISSING FROM currency_pairs_history: {data}")
             return
         top_pairs = data['Data']
         with database.atomic():
@@ -37,7 +36,7 @@ class CurrencyPairsHistory(BaseModel):
                 try:
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, InternalError, DataError) as error:
-                    print(f"DATABASE ERROR for CurrencyPairsHistory: {error}: {model_params}")
+                    log(f"DATABASE ERROR for CurrencyPairsHistory: {error}: {model_params}")
                     continue
 
     @classmethod

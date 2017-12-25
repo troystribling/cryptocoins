@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 
 def day_dir(file_date):
@@ -20,3 +20,6 @@ def valid_params(expected_params, params):
             print(f"ERROR: '{expected_param}' KEY IS MISSING FROM {params}")
             return False
     return True
+
+def log(message):
+    print(f"({datetime.utcnow()..strftime('%Y%m%d-%H%M%S')}){message}")

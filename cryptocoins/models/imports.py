@@ -1,4 +1,5 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField
+from cryptocoins.utils import log
 
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
@@ -24,5 +25,5 @@ class Imports(BaseModel):
             with database.atomic():
                 return cls.create(date_dir=date_dir, file_name=file_name, remote_dir=remote_dir)
         except IntegrityError as error:
-            print(f"DATABASE ERROR for Imports: {error}: {remote_dir}/{date_dir}/{file_name}")
+            log(f"DATABASE ERROR for Imports: {error}: {remote_dir}/{date_dir}/{file_name}")
             return None

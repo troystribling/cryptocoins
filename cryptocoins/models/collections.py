@@ -1,4 +1,5 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField, BooleanField
+from cryptocoins.utils import log
 
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
@@ -27,7 +28,7 @@ class Collections(BaseModel):
             with database.atomic():
                 return cls.create(path=path, url=url, meta=meta)
         except IntegrityError as error:
-            print(f"DATABASE ERROR for Collection with path: {error}: {path}, {created_at}")
+            log(f"DATABASE ERROR for Collection with path: {error}: {path}, {created_at}")
             return None
 
     @classmethod
@@ -35,7 +36,7 @@ class Collections(BaseModel):
         try:
             return Collections.get(Collections.id == id)
         except IntegrityError as error:
-            print(f"DATABASE ERROR for Collection with id: {error}: {id}")
+            log(f"DATABASE ERROR for Collection with id: {error}: {id}")
             return None
 
     @classmethod

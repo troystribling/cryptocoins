@@ -39,7 +39,7 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
             os.unlink(local_file_name)
             if download_limit is not None and downloaded_file_count >= download_limit:
                 break
-    print(f'DOWNLOADED {downloaded_file_count} files from {remote_dir} to {local_dir}')
+    utils.log(f'DOWNLOADED {downloaded_file_count} files from {remote_dir} to {local_dir}')
 
 
 def read_from_file(file_name):
@@ -49,7 +49,7 @@ def read_from_file(file_name):
             try:
                 json_line = json.loads(line)
             except ValueError:
-                print(f"FAILED TO PARSE JSON: '{line}''")
+                utils.log(f"FAILED TO PARSE JSON: '{line}''")
                 break
             else:
                 items.append(json_line)
