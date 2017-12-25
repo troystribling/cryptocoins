@@ -28,7 +28,7 @@ def request(exchange, from_symbol, to_symbol):
     path = 'cryptocoins/cryptocompare/histoday'
     (last_collection_date) = Collections.lastest_collection_for_path_and_meta(path, meta)
     if last_collection_date is None:
-        log(f"REQUESTING ALL histoday for  {datetime.utcnow()}, {exchange}, {from_symbol}, {to_symbol}")
+        log(f"REQUESTING ALL histoday for {exchange}, {from_symbol}, {to_symbol}")
         request_coin_price_history(from_symbol, to_symbol, exchange=exchange, allData='true')
         return
     time_delta = datetime.utcnow() - last_collection_date
