@@ -14,9 +14,9 @@ from cryptocoins.models.coins import Coins
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 
 
-max_coins = 2
-max_pairs = 2
-max_exchanges = 2
+max_coins = 200
+max_pairs = 100
+max_exchanges = 100
 
 bucket_name = 'gly.fish'
 
