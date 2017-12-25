@@ -12,9 +12,9 @@ from cryptocoins.models.collections import Collections
 
 from cryptocoins.utils import log
 
-max_coins = 200
-max_pairs = 100
-max_exchanges = 100
+max_coins = 2
+max_pairs = 2
+max_exchanges = 2
 
 bucket_name = 'gly.fish'
 
