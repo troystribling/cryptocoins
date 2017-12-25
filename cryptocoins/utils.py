@@ -21,5 +21,6 @@ def valid_params(expected_params, params):
             return False
     return True
 
+
 def log(message):
-    print(f"({datetime.utcnow()..strftime('%Y%m%d-%H%M%S')}){message}")
+    print(f"({datetime.utcnow().strftime('%Y/%m/%d %H:%M:%S')}) {message}")
