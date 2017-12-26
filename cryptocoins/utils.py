@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 import logging
-
+from logging.handlers import RotatingFileHandler
 
 logger = logging.getLogger(__name__)
 
@@ -25,11 +25,11 @@ def valid_params(expected_params, params):
             return False
     return True
 
-def setup_logging(file_name=None, max_bytes = 200000000, backup_count = 5):
+def setup_logging(file_name=None, max_bytes=200000000, backup_count=5):
     logger = logging.getLogger("cryptocoins")
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter('(%(levelname)s|%(asctime)s|%(module)s|%(filename)s) %(message)s')
-    if file_name is None:
+    if file_name is not None:
         handler = RotatingFileHandler(file_name, "a", max_bytes, backup_count)
         handler.setFormatter(formatter)
         logger.addHandler(handler)

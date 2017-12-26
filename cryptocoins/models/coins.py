@@ -3,6 +3,8 @@ from datetime import datetime
 import logging
 
 
+from cryptocoins.utils import valid_params
+
 logger = logging.getLogger(__name__)
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
