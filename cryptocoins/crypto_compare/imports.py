@@ -1,4 +1,5 @@
 from cryptocoins.import_data import import_from_s3
+import logging
 
 from cryptocoins.models.coins import Coins
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
@@ -6,12 +7,14 @@ from cryptocoins.models.exchanges_history import ExchangesHistory
 from cryptocoins.models.coins_history import CoinsHistory
 from cryptocoins.models.coins_price_history import CoinsPriceHistory
 
-from cryptocoins.utils import log
+
+logger = logging.getLogger(__name__)
+
 
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_snapshot')
 def import_coin_snapshot(data):
     if len(data) != 1:
-        log("ERROR: FILE WRONG SIZE")
+        logger.error("DATA WRONG SIZE")
         return
     coin_snapshot = data[0]
     CoinsHistory.create_from_coin_snapshot(coin_snapshot)
@@ -21,9 +24,9 @@ def import_coin_snapshot(data):
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_list')
 def import_coin_list(data):
     if len(data) != 1:
-        log("ERROR: FILE WRONG SIZE")
+        logger.error("DATA WRONG SIZE")
     if 'Data' not in data[0]:
-        log(f"ERROR: Data KEY IS MISSING FROM import_coin_snapshot_full: {data[0]}")
+        logger.error(f"Data KEY IS MISSING FROM import_coin_snapshot_full: {data[0]}")
         return
     for coin in data[0]['Data'].values():
         Coins.create_or_update_using_crytocompare_coinlist(coin)
@@ -32,7 +35,7 @@ def import_coin_list(data):
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/top_pairs')
 def import_currency_pairs_history(data):
     if len(data) != 1:
-        log("ERROR: FILE WRONG SIZE")
+        logger.error("DATA WRONG SIZE")
     top_pairs = data[0]
     CurrencyPairsHistory.create_from_top_pairs(top_pairs, batch_size=100)
 
@@ -40,6 +43,6 @@ def import_currency_pairs_history(data):
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/histoday')
 def import_coin_price_history(data):
     if len(data) != 1:
-        log("ERROR: FILE WRONG SIZE")
+        logger.error("DATA WRONG SIZE")
     histoday = data[0]
     CoinsPriceHistory.create_from_histoday(histoday, batch_size=100)

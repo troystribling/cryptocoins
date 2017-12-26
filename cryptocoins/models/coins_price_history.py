@@ -1,8 +1,10 @@
 from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
+import logging
 
 from cryptocoins.utils import valid_params, log
 
+logger = logging.getLogger(__name__)
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
 
@@ -42,14 +44,14 @@ class CoinsPriceHistory(BaseModel):
         to_symbol = histoday['CurrencyTo']
         exchange = histoday['Exchange']
 
-        log(f"CREATING CoinsPriceHistory: {exchange}, {from_symbol}, {to_symbol}, {len(records)} records")
+        logger.info(f"CREATING CoinsPriceHistory: {exchange}, {from_symbol}, {to_symbol}, {len(records)} records")
         with database.atomic():
             for i in range(0, len(records), batch_size):
                 model_params = [cls.histoday_to_model_parameters(record, from_symbol, to_symbol, exchange) for record in records[i:i + batch_size]]
                 try:
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, InternalError, DataError) as error:
-                    log(f"DATABASE ERROR for CoinsPriceHistory {error}: {records}")
+                    logger.error(f"DATABASE ERROR for CoinsPriceHistory {error}: {records}")
                     continue
 
     @classmethod

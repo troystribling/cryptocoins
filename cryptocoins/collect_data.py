@@ -2,12 +2,16 @@ import tempfile
 import os
 import boto3
 import requests
+import logging
 
 from subprocess import call
 from datetime import datetime
 
 from cryptocoins import utils
 from cryptocoins.models.collections import Collections
+
+
+logger = logging.getLogger(__name__)
 
 
 def upload_to_s3(bucket, path, data):
@@ -32,7 +36,7 @@ def upload_file_to_s3(bucket, path, local_path):
     remote_object = f"{path}/{utils.day_dir(datetime.utcnow())}/{os.path.basename(local_path)}"
     bucket.put_object(Key=remote_object, Body=open(local_path, 'rb'))
     os.unlink(local_path)
-    utils.log(f'{datetime.now()}: UPLOADED to {remote_object}')
+    logger.info(f'{datetime.now()}: UPLOADED to {remote_object}')
 
 
 def fetch_url(url):
@@ -41,7 +45,7 @@ def fetch_url(url):
         response.raise_for_status()
         return response.text
     except requests.exceptions.RequestException as error:
-        print(error)
+        logger.error(error)
         return None
     else:
         return response
@@ -49,12 +53,12 @@ def fetch_url(url):
 
 def fetch_url_and_upload_to_s3(process):
     def wrapper(**params):
-        utils.log(f"FETCH FROM: {params['url']}")
+        logger.info(f"FETCH FROM: {params['url']}")
         meta = params['meta'] if 'meta' in params else None
         created_collection = Collections.create_collection(path=params['path'], url=params['url'], meta=meta)
         collection = Collections.get_with_id(created_collection.id)
         if collection is None:
-            utils.log(f"ERROR: Collection with {params['url']} exists")
+            logger.error(f"Collection with {params['url']} exists")
             return
         response = fetch_url(params['url'])
         if response is not None:
@@ -63,5 +67,5 @@ def fetch_url_and_upload_to_s3(process):
             upload_to_s3(bucket=params['bucket'], path=params['path'], data=processed_response)
             collection.collection_successful()
         else:
-            utils.log(f"ERROR: REQUEST FAILED FOR URL {params['url']}")
+            logger.error(f"REQUEST FAILED FOR URL {params['url']}")
     return wrapper

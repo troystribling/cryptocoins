@@ -273,18 +273,33 @@ lastest_collection_for_url	cryptocoins/models/collections.py	/^    def lastest_c
 limit	notebooks/request_data.py	/^limit = 100$/;"	v
 local_dir	notebooks/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 local_file_path	notebooks/import_data_debug.py	/^local_file_path = "\/var\/folders\/hc\/xc94zvls2pq_pw366sdbqlhr0000gn\/T\/cryptocoins\/cryptocompare\/coin_snapshot\/20171224\/20171224-154510-r5mlt7cj"$/;"	v
-log	crypto_compare_collect_daily.py	/^from cryptocoins.utils import log$/;"	i
-log	crypto_compare_collect_histoday.py	/^from cryptocoins.utils import log$/;"	i
-log	crypto_compare_import.py	/^from cryptocoins.utils import log$/;"	i
-log	cryptocoins/crypto_compare/imports.py	/^from cryptocoins.utils import log$/;"	i
-log	cryptocoins/models/coins.py	/^from cryptocoins.utils import valid_params, log$/;"	i
 log	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
 log	cryptocoins/models/coins_price_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
-log	cryptocoins/models/collections.py	/^from cryptocoins.utils import log$/;"	i
-log	cryptocoins/models/currency_pairs_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
-log	cryptocoins/models/exchanges_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
-log	cryptocoins/models/imports.py	/^from cryptocoins.utils import log$/;"	i
-log	cryptocoins/utils.py	/^def log(message):$/;"	f
+logger	crypto_compare_collect_daily.py	/^logger = setup_logging()$/;"	v
+logger	crypto_compare_collect_histoday.py	/^logger = setup_logging()$/;"	v
+logger	crypto_compare_import.py	/^logger = setup_logging()$/;"	v
+logger	cryptocoins/collect_data.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/crypto_compare/imports.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/import_data.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/models/coins.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/models/coins_history.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/models/coins_price_history.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/models/collections.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/models/currency_pairs_history.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/models/exchanges_history.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/models/imports.py	/^logger = logging.getLogger(__name__)$/;"	v
+logger	cryptocoins/utils.py	/^logger = logging.getLogger(__name__)$/;"	v
+logging	cryptocoins/collect_data.py	/^import logging$/;"	i
+logging	cryptocoins/crypto_compare/imports.py	/^import logging$/;"	i
+logging	cryptocoins/import_data.py	/^import logging$/;"	i
+logging	cryptocoins/models/coins.py	/^import logging$/;"	i
+logging	cryptocoins/models/coins_history.py	/^import logging$/;"	i
+logging	cryptocoins/models/coins_price_history.py	/^import logging$/;"	i
+logging	cryptocoins/models/collections.py	/^import logging$/;"	i
+logging	cryptocoins/models/currency_pairs_history.py	/^import logging$/;"	i
+logging	cryptocoins/models/exchanges_history.py	/^import logging$/;"	i
+logging	cryptocoins/models/imports.py	/^import logging$/;"	i
+logging	cryptocoins/utils.py	/^import logging$/;"	i
 loop	crypto_compare_poll.py	/^loop = asyncio.get_event_loop()$/;"	v
 low_price_24_hour	cryptocoins/models/coins_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:CoinsHistory
 low_price_24_hour	cryptocoins/models/coins_price_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
@@ -343,6 +358,10 @@ request_top_currency_pairs	crypto_compare_collect_daily.py	/^from cryptocoins.cr
 request_top_currency_pairs	crypto_compare_poll.py	/^from cryptocoins.crypto_compare.requests import request_top_currency_pairs$/;"	i
 request_top_currency_pairs	cryptocoins/crypto_compare/requests.py	/^def request_top_currency_pairs(from_currency, limit=100, bucket='gly.fish'):$/;"	f
 requests	cryptocoins/collect_data.py	/^import requests$/;"	i
+setup_logging	crypto_compare_collect_daily.py	/^from cryptocoins.utils import setup_logging$/;"	i
+setup_logging	crypto_compare_collect_histoday.py	/^from cryptocoins.utils import setup_logging$/;"	i
+setup_logging	crypto_compare_import.py	/^from cryptocoins.utils import setup_logging$/;"	i
+setup_logging	cryptocoins/utils.py	/^def setup_logging(file_name=None, max_bytes = 200000000, backup_count = 5):$/;"	f
 sleep	crypto_compare_collect_daily.py	/^from time import sleep$/;"	i
 sleep	crypto_compare_collect_histoday.py	/^from time import sleep$/;"	i
 start_date	crypto_compare_collect_daily.py	/^start_date = datetime.utcnow()$/;"	v
@@ -402,11 +421,10 @@ url_first	notebooks/query_notebook.py	/^url_first = coin_price_history_url('BTC'
 utils	cryptocoins/collect_data.py	/^from cryptocoins import utils$/;"	i
 utils	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
 utils	notebooks/download_data.py	/^from cryptocoins import utils$/;"	i
-valid_params	cryptocoins/models/coins.py	/^from cryptocoins.utils import valid_params, log$/;"	i
 valid_params	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
 valid_params	cryptocoins/models/coins_price_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
-valid_params	cryptocoins/models/currency_pairs_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
-valid_params	cryptocoins/models/exchanges_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
+valid_params	cryptocoins/models/currency_pairs_history.py	/^from cryptocoins.utils import valid_params$/;"	i
+valid_params	cryptocoins/models/exchanges_history.py	/^from cryptocoins.utils import valid_params$/;"	i
 valid_params	cryptocoins/utils.py	/^def valid_params(expected_params, params):$/;"	f
 volume_from_24_hour	cryptocoins/models/coins_history.py	/^    volume_from_24_hour = DecimalField()$/;"	v	class:CoinsHistory
 volume_from_24_hour	cryptocoins/models/coins_price_history.py	/^    volume_from_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory

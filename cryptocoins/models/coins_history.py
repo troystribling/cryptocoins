@@ -1,8 +1,10 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
+import logging
 
 from cryptocoins.utils import valid_params, log
 
+logger = logging.getLogger(__name__)
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
 
@@ -45,13 +47,13 @@ class CoinsHistory(BaseModel):
             try:
                 return cls.create(**coin_snapshot)
             except (IntegrityError, DataError) as error:
-                log(f"DATABASE ERROR for CoinsHistory: {error}: {coin_snapshot}")
+                logger.error(f"DATABASE ERROR for CoinsHistory: {error}: {coin_snapshot}")
                 return None
 
     @classmethod
     def coin_snapshot_to_model_parameters(cls, data):
         if 'Data' not in data:
-            log(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {data}")
+            logger.error(f"Data KEY IS MISSING FROM coin_snapshot: {data}")
             return None
         coin_snapshot = data['Data']
         expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward',
@@ -60,7 +62,7 @@ class CoinsHistory(BaseModel):
             return None
 
         if 'AggregatedData' not in coin_snapshot:
-            log(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
+            logger.error(f"Data KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
             return None
         aggregated_data = coin_snapshot['AggregatedData']
 

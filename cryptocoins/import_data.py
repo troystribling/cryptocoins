@@ -2,12 +2,16 @@ import os
 import boto3
 import json
 import tempfile
+import logging
 
 from subprocess import call
 from datetime import datetime
 
 import cryptocoins.utils as utils
 from .models.imports import Imports
+
+
+logger = logging.getLogger(__name__)
 
 
 def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):
@@ -39,7 +43,7 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
             os.unlink(local_file_name)
             if download_limit is not None and downloaded_file_count >= download_limit:
                 break
-    utils.log(f'DOWNLOADED {downloaded_file_count} files from {remote_dir} to {local_dir}')
+    logger.info(f'DOWNLOADED {downloaded_file_count} files from {remote_dir} to {local_dir}')
 
 
 def read_from_file(file_name):
@@ -49,7 +53,7 @@ def read_from_file(file_name):
             try:
                 json_line = json.loads(line)
             except ValueError:
-                utils.log(f"FAILED TO PARSE JSON: '{line}''")
+                logger.error(f"FAILED TO PARSE JSON: '{line}''")
                 break
             else:
                 items.append(json_line)

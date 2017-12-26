@@ -1,9 +1,9 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
+import logging
 
-from cryptocoins.utils import valid_params, log
 
-
+logger = logging.getLogger(__name__)
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
 
@@ -45,7 +45,7 @@ class Coins(BaseModel):
                                rank=coin_list['SortOrder']).where(Coins.symbol == coin_list['Symbol'])
             query.execute()
         except DataError as error:
-            log(f"DATABASE ERROR for Coin: {error}: {coin_list}")
+            logger.error(f"DATABASE ERROR for Coin: {error}: {coin_list}")
             return None
 
 

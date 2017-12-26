@@ -1,8 +1,11 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
+import logging
 
-from cryptocoins.utils import valid_params, log
+from cryptocoins.utils import valid_params
 
+
+logger = logging.getLogger(__name__)
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
 
@@ -31,12 +34,12 @@ class ExchangesHistory(BaseModel):
     @classmethod
     def create_from_coin_snapshot(cls, data, batch_size=100):
         if 'Data' not in data:
-            log(f"ERROR: Data KEY IS MISSING FROM coin_snapshot: {data}")
+            logger.error(f"Data KEY IS MISSING FROM coin_snapshot: {data}")
             return
         coin_snapshot = data['Data']
 
         if 'Exchanges' not in coin_snapshot:
-            log(f"ERROR: Exchanges KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
+            logger.error(f"Exchanges KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
             return
         exchanges = coin_snapshot['Exchanges']
 
@@ -46,7 +49,7 @@ class ExchangesHistory(BaseModel):
                 try:
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, DataError) as error:
-                    print(f"DATABASE ERROR for ExchangesHistory: {error}: {exchanges}")
+                    logger.error(f"DATABASE ERROR for ExchangesHistory: {error}: {exchanges}")
                     continue
 
     @classmethod
@@ -54,7 +57,7 @@ class ExchangesHistory(BaseModel):
         expected_keys = ['FROMSYMBOL', 'HIGH24HOUR', 'LOW24HOUR', 'LASTUPDATE', 'MARKET',
                          'OPEN24HOUR', 'TOSYMBOL', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
         if not valid_params(expected_params=expected_keys, params=exchange):
-            raise ValueError('ERROR: Exchange keys invalid')
+            raise ValueError('Exchange keys invalid')
         timestamp_epoc = exchange['LASTUPDATE']
         return {'from_symbol': exchange['FROMSYMBOL'],
                 'high_price_24_hour': exchange['HIGH24HOUR'],
