@@ -106,6 +106,7 @@ PostgresqlDatabase	cryptocoins/models/collections.py	/^from peewee import Model,
 PostgresqlDatabase	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DataError, DateTimeField, TextField, DecimalField$/;"	i
 PostgresqlDatabase	cryptocoins/models/exchanges_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 PostgresqlDatabase	cryptocoins/models/imports.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DateTimeField, TextField$/;"	i
+RotatingFileHandler	cryptocoins/utils.py	/^from logging.handlers import RotatingFileHandler$/;"	i
 TextField	cryptocoins/models/coins.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 TextField	cryptocoins/models/coins_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 TextField	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
@@ -214,6 +215,7 @@ decorator	hydrogen_notebooks/python_exaples.py	/^    def decorator(process):$/;"
 decorator_with_args	hydrogen_notebooks/python_exaples.py	/^def decorator_with_args(a, b):$/;"	f
 decorator_with_kwargs	hydrogen_notebooks/python_exaples.py	/^def decorator_with_kwargs(**kwargs):$/;"	f
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
+end_date	crypto_compare_collect_daily.py	/^end_date = datetime.utcnow()$/;"	v
 end_date	crypto_compare_collect_histoday.py	/^end_date = datetime.utcnow()$/;"	v
 end_date	crypto_compare_import.py	/^end_date = parse(sys.argv[2]) if len(sys.argv) > 2 else start_date$/;"	v
 end_date	hydrogen_notebooks/import_data.py	/^end_date = parse('20171209')$/;"	v
@@ -272,10 +274,8 @@ lastest_collection_for_url	cryptocoins/models/collections.py	/^    def lastest_c
 limit	hydrogen_notebooks/request_data.py	/^limit = 100$/;"	v
 local_dir	hydrogen_notebooks/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 local_file_path	hydrogen_notebooks/import_data_debug.py	/^local_file_path = "\/var\/folders\/hc\/xc94zvls2pq_pw366sdbqlhr0000gn\/T\/cryptocoins\/cryptocompare\/coin_snapshot\/20171224\/20171224-154510-r5mlt7cj"$/;"	v
-log	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
-log	cryptocoins/models/coins_price_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
-logger	crypto_compare_collect_daily.py	/^logger = setup_logging()$/;"	v
-logger	crypto_compare_collect_histoday.py	/^logger = setup_logging()$/;"	v
+logger	crypto_compare_collect_daily.py	/^logger = setup_logging(file_name= '\/var\/log\/apps\/cryptocoins\/crypto_compare_daily.log')$/;"	v
+logger	crypto_compare_collect_histoday.py	/^logger = setup_logging(file_name= '\/var\/log\/apps\/cryptocoins\/crypto_compare_histoday.log')$/;"	v
 logger	crypto_compare_import.py	/^logger = setup_logging()$/;"	v
 logger	cryptocoins/collect_data.py	/^logger = logging.getLogger(__name__)$/;"	v
 logger	cryptocoins/crypto_compare/imports.py	/^logger = logging.getLogger(__name__)$/;"	v
@@ -360,7 +360,7 @@ requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 setup_logging	crypto_compare_collect_daily.py	/^from cryptocoins.utils import setup_logging$/;"	i
 setup_logging	crypto_compare_collect_histoday.py	/^from cryptocoins.utils import setup_logging$/;"	i
 setup_logging	crypto_compare_import.py	/^from cryptocoins.utils import setup_logging$/;"	i
-setup_logging	cryptocoins/utils.py	/^def setup_logging(file_name=None, max_bytes = 200000000, backup_count = 5):$/;"	f
+setup_logging	cryptocoins/utils.py	/^def setup_logging(file_name=None, max_bytes=200000000, backup_count=5):$/;"	f
 sleep	crypto_compare_collect_daily.py	/^from time import sleep$/;"	i
 sleep	crypto_compare_collect_histoday.py	/^from time import sleep$/;"	i
 start_date	crypto_compare_collect_daily.py	/^start_date = datetime.utcnow()$/;"	v
@@ -420,8 +420,9 @@ url_first	hydrogen_notebooks/query_notebook.py	/^url_first = coin_price_history_
 utils	cryptocoins/collect_data.py	/^from cryptocoins import utils$/;"	i
 utils	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
 utils	hydrogen_notebooks/download_data.py	/^from cryptocoins import utils$/;"	i
-valid_params	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
-valid_params	cryptocoins/models/coins_price_history.py	/^from cryptocoins.utils import valid_params, log$/;"	i
+valid_params	cryptocoins/models/coins.py	/^from cryptocoins.utils import valid_params$/;"	i
+valid_params	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params$/;"	i
+valid_params	cryptocoins/models/coins_price_history.py	/^from cryptocoins.utils import valid_params$/;"	i
 valid_params	cryptocoins/models/currency_pairs_history.py	/^from cryptocoins.utils import valid_params$/;"	i
 valid_params	cryptocoins/models/exchanges_history.py	/^from cryptocoins.utils import valid_params$/;"	i
 valid_params	cryptocoins/utils.py	/^def valid_params(expected_params, params):$/;"	f

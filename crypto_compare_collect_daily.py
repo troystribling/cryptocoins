@@ -17,9 +17,9 @@ from cryptocoins.utils import setup_logging
 
 logger = setup_logging(file_name= '/var/log/apps/cryptocoins/crypto_compare_daily.log')
 
-max_coins = 200
-max_pairs = 200
-max_exchanges = 100
+max_coins = 2
+max_pairs = 2
+max_exchanges = 2
 
 bucket_name = 'gly.fish'
 
