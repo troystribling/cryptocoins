@@ -15,12 +15,11 @@ from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 
 from cryptocoins.utils import setup_logging
 
-# logger = setup_logging(file_name= '/var/log/apps/cryptocoins/crypto_compare_daily.log')
-logger = setup_logging()
+logger = setup_logging(file_name= '/var/log/apps/cryptocoins/crypto_compare_daily.log')
 
-max_coins = 2
-max_pairs = 2
-max_exchanges = 2
+max_coins = 300
+max_pairs = 300
+max_exchanges = 100
 
 bucket_name = 'gly.fish'
 
