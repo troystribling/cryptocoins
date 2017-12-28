@@ -361,6 +361,7 @@ setup_logging	crypto_compare_collect_daily.py	/^from cryptocoins.utils import se
 setup_logging	crypto_compare_collect_histoday.py	/^from cryptocoins.utils import setup_logging$/;"	i
 setup_logging	crypto_compare_import.py	/^from cryptocoins.utils import setup_logging$/;"	i
 setup_logging	cryptocoins/utils.py	/^def setup_logging(file_name=None, max_bytes=200000000, backup_count=5):$/;"	f
+shutil	cryptocoins/import_data.py	/^import shutil$/;"	i
 sleep	crypto_compare_collect_daily.py	/^from time import sleep$/;"	i
 sleep	crypto_compare_collect_histoday.py	/^from time import sleep$/;"	i
 start_date	crypto_compare_collect_daily.py	/^start_date = datetime.utcnow()$/;"	v

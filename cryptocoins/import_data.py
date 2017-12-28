@@ -3,6 +3,7 @@ import boto3
 import json
 import tempfile
 import logging
+import shutil
 
 from subprocess import call
 from datetime import datetime
@@ -79,5 +80,6 @@ def import_from_s3(remote_dir):
                         continue
                     data = read_from_file(data_file_path)
                     process(data)
+            shutil.rmtree(local_dir, ignore_errors=True)
         return wrapper
     return decorator
