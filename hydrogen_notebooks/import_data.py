@@ -12,7 +12,6 @@ from cryptocoins.models.coins_price_history import CoinsPriceHistory
 
 bucket_name = 'gly.fish'
 
-
 # %%
 # coin_list
 start_date = parse('20171209')
