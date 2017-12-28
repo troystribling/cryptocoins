@@ -2,7 +2,6 @@ from time import sleep
 from datetime import datetime
 
 from cryptocoins.crypto_compare.requests import request_coin_price_history
-from cryptocoins.crypto_compare.requests import coin_price_history_url
 from cryptocoins.crypto_compare.imports import import_coin_price_history
 
 from cryptocoins.models.coins import Coins
@@ -12,7 +11,7 @@ from cryptocoins.models.collections import Collections
 
 from cryptocoins.utils import setup_logging
 
-logger = setup_logging(file_name= '/var/log/apps/cryptocoins/crypto_compare_histoday.log')
+logger = setup_logging(file_name='/var/log/apps/cryptocoins/crypto_compare_histoday.log')
 
 max_coins = 300
 max_pairs = 300

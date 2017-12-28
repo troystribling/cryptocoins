@@ -25,6 +25,7 @@ def valid_params(expected_params, params):
             return False
     return True
 
+
 def setup_logging(file_name=None, max_bytes=200000000, backup_count=5):
     logger = logging.getLogger("cryptocoins")
     logger.setLevel(logging.INFO)

@@ -9,7 +9,7 @@ from subprocess import call
 from datetime import datetime
 
 import cryptocoins.utils as utils
-from .models.imports import Imports
+from cryptocoins.models.imports import Imports
 
 
 logger = logging.getLogger(__name__)

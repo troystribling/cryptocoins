@@ -3,7 +3,7 @@ import logging
 
 
 logger = logging.getLogger(__name__)
-database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
+database = PostgresqlDatabase('cryptocoins', user='cryptocoins', host='127.0.0.1')
 
 
 class BaseModel(Model):
