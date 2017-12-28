@@ -1,6 +1,11 @@
 import asyncio
-
 from concurrent.futures import ThreadPoolExecutor
+
+import sys
+import os
+
+wd = os.getcwd()
+sys.path.append(wd)
 
 from cryptocoins.crypto_compare.requests import request_coin_list
 from cryptocoins.crypto_compare.requests import request_coin_snapshot

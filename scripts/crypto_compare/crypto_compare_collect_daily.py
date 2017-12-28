@@ -1,6 +1,11 @@
 from time import sleep
 from datetime import datetime
 
+import sys
+import os
+
+wd = os.getcwd()
+sys.path.append(wd)
 
 from cryptocoins.crypto_compare.requests import request_coin_list
 from cryptocoins.crypto_compare.requests import request_top_currency_pairs

@@ -2,6 +2,12 @@ import sys
 from datetime import datetime
 from dateutil.parser import parse
 
+import sys
+import os
+
+wd = os.getcwd()
+sys.path.append(wd)
+
 from cryptocoins.crypto_compare.imports import import_coin_snapshot
 from cryptocoins.crypto_compare.imports import import_coin_list
 from cryptocoins.crypto_compare.imports import import_currency_pairs_history
