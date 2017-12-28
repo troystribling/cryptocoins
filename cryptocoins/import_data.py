@@ -24,6 +24,8 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
     s3_client = boto3.client('s3')
     s3_resource = boto3.resource('s3')
 
+    logger.info(f"DOWNLOADING FILES IN DATE RANGE {start_date} TO {end_date}")
+
     downloaded_file_count = 0
     for day in utils.daterange(start_date, end_date):
         day_dir = utils.day_dir(day)
@@ -33,6 +35,7 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
             continue
         os.makedirs(local_day_dir)
         remote_objects = s3_resource.Bucket(bucket).objects.filter(Prefix=remote_day_dir)
+        logger.info(f"DOWNLOADING FILES WITH REMOTE PATH {remote_day_dir} TO {local_day_dir}")
         for remote_object in remote_objects:
             downloaded_file_count += 1
             remote_file_name = remote_object.key
@@ -43,7 +46,8 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
             os.unlink(local_file_name)
             if download_limit is not None and downloaded_file_count >= download_limit:
                 break
-    logger.info(f'DOWNLOADED {downloaded_file_count} files from {remote_dir} to {local_dir}')
+        logger.info(f"DOWNLOADED {downloaded_file_count} FILES FROM {remote_day_dir} TO {local_day_dir}")
+    logger.info(f'DOWNLOADED {downloaded_file_count} FILES FROM {remote_dir} TO {local_dir}')
 
 
 def read_from_file(file_name):
@@ -53,7 +57,7 @@ def read_from_file(file_name):
             try:
                 json_line = json.loads(line)
             except ValueError:
-                logger.error(f"FAILED TO PARSE JSON: '{line}''")
+                logger.error(f"FAILED TO PARSE JSON: {line}")
                 break
             else:
                 items.append(json_line)
