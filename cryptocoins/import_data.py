@@ -25,7 +25,7 @@ def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None
     s3_client = boto3.client('s3')
     s3_resource = boto3.resource('s3')
 
-    logger.info(f"DOWNLOADING FILES IN DATE RANGE {start_date} TO {end_date}")
+    logger.info(f"DOWNLOADING FILES IN DATE RANGE {utils.day_dir(start_date)} TO {utils.day_dir(end_date)}")
 
     downloaded_file_count = 0
     for day in utils.daterange(start_date, end_date):
