@@ -60,6 +60,10 @@ class CoinsPriceHistory(BaseModel):
         if not valid_params(expected_params=expected_keys, params=histoday):
             raise ValueError('ERROR: histoday keys invalid')
         timestamp_epoc = histoday['time']
+        if histoday['volumefrom'] is None:
+            histoday['volumefrom'] = 0.0
+        if histoday['volumeto'] is None:
+            histoday['volumeto'] = 0.0
         return {'close_price_24_hour': histoday['close'],
                 'exchange': exchange,
                 'from_symbol': from_symbol,
