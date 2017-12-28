@@ -12,7 +12,8 @@ from cryptocoins.models.collections import Collections
 
 from cryptocoins.utils import setup_logging
 
-logger = setup_logging(file_name= '/var/log/apps/cryptocoins/crypto_compare_histoday.log')
+# logger = setup_logging(file_name= '/var/log/apps/cryptocoins/crypto_compare_histoday.log')
+logger = setup_logging()
 
 max_coins = 2
 max_pairs = 2

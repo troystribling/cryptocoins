@@ -15,7 +15,8 @@ from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 
 from cryptocoins.utils import setup_logging
 
-logger = setup_logging(file_name= '/var/log/apps/cryptocoins/crypto_compare_daily.log')
+# logger = setup_logging(file_name= '/var/log/apps/cryptocoins/crypto_compare_daily.log')
+logger = setup_logging()
 
 max_coins = 2
 max_pairs = 2

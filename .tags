@@ -274,8 +274,8 @@ lastest_collection_for_url	cryptocoins/models/collections.py	/^    def lastest_c
 limit	hydrogen_notebooks/request_data.py	/^limit = 100$/;"	v
 local_dir	hydrogen_notebooks/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 local_file_path	hydrogen_notebooks/import_data_debug.py	/^local_file_path = "\/var\/folders\/hc\/xc94zvls2pq_pw366sdbqlhr0000gn\/T\/cryptocoins\/cryptocompare\/coin_snapshot\/20171224\/20171224-154510-r5mlt7cj"$/;"	v
-logger	crypto_compare_collect_daily.py	/^logger = setup_logging(file_name= '\/var\/log\/apps\/cryptocoins\/crypto_compare_daily.log')$/;"	v
-logger	crypto_compare_collect_histoday.py	/^logger = setup_logging(file_name= '\/var\/log\/apps\/cryptocoins\/crypto_compare_histoday.log')$/;"	v
+logger	crypto_compare_collect_daily.py	/^logger = setup_logging()$/;"	v
+logger	crypto_compare_collect_histoday.py	/^logger = setup_logging()$/;"	v
 logger	crypto_compare_import.py	/^logger = setup_logging()$/;"	v
 logger	cryptocoins/collect_data.py	/^logger = logging.getLogger(__name__)$/;"	v
 logger	cryptocoins/crypto_compare/imports.py	/^logger = logging.getLogger(__name__)$/;"	v
