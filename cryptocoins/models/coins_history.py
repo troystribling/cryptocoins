@@ -2,7 +2,7 @@ from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTim
 from datetime import datetime
 import logging
 
-from cryptocoins.utils import valid_params
+from cryptocoins.utils import valid_params, null_param_if_missing
 
 logger = logging.getLogger(__name__)
 database = PostgresqlDatabase('cryptocoins', user='cryptocoins', host='127.0.0.1')
