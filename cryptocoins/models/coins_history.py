@@ -56,11 +56,9 @@ class CoinsHistory(BaseModel):
             logger.error(f"Data KEY IS MISSING FROM coin_snapshot: {data}")
             return None
         coin_snapshot = data['Data']
-        expected_keys = ['BlockNumber', 'BlockReward', 'NetHashesPerSecond', 'ProofType', 'TotalCoinsMined']
+        expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward', 'NetHashesPerSecond', 'ProofType', 'TotalCoinsMined']
         if not valid_params(expected_params=expected_keys, params=coin_snapshot):
             return None
-        if 'Algorithm'  not in coin_snapshot:
-            coin_snapshot['Algorithm'] = 'N/A'
 
         if 'AggregatedData' not in coin_snapshot:
             logger.error(f"Data KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
