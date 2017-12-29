@@ -15,22 +15,22 @@ class BaseModel(Model):
 
 class CoinsHistory(BaseModel):
     algorithm = TextField(null=True)
-    block_number = BigIntegerField()
-    block_reward = DecimalField()
-    created_at = DateTimeField()
-    high_price_24_hour = DecimalField()
-    low_price_24_hour = DecimalField()
-    net_hashes_per_second = DecimalField()
-    open_price_24_hour = DecimalField()
-    close_price_24_hour = DecimalField()
+    block_number = BigIntegerField(null=True)
+    block_reward = DecimalField(null=True)
+    created_at = DateTimeField(null=True)
+    high_price_24_hour = DecimalField(null=True)
+    low_price_24_hour = DecimalField(null=True)
+    net_hashes_per_second = DecimalField(null=True)
+    open_price_24_hour = DecimalField(null=True)
+    close_price_24_hour = DecimalField(null=True)
     proof_type = TextField(null=True)
     from_symbol = TextField(index=True)
     to_symbol = TextField(index=True)
     timestamp = DateTimeField()
     timestamp_epoc = BigIntegerField()
     total_coins_mined = DecimalField()
-    volume_from_24_hour = DecimalField()
-    volume_to_24_hour = DecimalField()
+    volume_from_24_hour = DecimalField(null=True)
+    volume_to_24_hour = DecimalField(null=True)
 
     class Meta:
         db_table = 'coins_history'
@@ -57,11 +57,10 @@ class CoinsHistory(BaseModel):
             return None
         coin_snapshot = data['Data']
         expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward', 'NetHashesPerSecond', 'ProofType', 'TotalCoinsMined']
-        if not valid_params(expected_params=expected_keys, params=coin_snapshot):
-            return None
+        null_param_if_missing(expected_params=expected_keys, params=coin_snapshot)
 
         if 'AggregatedData' not in coin_snapshot:
-            logger.error(f"Data KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
+            logger.error(f"AggregatedData KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
             return None
         aggregated_data = coin_snapshot['AggregatedData']
 

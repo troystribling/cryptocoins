@@ -125,8 +125,8 @@ __depends__	migrations/20171123_01_Upsf5-create-collections-table.py	/^__depends
 algorithm	cryptocoins/models/coins_history.py	/^    algorithm = TextField(null=True)$/;"	v	class:CoinsHistory
 allData	hydrogen_notebooks/request_data.py	/^allData = True$/;"	v
 asyncio	scripts/crypto_compare/poll.py	/^import asyncio$/;"	i
-block_number	cryptocoins/models/coins_history.py	/^    block_number = BigIntegerField()$/;"	v	class:CoinsHistory
-block_reward	cryptocoins/models/coins_history.py	/^    block_reward = DecimalField()$/;"	v	class:CoinsHistory
+block_number	cryptocoins/models/coins_history.py	/^    block_number = BigIntegerField(null=True)$/;"	v	class:CoinsHistory
+block_reward	cryptocoins/models/coins_history.py	/^    block_reward = DecimalField(null=True)$/;"	v	class:CoinsHistory
 boto3	cryptocoins/collect_data.py	/^import boto3$/;"	i
 boto3	cryptocoins/import_data.py	/^import boto3$/;"	i
 bucket	hydrogen_notebooks/request_data.py	/^bucket = 'gly.fish'$/;"	v
@@ -134,9 +134,10 @@ bucket_name	hydrogen_notebooks/download_data.py	/^bucket_name = 'gly.fish'$/;"	v
 bucket_name	hydrogen_notebooks/import_data.py	/^bucket_name = 'gly.fish'$/;"	v
 bucket_name	scripts/crypto_compare/collect_daily.py	/^bucket_name = 'gly.fish'$/;"	v
 bucket_name	scripts/crypto_compare/collect_histoday.py	/^bucket_name = 'gly.fish'$/;"	v
+bucket_name	scripts/crypto_compare/import.py	/^bucket_name = 'gly.fish'$/;"	v
 call	cryptocoins/collect_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
-close_price_24_hour	cryptocoins/models/coins_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:CoinsHistory
+close_price_24_hour	cryptocoins/models/coins_history.py	/^    close_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 close_price_24_hour	cryptocoins/models/coins_price_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 close_price_24_hour	cryptocoins/models/exchanges_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
 coin_data	hydrogen_notebooks/download_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
@@ -158,7 +159,7 @@ create_from_top_pairs	cryptocoins/models/currency_pairs_history.py	/^    def cre
 create_import	cryptocoins/models/imports.py	/^    def create_import(cls, date_dir, file_name, remote_dir):$/;"	m	class:Imports
 create_or_update_using_crytocompare_coinlist	cryptocoins/models/coins.py	/^    def create_or_update_using_crytocompare_coinlist(cls, coin_list):$/;"	m	class:Coins
 created_at	cryptocoins/models/coins.py	/^    created_at = DateTimeField()$/;"	v	class:Coins
-created_at	cryptocoins/models/coins_history.py	/^    created_at = DateTimeField()$/;"	v	class:CoinsHistory
+created_at	cryptocoins/models/coins_history.py	/^    created_at = DateTimeField(null=True)$/;"	v	class:CoinsHistory
 created_at	cryptocoins/models/coins_price_history.py	/^    created_at = DateTimeField()$/;"	v	class:CoinsPriceHistory
 created_at	cryptocoins/models/collections.py	/^    created_at = DateTimeField()$/;"	v	class:Collections
 created_at	cryptocoins/models/currency_pairs_history.py	/^    created_at = DateTimeField()$/;"	v	class:CurrencyPairsHistory
@@ -246,7 +247,7 @@ from_symbol	cryptocoins/models/currency_pairs_history.py	/^    from_symbol = Tex
 from_symbol	cryptocoins/models/exchanges_history.py	/^    from_symbol = TextField()$/;"	v	class:ExchangesHistory
 full_name	cryptocoins/models/coins.py	/^    full_name = TextField()$/;"	v	class:Coins
 get_with_id	cryptocoins/models/collections.py	/^    def get_with_id(cls, id):$/;"	m	class:Collections
-high_price_24_hour	cryptocoins/models/coins_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:CoinsHistory
+high_price_24_hour	cryptocoins/models/coins_history.py	/^    high_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 high_price_24_hour	cryptocoins/models/coins_price_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 high_price_24_hour	cryptocoins/models/exchanges_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
 histoday_to_model_parameters	cryptocoins/models/coins_price_history.py	/^    def histoday_to_model_parameters(cls, histoday, from_symbol, to_symbol, exchange):$/;"	m	class:CoinsPriceHistory
@@ -299,7 +300,7 @@ logging	cryptocoins/models/exchanges_history.py	/^import logging$/;"	i
 logging	cryptocoins/models/imports.py	/^import logging$/;"	i
 logging	cryptocoins/utils.py	/^import logging$/;"	i
 loop	scripts/crypto_compare/poll.py	/^loop = asyncio.get_event_loop()$/;"	v
-low_price_24_hour	cryptocoins/models/coins_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:CoinsHistory
+low_price_24_hour	cryptocoins/models/coins_history.py	/^    low_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 low_price_24_hour	cryptocoins/models/coins_price_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 low_price_24_hour	cryptocoins/models/exchanges_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
 max_coins	scripts/crypto_compare/collect_daily.py	/^max_coins = 300$/;"	v
@@ -311,8 +312,9 @@ max_pairs	scripts/crypto_compare/collect_histoday.py	/^max_pairs = 300$/;"	v
 meta	cryptocoins/models/collections.py	/^    meta = TextField()$/;"	v	class:Collections
 name	cryptocoins/models/coins.py	/^    name = TextField()$/;"	v	class:Coins
 name	cryptocoins/models/exchanges_history.py	/^    name = TextField(index=True)$/;"	v	class:ExchangesHistory
-net_hashes_per_second	cryptocoins/models/coins_history.py	/^    net_hashes_per_second = DecimalField()$/;"	v	class:CoinsHistory
-open_price_24_hour	cryptocoins/models/coins_history.py	/^    open_price_24_hour = DecimalField()$/;"	v	class:CoinsHistory
+net_hashes_per_second	cryptocoins/models/coins_history.py	/^    net_hashes_per_second = DecimalField(null=True)$/;"	v	class:CoinsHistory
+null_param_if_missing	cryptocoins/utils.py	/^def null_param_if_missing(expected_params, params):$/;"	f
+open_price_24_hour	cryptocoins/models/coins_history.py	/^    open_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 open_price_24_hour	cryptocoins/models/coins_price_history.py	/^    open_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 open_price_24_hour	cryptocoins/models/exchanges_history.py	/^    open_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
 os	cryptocoins/collect_data.py	/^import os$/;"	i
@@ -433,11 +435,11 @@ valid_params	cryptocoins/models/coins_price_history.py	/^from cryptocoins.utils 
 valid_params	cryptocoins/models/currency_pairs_history.py	/^from cryptocoins.utils import valid_params$/;"	i
 valid_params	cryptocoins/models/exchanges_history.py	/^from cryptocoins.utils import valid_params$/;"	i
 valid_params	cryptocoins/utils.py	/^def valid_params(expected_params, params):$/;"	f
-volume_from_24_hour	cryptocoins/models/coins_history.py	/^    volume_from_24_hour = DecimalField()$/;"	v	class:CoinsHistory
+volume_from_24_hour	cryptocoins/models/coins_history.py	/^    volume_from_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 volume_from_24_hour	cryptocoins/models/coins_price_history.py	/^    volume_from_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 volume_from_24_hour	cryptocoins/models/currency_pairs_history.py	/^    volume_from_24_hour = DecimalField()$/;"	v	class:CurrencyPairsHistory
 volume_from_24_hour	cryptocoins/models/exchanges_history.py	/^    volume_from_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
-volume_to_24_hour	cryptocoins/models/coins_history.py	/^    volume_to_24_hour = DecimalField()$/;"	v	class:CoinsHistory
+volume_to_24_hour	cryptocoins/models/coins_history.py	/^    volume_to_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 volume_to_24_hour	cryptocoins/models/coins_price_history.py	/^    volume_to_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 volume_to_24_hour	cryptocoins/models/currency_pairs_history.py	/^    volume_to_24_hour = DecimalField()$/;"	v	class:CurrencyPairsHistory
 volume_to_24_hour	cryptocoins/models/exchanges_history.py	/^    volume_to_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
