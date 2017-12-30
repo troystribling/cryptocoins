@@ -39,7 +39,7 @@ def setup_logging(file_name=None, max_bytes=200000000, backup_count=5):
         handler = RotatingFileHandler(file_name, "a", max_bytes, backup_count)
         handler.setFormatter(formatter)
         logger.addHandler(handler)
-        logger.info("LOGGING to {file_name}")
+        logger.info(f"LOGGING to {file_name}")
     else:
         handler = logging.StreamHandler()
         handler.setFormatter(formatter)

@@ -45,7 +45,8 @@ def request_coin_list(bucket='gly.fish'):
 def request_coin_snapshot(from_currency, to_currency, bucket='gly.fish'):
     url = coin_snapshot_url(from_currency, to_currency)
     path = 'cryptocoins/cryptocompare/coin_snapshot'
-    fetch_and_return(url=url, bucket=bucket, path=path, to_currency=to_currency)
+    meta = f"{from_currency}/{to_currency}"
+    fetch_and_return(url=url, bucket=bucket, path=path, to_currency=to_currency, meta=meta)
 
 
 def request_coin_price_history(from_currency, to_currency, limit=1, exchange='CCCAGG', allData=False, bucket='gly.fish'):
@@ -58,4 +59,5 @@ def request_coin_price_history(from_currency, to_currency, limit=1, exchange='CC
 def request_top_currency_pairs(from_currency, limit=100, bucket='gly.fish'):
     url = top_currency_pairs_url(from_currency, limit=100)
     path = 'cryptocoins/cryptocompare/top_pairs'
-    fetch_and_return(url=url, bucket=bucket, path=path)
+    meta = from_currency
+    fetch_and_return(url=url, bucket=bucket, path=path, meta=meta)
