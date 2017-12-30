@@ -55,3 +55,9 @@ class Coins(BaseModel):
             return cls.raw("SELECT symbol FROM coins ORDER BY rank")
         else:
             return cls.raw("SELECT symbol FROM coins ORDER BY rank ASC LIMIT %s", limit)
+
+    @classmethod
+    def top_coins_data_frame(cls, limit=None):
+        coins = [coin for coin in cls.top_coins(limit=limit).dicts()]
+        index = [coin['id'] for coin in coins]
+        return pandas.DataFrame(coins, index=index)

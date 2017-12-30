@@ -38,7 +38,13 @@ dataFrame = pandas.DataFrame(d, index=['d', 'b', 'a'], columns=['two', 'three'])
 
 data = numpy.zeros((2,), dtype=[('A', 'i4'), ('B', 'f4'), ('C', 'a10')])
 data[:] = [(1, 2., 'Hello'), (2, 3., "World")]
+dataFrame = pandas.DataFrame(data)
+
+data = [{'a': 1, 'b': 2}, {'a': 5, 'b': 10, 'c': 20}]
+dataFrame = pandas.DataFrame(data)
+dataFrame = pandas.DataFrame(data, index=['first', 'second'])
 
 # %%
-for coin in Coins.top_coins():
-    print(coin.symbol)
+coins = [coin for coin in Coins.raw("SELECT * FROM coins ORDER BY rank ASC LIMIT %s", 100).dicts()]
+index = [coin['id'] for coin in coins]
+coinDataFrame = pandas.DataFrame(coins, index=index)

@@ -141,6 +141,7 @@ call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 close_price_24_hour	cryptocoins/models/coins_history.py	/^    close_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 close_price_24_hour	cryptocoins/models/coins_price_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 close_price_24_hour	cryptocoins/models/exchanges_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
+coinDataFrame	hydrogen_notebooks/python/pandas_examples.py	/^coinDataFrame = pandas.DataFrame(coins, index=index)$/;"	v
 coin_data	hydrogen_notebooks/crypto_compare/download_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 coin_list_url	cryptocoins/crypto_compare/requests.py	/^def coin_list_url():$/;"	f
 coin_name	cryptocoins/models/coins.py	/^    coin_name = TextField()$/;"	v	class:Coins
@@ -150,6 +151,7 @@ coin_snapshot	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^coin_snap
 coin_snapshot_to_model_parameters	cryptocoins/models/coins_history.py	/^    def coin_snapshot_to_model_parameters(cls, data):$/;"	m	class:CoinsHistory
 coin_snapshot_url	cryptocoins/crypto_compare/requests.py	/^def coin_snapshot_url(from_currency, to_currency):$/;"	f
 coins	hydrogen_notebooks/crypto_compare/download_data.py	/^coins = coin_data[0]['Data']$/;"	v
+coins	hydrogen_notebooks/python/pandas_examples.py	/^coins = [coin for coin in Coins.raw("SELECT * FROM coins ORDER BY rank ASC LIMIT %s", 100).dicts()]$/;"	v
 collection_successful	cryptocoins/models/collections.py	/^    def collection_successful(self):$/;"	m	class:Collections
 compare_data	hydrogen_notebooks/crypto_compare/download_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 create_collection	cryptocoins/models/collections.py	/^    def create_collection(cls, path, url, meta):$/;"	m	class:Collections
@@ -175,10 +177,13 @@ d	hydrogen_notebooks/python/pandas_examples.py	/^d = {'one': pandas.Series([1., 
 data	hydrogen_notebooks/crypto_compare/download_data.py	/^data = compare_data[0]$/;"	v
 data	hydrogen_notebooks/crypto_compare/download_data.py	/^data = compare_data[0]['Data']$/;"	v
 data	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^data = read_from_file(file_path)$/;"	v
+data	hydrogen_notebooks/python/pandas_examples.py	/^data = [{'a': 1, 'b': 2}, {'a': 5, 'b': 10, 'c': 20}]$/;"	v
 data	hydrogen_notebooks/python/pandas_examples.py	/^data = numpy.zeros((2,), dtype=[('A', 'i4'), ('B', 'f4'), ('C', 'a10')])$/;"	v
 dataFrame	hydrogen_notebooks/python/pandas_examples.py	/^dataFrame = pandas.DataFrame(d)$/;"	v
 dataFrame	hydrogen_notebooks/python/pandas_examples.py	/^dataFrame = pandas.DataFrame(d, index=['c', 'b', 'd'])$/;"	v
 dataFrame	hydrogen_notebooks/python/pandas_examples.py	/^dataFrame = pandas.DataFrame(d, index=['d', 'b', 'a'], columns=['two', 'three'])$/;"	v
+dataFrame	hydrogen_notebooks/python/pandas_examples.py	/^dataFrame = pandas.DataFrame(data)$/;"	v
+dataFrame	hydrogen_notebooks/python/pandas_examples.py	/^dataFrame = pandas.DataFrame(data, index=['first', 'second'])$/;"	v
 database	cryptocoins/models/coins.py	/^        database = database$/;"	v	class:BaseModel.Meta
 database	cryptocoins/models/coins.py	/^database = PostgresqlDatabase('cryptocoins', user='cryptocoins', host='127.0.0.1')$/;"	v
 database	cryptocoins/models/coins_history.py	/^        database = database$/;"	v	class:BaseModel.Meta
@@ -268,6 +273,7 @@ import_currency_pairs_history	cryptocoins/crypto_compare/imports.py	/^def import
 import_currency_pairs_history	hydrogen_notebooks/crypto_compare/import_data.py	/^def import_currency_pairs_history(data):$/;"	f
 import_data	hydrogen_notebooks/crypto_compare/download_data.py	/^from cryptocoins import import_data$/;"	i
 import_from_s3	cryptocoins/import_data.py	/^def import_from_s3(remote_dir):$/;"	f
+index	hydrogen_notebooks/python/pandas_examples.py	/^index = [coin['id'] for coin in coins]$/;"	v
 indexes	cryptocoins/models/coins_history.py	/^        indexes = ($/;"	v	class:CoinsHistory.Meta
 indexes	cryptocoins/models/coins_price_history.py	/^        indexes = ($/;"	v	class:CoinsPriceHistory.Meta
 indexes	cryptocoins/models/collections.py	/^        indexes = ($/;"	v	class:Collections.Meta
@@ -432,6 +438,7 @@ to_symbol	cryptocoins/models/coins_price_history.py	/^    to_symbol = TextField(
 to_symbol	cryptocoins/models/currency_pairs_history.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CurrencyPairsHistory
 to_symbol	cryptocoins/models/exchanges_history.py	/^    to_symbol = TextField()$/;"	v	class:ExchangesHistory
 top_coins	cryptocoins/models/coins.py	/^    def top_coins(cls, limit=None):$/;"	m	class:Coins
+top_coins_data_frame	cryptocoins/models/coins.py	/^    def top_coins_data_frame(cls, limit=None):$/;"	m	class:Coins
 top_currency_pairs_url	cryptocoins/crypto_compare/requests.py	/^def top_currency_pairs_url(from_currency, limit=100):$/;"	f
 top_exchanges_for_currency_pair	cryptocoins/models/exchanges_history.py	/^    def top_exchanges_for_currency_pair(cls, from_symbol, to_symbol, limit=10):$/;"	m	class:ExchangesHistory
 top_pairs_to_model_params	cryptocoins/models/currency_pairs_history.py	/^    def top_pairs_to_model_params(cls, top_pair):$/;"	m	class:CurrencyPairsHistory
