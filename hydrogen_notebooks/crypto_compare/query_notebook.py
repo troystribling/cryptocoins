@@ -11,7 +11,7 @@ from cryptocoins.crypto_compare.requests import coin_price_history_url
 # coins
 # %%
 query = "SELECT symbol, rank FROM coins ORDER BY rank ASC LIMIT %s"
-for coin in Coins.raw(query, limit=100):
+for coin in Coins.raw(query, 100):
     print(coin.symbol, coin.rank)
 
 # currency_pairs_history

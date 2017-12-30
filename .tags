@@ -303,7 +303,6 @@ loop	scripts/crypto_compare/poll.py	/^loop = asyncio.get_event_loop()$/;"	v
 low_price_24_hour	cryptocoins/models/coins_history.py	/^    low_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 low_price_24_hour	cryptocoins/models/coins_price_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 low_price_24_hour	cryptocoins/models/exchanges_history.py	/^    low_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
-matplotlib	coin_plots/line_plots.py	/^import matplotlib.pyplot as pyplot$/;"	i
 max_coins	scripts/crypto_compare/collect_daily.py	/^max_coins = 300$/;"	v
 max_coins	scripts/crypto_compare/collect_histoday.py	/^max_coins = 300$/;"	v
 max_exchanges	scripts/crypto_compare/collect_daily.py	/^max_exchanges = 100$/;"	v
@@ -316,7 +315,6 @@ name	cryptocoins/models/exchanges_history.py	/^    name = TextField(index=True)$
 net_hashes_per_second	cryptocoins/models/coins_history.py	/^    net_hashes_per_second = DecimalField(null=True)$/;"	v	class:CoinsHistory
 null_param_if_missing	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params, null_param_if_missing$/;"	i
 null_param_if_missing	cryptocoins/utils.py	/^def null_param_if_missing(expected_params, params):$/;"	f
-numpy	coin_plots/line_plots.py	/^import numpy$/;"	i
 open_price_24_hour	cryptocoins/models/coins_history.py	/^    open_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 open_price_24_hour	cryptocoins/models/coins_price_history.py	/^    open_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 open_price_24_hour	cryptocoins/models/exchanges_history.py	/^    open_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
@@ -328,6 +326,7 @@ os	scripts/crypto_compare/collect_daily.py	/^import os$/;"	i
 os	scripts/crypto_compare/collect_histoday.py	/^import os$/;"	i
 os	scripts/crypto_compare/import.py	/^import os$/;"	i
 os	scripts/crypto_compare/poll.py	/^import os$/;"	i
+pandas	coin_plots/line_plots.py	/^import pandas$/;"	i
 parse	hydrogen_notebooks/download_data.py	/^from dateutil.parser import parse$/;"	i
 parse	hydrogen_notebooks/import_data.py	/^from dateutil.parser import parse$/;"	i
 parse	hydrogen_notebooks/import_data_debug.py	/^from dateutil.parser import parse$/;"	i
@@ -342,7 +341,6 @@ poll_coin_snapshot	scripts/crypto_compare/poll.py	/^async def poll_coin_snapshot
 process_args	hydrogen_notebooks/python_exaples.py	/^def process_args(data):$/;"	f
 process_kwargs	hydrogen_notebooks/python_exaples.py	/^def process_kwargs(data):$/;"	f
 proof_type	cryptocoins/models/coins_history.py	/^    proof_type = TextField(null=True)$/;"	v	class:CoinsHistory
-pyplot	coin_plots/line_plots.py	/^import matplotlib.pyplot as pyplot$/;"	i
 query	hydrogen_notebooks/query_notebook.py	/^        " ORDER BY full_table.volume_from_24_hour DESC LIMIT %s"$/;"	v
 query	hydrogen_notebooks/query_notebook.py	/^query = "SELECT symbol, rank FROM coins ORDER BY rank ASC LIMIT %s"$/;"	v
 rank	cryptocoins/models/coins.py	/^    rank = BigIntegerField()$/;"	v	class:Coins
@@ -420,7 +418,7 @@ to_symbol	cryptocoins/models/coins_history.py	/^    to_symbol = TextField(index=
 to_symbol	cryptocoins/models/coins_price_history.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CoinsPriceHistory
 to_symbol	cryptocoins/models/currency_pairs_history.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CurrencyPairsHistory
 to_symbol	cryptocoins/models/exchanges_history.py	/^    to_symbol = TextField()$/;"	v	class:ExchangesHistory
-top_coins	cryptocoins/models/coins.py	/^    def top_coins(cls, limit=100):$/;"	m	class:Coins
+top_coins	cryptocoins/models/coins.py	/^    def top_coins(cls, limit=None):$/;"	m	class:Coins
 top_currency_pairs_url	cryptocoins/crypto_compare/requests.py	/^def top_currency_pairs_url(from_currency, limit=100):$/;"	f
 top_exchanges_for_currency_pair	cryptocoins/models/exchanges_history.py	/^    def top_exchanges_for_currency_pair(cls, from_symbol, to_symbol, limit=10):$/;"	m	class:ExchangesHistory
 top_pairs_to_model_params	cryptocoins/models/currency_pairs_history.py	/^    def top_pairs_to_model_params(cls, top_pair):$/;"	m	class:CurrencyPairsHistory

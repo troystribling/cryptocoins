@@ -49,7 +49,9 @@ class Coins(BaseModel):
             logger.error(f"DATABASE ERROR for Coin: {error}: {coin_list}")
             return None
 
-
     @classmethod
-    def top_coins(cls, limit=100):
-        return cls.raw("SELECT symbol FROM coins ORDER BY rank ASC LIMIT %s", limit)
+    def top_coins(cls, limit=None):
+        if limit is None:
+            return cls.raw("SELECT symbol FROM coins ORDER BY rank")
+        else:
+            return cls.raw("SELECT symbol FROM coins ORDER BY rank ASC LIMIT %s", limit)
