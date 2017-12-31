@@ -11,14 +11,18 @@ steps = [
          "("
          " id SERIAL PRIMARY KEY, "
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
-         " updated_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
          " coin_name TEXT NOT NULL,"
          " full_name TEXT NOT NULL,"
          " cryptocompare_id BIGINT NOT NULL,"
          " name TEXT NOT NULL,"
          " symbol TEXT NOT NULL,"
          " volume_total_usd NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
-         " rank BIGINT NOT NULL DEFAULT 1"
+         " volume_total_btc NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
+         " volume_total NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
+         " crypto_compare_rank BIGINT NOT NULL DEFAULT 1,"
+         " timestamp_epoc BIGINT NOT NULL,"
+         " timestamp TIMESTAMP NOT NULL"
          ")", "DROP TABLE coins"),
-    step("CREATE UNIQUE INDEX coins_symbol_idx ON coins (symbol)", "DROP INDEX coins_symbol_idx")
+    step("CREATE INDEX coins_symbol_idx ON coins (symbol)", "DROP INDEX coins_symbol_idx"),
+    step("CREATE UNIQUE INDEX coins_symbol_timestamp_epoc_idx ON coins (symbol, timestamp_epoc)", "DROP INDEX coins_symbol_timestamp_epoc_idx")
 ]

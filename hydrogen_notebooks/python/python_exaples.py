@@ -1,3 +1,10 @@
+
+# %%
+import time
+int(time.time())
+
+# %%
+
 def decorator_with_args(a, b):
     def decorator(process):
         print(f"decorator outer_args: {a}, {b}")

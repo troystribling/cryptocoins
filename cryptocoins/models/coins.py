@@ -1,6 +1,8 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 import logging
+import pandas
+import time
 
 from cryptocoins.utils import valid_params
 
@@ -19,33 +21,35 @@ class Coins(BaseModel):
     cryptocompare_id = BigIntegerField()
     full_name = TextField()
     name = TextField()
-    rank = BigIntegerField()
+    crypto_compare_rank = BigIntegerField()
     symbol = TextField(unique=True)
-    updated_at = DateTimeField()
     volume_total_usd = DecimalField()
+    volume_total_btc = DecimalField()
+    volume_total = DecimalField()
+    timestamp = DateTimeField()
+    timestamp_epoc = BigIntegerField()
 
     class Meta:
         db_table = 'coins'
 
     @classmethod
-    def create_or_update_using_crytocompare_coinlist(cls, coin_list):
+    def create_from_crytocompare_coinlist(cls, coin_list):
         expected_keys = ['CoinName', 'Id', 'FullName', 'Name', 'Symbol', 'SortOrder']
         if not valid_params(expected_params=expected_keys, params=coin_list):
             return
 
         try:
+            timestamp_epoc = int(time.time())
             with database.atomic():
                 cls.create(coin_name=coin_list['CoinName'],
                            cryptocompare_id=coin_list['Id'],
                            full_name=coin_list['FullName'],
                            name=coin_list['Name'],
                            symbol=coin_list['Symbol'],
-                           rank=coin_list['SortOrder'])
-        except IntegrityError:
-            query = cls.update(updated_at=datetime.utcnow(),
-                               rank=coin_list['SortOrder']).where(Coins.symbol == coin_list['Symbol'])
-            query.execute()
-        except DataError as error:
+                           rank=coin_list['SortOrder'],
+                           timestamp_epoc=timestamp_epoc,
+                           timestamp=datetime.utcfromtimestamp(int(timestamp_epoc)))
+        except (IntegrityError, DataError) as error:
             logger.error(f"DATABASE ERROR for Coin: {error}: {coin_list}")
             return None
 
