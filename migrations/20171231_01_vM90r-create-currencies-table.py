@@ -8,7 +8,7 @@ __depends__ = {}
 
 steps = [
     step("CREATE TABLE currencies"
-         "("
+         " ("
          " id SERIAL PRIMARY KEY, "
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
          " name TEXT,"
@@ -16,6 +16,8 @@ steps = [
          " volume_total_usd NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " volume_total_btc NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " volume_total NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
+         " price_usd NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
+         " price_btc NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " timestamp_epoc BIGINT NOT NULL,"
          " timestamp TIMESTAMP NOT NULL"
          ")", "DROP TABLE currencies"),

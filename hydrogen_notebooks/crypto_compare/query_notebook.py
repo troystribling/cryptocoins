@@ -20,7 +20,7 @@ query = "SELECT full_table.created_at, full_table.exchange, full_table.from_symb
         " FROM currency_pairs_history AS full_table" \
         " INNER JOIN" \
         " (SELECT MAX(id) AS latest_id, exchange, from_symbol, to_symbol FROM currency_pairs_history" \
-        " GROUP BY exchange, from_symbol, to_symbol HAVING from_symbol = %s)" \
+        "  GROUP BY exchange, from_symbol, to_symbol HAVING from_symbol = %s)" \
         " AS latest ON (full_table.id = latest.latest_id)" \
         " ORDER BY full_table.volume_from_24_hour DESC LIMIT %s"
 
@@ -50,3 +50,8 @@ collection_date
 current_time = datetime.utcnow()
 time_delta = current_time - collection_date
 time_delta.days
+
+# Coins
+# %%
+for coin in Coins.top_coins(limit=10):
+    print(coin.symbol, coin.crypto_compare_rank)

@@ -26,6 +26,12 @@ class Coins(BaseModel):
     volume_total_usd = DecimalField()
     volume_total_btc = DecimalField()
     volume_total = DecimalField()
+    price_usd = DecimalField()
+    price_btc = DecimalField()
+    spread_usd = DecimalField()
+    spread_btc = DecimalField()
+    marketcap_usd = DecimalField()
+    marketcap_btc = DecimalField()
     timestamp = DateTimeField()
     timestamp_epoc = BigIntegerField()
 
@@ -46,7 +52,7 @@ class Coins(BaseModel):
                            full_name=coin_list['FullName'],
                            name=coin_list['Name'],
                            symbol=coin_list['Symbol'],
-                           rank=coin_list['SortOrder'],
+                           crypto_compare_rank=coin_list['SortOrder'],
                            timestamp_epoc=timestamp_epoc,
                            timestamp=datetime.utcfromtimestamp(int(timestamp_epoc)))
         except (IntegrityError, DataError) as error:
@@ -56,9 +62,25 @@ class Coins(BaseModel):
     @classmethod
     def top_coins(cls, limit=None):
         if limit is None:
-            return cls.raw("SELECT symbol FROM coins ORDER BY rank")
+            return cls.raw("SELECT * FROM coins"
+                           " JOIN"
+                           " (SELECT MAX(timestamp_epoc) AS latest_timestamp, symbol FROM coins GROUP BY symbol)"
+                           "  AS latest_coins"
+                           "  ON"
+                           "   (coins.timestamp_epoc = latest_coins.latest_timestamp)"
+                           "   AND"
+                           "   (coins.symbol = latest_coins.symbol)"
+                           " ORDER BY crypto_compare_rank")
         else:
-            return cls.raw("SELECT symbol FROM coins ORDER BY rank ASC LIMIT %s", limit)
+            return cls.raw("SELECT * FROM coins"
+                           " JOIN"
+                           " (SELECT MAX(timestamp_epoc) AS latest_timestamp, symbol FROM coins GROUP BY symbol)"
+                           "  AS latest_coins"
+                           "  ON"
+                           "   (coins.timestamp_epoc = latest_coins.latest_timestamp)"
+                           "   AND"
+                           "   (coins.symbol = latest_coins.symbol)"
+                           " ORDER BY crypto_compare_rank ASC LIMIT %s", limit)
 
     @classmethod
     def top_coins_data_frame(cls, limit=None):

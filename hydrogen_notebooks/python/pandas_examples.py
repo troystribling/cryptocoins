@@ -43,8 +43,3 @@ dataFrame = pandas.DataFrame(data)
 data = [{'a': 1, 'b': 2}, {'a': 5, 'b': 10, 'c': 20}]
 dataFrame = pandas.DataFrame(data)
 dataFrame = pandas.DataFrame(data, index=['first', 'second'])
-
-# %%
-coins = [coin for coin in Coins.raw("SELECT * FROM coins ORDER BY rank ASC LIMIT %s", 100).dicts()]
-index = [coin['id'] for coin in coins]
-coinDataFrame = pandas.DataFrame(coins, index=index)

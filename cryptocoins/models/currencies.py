@@ -20,6 +20,8 @@ class Currencies(BaseModel):
     volume_total = DecimalField()
     volume_total_btc = DecimalField()
     volume_total_usd = DecimalField()
+    price_usd = DecimalField()
+    price_btc = DecimalField()
 
     class Meta:
         db_table = 'currencies'
