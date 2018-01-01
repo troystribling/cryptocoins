@@ -28,8 +28,7 @@ def import_coin_list(data):
     if 'Data' not in data[0]:
         logger.error(f"Data KEY IS MISSING FROM import_coin_snapshot_full: {data[0]}")
         return
-    for coin in data[0]['Data'].values():
-        Coins.create_from_crytocompare_coinlist(coin)
+    Coins.create_from_crytocompare_coinlist(data[0]['Data'].values())
 
 
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/top_pairs')

@@ -1,6 +1,7 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 import logging
+import time
 
 from cryptocoins.utils import valid_params
 
@@ -42,31 +43,32 @@ class ExchangesHistory(BaseModel):
             logger.error(f"Exchanges KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
             return
         exchanges = coin_snapshot['Exchanges']
+        timestamp_epoc = int(time.time())
 
         with database.atomic():
             for i in range(0, len(exchanges), batch_size):
-                model_params = [cls.exchange_to_model_params(exchange) for exchange in exchanges[i:i + batch_size]]
+                model_params = [cls.exchange_to_model_params(exchange, timestamp_epoc) for exchange in exchanges[i:i + batch_size]]
                 try:
                     cls.insert_many(model_params).execute()
-                except (IntegrityError, DataError) as error:
+                except (IntegrityError, DataError, ValueError) as error:
                     logger.error(f"DATABASE ERROR for ExchangesHistory: {error}: {exchanges}")
                     continue
 
     @classmethod
-    def exchange_to_model_params(cls, exchange):
+    def exchange_to_model_params(cls, exchange, timestamp_epoc):
         expected_keys = ['FROMSYMBOL', 'HIGH24HOUR', 'LOW24HOUR', 'LASTUPDATE', 'MARKET',
                          'OPEN24HOUR', 'TOSYMBOL', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
         if not valid_params(expected_params=expected_keys, params=exchange):
             raise ValueError('Exchange keys invalid')
-        timestamp_epoc = exchange['LASTUPDATE']
+        last_update_epoc = exchange['LASTUPDATE']
         return {'from_symbol': exchange['FROMSYMBOL'],
                 'high_price_24_hour': exchange['HIGH24HOUR'],
                 'low_price_24_hour': exchange['LOW24HOUR'],
                 'name': exchange['MARKET'],
                 'open_price_24_hour': exchange['OPEN24HOUR'],
                 'close_price_24_hour': exchange['PRICE'],
-                'timestamp': datetime.utcfromtimestamp(int(timestamp_epoc)),
                 'timestamp_epoc': timestamp_epoc,
+                'last_update_epoc': last_update_epoc,
                 'to_symbol': exchange['TOSYMBOL'],
                 'volume_from_24_hour': exchange['VOLUME24HOUR'],
                 'volume_to_24_hour': exchange['VOLUME24HOURTO']}

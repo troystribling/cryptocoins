@@ -26,8 +26,7 @@ steps = [
          " spread_usd NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " spread_btc NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " crypto_compare_rank BIGINT NOT NULL DEFAULT 1,"
-         " timestamp_epoc BIGINT NOT NULL,"
-         " timestamp TIMESTAMP NOT NULL"
+         " timestamp_epoc BIGINT NOT NULL"
          ")", "DROP TABLE coins"),
     step("CREATE INDEX coins_symbol_idx ON coins (symbol)", "DROP INDEX coins_symbol_idx"),
     step("CREATE UNIQUE INDEX coins_symbol_timestamp_epoc_idx ON coins (symbol, timestamp_epoc)", "DROP INDEX coins_symbol_timestamp_epoc_idx")

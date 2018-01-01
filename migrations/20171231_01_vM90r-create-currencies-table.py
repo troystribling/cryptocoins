@@ -18,8 +18,7 @@ steps = [
          " volume_total NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " price_usd NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " price_btc NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
-         " timestamp_epoc BIGINT NOT NULL,"
-         " timestamp TIMESTAMP NOT NULL"
+         " timestamp_epoc BIGINT NOT NULL"
          ")", "DROP TABLE currencies"),
     step("CREATE INDEX currencies_symbol_idx ON currencies (symbol)", "DROP INDEX currencies_symbol_idx"),
     step("CREATE UNIQUE INDEX currencies_symbol_timestamp_epoc_idx ON currencies (symbol, timestamp_epoc)", "DROP INDEX currencies_symbol_timestamp_epoc_idx")

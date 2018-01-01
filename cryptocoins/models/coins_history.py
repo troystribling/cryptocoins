@@ -1,6 +1,7 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 from datetime import datetime
 import logging
+import time
 
 from cryptocoins.utils import valid_params, null_param_if_missing
 
@@ -26,7 +27,7 @@ class CoinsHistory(BaseModel):
     proof_type = TextField(null=True)
     from_symbol = TextField(index=True)
     to_symbol = TextField(index=True)
-    timestamp = DateTimeField()
+    last_update_epoc = BigIntegerField()
     timestamp_epoc = BigIntegerField()
     total_coins_mined = DecimalField()
     volume_from_24_hour = DecimalField(null=True)
@@ -69,7 +70,7 @@ class CoinsHistory(BaseModel):
         if not valid_params(expected_params=expected_keys, params=aggregated_data):
             return None
 
-        timestamp_epoc = aggregated_data['LASTUPDATE']
+        last_update_epoc = aggregated_data['LASTUPDATE']
 
         return {'algorithm': coin_snapshot['Algorithm'],
                 'block_number': coin_snapshot['BlockNumber'],
@@ -86,4 +87,4 @@ class CoinsHistory(BaseModel):
                 'volume_from_24_hour': aggregated_data['VOLUME24HOUR'],
                 'volume_to_24_hour': aggregated_data['VOLUME24HOURTO'],
                 'timestamp_epoc': timestamp_epoc,
-                'timestamp': datetime.utcfromtimestamp(int(timestamp_epoc))}
+                'last_update_epoc': last_update_epoc}

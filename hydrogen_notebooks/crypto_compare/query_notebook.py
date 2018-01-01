@@ -5,6 +5,7 @@ from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.coins import Coins
 from cryptocoins.models.exchanges_history import ExchangesHistory
 from cryptocoins.models.collections import Collections
+from cryptocoins.models.currencies import Currencies
 
 from cryptocoins.crypto_compare.requests import coin_price_history_url
 
@@ -26,6 +27,9 @@ query = "SELECT full_table.created_at, full_table.exchange, full_table.from_symb
 
 for pair in CurrencyPairsHistory.raw(query, 'BTC', 10):
     print(pair.created_at, pair.exchange, pair.from_symbol, pair.to_symbol, pair.volume_from_24_hour)
+
+for currency in CurrencyPairsHistory.currencies():
+    print(currency)
 
 # exchanges_history
 # %%
@@ -51,7 +55,11 @@ current_time = datetime.utcnow()
 time_delta = current_time - collection_date
 time_delta.days
 
-# Coins
+# coins
 # %%
 for coin in Coins.top_coins(limit=10):
     print(coin.symbol, coin.crypto_compare_rank)
+
+# currencies
+# %%
+Currencies.create_for_symbols()

@@ -30,7 +30,7 @@ class Collections(BaseModel):
             with database.atomic():
                 return cls.create(path=path, url=url, meta=meta)
         except IntegrityError as error:
-            logger.error(f"DATABASE ERROR for Collection with path: {error}: {path}, {created_at}")
+            logger.error(f"DATABASE ERROR FOR Collection: {error}: {path}, {created_at}")
             return None
 
     @classmethod
@@ -38,15 +38,8 @@ class Collections(BaseModel):
         try:
             return Collections.get(Collections.id == id)
         except IntegrityError as error:
-            logger.error(f"DATABASE ERROR for Collection with id: {error}: {id}")
+            logger.error(f"DATABASE ERROR FOR Collection with id: {error}: {id}")
             return None
-
-    @classmethod
-    def last_successful_collection_for_url(cls, url):
-        query = "SELECT created_at, path, url, meta, success FROM collections" \
-                " WHERE url = %s AND success = 'true'" \
-                " ORDER BY created_at LIMIT 1"
-        return cls.raw(query, url).scalar()
 
     @classmethod
     def lastest_collection_for_url(cls, url):

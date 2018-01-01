@@ -1,5 +1,4 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
-from datetime import datetime
 import logging
 import pandas
 import time
@@ -32,32 +31,34 @@ class Coins(BaseModel):
     spread_btc = DecimalField()
     marketcap_usd = DecimalField()
     marketcap_btc = DecimalField()
-    timestamp = DateTimeField()
     timestamp_epoc = BigIntegerField()
 
     class Meta:
         db_table = 'coins'
 
     @classmethod
-    def create_from_crytocompare_coinlist(cls, coin_list):
+    def create_from_crytocompare_coinlist(cls, coin_list, batch_size=100):
+        timestamp_epoc = int(time.time())
+        for i in range(0, len(coin_list), batch_size):
+            model_params = [cls.coin_list_to_model_params(coin, timestamp_epoc) for coin in coin_list[i:i + batch_size]]
+            try:
+                cls.insert_many(model_params).execute()
+            except (IntegrityError, DataError, ValueError) as error:
+                logger.error(f"DATABASE ERROR for ExchangesHistory: {error}: {exchanges}")
+                continue
+
+    @classmethod
+    def coin_list_to_model_params(cls, coin_list, timestamp_epoc):
         expected_keys = ['CoinName', 'Id', 'FullName', 'Name', 'Symbol', 'SortOrder']
         if not valid_params(expected_params=expected_keys, params=coin_list):
-            return
-
-        try:
-            timestamp_epoc = int(time.time())
-            with database.atomic():
-                cls.create(coin_name=coin_list['CoinName'],
-                           cryptocompare_id=coin_list['Id'],
-                           full_name=coin_list['FullName'],
-                           name=coin_list['Name'],
-                           symbol=coin_list['Symbol'],
-                           crypto_compare_rank=coin_list['SortOrder'],
-                           timestamp_epoc=timestamp_epoc,
-                           timestamp=datetime.utcfromtimestamp(int(timestamp_epoc)))
-        except (IntegrityError, DataError) as error:
-            logger.error(f"DATABASE ERROR for Coin: {error}: {coin_list}")
-            return None
+            raise ValueError('Coin List keys invalid')
+        return {'coin_name': coin_list['CoinName'],
+                'cryptocompare_id': coin_list['Id'],
+                'full_name': coin_list['FullName'],
+                'name': coin_list['Name'],
+                'symbol': coin_list['Symbol'],
+                'crypto_compare_rank': coin_list['SortOrder'],
+                'timestamp_epoc': timestamp_epoc}
 
     @classmethod
     def top_coins(cls, limit=None):
