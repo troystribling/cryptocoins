@@ -31,20 +31,20 @@ class Coins(BaseModel):
     spread_btc = DecimalField()
     marketcap_usd = DecimalField()
     marketcap_btc = DecimalField()
-    timestamp_epoc = BigIntegerField()
+    timestamp_epoc = DecimalField()
 
     class Meta:
         db_table = 'coins'
 
     @classmethod
     def create_from_crytocompare_coinlist(cls, coin_list, batch_size=100):
-        timestamp_epoc = int(time.time())
+        timestamp_epoc = time.time()
         for i in range(0, len(coin_list), batch_size):
             model_params = [cls.coin_list_to_model_params(coin, timestamp_epoc) for coin in coin_list[i:i + batch_size]]
             try:
                 cls.insert_many(model_params).execute()
             except (IntegrityError, DataError, ValueError) as error:
-                logger.error(f"DATABASE ERROR for ExchangesHistory: {error}: {exchanges}")
+                logger.error(f"DATABASE ERROR for Coins: {error}")
                 continue
 
     @classmethod

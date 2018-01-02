@@ -34,14 +34,14 @@ class CurrencyPairsHistory(BaseModel):
             logger.error(f"Data KEY IS MISSING FROM currency_pairs_history: {data}")
             return
         top_pairs = data['Data']
-        timestamp_epoc = int(time.time())
+        timestamp_epoc = time.time()
         with database.atomic():
             for i in range(0, len(top_pairs), batch_size):
                 model_params = [cls.top_pairs_to_model_params(top_pair, timestamp_epoc) for top_pair in top_pairs[i:i + batch_size]]
                 try:
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, InternalError, DataError) as error:
-                    logger.error(f"DATABASE ERROR FOR CurrencyPairsHistory: {error}: {model_params}")
+                    logger.error(f"DATABASE ERROR FOR CurrencyPairsHistory: {error}")
                     continue
 
     @classmethod

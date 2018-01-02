@@ -9,38 +9,50 @@ from cryptocoins.models.exchanges_history import ExchangesHistory
 from cryptocoins.models.coins_history import CoinsHistory
 from cryptocoins.models.coins_price_history import CoinsPriceHistory
 
-
 bucket_name = 'gly.fish'
 
 # %%
 # coin_list
-start_date = parse('20171209')
-end_date = parse('20171209')
+start_date = parse('20171230')
+end_date = parse('20180101')
 
 
-@import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/coin_list')
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_list')
 def import_coin_list(data):
-    for coin in data[0]['Data'].values():
-        Coins.create_from_crytocompare_coinlist(coin)
+    if len(data) != 1:
+        print("DATA WRONG SIZE")
+    if 'Data' not in data[0]:
+        print(f"Data KEY IS MISSING FROM import_coin_snapshot_full: {data[0]}")
+        return
+    print()
+    coin_list = [coin for coin in data[0]['Data'].values()]
+    Coins.create_from_crytocompare_coinlist(coin_list, batch_size=10)
 
 
-import_coin_list(start_date, end_date)
+import_coin_list(bucket_name, start_date, end_date)
 
 
 # %%
-# coin_snapshot, coin_history, exchantes_history
+# currencies
+
+
+# %%
+# coin_snapshot, coin_history, exchanges_history
 start_date = parse('20171210')
 end_date = parse('20171210')
 
 
-@import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/coin_snapshot')
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_snapshot')
 def import_coin_snapshot(data):
+    if len(data) != 1:
+        print("DATA WRONG SIZE")
+        return
     coin_snapshot = data[0]
     CoinsHistory.create_from_coin_snapshot(coin_snapshot)
-    ExchangesHistory.create_from_coin_snapshot(coin_snapshot)
+    ExchangesHistory.create_from_coin_snapshot(coin_snapshot, batch_size=100)
 
 
-import_coin_snapshot(start_date, end_date)
+import_coin_snapshot(bucket_name, start_date, end_date)
 
 
 # %%
@@ -49,13 +61,15 @@ start_date = parse('20171209')
 end_date = parse('20171209')
 
 
-@import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/top_pairs')
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/top_pairs')
 def import_currency_pairs_history(data):
+    if len(data) != 1:
+        print("DATA WRONG SIZE")
     top_pairs = data[0]
-    CurrencyPairsHistory.create_from_top_pairs(top_pairs)
+    CurrencyPairsHistory.create_from_top_pairs(top_pairs, batch_size=100)
 
 
-import_currency_pairs_history(start_date, end_date)
+import_currency_pairs_history(bucket_name, start_date, end_date)
 
 
 # %%
@@ -64,10 +78,12 @@ start_date = parse('20171209')
 end_date = parse('20171209')
 
 
-@import_from_s3(bucket_name=bucket_name, remote_dir='cryptocoins/cryptocompare/histoday')
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/histoday')
 def import_coin_price_history(data):
+    if len(data) != 1:
+        print("DATA WRONG SIZE")
     histoday = data[0]
-    CoinsPriceHistory.create_from_histoday(histoday)
+    CoinsPriceHistory.create_from_histoday(histoday, batch_size=100)
 
 
-import_coin_price_history(start_date, end_date)
+import_coin_price_history(bucket_name, start_date, end_date)

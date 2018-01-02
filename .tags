@@ -252,6 +252,7 @@ decorator_with_kwargs	hydrogen_notebooks/python/python_exaples.py	/^def decorato
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
 end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20171209')$/;"	v
 end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20171210')$/;"	v
+end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20180101')$/;"	v
 end_date	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^end_date = parse('20171210')$/;"	v
 end_date	scripts/crypto_compare/collect_daily.py	/^end_date = datetime.utcnow()$/;"	v
 end_date	scripts/crypto_compare/collect_histoday.py	/^end_date = datetime.utcnow()$/;"	v
@@ -276,6 +277,7 @@ file_name	cryptocoins/models/imports.py	/^    file_name = TextField(unique=True)
 file_path	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^file_path = os.path.join(tempdir, local_file_path)$/;"	v
 files	hydrogen_notebooks/crypto_compare/download_data.py	/^files = os.listdir(os.path.join(local_dir, day_dir))$/;"	v
 folder_date	hydrogen_notebooks/crypto_compare/download_data.py	/^folder_date = parse('20171203')$/;"	v
+folder_date	hydrogen_notebooks/crypto_compare/download_data.py	/^folder_date = parse('20171230')$/;"	v
 from_currency	hydrogen_notebooks/crypto_compare/request_data.py	/^from_currency = 'BTC'$/;"	v
 from_symbol	cryptocoins/models/coins_history.py	/^    from_symbol = TextField(index=True)$/;"	v	class:CoinsHistory
 from_symbol	cryptocoins/models/coins_price_history.py	/^    from_symbol = TextField(index=True)$/;"	v	class:CoinsPriceHistory
@@ -434,6 +436,7 @@ spread_btc	cryptocoins/models/coins.py	/^    spread_btc = DecimalField()$/;"	v	c
 spread_usd	cryptocoins/models/coins.py	/^    spread_usd = DecimalField()$/;"	v	class:Coins
 start_date	hydrogen_notebooks/crypto_compare/import_data.py	/^start_date = parse('20171209')$/;"	v
 start_date	hydrogen_notebooks/crypto_compare/import_data.py	/^start_date = parse('20171210')$/;"	v
+start_date	hydrogen_notebooks/crypto_compare/import_data.py	/^start_date = parse('20171230')$/;"	v
 start_date	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^start_date = parse('20171210')$/;"	v
 start_date	scripts/crypto_compare/collect_daily.py	/^start_date = datetime.utcnow()$/;"	v
 start_date	scripts/crypto_compare/collect_histoday.py	/^start_date = datetime.utcnow()$/;"	v
@@ -481,7 +484,7 @@ time_delta	hydrogen_notebooks/crypto_compare/query_notebook.py	/^time_delta = cu
 timedelta	cryptocoins/utils.py	/^from datetime import timedelta, datetime$/;"	i
 timestamp	cryptocoins/models/coins_price_history.py	/^    timestamp = DateTimeField()$/;"	v	class:CoinsPriceHistory
 timestamp	cryptocoins/models/exchanges_history.py	/^    timestamp = DateTimeField()$/;"	v	class:ExchangesHistory
-timestamp_epoc	cryptocoins/models/coins.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:Coins
+timestamp_epoc	cryptocoins/models/coins.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:Coins
 timestamp_epoc	cryptocoins/models/coins_history.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:CoinsHistory
 timestamp_epoc	cryptocoins/models/coins_price_history.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:CoinsPriceHistory
 timestamp_epoc	cryptocoins/models/currencies.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:Currencies

@@ -51,7 +51,7 @@ class CoinsPriceHistory(BaseModel):
                 try:
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, InternalError, DataError) as error:
-                    logger.error(f"DATABASE ERROR for CoinsPriceHistory {error}: {records}")
+                    logger.error(f"DATABASE ERROR for CoinsPriceHistory {error}")
                     continue
 
     @classmethod

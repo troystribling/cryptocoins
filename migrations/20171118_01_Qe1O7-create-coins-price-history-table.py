@@ -21,9 +21,9 @@ steps = [
          " low_price_24_hour NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " high_price_24_hour NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " timestamp_epoc BIGINT NOT NULL,"
-         " updated_at_epoc BIGINT NOT NULL,"
+         " updated_at_epoc BIGINT NOT NULL"
          ")", "DROP TABLE coins_price_history"),
-    step("CREATE UNIQUE INDEX coins_price_history_from_to_symbol_timestamp_exchange_idx ON coins_price_history (from_symbol, to_symbol, timestamp, exchange)", "DROP INDEX coins_price_history_from_to_symbol_timestamp_exchange_idx"),
+    step("CREATE UNIQUE INDEX coins_price_history_from_to_symbol_updated_at_epoc_exchange_idx ON coins_price_history (from_symbol, to_symbol, updated_at_epoc, exchange)", "DROP INDEX coins_price_history_from_to_symbol_updated_at_epoc_exchange_idx"),
     step("CREATE INDEX coins_price_history_from_symbol_idx ON coins_price_history (from_symbol)", "DROP INDEX coins_price_history_from_symbol_idx"),
     step("CREATE INDEX coins_price_history_to_symbol_idx ON coins_price_history (to_symbol)", "DROP INDEX coins_price_history_to_symbol_idx")
 ]

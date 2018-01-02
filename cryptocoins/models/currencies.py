@@ -39,13 +39,13 @@ class Currencies(BaseModel):
         if symbols is None:
             logger.error("symbols IS None")
             return
-        timestamp_epoc = int(time.time())
+        timestamp_epoc = time.time()
         for i in range(0, len(symbols), batch_size):
             model_params = [cls.symbols_to_model_params(symbol, timestamp_epoc) for symbol in symbols[i:i + batch_size]]
             try:
                 cls.insert_many(model_params).execute()
             except (IntegrityError, DataError) as error:
-                logger.error(f"DATABASE ERROR for ExchangesHistory: {error}: {exchanges}")
+                logger.error(f"DATABASE ERROR for Currencies: {error}")
                 continue
 
         @classmethod

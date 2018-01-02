@@ -20,7 +20,7 @@ steps = [
          " close_price_24_hour NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " low_price_24_hour NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " high_price_24_hour NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
-         " timestamp_epoc BIGINT NOT NULL,"
+         " timestamp_epoc NUMERIC(25, 10) NOT NULL,"
          " last_update_epoc BIGINT NOT NULL"
          ")", "DROP TABLE exchanges_history"),
     step("CREATE INDEX exchanges_history_name_idx ON exchanges_history (name)", "DROP INDEX exchanges_history_name_idx")

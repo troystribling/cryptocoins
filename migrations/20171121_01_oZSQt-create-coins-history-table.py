@@ -25,7 +25,7 @@ steps = [
          " close_price_24_hour NUMERIC(41, 21),"
          " low_price_24_hour NUMERIC(41, 21),"
          " high_price_24_hour NUMERIC(41, 21),"
-         " timestamp_epoc BIGINT NOT NULL,"
+         " timestamp_epoc NUMERIC(25, 10) NOT NULL,"
          " last_update_epoc BIGINT NOT NULL"
          ")", "DROP TABLE coins_history"),
     step("CREATE INDEX coins_history_from_symbol_idx ON coins_history (from_symbol)", "DROP INDEX coins_history_from_symbol_idx"),

@@ -51,7 +51,7 @@ class ExchangesHistory(BaseModel):
                 try:
                     cls.insert_many(model_params).execute()
                 except (IntegrityError, DataError, ValueError) as error:
-                    logger.error(f"DATABASE ERROR for ExchangesHistory: {error}: {exchanges}")
+                    logger.error(f"DATABASE ERROR for ExchangesHistory: {error}")
                     continue
 
     @classmethod

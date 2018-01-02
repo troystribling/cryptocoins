@@ -48,7 +48,7 @@ class CoinsHistory(BaseModel):
             try:
                 return cls.create(**coin_snapshot)
             except (IntegrityError, DataError) as error:
-                logger.error(f"DATABASE ERROR for CoinsHistory: {error}: {coin_snapshot}")
+                logger.error(f"DATABASE ERROR for CoinsHistory: {error}")
                 return None
 
     @classmethod
@@ -69,7 +69,8 @@ class CoinsHistory(BaseModel):
                          'HIGH24HOUR', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
         if not valid_params(expected_params=expected_keys, params=aggregated_data):
             return None
-
+            
+        timestamp_epoc = time.time()
         last_update_epoc = aggregated_data['LASTUPDATE']
 
         return {'algorithm': coin_snapshot['Algorithm'],
