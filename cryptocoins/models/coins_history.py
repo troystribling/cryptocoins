@@ -1,7 +1,5 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
-from datetime import datetime
 import logging
-import time
 
 from cryptocoins.utils import valid_params, null_param_if_missing
 
@@ -46,15 +44,15 @@ class CoinsHistory(BaseModel):
             return
         with database.atomic():
             try:
-                return cls.create(**coin_snapshot)
+                cls.create(**coin_snapshot)
             except (IntegrityError, DataError) as error:
                 logger.error(f"DATABASE ERROR for CoinsHistory: {error}")
-                return None
 
     @classmethod
     def coin_snapshot_to_model_parameters(cls, data):
-        if 'Data' not in data:
-            logger.error(f"Data KEY IS MISSING FROM coin_snapshot: {data}")
+        expected_keys = ['timestamp_epoc', 'Data']
+        if not valid_params(expected_params=expected_keys, params=data):
+            logger.error('coin_snapshot KEYS INVALID')
             return None
         coin_snapshot = data['Data']
         expected_keys = ['Algorithm', 'BlockNumber', 'BlockReward', 'NetHashesPerSecond', 'ProofType', 'TotalCoinsMined']
@@ -69,8 +67,8 @@ class CoinsHistory(BaseModel):
                          'HIGH24HOUR', 'VOLUME24HOUR', 'VOLUME24HOURTO', 'PRICE']
         if not valid_params(expected_params=expected_keys, params=aggregated_data):
             return None
-            
-        timestamp_epoc = time.time()
+
+        timestamp_epoc = data['timestamp_epoc']
         last_update_epoc = aggregated_data['LASTUPDATE']
 
         return {'algorithm': coin_snapshot['Algorithm'],

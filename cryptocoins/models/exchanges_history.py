@@ -1,7 +1,5 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
-from datetime import datetime
 import logging
-import time
 
 from cryptocoins.utils import valid_params
 
@@ -34,16 +32,18 @@ class ExchangesHistory(BaseModel):
 
     @classmethod
     def create_from_coin_snapshot(cls, data, batch_size=100):
-        if 'Data' not in data:
-            logger.error(f"Data KEY IS MISSING FROM coin_snapshot: {data}")
+        expected_keys = ['timestamp_epoc', 'Data']
+        if not valid_params(expected_params=expected_keys, params=data):
+            logger.error('coin_snapshot KEYS INVALID')
             return
+
         coin_snapshot = data['Data']
+        timestamp_epoc = data['timestamp_epoc']
 
         if 'Exchanges' not in coin_snapshot:
             logger.error(f"Exchanges KEY IS MISSING FROM coin_snapshot: {coin_snapshot}")
             return
         exchanges = coin_snapshot['Exchanges']
-        timestamp_epoc = int(time.time())
 
         with database.atomic():
             for i in range(0, len(exchanges), batch_size):

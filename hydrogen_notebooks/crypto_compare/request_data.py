@@ -1,9 +1,12 @@
 # %%
 import json
+import time
 
 from cryptocoins.collect_data import fetch_url_and_upload_to_s3
+from cryptocoins.utils import setup_logging
 
-bucket = 'gly.fish.dev'
+bucket_name = 'gly.fish.dev'
+logger = setup_logging()
 limit = 100
 
 # coin_list
@@ -14,10 +17,13 @@ path = "cryptocoins/cryptocompare/coin_list"
 
 @fetch_url_and_upload_to_s3
 def fetch_coin_list(params):
-    return [params['response']]
+    parsed_response = json.loads(params['response'])
+    parsed_response['timestamp_epoc'] = params['timestamp_epoc']
+    new_result = json.dumps(parsed_response)
+    return [new_result]
 
 
-fetch_coin_list(url=url, bucket=bucket, path=path)
+fetch_coin_list(url=url, bucket_name=bucket_name, path=path, timestamp_epoc=time.time())
 
 # coin_snapshot
 # %%
@@ -30,12 +36,12 @@ path = "cryptocoins/cryptocompare/coin_snapshot"
 @fetch_url_and_upload_to_s3
 def fetch_coin_snapshot(params):
     parsed_response = json.loads(params['response'])
-    parsed_response['Symbol'] = params['to_currency']
+    parsed_response['timestamp_epoc'] = params['timestamp_epoc']
     new_result = json.dumps(parsed_response)
     return [new_result]
 
 
-fetch_coin_snapshot(url=url, bucket=bucket, path=path, to_currency=to_currency)
+fetch_coin_snapshot(url=url, bucket_name=bucket_name, path=path, to_currency=to_currency)
 
 # top_pairs
 # %%
@@ -47,10 +53,13 @@ path = "cryptocoins/cryptocompare/top_pairs"
 
 @fetch_url_and_upload_to_s3
 def fetch_top_pairs(params):
-    return [params['response']]
+    parsed_response = json.loads(params['response'])
+    parsed_response['timestamp_epoc'] = params['timestamp_epoc']
+    new_result = json.dumps(parsed_response)
+    return [new_result]
 
 
-fetch_top_pairs(url=url, bucket=bucket, path=path)
+fetch_top_pairs(url=url, bucket_name=bucket_name, path=path)
 
 # histoday
 # %%
@@ -72,4 +81,4 @@ def fetch_histoday(params):
     return [new_result]
 
 
-fetch_histoday(url=url, bucket=bucket, path=path, to_currency=to_currency, from_currency=from_currency, exchange=exchange)
+fetch_histoday(url=url, bucket_name=bucket_name, path=path, to_currency=to_currency, from_currency=from_currency, exchange=exchange)

@@ -1,7 +1,6 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 import logging
 import pandas
-import time
 
 from cryptocoins.utils import valid_params
 
@@ -37,10 +36,15 @@ class Coins(BaseModel):
         db_table = 'coins'
 
     @classmethod
-    def create_from_crytocompare_coinlist(cls, coin_list, batch_size=100):
-        timestamp_epoc = time.time()
-        for i in range(0, len(coin_list), batch_size):
-            model_params = [cls.coin_list_to_model_params(coin, timestamp_epoc) for coin in coin_list[i:i + batch_size]]
+    def create_from_crytocompare_coinlist(cls, data, batch_size=100):
+        expected_keys = ['timestamp_epoc', 'Data']
+        if not valid_params(expected_params=expected_keys, params=data):
+            logger.error('coinlist KEYS INVALID')
+            return
+        coins = [coin for coin in data['Data'].values()]
+        timestamp_epoc = data['timestamp_epoc']
+        for i in range(0, len(coins), batch_size):
+            model_params = [cls.coin_list_to_model_params(coin, timestamp_epoc) for coin in coins[i:i + batch_size]]
             try:
                 cls.insert_many(model_params).execute()
             except (IntegrityError, DataError, ValueError) as error:

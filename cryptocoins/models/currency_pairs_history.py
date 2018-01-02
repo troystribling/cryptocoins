@@ -30,11 +30,14 @@ class CurrencyPairsHistory(BaseModel):
 
     @classmethod
     def create_from_top_pairs(cls, data, batch_size=100):
-        if 'Data' not in data:
-            logger.error(f"Data KEY IS MISSING FROM currency_pairs_history: {data}")
+        expected_keys = ['timestamp_epoc', 'Data']
+        if not valid_params(expected_params=expected_keys, params=data):
+            logger.error('coinlist KEYS INVALID')
             return
+
         top_pairs = data['Data']
-        timestamp_epoc = time.time()
+        timestamp_epoc = data['timestamp_epoc']
+
         with database.atomic():
             for i in range(0, len(top_pairs), batch_size):
                 model_params = [cls.top_pairs_to_model_params(top_pair, timestamp_epoc) for top_pair in top_pairs[i:i + batch_size]]

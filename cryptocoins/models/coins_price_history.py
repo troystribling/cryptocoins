@@ -37,7 +37,8 @@ class CoinsPriceHistory(BaseModel):
     def create_from_histoday(cls, histoday, batch_size=100):
         expected_keys = ['CurrencyFrom', 'CurrencyTo', 'Exchange', 'Data']
         if not valid_params(expected_params=expected_keys, params=histoday):
-            raise ValueError('ERROR: histoday keys invalid')
+            logger.error('histoday KEYS INVALID')
+            return
 
         records = histoday['Data']
         from_symbol = histoday['CurrencyFrom']

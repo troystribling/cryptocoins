@@ -1,6 +1,5 @@
 # %%
 from dateutil.parser import parse
-import logging
 
 from cryptocoins.import_data import import_from_s3
 

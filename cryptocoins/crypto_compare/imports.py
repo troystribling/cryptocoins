@@ -11,6 +11,14 @@ from cryptocoins.models.coins_price_history import CoinsPriceHistory
 logger = logging.getLogger(__name__)
 
 
+@import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_list')
+def import_coin_list(data):
+    if len(data) != 1:
+        logger.error("DATA WRONG SIZE")
+        return
+    Coins.create_from_crytocompare_coinlist(data[0])
+
+
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_snapshot')
 def import_coin_snapshot(data):
     if len(data) != 1:
@@ -19,18 +27,6 @@ def import_coin_snapshot(data):
     coin_snapshot = data[0]
     CoinsHistory.create_from_coin_snapshot(coin_snapshot)
     ExchangesHistory.create_from_coin_snapshot(coin_snapshot, batch_size=100)
-
-
-@import_from_s3(remote_dir='cryptocoins/cryptocompare/coin_list')
-def import_coin_list(data):
-    if len(data) != 1:
-        logger.error("DATA WRONG SIZE")
-        return
-    if 'Data' not in data[0]:
-        logger.error(f"Data KEY IS MISSING FROM import_coin_snapshot_full: {data[0]}")
-        return
-    coin_list = [coin for coin in data[0]['Data'].values()]
-    Coins.create_from_crytocompare_coinlist(coin_list)
 
 
 @import_from_s3(remote_dir='cryptocoins/cryptocompare/top_pairs')
