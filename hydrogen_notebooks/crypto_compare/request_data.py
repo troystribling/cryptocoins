@@ -3,7 +3,7 @@ import json
 
 from cryptocoins.collect_data import fetch_url_and_upload_to_s3
 
-bucket = 'gly.fish'
+bucket = 'gly.fish.dev'
 limit = 100
 
 # coin_list

@@ -14,9 +14,9 @@ from cryptocoins.models.collections import Collections
 logger = logging.getLogger(__name__)
 
 
-def upload_to_s3(bucket, path, data):
+def upload_to_s3(bucket_name, path, data):
     local_path = write_to_compressed_file(data)
-    upload_file_to_s3(bucket, path, local_path)
+    upload_file_to_s3(bucket_name, path, local_path)
 
 
 def write_to_compressed_file(data):
@@ -30,13 +30,13 @@ def write_to_compressed_file(data):
     return f'{file.name}.lzo'
 
 
-def upload_file_to_s3(bucket, path, local_path):
+def upload_file_to_s3(bucket_name, path, local_path):
     s3 = boto3.resource('s3')
-    bucket = s3.Bucket(bucket)
+    bucket = s3.Bucket(bucket_name)
     remote_object = f"{path}/{utils.day_dir(datetime.utcnow())}/{os.path.basename(local_path)}"
     bucket.put_object(Key=remote_object, Body=open(local_path, 'rb'))
     os.unlink(local_path)
-    logger.info(f'{datetime.now()}: UPLOADED to {remote_object}')
+    logger.info(f'{datetime.now()}: UPLOADED TO {bucket_name}/{remote_object}')
 
 
 def fetch_url(url):
@@ -64,7 +64,7 @@ def fetch_url_and_upload_to_s3(process):
         if response is not None:
             params['response'] = response
             processed_response = process(params)
-            upload_to_s3(bucket=params['bucket'], path=params['path'], data=processed_response)
+            upload_to_s3(bucket_name=params['bucket_name'], path=params['path'], data=processed_response)
             collection.collection_successful()
         else:
             logger.error(f"REQUEST FAILED FOR URL {params['url']}")

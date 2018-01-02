@@ -17,13 +17,20 @@ from cryptocoins.models.collections import Collections
 
 from cryptocoins.utils import setup_logging
 
-logger = setup_logging(file_name='/var/log/apps/cryptocoins/crypto_compare_histoday.log')
+bucket_name = sys.argv[1] if len(sys.argv) > 1 else 'gly.fish'
+max_coins = sys.argv[2] if len(sys.argv) > 2 else 300
+max_pairs = sys.argv[3] if len(sys.argv) > 3 else 300
+max_exchanges = sys.argv[4] if len(sys.argv) > 4 else 100
 
-max_coins = 300
-max_pairs = 300
-max_exchanges = 100
+log_out = sys.argv[5] if len(sys.argv) > 5 else '/var/log/apps/cryptocoins/crypto_compare_daily.log'
 
-bucket_name = 'gly.fish'
+if log_out == 'stdout':
+    logger = setup_logging()
+else:
+    logger = setup_logging(file_name=log_out)
+
+logger.info(f"EXPORTING TO: {bucket_name}")
+logger.info(f"COLLECTING DATA FOR {max_coins} coins, {max_pairs} curremcy_pairs AND {max_exchanges} exchanges")
 
 # collect history
 start_date = datetime.utcnow()
@@ -36,13 +43,13 @@ def request(exchange, from_symbol, to_symbol):
     (last_collection_date) = Collections.lastest_collection_for_path_and_meta(path, meta)
     if last_collection_date is None:
         logger.info(f"REQUESTING ALL histoday for {exchange}, {from_symbol}, {to_symbol}")
-        request_coin_price_history(from_symbol, to_symbol, exchange=exchange, allData='true')
+        request_coin_price_history(bucket_name, from_symbol, to_symbol, exchange=exchange, allData='true')
         return
     time_delta = datetime.utcnow() - last_collection_date
     limit = time_delta.days - 1
     if limit > 0:
         logger.info(f"REQUESTING histoday for  {time_delta.days} days ago, {exchange}, {from_symbol}, {to_symbol}")
-        request_coin_price_history(from_symbol, to_symbol, limit=limit, exchange=exchange, allData='false')
+        request_coin_price_history(bucket_name, from_symbol, to_symbol, limit=limit, exchange=exchange, allData='false')
     else:
         logger.info(f"COLLECT LIMIT < 0 SKIPPING COLLECTION {time_delta.days} DAYS AGO FOR, {exchange}, {from_symbol}, {to_symbol}")
     return

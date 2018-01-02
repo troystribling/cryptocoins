@@ -25,6 +25,7 @@ def import_coin_snapshot(data):
 def import_coin_list(data):
     if len(data) != 1:
         logger.error("DATA WRONG SIZE")
+        return
     if 'Data' not in data[0]:
         logger.error(f"Data KEY IS MISSING FROM import_coin_snapshot_full: {data[0]}")
         return
@@ -36,6 +37,7 @@ def import_coin_list(data):
 def import_currency_pairs_history(data):
     if len(data) != 1:
         logger.error("DATA WRONG SIZE")
+        return
     top_pairs = data[0]
     CurrencyPairsHistory.create_from_top_pairs(top_pairs, batch_size=100)
 
@@ -44,5 +46,6 @@ def import_currency_pairs_history(data):
 def import_coin_price_history(data):
     if len(data) != 1:
         logger.error("DATA WRONG SIZE")
+        return
     histoday = data[0]
     CoinsPriceHistory.create_from_histoday(histoday, batch_size=100)

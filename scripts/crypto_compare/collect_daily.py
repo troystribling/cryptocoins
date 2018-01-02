@@ -20,19 +20,25 @@ from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 
 from cryptocoins.utils import setup_logging
 
-logger = setup_logging(file_name='/var/log/apps/cryptocoins/crypto_compare_daily.log')
+bucket_name = sys.argv[1] if len(sys.argv) > 1 else 'gly.fish'
+max_coins = sys.argv[2] if len(sys.argv) > 2 else 300
+max_pairs = sys.argv[3] if len(sys.argv) > 3 else 300
+max_exchanges = sys.argv[4] if len(sys.argv) > 4 else 100
+log_out = sys.argv[5] if len(sys.argv) > 5 else '/var/log/apps/cryptocoins/crypto_compare_daily.log'
 
-max_coins = 300
-max_pairs = 300
-max_exchanges = 100
+if log_out == 'stdout':
+    logger = setup_logging()
+else:
+    logger = setup_logging(file_name=log_out)
 
-bucket_name = 'gly.fish'
+logger.info(f"EXPORTING TO: {bucket_name}")
+logger.info(f"COLLECTING DATA FOR {max_coins} coins, {max_pairs} curremcy_pairs AND {max_exchanges} exchanges")
 
 # coins
 start_date = datetime.utcnow()
-logger.info(f"INITIALIZE coins with start date: {start_date}")
+logger.info(f"INITIALIZE coins: {start_date}")
 
-request_coin_list()
+request_coin_list(bucket_name)
 
 end_date = datetime.utcnow()
 logger.info(f"COMPLETED coins {end_date}")
@@ -47,7 +53,7 @@ logger.info(f"INITIALIZE currency_pairs_history {start_date}")
 
 for coin in Coins.top_coins(limit=max_coins):
     logger.info(f"FETCHING currency pairs for {coin.symbol}")
-    request_top_currency_pairs(coin.symbol, limit=max_pairs)
+    request_top_currency_pairs(bucket_name, coin.symbol, limit=max_pairs)
     sleep(2.0)
 
 end_date = datetime.utcnow()
@@ -63,7 +69,7 @@ logger.info(f"INITIALIZE coins_history and exchanges_history {start_date}")
 for coin in Coins.top_coins(limit=max_pairs):
     for currency_pair in CurrencyPairsHistory.currency_pairs_for_coin(coin.symbol, limit=max_pairs):
         logger.info(f"FETCHING coin_snap_shot for currency pair {currency_pair.from_symbol}, {currency_pair.to_symbol}")
-        request_coin_snapshot(currency_pair.from_symbol, currency_pair.to_symbol)
+        request_coin_snapshot(bucket_name, currency_pair.from_symbol, currency_pair.to_symbol)
         sleep(2.0)
 
 end_date = datetime.utcnow()
