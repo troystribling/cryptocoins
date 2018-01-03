@@ -58,14 +58,14 @@ def request_coin_snapshot(bucket_name, from_currency, to_currency, timestamp_epo
 
 
 def request_coin_price_history(bucket_name, from_currency, to_currency, limit=1, exchange='CCCAGG', allData=False):
-    url = coin_price_history_url(from_currency, to_currency, limit=1, exchange=exchange, allData=allData)
+    url = coin_price_history_url(from_currency, to_currency, limit=limit, exchange=exchange, allData=allData)
     path = 'cryptocoins/cryptocompare/histoday'
     meta = f"{exchange}/{from_currency}/{to_currency}"
     fetch_histoday(url=url, bucket_name=bucket_name, path=path, to_currency=to_currency, from_currency=from_currency, exchange=exchange, meta=meta)
 
 
 def request_top_currency_pairs(bucket_name, from_currency, timestamp_epoc, limit=100):
-    url = top_currency_pairs_url(from_currency, limit=100)
+    url = top_currency_pairs_url(from_currency, limit=limit)
     path = 'cryptocoins/cryptocompare/top_pairs'
     meta = from_currency
     fetch_and_timestamp(url=url, bucket_name=bucket_name, path=path, meta=meta, timestamp_epoc=timestamp_epoc)

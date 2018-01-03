@@ -67,25 +67,10 @@ class Coins(BaseModel):
     @classmethod
     def top_coins(cls, limit=None):
         if limit is None:
-            return cls.raw("SELECT * FROM coins"
-                           " JOIN"
-                           " (SELECT MAX(timestamp_epoc) AS latest_timestamp, symbol FROM coins GROUP BY symbol)"
-                           "  AS latest_coins"
-                           "  ON"
-                           "   (coins.timestamp_epoc = latest_coins.latest_timestamp)"
-                           "   AND"
-                           "   (coins.symbol = latest_coins.symbol)"
-                           " ORDER BY crypto_compare_rank")
+            return cls.raw("SELECT * FROM coins WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM coins) ORDER BY crypto_compare_rank")
         else:
             return cls.raw("SELECT * FROM coins"
-                           " JOIN"
-                           " (SELECT MAX(timestamp_epoc) AS latest_timestamp, symbol FROM coins GROUP BY symbol)"
-                           "  AS latest_coins"
-                           "  ON"
-                           "   (coins.timestamp_epoc = latest_coins.latest_timestamp)"
-                           "   AND"
-                           "   (coins.symbol = latest_coins.symbol)"
-                           " ORDER BY crypto_compare_rank ASC LIMIT %s", limit)
+                           " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM coins) ORDER BY crypto_compare_rank LIMIT %s", limit)
 
     @classmethod
     def top_coins_data_frame(cls, limit=None):

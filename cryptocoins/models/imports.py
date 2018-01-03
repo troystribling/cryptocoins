@@ -27,7 +27,7 @@ class Imports(BaseModel):
             with database.atomic():
                 return cls.create(date_dir=date_dir, file_name=file_name, path=path)
         except IntegrityError as error:
-            logger.warn(f"DATABASE ERROR FOR Imports: {error}: {remote_dir}/{date_dir}/{file_name}")
+            logger.warn(f"DATABASE ERROR FOR Imports: {error}: {path}/{date_dir}/{file_name}")
             return None
 
     def import_successful(self):
