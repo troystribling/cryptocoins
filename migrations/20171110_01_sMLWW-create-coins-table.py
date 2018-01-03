@@ -29,5 +29,6 @@ steps = [
          " timestamp_epoc NUMERIC(25, 10) NOT NULL"
          ")", "DROP TABLE coins"),
     step("CREATE INDEX coins_symbol_idx ON coins (symbol)", "DROP INDEX coins_symbol_idx"),
+    step("CREATE INDEX coins_timestamp_epoc_idx ON coins (timestamp_epoc)", "DROP INDEX coins_timestamp_epoc_idx"),
     step("CREATE UNIQUE INDEX coins_symbol_timestamp_epoc_idx ON coins (symbol, timestamp_epoc)", "DROP INDEX coins_symbol_timestamp_epoc_idx")
 ]

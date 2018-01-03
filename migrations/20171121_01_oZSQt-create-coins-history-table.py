@@ -28,6 +28,7 @@ steps = [
          " timestamp_epoc NUMERIC(25, 10) NOT NULL,"
          " last_update_epoc BIGINT NOT NULL"
          ")", "DROP TABLE coins_history"),
+    step("CREATE INDEX coins_history_timestamp_epoc_idx ON coins_history (timestamp_epoc)", "DROP INDEX coins_history_timestamp_epoc_idx"),
     step("CREATE INDEX coins_history_from_symbol_idx ON coins_history (from_symbol)", "DROP INDEX coins_history_from_symbol_idx"),
     step("CREATE INDEX coins_history_to_symbol_idx ON coins_history (to_symbol)", "DROP INDEX coins_history_to_symbol_idx"),
     step("CREATE INDEX coins_history_from_symbol_to_symbol_idx ON coins_history (from_symbol, to_symbol)", "DROP INDEX coins_history_from_symbol_to_symbol_idx"),

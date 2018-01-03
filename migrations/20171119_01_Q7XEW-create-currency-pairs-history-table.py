@@ -20,6 +20,7 @@ steps = [
          " volume_to_24_hour NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " timestamp_epoc NUMERIC(25, 10) NOT NULL"
          ")", "DROP TABLE currency_pairs_history"),
+    step("CREATE INDEX currency_pairs_history_timestamp_epoc_idx ON currency_pairs_history (timestamp_epoc)", "DROP INDEX currency_pairs_history_timestamp_epoc_idx"),
     step("CREATE INDEX currency_pairs_history_from_to_symbol_idx ON currency_pairs_history (from_symbol, to_symbol)", "DROP INDEX currency_pairs_history_from_to_symbol_idx"),
     step("CREATE INDEX currency_pairs_history_from_symbol_idx ON currency_pairs_history (from_symbol)", "DROP INDEX currency_pairs_history_from_symbol_idx"),
     step("CREATE INDEX currency_pairs_history_to_symbol_idx ON currency_pairs_history (to_symbol)", "DROP INDEX currency_pairs_history_to_symbol_idx")

@@ -20,6 +20,7 @@ steps = [
          " price_btc NUMERIC(41, 21) NOT NULL DEFAULT 0.0,"
          " timestamp_epoc NUMERIC(25, 10) NOT NULL"
          ")", "DROP TABLE currencies"),
+    step("CREATE INDEX currencies_timestamp_epoc_idx ON currencies (timestamp_epoc)", "DROP INDEX currencies_timestamp_epoc_idx"),
     step("CREATE INDEX currencies_symbol_idx ON currencies (symbol)", "DROP INDEX currencies_symbol_idx"),
     step("CREATE UNIQUE INDEX currencies_symbol_timestamp_epoc_idx ON currencies (symbol, timestamp_epoc)", "DROP INDEX currencies_symbol_timestamp_epoc_idx")
 ]

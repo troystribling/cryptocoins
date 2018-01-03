@@ -23,5 +23,6 @@ steps = [
          " timestamp_epoc NUMERIC(25, 10) NOT NULL,"
          " last_update_epoc BIGINT NOT NULL"
          ")", "DROP TABLE exchanges_history"),
+    step("CREATE INDEX exchanges_history_timestamp_epoc_idx ON exchanges_history (timestamp_epoc)", "DROP INDEX exchanges_history_timestamp_epoc_idx"),
     step("CREATE INDEX exchanges_history_name_idx ON exchanges_history (name)", "DROP INDEX exchanges_history_name_idx")
 ]
