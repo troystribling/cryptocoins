@@ -52,5 +52,5 @@ class Collections(BaseModel):
         return cls.raw(query, url, meta).scalar()
 
     def collection_successful(self):
-        query = Collections.update(success=True).where((Collections.created_at == self.created_at) & (Collections.path == self.path))
+        query = Collections.update(success=True).where((Collections.id == self.id))
         query.execute()

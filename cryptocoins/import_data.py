@@ -59,7 +59,7 @@ def read_from_file(file_name):
                 json_line = json.loads(line)
             except ValueError:
                 logger.error(f"FAILED TO PARSE JSON: {line}")
-                break
+                return None
             else:
                 items.append(json_line)
     return items
@@ -76,10 +76,14 @@ def import_from_s3(remote_dir):
                 data_files = os.listdir(os.path.join(local_dir, day_dir))
                 for data_file in data_files:
                     data_file_path = os.path.join(local_dir, day_dir, data_file)
-                    if Imports.create_import(remote_dir=remote_dir, date_dir=day_dir, file_name=data_file) is None:
+                    data_import = Imports.create_import(path=remote_dir, date_dir=day_dir, file_name=data_file)
+                    if data_import is None:
                         continue
                     data = read_from_file(data_file_path)
+                    if data is None:
+                        continue
                     process(data)
+                    data_import.import_successful()
             shutil.rmtree(local_dir, ignore_errors=True)
         return wrapper
     return decorator
