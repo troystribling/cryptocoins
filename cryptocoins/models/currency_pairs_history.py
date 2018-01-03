@@ -20,7 +20,7 @@ class CurrencyPairsHistory(BaseModel):
     exchange = TextField()
     volume_from_24_hour = DecimalField()
     volume_to_24_hour = DecimalField()
-    timestamp_epoc = BigIntegerField()
+    timestamp_epoc = DecimalField()
 
     class Meta:
         db_table = 'currency_pairs_history'

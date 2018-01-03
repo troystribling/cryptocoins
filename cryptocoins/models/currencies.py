@@ -17,7 +17,7 @@ class Currencies(BaseModel):
     created_at = DateTimeField()
     name = TextField(null=True)
     symbol = TextField(index=True)
-    timestamp_epoc = BigIntegerField()
+    timestamp_epoc = DecimalField()
     volume_total = DecimalField()
     volume_total_btc = DecimalField()
     volume_total_usd = DecimalField()

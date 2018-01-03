@@ -490,11 +490,11 @@ time_delta	hydrogen_notebooks/crypto_compare/query_notebook.py	/^time_delta = cu
 timedelta	cryptocoins/utils.py	/^from datetime import timedelta, datetime$/;"	i
 timestamp	cryptocoins/models/coins_price_history.py	/^    timestamp = DateTimeField()$/;"	v	class:CoinsPriceHistory
 timestamp_epoc	cryptocoins/models/coins.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:Coins
-timestamp_epoc	cryptocoins/models/coins_history.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:CoinsHistory
+timestamp_epoc	cryptocoins/models/coins_history.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:CoinsHistory
 timestamp_epoc	cryptocoins/models/coins_price_history.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:CoinsPriceHistory
-timestamp_epoc	cryptocoins/models/currencies.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:Currencies
-timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:CurrencyPairsHistory
-timestamp_epoc	cryptocoins/models/exchanges_history.py	/^    timestamp_epoc = BigIntegerField()$/;"	v	class:ExchangesHistory
+timestamp_epoc	cryptocoins/models/currencies.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:Currencies
+timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:CurrencyPairsHistory
+timestamp_epoc	cryptocoins/models/exchanges_history.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:ExchangesHistory
 timestamp_epoc	scripts/crypto_compare/collect_daily.py	/^timestamp_epoc = time()$/;"	v
 to_currency	hydrogen_notebooks/crypto_compare/request_data.py	/^to_currency = 'USD'$/;"	v
 to_symbol	cryptocoins/models/coins_history.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CoinsHistory

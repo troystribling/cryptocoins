@@ -26,7 +26,7 @@ class CoinsHistory(BaseModel):
     from_symbol = TextField(index=True)
     to_symbol = TextField(index=True)
     last_update_epoc = BigIntegerField()
-    timestamp_epoc = BigIntegerField()
+    timestamp_epoc = DecimalField()
     total_coins_mined = DecimalField()
     volume_from_24_hour = DecimalField(null=True)
     volume_to_24_hour = DecimalField(null=True)

@@ -21,7 +21,7 @@ class ExchangesHistory(BaseModel):
     name = TextField(index=True)
     open_price_24_hour = DecimalField()
     close_price_24_hour = DecimalField()
-    timestamp_epoc = BigIntegerField()
+    timestamp_epoc = DecimalField()
     last_update_epoc = BigIntegerField()
     to_symbol = TextField()
     volume_from_24_hour = DecimalField()

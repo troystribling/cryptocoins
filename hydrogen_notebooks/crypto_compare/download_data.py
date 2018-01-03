@@ -27,7 +27,7 @@ len(coins)
 # fetch cryptocompare coins_history, exchanges_history
 remote_dir = 'cryptocoins/cryptocompare/coin_snapshot'
 local_dir = os.path.join(tempdir, remote_dir)
-folder_date = parse('20171203')
+folder_date = parse('20180102')
 day_dir = utils.day_dir(folder_date)
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)
 files = os.listdir(os.path.join(local_dir, day_dir))
@@ -40,7 +40,7 @@ len(exchanges)
 # fetch cryptocompare top_pairs, currency_pairs_history
 remote_dir = 'cryptocoins/cryptocompare/top_pairs'
 local_dir = os.path.join(tempdir, remote_dir)
-folder_date = parse('20171203')
+folder_date = parse('20180102')
 day_dir = utils.day_dir(folder_date)
 import_data.download_from_s3_to_files(bucket_name, remote_dir, local_dir, start_date=folder_date, end_date=folder_date)
 files = os.listdir(os.path.join(local_dir, day_dir))
