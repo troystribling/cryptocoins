@@ -62,28 +62,22 @@ class CurrencyPairsHistory(BaseModel):
     @classmethod
     def currency_pairs_for_coin(cls, coin, limit=None):
         if limit is None:
-            return cls.raw("SELECT full_table.created_at, full_table.exchange, full_table.from_symbol, full_table.to_symbol, full_table.volume_from_24_hour"
-                           " FROM currency_pairs_history AS full_table"
-                           " JOIN"
-                           "  (SELECT MAX(id) AS latest_id, exchange, from_symbol, to_symbol FROM currency_pairs_history"
-                           "   GROUP BY exchange, from_symbol, to_symbol HAVING from_symbol = %s)"
-                           "   AS latest ON (full_table.id = latest.latest_id)"
-                           " ORDER BY full_table.volume_from_24_hour DESC", coin)
+            return cls.raw("SELECT * FROM currency_pairs_history"
+                           " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM currency_pairs_history)"
+                           "  AND from_symbol = %s ORDER BY volume_from_24_hour DESC", coin)
         else:
-            return cls.raw("SELECT full_table.created_at, full_table.exchange, full_table.from_symbol, full_table.to_symbol, full_table.volume_from_24_hour"
-                           " FROM currency_pairs_history AS full_table"
-                           " INNER JOIN"
-                           "  (SELECT MAX(id) AS latest_id, exchange, from_symbol, to_symbol FROM currency_pairs_history"
-                           "   GROUP BY exchange, from_symbol, to_symbol HAVING from_symbol = %s) AS latest"
-                           " ON (full_table.id = latest.latest_id)"
-                           " ORDER BY full_table.volume_from_24_hour DESC LIMIT %s", coin, limit)
+            return cls.raw("SELECT * FROM currency_pairs_history"
+                           " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM currency_pairs_history)"
+                           "  AND from_symbol = %s ORDER BY volume_from_24_hour DESC LIMIT %s", coin, limit)
 
     @classmethod
     def currencies(cls):
         symbols = cls.raw("SELECT to_symbol AS currency FROM"
                           " (SELECT coins.symbol, pairs.to_symbol FROM coins"
                           "  RIGHT JOIN"
-                          "   (SELECT to_symbol FROM currency_pairs_history GROUP BY to_symbol) AS pairs"
-                          "    ON coins.symbol = pairs.to_symbol WHERE coins.symbol IS NULL)"
-                          " AS currencies").dicts()
+                          "   (SELECT DISTINCT to_symbol FROM currency_pairs_history"
+                          "    WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM currency_pairs_history)) AS pairs"
+                          "  ON coins.symbol = pairs.to_symbol"
+                          "  WHERE coins.symbol IS NULL"
+                          "   AND coins.timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM coins)) AS currencies").dicts()
         return [symbol['currency'] for symbol in symbols]
