@@ -77,4 +77,4 @@ class ExchangesHistory(BaseModel):
     def top_exchanges_for_currency_pair(cls, from_symbol, to_symbol, limit=10):
             return ExchangesHistory.raw("SELECT * FROM exchanges_history"
                                         " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM exchanges_history)"
-                                        "  AND from_symbol = %s AND to_symbol = %s ORDER BY volume_from_24_hour LIMIT %s", from_symbol, to_symbol, limit)
+                                        "  AND from_symbol = %s AND to_symbol = %s ORDER BY volume_from_24_hour DESC LIMIT %s", from_symbol, to_symbol, limit)
