@@ -75,12 +75,6 @@ class ExchangesHistory(BaseModel):
 
     @classmethod
     def top_exchanges_for_currency_pair(cls, from_symbol, to_symbol, limit=10):
-            query = "SELECT full_table.created_at, full_table.name, full_table.from_symbol," \
-                    " full_table.to_symbol, full_table.volume_from_24_hour" \
-                    " FROM exchanges_history AS full_table" \
-                    " INNER JOIN" \
-                    " (SELECT MAX(id) AS latest_id, name, from_symbol, to_symbol FROM exchanges_history GROUP" \
-                    " BY name, from_symbol, to_symbol HAVING from_symbol = %s AND to_symbol = %s)" \
-                    " AS latest ON (full_table.id = latest.latest_id)" \
-                    " ORDER BY full_table.volume_from_24_hour DESC LIMIT %s"
-            return ExchangesHistory.raw(query, from_symbol, to_symbol, limit)
+            return ExchangesHistory.raw("SELECT * FROM exchanges_history"
+                                        " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM exchanges_history)"
+                                        "  AND from_symbol = %s AND to_symbol = %s ORDER BY volume_from_24_hour LIMIT %s", from_symbol, to_symbol, limit)

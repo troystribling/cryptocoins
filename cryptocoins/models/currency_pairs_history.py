@@ -73,11 +73,10 @@ class CurrencyPairsHistory(BaseModel):
     @classmethod
     def currencies(cls):
         symbols = cls.raw("SELECT to_symbol AS currency FROM"
-                          " (SELECT coins.symbol, pairs.to_symbol FROM coins"
+                          " (SELECT symbols.symbol, pairs.to_symbol FROM (SELECT DISTINCT symbol FROM coins) AS symbols"
                           "  RIGHT JOIN"
                           "   (SELECT DISTINCT to_symbol FROM currency_pairs_history"
                           "    WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM currency_pairs_history)) AS pairs"
-                          "  ON coins.symbol = pairs.to_symbol"
-                          "  WHERE coins.symbol IS NULL"
-                          "   AND coins.timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM coins)) AS currencies").dicts()
+                          "  ON symbols.symbol = pairs.to_symbol"
+                          "  WHERE symbols.symbol IS NULL) AS currencies").dicts()
         return [symbol['currency'] for symbol in symbols]
