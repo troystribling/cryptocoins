@@ -276,6 +276,7 @@ fetch_url_and_upload_to_s3	hydrogen_notebooks/crypto_compare/request_data.py	/^f
 file_name	cryptocoins/models/imports.py	/^    file_name = TextField(unique=True)$/;"	v	class:Imports
 file_path	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^file_path = os.path.join(tempdir, local_file_path)$/;"	v
 files	hydrogen_notebooks/crypto_compare/download_data.py	/^files = os.listdir(os.path.join(local_dir, day_dir))$/;"	v
+find_for_file_name	cryptocoins/models/imports.py	/^    def find_for_file_name(file_name):$/;"	m	class:Imports
 folder_date	hydrogen_notebooks/crypto_compare/download_data.py	/^folder_date = parse('20171203')$/;"	v
 folder_date	hydrogen_notebooks/crypto_compare/download_data.py	/^folder_date = parse('20180102')$/;"	v
 from_currency	hydrogen_notebooks/crypto_compare/request_data.py	/^from_currency = 'BTC'$/;"	v
@@ -318,7 +319,7 @@ limit	hydrogen_notebooks/crypto_compare/request_data.py	/^limit = 100$/;"	v
 local_dir	hydrogen_notebooks/crypto_compare/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 local_file_path	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^local_file_path = "\/var\/folders\/hc\/xc94zvls2pq_pw366sdbqlhr0000gn\/T\/cryptocoins\/cryptocompare\/coin_snapshot\/20171224\/20171224-154510-r5mlt7cj"$/;"	v
 log_out	scripts/crypto_compare/collect_daily.py	/^log_out = sys.argv[5] if len(sys.argv) > 5 else '\/var\/log\/apps\/cryptocoins\/crypto_compare_daily.log'$/;"	v
-log_out	scripts/crypto_compare/collect_histoday.py	/^log_out = sys.argv[5] if len(sys.argv) > 5 else '\/var\/log\/apps\/cryptocoins\/crypto_compare_daily.log'$/;"	v
+log_out	scripts/crypto_compare/collect_histoday.py	/^log_out = sys.argv[5] if len(sys.argv) > 5 else '\/var\/log\/apps\/cryptocoins\/crypto_compare_histoday.log'$/;"	v
 logger	cryptocoins/collect_data.py	/^logger = logging.getLogger(__name__)$/;"	v
 logger	cryptocoins/crypto_compare/imports.py	/^logger = logging.getLogger(__name__)$/;"	v
 logger	cryptocoins/import_data.py	/^logger = logging.getLogger(__name__)$/;"	v
@@ -474,6 +475,7 @@ success	cryptocoins/models/imports.py	/^    success = BooleanField()$/;"	v	class
 symbol	cryptocoins/models/coins.py	/^    symbol = TextField(unique=True)$/;"	v	class:Coins
 symbol	cryptocoins/models/currencies.py	/^    symbol = TextField(index=True)$/;"	v	class:Currencies
 symbols_to_model_params	cryptocoins/models/currencies.py	/^        def symbols_to_model_params(cls, symbol, timestamp_epc):$/;"	f	function:Currencies.create_for_symbols
+sys	cryptocoins/import_data.py	/^import sys$/;"	i
 sys	scripts/crypto_compare/collect_daily.py	/^import sys$/;"	i
 sys	scripts/crypto_compare/collect_histoday.py	/^import sys$/;"	i
 sys	scripts/crypto_compare/import.py	/^import sys$/;"	i

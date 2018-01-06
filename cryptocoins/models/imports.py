@@ -30,6 +30,11 @@ class Imports(BaseModel):
             logger.warn(f"DATABASE ERROR FOR Imports: {error}: {path}/{date_dir}/{file_name}")
             return None
 
+    @classmethod
+    def find_for_file_name(file_name):
+        return cls.raw("SELECT * FROM imports WHERE file_name=%s", file_name)
+
+
     def import_successful(self):
         query = Imports.update(success=True).where((Imports.id == self.id))
         query.execute()

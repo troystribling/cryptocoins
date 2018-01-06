@@ -4,6 +4,7 @@ import json
 import tempfile
 import logging
 import shutil
+import sys
 
 from subprocess import call
 from datetime import datetime
@@ -41,8 +42,12 @@ def download_from_s3_to_files(bucket_name, remote_dir, local_dir, download_limit
             downloaded_file_count += 1
             remote_file_name = remote_object.key
             local_file_name = f"{local_day_dir}/{os.path.basename(remote_file_name)}"
-            with open(local_file_name, 'wb') as local_file:
-                s3_client.download_fileobj(bucket_name, remote_file_name, local_file)
+            try:
+                with open(local_file_name, 'wb') as local_file:
+                    s3_client.download_fileobj(bucket_name, remote_file_name, local_file)
+            except:
+                logger.error(f"ERROR DOWNLOADING FILE {remote_file_name}: {sys.exc_info()[0]}")
+                continue
             call(f'lzop -d {local_file_name}', shell=True)
             os.unlink(local_file_name)
             if download_limit is not None and downloaded_file_count >= download_limit:
