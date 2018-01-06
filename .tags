@@ -140,6 +140,7 @@ __depends__	migrations/20171121_01_oZSQt-create-coins-history-table.py	/^__depen
 __depends__	migrations/20171121_02_zWjhm-create-exchanges-history-table.py	/^__depends__ = {}$/;"	v
 __depends__	migrations/20171123_01_Upsf5-create-collections-table.py	/^__depends__ = {}$/;"	v
 __depends__	migrations/20171231_01_vM90r-create-currencies-table.py	/^__depends__ = {}$/;"	v
+__depends__	migrations/20180106_01_tL6CR-create-currencies-info-table.py	/^__depends__ = {'20171110_01_sMLWW-create-coins-table'}$/;"	v
 algorithm	cryptocoins/models/coins_history.py	/^    algorithm = TextField(null=True)$/;"	v	class:CoinsHistory
 allData	hydrogen_notebooks/crypto_compare/request_data.py	/^allData = True$/;"	v
 asyncio	scripts/crypto_compare/poll.py	/^import asyncio$/;"	i
@@ -462,6 +463,7 @@ step	migrations/20171121_01_oZSQt-create-coins-history-table.py	/^from yoyo impo
 step	migrations/20171121_02_zWjhm-create-exchanges-history-table.py	/^from yoyo import step$/;"	i
 step	migrations/20171123_01_Upsf5-create-collections-table.py	/^from yoyo import step$/;"	i
 step	migrations/20171231_01_vM90r-create-currencies-table.py	/^from yoyo import step$/;"	i
+step	migrations/20180106_01_tL6CR-create-currencies-info-table.py	/^from yoyo import step$/;"	i
 steps	migrations/20171110_01_sMLWW-create-coins-table.py	/^steps = [$/;"	v
 steps	migrations/20171111_01_ryOd4-create-imports-table.py	/^steps = [$/;"	v
 steps	migrations/20171118_01_Qe1O7-create-coins-price-history-table.py	/^steps = [$/;"	v
@@ -470,6 +472,7 @@ steps	migrations/20171121_01_oZSQt-create-coins-history-table.py	/^steps = [$/;"
 steps	migrations/20171121_02_zWjhm-create-exchanges-history-table.py	/^steps = [$/;"	v
 steps	migrations/20171123_01_Upsf5-create-collections-table.py	/^steps = [$/;"	v
 steps	migrations/20171231_01_vM90r-create-currencies-table.py	/^steps = [$/;"	v
+steps	migrations/20180106_01_tL6CR-create-currencies-info-table.py	/^steps = [$/;"	v
 success	cryptocoins/models/collections.py	/^    success = BooleanField()$/;"	v	class:Collections
 success	cryptocoins/models/imports.py	/^    success = BooleanField()$/;"	v	class:Imports
 symbol	cryptocoins/models/coins.py	/^    symbol = TextField(unique=True)$/;"	v	class:Coins
