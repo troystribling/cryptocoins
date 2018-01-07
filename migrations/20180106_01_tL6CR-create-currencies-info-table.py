@@ -13,6 +13,7 @@ steps = [
          " created_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
          " updated_at TIMESTAMP NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),"
          " symbol TEXT NOT NULL,"
+         " currency_type TEXT,"
          " name TEXT,"
          " description TEXT"
          ")", "DROP TABLE currencies_info"),

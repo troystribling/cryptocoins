@@ -71,7 +71,7 @@ class CurrencyPairsHistory(BaseModel):
                            "  AND from_symbol = %s ORDER BY volume_from_24_hour DESC LIMIT %s", coin, limit)
 
     @classmethod
-    def currencies(cls):
+    def fiat_currencies(cls):
         symbols = cls.raw("SELECT to_symbol AS currency FROM"
                           " (SELECT symbols.symbol, pairs.to_symbol FROM (SELECT DISTINCT symbol FROM coins) AS symbols"
                           "  RIGHT JOIN"

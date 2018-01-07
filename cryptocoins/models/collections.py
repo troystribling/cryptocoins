@@ -34,9 +34,9 @@ class Collections(BaseModel):
             return None
 
     @classmethod
-    def get_with_id(cls, id):
+    def get_for_id(cls, id):
         try:
-            return Collections.get(Collections.id == id)
+            return cls.get(Collections.id == id)
         except IntegrityError as error:
             logger.error(f"DATABASE ERROR FOR Collection with id: {error}: {id}")
             return None
