@@ -1,6 +1,5 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 import logging
-import pandas
 
 from cryptocoins.utils import valid_params, null_param_if_missing
 

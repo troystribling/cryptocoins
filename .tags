@@ -415,10 +415,13 @@ os	scripts/crypto_compare/collect_histoday.py	/^import os$/;"	i
 os	scripts/crypto_compare/import.py	/^import os$/;"	i
 os	scripts/crypto_compare/import_coins.py	/^import os$/;"	i
 os	scripts/crypto_compare/poll.py	/^import os$/;"	i
+pairs	hydrogen_notebooks/crypto_compare/query_notebook.py	/^pairs = CurrencyPairsHistory.pairs_for_timestamp_epoc(timestamps[0])$/;"	v
+pairs_for_timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    def pairs_for_timestamp_epoc(cls, timestamp_epoc):$/;"	m	class:CurrencyPairsHistory
+pairs_for_timestamp_epoc_data_frame	cryptocoins/models/currency_pairs_history.py	/^    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc):$/;"	m	class:CurrencyPairsHistory
 pandas	coin_plots/line_plots.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/coins.py	/^import pandas$/;"	i
-pandas	cryptocoins/models/coins_history.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/currencies.py	/^import pandas$/;"	i
+pandas	cryptocoins/models/currency_pairs_history.py	/^import pandas$/;"	i
 pandas	hydrogen_notebooks/python/pandas_examples.py	/^import pandas$/;"	i
 parse	cryptocoins/models/imports.py	/^from dateutil.parser import parse$/;"	i
 parse	hydrogen_notebooks/crypto_compare/download_data.py	/^from dateutil.parser import parse$/;"	i
@@ -542,6 +545,8 @@ timestamp_epoc	cryptocoins/models/currencies.py	/^    timestamp_epoc = DecimalFi
 timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:CurrencyPairsHistory
 timestamp_epoc	cryptocoins/models/exchanges_history.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:ExchangesHistory
 timestamp_epoc	scripts/crypto_compare/collect_daily.py	/^timestamp_epoc = time()$/;"	v
+timestamps	cryptocoins/models/currency_pairs_history.py	/^    def timestamps(cls):$/;"	m	class:CurrencyPairsHistory
+timestamps	hydrogen_notebooks/crypto_compare/query_notebook.py	/^timestamps = CurrencyPairsHistory.timestamps()$/;"	v
 to_currency	hydrogen_notebooks/crypto_compare/request_data.py	/^to_currency = 'USD'$/;"	v
 to_symbol	cryptocoins/models/coins_history.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CoinsHistory
 to_symbol	cryptocoins/models/coins_price_history.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CoinsPriceHistory

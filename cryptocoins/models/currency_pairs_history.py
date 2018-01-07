@@ -2,7 +2,7 @@ from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, Dat
 from cryptocoins.utils import valid_params
 import logging
 import time
-
+import pandas
 
 logger = logging.getLogger(__name__)
 database = PostgresqlDatabase('cryptocoins', user='cryptocoins', host='127.0.0.1')
@@ -80,3 +80,20 @@ class CurrencyPairsHistory(BaseModel):
                           "  ON symbols.symbol = pairs.to_symbol"
                           "  WHERE symbols.symbol IS NULL) AS currencies").dicts()
         return [symbol['currency'] for symbol in symbols]
+
+    @classmethod
+    def pairs_for_timestamp_epoc(cls, timestamp_epoc):
+        return cls.raw("SELECT id, from_symbol, to_symbol, exchange, volume_from_24_hour"
+                       " FROM currency_pairs_history WHERE timestamp_epoc=%s"
+                       " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc)
+
+    @classmethod
+    def timestamps(cls):
+        query = cls.raw("SELECT DISTINCT timestamp_epoc FROM currency_pairs_history")
+        return [timestamp.timestamp_epoc for timestamp in query]
+
+    @classmethod
+    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc):
+        pairs = [pair for pair in cls.pairs_for_timestamp_epoc(timestamp_epoc).dicts()]
+        index = [pair['id'] for pair in pairs]
+        return pandas.DataFrame(pairs, index=index)

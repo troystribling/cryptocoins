@@ -21,13 +21,17 @@ for coin in Coins.raw(query, 10):
 # %%
 query = "SELECT * FROM currency_pairs_history" \
         " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM currency_pairs_history)" \
-        "  AND from_symbol = %s ORDER BY volume_from_24_hour DESC"
+        "  AND from_symbol = %s ORDER BY volume_from_24_hour DESC LIMIT %s"
 
 for pair in CurrencyPairsHistory.raw(query, 'BTC', 10):
     print(pair.created_at, pair.exchange, pair.from_symbol, pair.to_symbol, pair.volume_from_24_hour)
 
 for currency in CurrencyPairsHistory.fiat_currencies():
     print(currency)
+
+# %%
+timestamps = CurrencyPairsHistory.timestamps()
+pairs = CurrencyPairsHistory.pairs_for_timestamp_epoc(timestamps[0])
 
 # exchanges_history
 # %%

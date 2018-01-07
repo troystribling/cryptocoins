@@ -46,7 +46,7 @@ class Imports(BaseModel):
         if len(last_import) < 1:
             return None
         return parse(last_import[0].date_dir)
-
+        
     def import_successful(self):
         query = Imports.update(success=True).where((Imports.id == self.id))
         query.execute()

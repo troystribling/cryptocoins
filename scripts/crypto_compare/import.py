@@ -38,7 +38,7 @@ def start_date_from_last_import(path):
 def end_date_from_start_date():
     if end_date is not None:
         return end_date
-    return start_date
+    return datetime.utcnow()
 
 if __name__ == "__main__":
     start_date = start_date_from_last_import('cryptocoins/cryptocompare/coin_list')
