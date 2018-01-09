@@ -82,10 +82,15 @@ class CurrencyPairsHistory(BaseModel):
         return [symbol['currency'] for symbol in symbols]
 
     @classmethod
-    def pairs_for_timestamp_epoc(cls, timestamp_epoc):
-        return cls.raw("SELECT id, from_symbol, to_symbol, exchange, volume_from_24_hour"
-                       " FROM currency_pairs_history WHERE timestamp_epoc=%s"
-                       " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc)
+    def pairs_for_timestamp_epoc(cls, timestamp_epoc, limit=None):
+        if limit is None:
+            return cls.raw("SELECT id, from_symbol, to_symbol, volume_from_24_hour"
+                           " FROM currency_pairs_history WHERE timestamp_epoc=%s"
+                           " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc)
+        else:
+            return cls.raw("SELECT id, from_symbol, to_symbol, volume_from_24_hour"
+                           " FROM currency_pairs_history WHERE timestamp_epoc=%s"
+                           " ORDER BY from_symbol, volume_from_24_hour DESC LIMIT %s", timestamp_epoc, limit)
 
     @classmethod
     def timestamps(cls):
@@ -93,7 +98,7 @@ class CurrencyPairsHistory(BaseModel):
         return [timestamp.timestamp_epoc for timestamp in query]
 
     @classmethod
-    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc):
-        pairs = [pair for pair in cls.pairs_for_timestamp_epoc(timestamp_epoc).dicts()]
+    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc, limit=None):
+        pairs = [pair for pair in cls.pairs_for_timestamp_epoc(timestamp_epoc, limit).dicts()]
         index = [pair['id'] for pair in pairs]
         return pandas.DataFrame(pairs, index=index)

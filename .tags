@@ -415,9 +415,9 @@ os	scripts/crypto_compare/collect_histoday.py	/^import os$/;"	i
 os	scripts/crypto_compare/import.py	/^import os$/;"	i
 os	scripts/crypto_compare/import_coins.py	/^import os$/;"	i
 os	scripts/crypto_compare/poll.py	/^import os$/;"	i
-pairs	hydrogen_notebooks/crypto_compare/query_notebook.py	/^pairs = CurrencyPairsHistory.pairs_for_timestamp_epoc(timestamps[0])$/;"	v
-pairs_for_timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    def pairs_for_timestamp_epoc(cls, timestamp_epoc):$/;"	m	class:CurrencyPairsHistory
-pairs_for_timestamp_epoc_data_frame	cryptocoins/models/currency_pairs_history.py	/^    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc):$/;"	m	class:CurrencyPairsHistory
+pairs_data_frame	hydrogen_notebooks/crypto_compare/query_notebook.py	/^pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0], limit=10)$/;"	v
+pairs_for_timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    def pairs_for_timestamp_epoc(cls, timestamp_epoc, limit=None):$/;"	m	class:CurrencyPairsHistory
+pairs_for_timestamp_epoc_data_frame	cryptocoins/models/currency_pairs_history.py	/^    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc, limit=None):$/;"	m	class:CurrencyPairsHistory
 pandas	coin_plots/line_plots.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/coins.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/currencies.py	/^import pandas$/;"	i

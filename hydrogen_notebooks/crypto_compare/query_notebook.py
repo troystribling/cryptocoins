@@ -1,6 +1,7 @@
 # %%
 from datetime import datetime, timedelta
 from dateutil.parser import parse
+import numpy
 
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.coins import Coins
@@ -31,7 +32,22 @@ for currency in CurrencyPairsHistory.fiat_currencies():
 
 # %%
 timestamps = CurrencyPairsHistory.timestamps()
-pairs = CurrencyPairsHistory.pairs_for_timestamp_epoc(timestamps[0])
+pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0], limit=10)
+print(pairs_data_frame)
+
+pairs_to_symbol_count = pairs_data_frame.groupby(['from_symbol'])
+print(pairs_to_symbol_count.count())
+
+pairs_to_symbol_count = pairs_data_frame['to_symbol'].groupby(pairs_data_frame['from_symbol']).count()
+pairs_to_symbol_count.name = 'to_symbol_count'
+print(pairs_to_symbol_count)
+print(pairs_to_symbol_count.sort_values(ascending=False))
+print(pairs_to_symbol_count['42'])
+pairs_to_symbol_count.index
+
+pairs_to_symbol_volume_sum = pairs_data_frame['volume_from_24_hour'].groupby(pairs_data_frame['from_symbol']).sum()
+type(pairs_to_symbol_volume_sum)
+print(pairs_to_symbol_volume_sum)
 
 # exchanges_history
 # %%
@@ -64,7 +80,7 @@ len(last_import)
 parse(last_import[0].date_dir)
 parse(last_import[0].date_dir) + timedelta(days=1)
 
-print(Imports.last_import_date_for_path('cryptocoins/cryptocompare/coin_list')+ timedelta(days=1))
+print(Imports.last_import_date_for_path('cryptocoins/cryptocompare/coin_list') + timedelta(days=1))
 
 # coins
 # %%
