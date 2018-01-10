@@ -2,6 +2,7 @@
 from datetime import datetime, timedelta
 from dateutil.parser import parse
 import numpy
+import pandas
 
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.coins import Coins
@@ -44,6 +45,9 @@ print(pairs_to_symbol_count)
 print(pairs_to_symbol_count.sort_values(ascending=False))
 print(pairs_to_symbol_count['42'])
 pairs_to_symbol_count.index
+pairs_to_symbol_count.values
+pairs_to_symbol_count_frame = pairs_to_symbol_count.to_frame()
+type(pairs_to_symbol_count_frame)
 
 pairs_to_symbol_volume_sum = pairs_data_frame['volume_from_24_hour'].groupby(pairs_data_frame['from_symbol']).sum()
 type(pairs_to_symbol_volume_sum)
