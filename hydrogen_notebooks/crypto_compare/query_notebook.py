@@ -34,16 +34,33 @@ for currency in CurrencyPairsHistory.fiat_currencies():
 # %%
 timestamps = CurrencyPairsHistory.timestamps()
 pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0], limit=10)
+type(pairs_data_frame)
+pairs_data_frame
+type(pairs_data_frame.to_symbol)
+pairs_data_frame.to_symbol.values
+pairs_data_frame.to_symbol.index
 print(pairs_data_frame)
 
-pairs_to_symbol_count = pairs_data_frame.groupby(['from_symbol'])
-print(pairs_to_symbol_count.count())
+pairs_to_symbol_count = pairs_data_frame.groupby(['from_symbol']).count()
+type(pairs_to_symbol_count)
+print(pairs_to_symbol_count)
 
-pairs_to_symbol_count = pairs_data_frame['to_symbol'].groupby(pairs_data_frame['from_symbol']).count()
-pairs_to_symbol_count.name = 'to_symbol_count'
+pairs_to_symbol_count = pairs_data_frame['to_symbol'].groupby(pairs_data_frame['from_symbol']).count().sort_values(ascending=False)
+type(pairs_to_symbol_count)
+pairs_to_symbol_count
+pairs_to_symbol_count.values
+pairs_to_symbol_count.index
+
+type(pairs_to_symbol_count.to_frame())
+pairs_to_symbol_count.to_frame()
+pairs_to_symbol_count.to_frame().columns
+type(pairs_to_symbol_count.to_frame().to_symbol)
+pairs_to_symbol_count.to_frame().to_symbol.values
+
 print(pairs_to_symbol_count)
 print(pairs_to_symbol_count.sort_values(ascending=False))
 print(pairs_to_symbol_count['42'])
+
 pairs_to_symbol_count.index
 pairs_to_symbol_count.values
 pairs_to_symbol_count_frame = pairs_to_symbol_count.to_frame()
