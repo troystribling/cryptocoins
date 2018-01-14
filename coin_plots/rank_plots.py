@@ -16,6 +16,7 @@ def count_and_rank_plot(data_frame):
     nbins = numpy.max(data_frame['rank'].values) + 1.0
     ncoins = numpy.min([len(data_frame), 10])
     bins = [0.5 + i for i in numpy.arange(0.0, nbins)]
+    pyplot.figure(figsize=(8, 6), dpi=80)
     pyplot.hist(data_frame['rank'].values, bins=bins)
     pyplot.ylabel('Count')
     pyplot.xlabel('Rank')

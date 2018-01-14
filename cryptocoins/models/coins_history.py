@@ -87,3 +87,18 @@ class CoinsHistory(BaseModel):
                 'volume_to_24_hour': aggregated_data['VOLUME24HOURTO'],
                 'timestamp_epoc': timestamp_epoc,
                 'last_update_epoc': last_update_epoc}
+
+    @classmethod
+    def history(cls, from_symbol, limit=None):
+        if limit is None:
+            return cls.raw("SELECT * FROM coins_history WHERE from_symbol=%s"
+                           " ORDER BY timestamp_epoc DESC", from_symbol)
+        else:
+            return cls.raw("SELECT * FROM coins_history WHERE from_symbol=%s"
+                           " ORDER BY timestamp_epoc DESC LIMIT %s", timestamp_epoc, limit)
+
+    @classmethod
+    def history_data_frame(cls, from_symbol, limit=None):
+        records = [record for record in cls.history(from_symbol, limit).dicts()]
+        index = [record['timestamp_epoc'] for record in records]
+        return pandas.DataFrame(records, index=index)

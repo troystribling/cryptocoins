@@ -1,6 +1,6 @@
 from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
-from datetime import datetime
 import logging
+import pandas
 
 from cryptocoins.utils import valid_params
 
@@ -11,7 +11,6 @@ database = PostgresqlDatabase('cryptocoins', user='cryptocoins', host='127.0.0.1
 class BaseModel(Model):
     class Meta:
         database = database
-
 
 class CoinsPriceHistory(BaseModel):
     close_price_24_hour = DecimalField()
@@ -75,3 +74,20 @@ class CoinsPriceHistory(BaseModel):
                 'to_symbol': to_symbol,
                 'volume_from_24_hour': histoday['volumefrom'],
                 'volume_to_24_hour': histoday['volumeto']}
+
+    @classmethod
+    def history(cls, from_symbol, to_symbol, exchange='CCCAGG', limit=None):
+        if limit is None:
+            return cls.raw("SELECT * FROM coins_price_history"
+                           " WHERE from_symbol = %s AND to_symbol = %s AND exchange = %s"
+                           " ORDER BY timestamp_epoc DESC", from_symbol, to_symbol, exchange)
+        else:
+            return cls.raw("SELECT * FROM coins_price_history"
+                           " WHERE from_symbol = %s AND to_symbol = %s AND exchange = %s"
+                           " ORDER BY timestamp_epoc DESC LIMIT %s", from_symbol, to_symbol, exchange, limit)
+
+    @classmethod
+    def history_data_frame(cls, from_symbol, to_symbol, exchange='CCCAGG', limit=None):
+        records = [record for record in cls.history(from_symbol, to_symbol, exchange, limit).dicts()]
+        index = [record['timestamp_epoc'] for record in records]
+        return pandas.DataFrame(records, index=index)

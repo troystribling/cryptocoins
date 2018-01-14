@@ -74,6 +74,6 @@ class Coins(BaseModel):
 
     @classmethod
     def top_coins_data_frame(cls, limit=None):
-        coins = [coin for coin in cls.top_coins(limit=limit).dicts()]
-        index = [coin['id'] for coin in coins]
-        return pandas.DataFrame(coins, index=index)
+        records = [record for record in cls.top_coins(limit=limit).dicts()]
+        index = [record['id'] for record in records]
+        return pandas.DataFrame(records, index=index)

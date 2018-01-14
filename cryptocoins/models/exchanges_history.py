@@ -74,7 +74,39 @@ class ExchangesHistory(BaseModel):
                 'volume_to_24_hour': exchange['VOLUME24HOURTO']}
 
     @classmethod
-    def top_exchanges_for_currency_pair(cls, from_symbol, to_symbol, limit=10):
-            return ExchangesHistory.raw("SELECT * FROM exchanges_history"
-                                        " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM exchanges_history)"
-                                        "  AND from_symbol = %s AND to_symbol = %s ORDER BY volume_from_24_hour DESC LIMIT %s", from_symbol, to_symbol, limit)
+    def top_exchanges_for_currency_pair(cls, from_symbol, to_symbol, limit=None):
+        if limit is None:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM exchanges_history)"
+                           "  AND from_symbol = %s AND to_symbol = %s ORDER BY volume_from_24_hour DESC", from_symbol, to_symbol)
+        else:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM exchanges_history)"
+                           "  AND from_symbol = %s AND to_symbol = %s ORDER BY volume_from_24_hour DESC LIMIT %s", from_symbol, to_symbol, limit)
+
+    @classmethod
+    def top_exchanges_for_currency_pair_data_frame(cls, from_symbol, to_symbol, limit=None):
+        records = [record for record in cls.top_exchanges_for_currency_pair(from_symbol, to_symbol, limit).dicts()]
+        index = [record['id'] for record in records]
+        return pandas.DataFrame(records, index=index)
+
+    @classmethod
+    def history(cls, from_symbol, to_symbol=None, limit=None):
+        if limit is None and to_symbol is None:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE from_symbol = %s"
+                           " ORDER BY timestamp_epoc", from_symbol)
+        if limit is None:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE from_symbol = %s AND to_symbol = %s"
+                           " ORDER BY timestamp_epoc", from_symbol, to_symbol)
+        else:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE from_symbol = %s AND to_symbol = %s"
+                           " ORDER BY timestamp_epoc LIMIT %s", from_symbol, to_symbol, limit)
+
+    @classmethod
+    def history_data_frame(cls, from_symbol, to_symbol=None, limit=None):
+        records = [record for record in cls.history(from_symbol, to_symbol, exchange, limit).dicts()]
+        index = [record['timestamp_epoc'] for record in records]
+        return pandas.DataFrame(records, index=index)

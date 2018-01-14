@@ -47,9 +47,9 @@ class Collections(BaseModel):
         return cls.raw(query, url).scalar()
 
     @classmethod
-    def lastest_collection_for_path_and_meta(cls, url, meta):
-        query = "SELECT created_at FROM collections WHERE path = %s AND meta = %s AND success = 'true' ORDER BY created_at LIMIT 1"
-        return cls.raw(query, url, meta).scalar()
+    def lastest_collection_for_path_and_meta(cls, path, meta):
+        query = "SELECT created_at FROM collections WHERE path = %s AND meta = %s AND success = 'true' ORDER BY created_at DESC LIMIT 1"
+        return cls.raw(query, path, meta).scalar()
 
     def collection_successful(self):
         query = Collections.update(success=True).where((Collections.id == self.id))

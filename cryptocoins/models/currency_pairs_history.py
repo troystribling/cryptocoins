@@ -84,12 +84,10 @@ class CurrencyPairsHistory(BaseModel):
     @classmethod
     def pairs_for_timestamp_epoc(cls, timestamp_epoc, limit=None):
         if limit is None:
-            return cls.raw("SELECT id, from_symbol, to_symbol, volume_from_24_hour"
-                           " FROM currency_pairs_history WHERE timestamp_epoc=%s"
+            return cls.raw("SELECT * FROM currency_pairs_history WHERE timestamp_epoc=%s"
                            " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc)
         else:
-            return cls.raw("SELECT id, from_symbol, to_symbol, volume_from_24_hour"
-                           " FROM currency_pairs_history WHERE timestamp_epoc=%s"
+            return cls.raw("SELECT * FROM currency_pairs_history WHERE timestamp_epoc=%s"
                            " ORDER BY from_symbol, volume_from_24_hour DESC LIMIT %s", timestamp_epoc, limit)
 
     @classmethod
@@ -99,6 +97,6 @@ class CurrencyPairsHistory(BaseModel):
 
     @classmethod
     def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc, limit=None):
-        pairs = [pair for pair in cls.pairs_for_timestamp_epoc(timestamp_epoc, limit).dicts()]
-        index = [pair['id'] for pair in pairs]
-        return pandas.DataFrame(pairs, index=index)
+        records = [record for record in cls.pairs_for_timestamp_epoc(timestamp_epoc, limit).dicts()]
+        index = [record['id'] for record in records]
+        return pandas.DataFrame(records, index=index)
