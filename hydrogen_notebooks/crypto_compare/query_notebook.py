@@ -32,8 +32,9 @@ for currency in CurrencyPairsHistory.fiat_currencies():
     print(currency)
 
 # %%
+# create currency_pairs data_frame
 timestamps = CurrencyPairsHistory.timestamps()
-pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0], limit=10)
+pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0], limit=20)
 type(pairs_data_frame)
 pairs_data_frame
 type(pairs_data_frame.to_symbol)
@@ -41,34 +42,25 @@ pairs_data_frame.to_symbol.values
 pairs_data_frame.to_symbol.index
 print(pairs_data_frame)
 
+# aggregate all columns by from_symbol
 pairs_to_symbol_count = pairs_data_frame.groupby(['from_symbol']).count()
 type(pairs_to_symbol_count)
 print(pairs_to_symbol_count)
 
+# aggregate to_symbol from_symbol
 pairs_to_symbol_count = pairs_data_frame['to_symbol'].groupby(pairs_data_frame['from_symbol']).count().sort_values(ascending=False)
 type(pairs_to_symbol_count)
 pairs_to_symbol_count
 pairs_to_symbol_count.values
 pairs_to_symbol_count.index
 
-type(pairs_to_symbol_count.to_frame())
-pairs_to_symbol_count.to_frame()
-pairs_to_symbol_count.to_frame().columns
-type(pairs_to_symbol_count.to_frame().to_symbol)
-pairs_to_symbol_count.to_frame().to_symbol.values
+# convert group_by serries to data_rame
+data_frame_pairs_to_symbol_count = pairs_to_symbol_count.to_frame()
+type(data_frame_pairs_to_symbol_count)
 
-print(pairs_to_symbol_count)
-print(pairs_to_symbol_count.sort_values(ascending=False))
-print(pairs_to_symbol_count['42'])
-
-pairs_to_symbol_count.index
-pairs_to_symbol_count.values
-pairs_to_symbol_count_frame = pairs_to_symbol_count.to_frame()
-type(pairs_to_symbol_count_frame)
-
-pairs_to_symbol_volume_sum = pairs_data_frame['volume_from_24_hour'].groupby(pairs_data_frame['from_symbol']).sum()
-type(pairs_to_symbol_volume_sum)
-print(pairs_to_symbol_volume_sum)
+# compute rank by to_symbol count and add column
+data_frame_pairs_to_symbol_count['rank'] = data_frame_pairs_to_symbol_count['to_symbol'].rank(ascending=False, method="dense")
+data_frame_pairs_to_symbol_count
 
 # exchanges_history
 # %%
