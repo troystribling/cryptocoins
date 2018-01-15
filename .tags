@@ -82,6 +82,7 @@ ExchangesHistory	cryptocoins/models/exchanges_history.py	/^class ExchangesHistor
 ExchangesHistory	hydrogen_notebooks/crypto_compare/import_data.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
 ExchangesHistory	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
 ExchangesHistory	hydrogen_notebooks/crypto_compare/query_notebook.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
+ExchangesHistory	hydrogen_notebooks/python/stats_plots_examples.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
 ExchangesHistory	scripts/crypto_compare/collect_histoday.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
 ExchangesHistory	scripts/crypto_compare/poll.py	/^from cryptocoins.models.exchanges_history import ExchangesHistory$/;"	i
 Imports	cryptocoins/models/imports.py	/^class Imports(BaseModel):$/;"	c
@@ -172,6 +173,7 @@ call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 close_price_24_hour	cryptocoins/models/coins_history.py	/^    close_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 close_price_24_hour	cryptocoins/models/coins_price_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 close_price_24_hour	cryptocoins/models/exchanges_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
+close_price_24_hour	hydrogen_notebooks/python/stats_plots_examples.py	/^close_price_24_hour = histoday['close_price_24_hour']$/;"	v
 coin_data	hydrogen_notebooks/crypto_compare/download_data.py	/^coin_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 coin_list_to_model_params	cryptocoins/models/coins.py	/^    def coin_list_to_model_params(cls, coin_list, timestamp_epoc):$/;"	m	class:Coins
 coin_list_url	cryptocoins/crypto_compare/requests.py	/^def coin_list_url():$/;"	f
@@ -244,11 +246,13 @@ database	cryptocoins/models/imports.py	/^database = PostgresqlDatabase('cryptoco
 date_dir	cryptocoins/models/imports.py	/^    date_dir = TextField()$/;"	v	class:Imports
 date_prefix	cryptocoins/utils.py	/^def date_prefix(file_date):$/;"	f
 daterange	cryptocoins/utils.py	/^def daterange(date1, date2):$/;"	f
+datetime	coin_plots/timeseries_plots.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/collect_data.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/import_data.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/models/currencies.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/utils.py	/^from datetime import timedelta, datetime$/;"	i
 datetime	hydrogen_notebooks/crypto_compare/query_notebook.py	/^from datetime import datetime, timedelta$/;"	i
+datetime	hydrogen_notebooks/python/stats_plots_examples.py	/^from datetime import datetime$/;"	i
 datetime	scripts/crypto_compare/collect_daily.py	/^from datetime import datetime$/;"	i
 datetime	scripts/crypto_compare/collect_histoday.py	/^from datetime import datetime$/;"	i
 datetime	scripts/crypto_compare/import.py	/^from datetime import datetime, timedelta$/;"	i
@@ -284,6 +288,7 @@ exchange	cryptocoins/models/currency_pairs_history.py	/^    exchange = TextField
 exchange	hydrogen_notebooks/crypto_compare/request_data.py	/^exchange = "CCCAGG"$/;"	v
 exchange_to_model_params	cryptocoins/models/exchanges_history.py	/^    def exchange_to_model_params(cls, exchange, timestamp_epoc):$/;"	m	class:ExchangesHistory
 exchanges	hydrogen_notebooks/crypto_compare/download_data.py	/^exchanges = data['Exchanges']$/;"	v
+exchanges	hydrogen_notebooks/python/stats_plots_examples.py	/^exchanges = ExchangesHistory.history_data_frame('BTC')$/;"	v
 fetch_and_return	cryptocoins/crypto_compare/requests.py	/^def fetch_and_return(params):$/;"	f
 fetch_and_timestamp	cryptocoins/crypto_compare/requests.py	/^def fetch_and_timestamp(params):$/;"	f
 fetch_coin_list	hydrogen_notebooks/crypto_compare/request_data.py	/^def fetch_coin_list(params):$/;"	f
@@ -317,7 +322,7 @@ high_price_24_hour	cryptocoins/models/coins_price_history.py	/^    high_price_24
 high_price_24_hour	cryptocoins/models/exchanges_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
 histoday	hydrogen_notebooks/python/stats_plots_examples.py	/^histoday = CoinsPriceHistory.history_data_frame('BTC', 'USD')$/;"	v
 histoday_to_model_parameters	cryptocoins/models/coins_price_history.py	/^    def histoday_to_model_parameters(cls, histoday, from_symbol, to_symbol, exchange):$/;"	m	class:CoinsPriceHistory
-history	cryptocoins/models/coins_history.py	/^    def history(cls, from_symbol, limit=None):$/;"	m	class:CoinsHistory
+history	cryptocoins/models/coins_history.py	/^    def history(cls, from_symbol, to_symbol=None, limit=None):$/;"	m	class:CoinsHistory
 history	cryptocoins/models/coins_price_history.py	/^    def history(cls, from_symbol, to_symbol, exchange='CCCAGG', limit=None):$/;"	m	class:CoinsPriceHistory
 history	cryptocoins/models/exchanges_history.py	/^    def history(cls, from_symbol, to_symbol=None, limit=None):$/;"	m	class:ExchangesHistory
 history_data_frame	cryptocoins/models/coins_history.py	/^    def history_data_frame(cls, from_symbol, limit=None):$/;"	m	class:CoinsHistory
@@ -355,6 +360,7 @@ latest_date_imports	hydrogen_notebooks/crypto_compare/query_notebook.py	/^last_i
 latest_date_imports	hydrogen_notebooks/crypto_compare/query_notebook.py	/^latest_date_imports = Collections.raw("SELECT date_dir, MAX(created_at) AS created_at, path"$/;"	v
 latest_for_symbol	cryptocoins/models/currencies.py	/^    def latest_for_symbol(cls, symbol):$/;"	m	class:Currencies
 limit	hydrogen_notebooks/crypto_compare/request_data.py	/^limit = 100$/;"	v
+linear	coin_plots/timeseries_plots.py	/^def linear(series, title):$/;"	f
 local_dir	hydrogen_notebooks/crypto_compare/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 local_file_path	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^local_file_path = "\/var\/folders\/hc\/xc94zvls2pq_pw366sdbqlhr0000gn\/T\/cryptocoins\/cryptocompare\/coin_snapshot\/20171224\/20171224-154510-r5mlt7cj"$/;"	v
 log_out	scripts/crypto_compare/collect_daily.py	/^log_out = sys.argv[5] if len(sys.argv) > 5 else '\/var\/log\/apps\/cryptocoins\/crypto_compare_daily.log'$/;"	v
@@ -443,6 +449,7 @@ pandas	cryptocoins/models/coins.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/coins_price_history.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/currencies.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/currency_pairs_history.py	/^import pandas$/;"	i
+pandas	cryptocoins/models/exchanges_history.py	/^import pandas$/;"	i
 pandas	hydrogen_notebooks/crypto_compare/query_notebook.py	/^import pandas$/;"	i
 pandas	hydrogen_notebooks/python/pandas_examples.py	/^import pandas$/;"	i
 parse	cryptocoins/models/imports.py	/^from dateutil.parser import parse$/;"	i
@@ -492,6 +499,7 @@ request_top_currency_pairs	scripts/crypto_compare/poll.py	/^from cryptocoins.cry
 requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 seaborn	coin_plots/rank_plots.py	/^import seaborn$/;"	i
 seaborn	coin_plots/timeseries_plots.py	/^import seaborn$/;"	i
+semilog	coin_plots/timeseries_plots.py	/^def semilog(series, title):$/;"	f
 series	hydrogen_notebooks/python/pandas_examples.py	/^series = pandas.Series(d)$/;"	v
 series	hydrogen_notebooks/python/pandas_examples.py	/^series = pandas.Series(d, index=['b', 'c', 'd', 'a'])$/;"	v
 series	hydrogen_notebooks/python/pandas_examples.py	/^series = pandas.Series(numpy.random.randn(5))$/;"	v
@@ -563,6 +571,7 @@ time_delta	hydrogen_notebooks/crypto_compare/query_notebook.py	/^time_delta = cu
 timedelta	cryptocoins/utils.py	/^from datetime import timedelta, datetime$/;"	i
 timedelta	hydrogen_notebooks/crypto_compare/query_notebook.py	/^from datetime import datetime, timedelta$/;"	i
 timedelta	scripts/crypto_compare/import.py	/^from datetime import datetime, timedelta$/;"	i
+timeseries_plots	hydrogen_notebooks/python/stats_plots_examples.py	/^from coin_plots import timeseries_plots$/;"	i
 timestamp	cryptocoins/models/coins_price_history.py	/^    timestamp = DateTimeField()$/;"	v	class:CoinsPriceHistory
 timestamp_epoc	cryptocoins/models/coins.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:Coins
 timestamp_epoc	cryptocoins/models/coins_history.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:CoinsHistory

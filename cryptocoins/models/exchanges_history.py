@@ -1,5 +1,6 @@
 from peewee import Model, PostgresqlDatabase, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField
 import logging
+import pandas
 
 from cryptocoins.utils import valid_params
 
@@ -96,7 +97,7 @@ class ExchangesHistory(BaseModel):
             return cls.raw("SELECT * FROM exchanges_history"
                            " WHERE from_symbol = %s"
                            " ORDER BY timestamp_epoc", from_symbol)
-        if limit is None:
+        elif limit is None:
             return cls.raw("SELECT * FROM exchanges_history"
                            " WHERE from_symbol = %s AND to_symbol = %s"
                            " ORDER BY timestamp_epoc", from_symbol, to_symbol)
@@ -107,6 +108,6 @@ class ExchangesHistory(BaseModel):
 
     @classmethod
     def history_data_frame(cls, from_symbol, to_symbol=None, limit=None):
-        records = [record for record in cls.history(from_symbol, to_symbol, exchange, limit).dicts()]
+        records = [record for record in cls.history(from_symbol, to_symbol, limit).dicts()]
         index = [record['timestamp_epoc'] for record in records]
         return pandas.DataFrame(records, index=index)

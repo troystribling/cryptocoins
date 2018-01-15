@@ -4,10 +4,13 @@
 %autoreload 2
 
 %aimport numpy
+from datetime import datetime
 
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.coins_price_history import CoinsPriceHistory
+from cryptocoins.models.exchanges_history import ExchangesHistory
 from coin_plots import rank_plots
+from coin_plots import timeseries_plots
 
 # %%
 timestamps = CurrencyPairsHistory.timestamps()
@@ -17,3 +20,9 @@ rank_plots.count_and_rank_plot(from_symbol_count)
 
 # %%
 histoday = CoinsPriceHistory.history_data_frame('BTC', 'USD')
+close_price_24_hour = histoday['close_price_24_hour']
+close_price_24_hour.name = 'BTC'
+timeseries_plots.semilog(close_price_24_hour, 'BTC to USD CCCAGG Daily Close')
+
+# %%
+exchanges = ExchangesHistory.history_data_frame('BTC')
