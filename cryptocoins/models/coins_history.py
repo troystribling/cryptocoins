@@ -89,19 +89,16 @@ class CoinsHistory(BaseModel):
                 'last_update_epoc': last_update_epoc}
 
     @classmethod
-    def history(cls, from_symbol, to_symbol=None, limit=None):
-        if limit is None and to_symbol is None:
+    def history(cls, from_symbol, to_symbol=None):
+        if to_symbol is None:
             return cls.raw("SELECT * FROM coins_history WHERE from_symbol = %s"
                            " ORDER BY timestamp_epoc DESC", from_symbol)
-        elif limit is None:
-            return cls.raw("SELECT * FROM coins_history WHERE from_symbol = %s AND to_symbol = %s"
-                           " ORDER BY timestamp_epoc DESC", timestamp_epoc, to_symbol)
         else:
             return cls.raw("SELECT * FROM coins_history WHERE from_symbol = %s AND to_symbol = %s"
-                           " ORDER BY timestamp_epoc DESC LIMIT %s", timestamp_epoc, to_symbol, limit)
+                           " ORDER BY timestamp_epoc DESC LIMIT %s", timestamp_epoc, to_symbol, )
 
     @classmethod
-    def history_data_frame(cls, from_symbol, limit=None):
-        records = [record for record in cls.history(from_symbol, limit).dicts()]
-        index = [record['timestamp_epoc'] for record in records]
+    def history_data_frame(cls, from_symbol, to_symbol=None):
+        records = [record for record in cls.history(from_symbol, to_symbol).dicts()]
+        index = [record['last_update_epoc'] for record in records]
         return pandas.DataFrame(records, index=index)

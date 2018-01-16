@@ -25,4 +25,5 @@ close_price_24_hour.name = 'BTC'
 timeseries_plots.semilog(close_price_24_hour, 'BTC to USD CCCAGG Daily Close')
 
 # %%
-exchanges = ExchangesHistory.history_data_frame('BTC')
+exchanges = ExchangesHistory.history_data_frame('BTC', 'USD')
+exchanges

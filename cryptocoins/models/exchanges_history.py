@@ -92,22 +92,37 @@ class ExchangesHistory(BaseModel):
         return pandas.DataFrame(records, index=index)
 
     @classmethod
-    def history(cls, from_symbol, to_symbol=None, limit=None):
-        if limit is None and to_symbol is None:
+    def history(cls, from_symbol, to_symbol=None, exchange=None):
+        if exchange is None and to_symbol is None:
             return cls.raw("SELECT * FROM exchanges_history"
                            " WHERE from_symbol = %s"
                            " ORDER BY timestamp_epoc", from_symbol)
-        elif limit is None:
+        elif exchange is None:
             return cls.raw("SELECT * FROM exchanges_history"
                            " WHERE from_symbol = %s AND to_symbol = %s"
                            " ORDER BY timestamp_epoc", from_symbol, to_symbol)
+        elif to_symbol is None:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE from_symbol = %s AND exchange = %s"
+                           " ORDER BY timestamp_epoc", from_symbol, exchange)
         else:
             return cls.raw("SELECT * FROM exchanges_history"
-                           " WHERE from_symbol = %s AND to_symbol = %s"
-                           " ORDER BY timestamp_epoc LIMIT %s", from_symbol, to_symbol, limit)
+                           " WHERE from_symbol = %s AND to_symbol = %s AND exchange = %s"
+                           " ORDER BY timestamp_epoc", from_symbol, to_symbol, exchange)
 
     @classmethod
-    def history_data_frame(cls, from_symbol, to_symbol=None, limit=None):
-        records = [record for record in cls.history(from_symbol, to_symbol, limit).dicts()]
-        index = [record['timestamp_epoc'] for record in records]
+    def history_data_frame(cls, from_symbol, to_symbol=None, exchange=None):
+        records = [record for record in cls.history(from_symbol, to_symbol, exchange).dicts()]
+        index = [record['last_update_epoc'] for record in records]
+        return pandas.DataFrame(records, index=index)
+
+    @classmethod
+    def timestamps(cls):
+        query = cls.raw("SELECT DISTINCT timestamp_epoc FROM exchanges_history")
+        return [timestamp.timestamp_epoc for timestamp in query]
+
+    @classmethod
+    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc, limit=None):
+        records = [record for record in cls.pairs_for_timestamp_epoc(timestamp_epoc, limit).dicts()]
+        index = [record['id'] for record in records]
         return pandas.DataFrame(records, index=index)
