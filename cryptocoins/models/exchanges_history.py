@@ -118,11 +118,29 @@ class ExchangesHistory(BaseModel):
 
     @classmethod
     def timestamps(cls):
-        query = cls.raw("SELECT DISTINCT timestamp_epoc FROM exchanges_history")
+        query = cls.raw("SELECT DISTINCT timestamp_epoc FROM exchanges_history ORDER BY timestamp_epoc DESC")
         return [timestamp.timestamp_epoc for timestamp in query]
 
     @classmethod
-    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc, limit=None):
-        records = [record for record in cls.pairs_for_timestamp_epoc(timestamp_epoc, limit).dicts()]
-        index = [record['id'] for record in records]
+    def for_timestamp_epoc(cls, timestamp_epoc, from_symbol=None, to_symbol=None):
+        if from_symbol is None and to_symbol is None:
+            return cls.raw("SELECT * FROM exchanges_history WHERE timestamp_epoc = %s"
+                           " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc)
+        elif from_symbol is None:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE timestamp_epoc = %s AND to_symbol = %s"
+                           " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc, to_symbol)
+        elif to_symbol is None:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE timestamp_epoc = %s AND from_symbol = %s"
+                           " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc, from_symbol)
+        else:
+            return cls.raw("SELECT * FROM exchanges_history"
+                           " WHERE timestamp_epoc = %s AND from_symbol = %s AND to_symbol = %s"
+                           " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc, from_symbol, to_symbol)
+
+    @classmethod
+    def for_timestamp_epoc_data_frame(cls, timestamp_epoc, from_symbol=None, to_symbol=None):
+        records = [record for record in cls.for_timestamp_epoc(timestamp_epoc, from_symbol, to_symbol).dicts()]
+        index = [record['name'] for record in records]
         return pandas.DataFrame(records, index=index)

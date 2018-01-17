@@ -246,6 +246,7 @@ database	cryptocoins/models/imports.py	/^database = PostgresqlDatabase('cryptoco
 date_dir	cryptocoins/models/imports.py	/^    date_dir = TextField()$/;"	v	class:Imports
 date_prefix	cryptocoins/utils.py	/^def date_prefix(file_date):$/;"	f
 daterange	cryptocoins/utils.py	/^def daterange(date1, date2):$/;"	f
+datetime	coin_plots/exchange_plots.py	/^from datetime import datetime$/;"	i
 datetime	coin_plots/timeseries_plots.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/collect_data.py	/^from datetime import datetime$/;"	i
 datetime	cryptocoins/import_data.py	/^from datetime import datetime$/;"	i
@@ -288,7 +289,7 @@ exchange	cryptocoins/models/currency_pairs_history.py	/^    exchange = TextField
 exchange	hydrogen_notebooks/crypto_compare/request_data.py	/^exchange = "CCCAGG"$/;"	v
 exchange_to_model_params	cryptocoins/models/exchanges_history.py	/^    def exchange_to_model_params(cls, exchange, timestamp_epoc):$/;"	m	class:ExchangesHistory
 exchanges	hydrogen_notebooks/crypto_compare/download_data.py	/^exchanges = data['Exchanges']$/;"	v
-exchanges	hydrogen_notebooks/python/stats_plots_examples.py	/^exchanges = ExchangesHistory.history_data_frame('BTC', 'USD')$/;"	v
+exchanges	hydrogen_notebooks/python/stats_plots_examples.py	/^exchanges = ExchangesHistory.for_timestamp_epoc_data_frame(timestamps[0], from_symbol='BTC', to_symbol='USD')$/;"	v
 fetch_and_return	cryptocoins/crypto_compare/requests.py	/^def fetch_and_return(params):$/;"	f
 fetch_and_timestamp	cryptocoins/crypto_compare/requests.py	/^def fetch_and_timestamp(params):$/;"	f
 fetch_coin_list	hydrogen_notebooks/crypto_compare/request_data.py	/^def fetch_coin_list(params):$/;"	f
@@ -308,6 +309,10 @@ find_for_file_name	cryptocoins/models/imports.py	/^    def find_for_file_name(cl
 folder_date	hydrogen_notebooks/crypto_compare/download_data.py	/^folder_date = parse('20171203')$/;"	v
 folder_date	hydrogen_notebooks/crypto_compare/download_data.py	/^folder_date = parse('20180102')$/;"	v
 for	hydrogen_notebooks/crypto_compare/query_notebook.py	/^last_import = [last_import for last_import in latest_date_imports]$/;"	i
+for_timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    def for_timestamp_epoc(cls, timestamp_epoc, limit=None):$/;"	m	class:CurrencyPairsHistory
+for_timestamp_epoc	cryptocoins/models/exchanges_history.py	/^    def for_timestamp_epoc(cls, timestamp_epoc, from_symbol=None, to_symbol=None):$/;"	m	class:ExchangesHistory
+for_timestamp_epoc_data_frame	cryptocoins/models/currency_pairs_history.py	/^    def for_timestamp_epoc_data_frame(cls, timestamp_epoc, limit=None):$/;"	m	class:CurrencyPairsHistory
+for_timestamp_epoc_data_frame	cryptocoins/models/exchanges_history.py	/^    def for_timestamp_epoc_data_frame(cls, timestamp_epoc, from_symbol=None, to_symbol=None):$/;"	m	class:ExchangesHistory
 from_currency	hydrogen_notebooks/crypto_compare/request_data.py	/^from_currency = 'BTC'$/;"	v
 from_symbol	cryptocoins/models/coins_history.py	/^    from_symbol = TextField(index=True)$/;"	v	class:CoinsHistory
 from_symbol	cryptocoins/models/coins_price_history.py	/^    from_symbol = TextField(index=True)$/;"	v	class:CoinsPriceHistory
@@ -420,6 +425,7 @@ name	cryptocoins/models/exchanges_history.py	/^    name = TextField(index=True)$
 net_hashes_per_second	cryptocoins/models/coins_history.py	/^    net_hashes_per_second = DecimalField(null=True)$/;"	v	class:CoinsHistory
 null_param_if_missing	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params, null_param_if_missing$/;"	i
 null_param_if_missing	cryptocoins/utils.py	/^def null_param_if_missing(expected_params, params):$/;"	f
+numpy	coin_plots/exchange_plots.py	/^import numpy$/;"	i
 numpy	coin_plots/rank_plots.py	/^import numpy$/;"	i
 numpy	coin_plots/timeseries_plots.py	/^import numpy$/;"	i
 numpy	hydrogen_notebooks/crypto_compare/query_notebook.py	/^import numpy$/;"	i
@@ -439,11 +445,9 @@ os	scripts/crypto_compare/import_coins.py	/^import os$/;"	i
 os	scripts/crypto_compare/poll.py	/^import os$/;"	i
 pairs_data_frame	hydrogen_notebooks/crypto_compare/query_notebook.py	/^pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0], limit=20)$/;"	v
 pairs_data_frame	hydrogen_notebooks/python/stats_plots_examples.py	/^pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0])$/;"	v
-pairs_for_timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    def pairs_for_timestamp_epoc(cls, timestamp_epoc, limit=None):$/;"	m	class:CurrencyPairsHistory
-pairs_for_timestamp_epoc_data_frame	cryptocoins/models/currency_pairs_history.py	/^    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc, limit=None):$/;"	m	class:CurrencyPairsHistory
-pairs_for_timestamp_epoc_data_frame	cryptocoins/models/exchanges_history.py	/^    def pairs_for_timestamp_epoc_data_frame(cls, timestamp_epoc, limit=None):$/;"	m	class:ExchangesHistory
 pairs_to_symbol_count	hydrogen_notebooks/crypto_compare/query_notebook.py	/^pairs_to_symbol_count = pairs_data_frame.groupby(['from_symbol']).count()$/;"	v
 pairs_to_symbol_count	hydrogen_notebooks/crypto_compare/query_notebook.py	/^pairs_to_symbol_count = pairs_data_frame['to_symbol'].groupby(pairs_data_frame['from_symbol']).count().sort_values(ascending=False)$/;"	v
+pandas	coin_plots/exchange_plots.py	/^import pandas$/;"	i
 pandas	coin_plots/rank_plots.py	/^import pandas$/;"	i
 pandas	coin_plots/timeseries_plots.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/coins.py	/^import pandas$/;"	i
@@ -475,6 +479,7 @@ price_usd	cryptocoins/models/currencies.py	/^    price_usd = DecimalField()$/;"	
 process_args	hydrogen_notebooks/python/python_exaples.py	/^def process_args(data):$/;"	f
 process_kwargs	hydrogen_notebooks/python/python_exaples.py	/^def process_kwargs(data):$/;"	f
 proof_type	cryptocoins/models/coins_history.py	/^    proof_type = TextField(null=True)$/;"	v	class:CoinsHistory
+pyplot	coin_plots/exchange_plots.py	/^from matplotlib import pyplot$/;"	i
 pyplot	coin_plots/rank_plots.py	/^from matplotlib import pyplot$/;"	i
 pyplot	coin_plots/timeseries_plots.py	/^from matplotlib import pyplot$/;"	i
 query	hydrogen_notebooks/crypto_compare/query_notebook.py	/^query = "SELECT symbol, crypto_compare_rank FROM coins ORDER BY crypto_compare_rank ASC LIMIT %s"$/;"	v
@@ -498,6 +503,7 @@ request_top_currency_pairs	cryptocoins/crypto_compare/requests.py	/^def request_
 request_top_currency_pairs	scripts/crypto_compare/collect_daily.py	/^from cryptocoins.crypto_compare.requests import request_top_currency_pairs$/;"	i
 request_top_currency_pairs	scripts/crypto_compare/poll.py	/^from cryptocoins.crypto_compare.requests import request_top_currency_pairs$/;"	i
 requests	cryptocoins/collect_data.py	/^import requests$/;"	i
+seaborn	coin_plots/exchange_plots.py	/^import seaborn$/;"	i
 seaborn	coin_plots/rank_plots.py	/^import seaborn$/;"	i
 seaborn	coin_plots/timeseries_plots.py	/^import seaborn$/;"	i
 semilog	coin_plots/timeseries_plots.py	/^def semilog(series, title):$/;"	f
@@ -585,6 +591,7 @@ timestamps	cryptocoins/models/currency_pairs_history.py	/^    def timestamps(cls
 timestamps	cryptocoins/models/exchanges_history.py	/^    def timestamps(cls):$/;"	m	class:ExchangesHistory
 timestamps	hydrogen_notebooks/crypto_compare/query_notebook.py	/^timestamps = CurrencyPairsHistory.timestamps()$/;"	v
 timestamps	hydrogen_notebooks/python/stats_plots_examples.py	/^timestamps = CurrencyPairsHistory.timestamps()$/;"	v
+timestamps	hydrogen_notebooks/python/stats_plots_examples.py	/^timestamps = ExchangesHistory.timestamps()$/;"	v
 to_currency	hydrogen_notebooks/crypto_compare/request_data.py	/^to_currency = 'USD'$/;"	v
 to_symbol	cryptocoins/models/coins_history.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CoinsHistory
 to_symbol	cryptocoins/models/coins_price_history.py	/^    to_symbol = TextField(index=True)$/;"	v	class:CoinsPriceHistory
