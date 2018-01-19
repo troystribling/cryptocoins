@@ -91,3 +91,31 @@ class CoinsPriceHistory(BaseModel):
         records = [record for record in cls.history(from_symbol, to_symbol, exchange, limit).dicts()]
         index = [record['timestamp_epoc'] for record in records]
         return pandas.DataFrame(records, index=index)
+
+    @classmethod
+    def timestamps(cls, from_symbol, to_symbol=None):
+        if to_symbol is None:
+            query = cls.raw("SELECT DISTINCT timestamp_epoc FROM coins_price_history"
+                            " WHERE from_symbol = %s"
+                            " ORDER BY timestamp_epoc", from_symbol)
+            return [timestamps.timestamp_epoc for timestamps in query]
+        else:
+            query = cls.raw("SELECT DISTINCT timestamp_epoc FROM coins_price_history"
+                            " WHERE from_symbol = %s AND to_symbol = %s"
+                            " ORDER BY timestamp_epoc", from_symbol)
+            return [timestamps.timestamp_epoc for timestamps in query]
+
+    @classmethod
+    def exchanges(cls, from_symbol, to_symbol=None):
+        if to_symbol is None:
+            query = cls.raw("SELECT DISTINCT exchange FROM coins_price_history"
+                            " WHERE from_symbol = %s"
+                            "  AND timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM coins_price_history)"
+                            " ORDER BY timestamp_epoc", from_symbol)
+            return [exchanges.exchange for exchanges in query]
+        else:
+            query = cls.raw("SELECT DISTINCT exchange FROM coins_price_history"
+                            " WHERE from_symbol = %s AND to_symbol = %s"
+                            "  AND timestamp_epoc = (SELECT MAX(timestamp_epoc) FROM coins_price_history)"
+                            " ORDER BY timestamp_epoc", from_symbol)
+            return [exchanges.exchange for exchanges in query]

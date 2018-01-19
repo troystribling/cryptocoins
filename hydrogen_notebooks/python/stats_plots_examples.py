@@ -25,7 +25,15 @@ close_price_24_hour.name = 'BTC'
 timeseries_plots.semilog(close_price_24_hour, 'BTC to USD CCCAGG Daily Close')
 
 # %%
+histoday = CoinsPriceHistory.history_data_frame('BTC', 'CAD')
+close_price_24_hour = histoday['close_price_24_hour']
+close_price_24_hour.name = 'BTC'
+timeseries_plots.semilog(close_price_24_hour, 'BTC to CAD CCCAGG Daily Close')
+
+# %%
 timestamps = ExchangesHistory.timestamps()
 timestamps[0]
-exchanges = ExchangesHistory.for_timestamp_epoc_data_frame(timestamps[0], from_symbol='BTC', to_symbol='USD')
+exchanges = ExchangesHistory.for_timestamp_epoc_data_frame(timestamps[3], from_symbol='BTC')
 price = exchanges.close_price_24_hour
+exchanges.index
+exchanges.loc['Coinbase', ['from_symbol', 'to_symbol', 'close_price_24_hour']]

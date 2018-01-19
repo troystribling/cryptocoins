@@ -288,8 +288,9 @@ exchange	cryptocoins/models/coins_price_history.py	/^    exchange = TextField()$
 exchange	cryptocoins/models/currency_pairs_history.py	/^    exchange = TextField()$/;"	v	class:CurrencyPairsHistory
 exchange	hydrogen_notebooks/crypto_compare/request_data.py	/^exchange = "CCCAGG"$/;"	v
 exchange_to_model_params	cryptocoins/models/exchanges_history.py	/^    def exchange_to_model_params(cls, exchange, timestamp_epoc):$/;"	m	class:ExchangesHistory
+exchanges	cryptocoins/models/coins_price_history.py	/^    def exchanges(cls, from_symbol, to_symbol=None):$/;"	m	class:CoinsPriceHistory
 exchanges	hydrogen_notebooks/crypto_compare/download_data.py	/^exchanges = data['Exchanges']$/;"	v
-exchanges	hydrogen_notebooks/python/stats_plots_examples.py	/^exchanges = ExchangesHistory.for_timestamp_epoc_data_frame(timestamps[0], from_symbol='BTC', to_symbol='USD')$/;"	v
+exchanges	hydrogen_notebooks/python/stats_plots_examples.py	/^exchanges = ExchangesHistory.for_timestamp_epoc_data_frame(timestamps[3], from_symbol='BTC')$/;"	v
 fetch_and_return	cryptocoins/crypto_compare/requests.py	/^def fetch_and_return(params):$/;"	f
 fetch_and_timestamp	cryptocoins/crypto_compare/requests.py	/^def fetch_and_timestamp(params):$/;"	f
 fetch_coin_list	hydrogen_notebooks/crypto_compare/request_data.py	/^def fetch_coin_list(params):$/;"	f
@@ -325,6 +326,7 @@ get_for_symbol	cryptocoins/models/currencies_info.py	/^        def get_for_symbo
 high_price_24_hour	cryptocoins/models/coins_history.py	/^    high_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 high_price_24_hour	cryptocoins/models/coins_price_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 high_price_24_hour	cryptocoins/models/exchanges_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
+histoday	hydrogen_notebooks/python/stats_plots_examples.py	/^histoday = CoinsPriceHistory.history_data_frame('BTC', 'CAD')$/;"	v
 histoday	hydrogen_notebooks/python/stats_plots_examples.py	/^histoday = CoinsPriceHistory.history_data_frame('BTC', 'USD')$/;"	v
 histoday_to_model_parameters	cryptocoins/models/coins_price_history.py	/^    def histoday_to_model_parameters(cls, histoday, from_symbol, to_symbol, exchange):$/;"	m	class:CoinsPriceHistory
 history	cryptocoins/models/coins_history.py	/^    def history(cls, from_symbol, to_symbol=None):$/;"	m	class:CoinsHistory
@@ -472,6 +474,7 @@ path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cr
 path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cryptocompare\/top_pairs"$/;"	v
 poll_coin_list	scripts/crypto_compare/poll.py	/^async def poll_coin_list():$/;"	f
 poll_coin_snapshot	scripts/crypto_compare/poll.py	/^async def poll_coin_snapshot(coin_limit):$/;"	f
+price	hydrogen_notebooks/python/stats_plots_examples.py	/^price = exchanges.close_price_24_hour$/;"	v
 price_btc	cryptocoins/models/coins.py	/^    price_btc = DecimalField()$/;"	v	class:Coins
 price_btc	cryptocoins/models/currencies.py	/^    price_btc = DecimalField()$/;"	v	class:Currencies
 price_usd	cryptocoins/models/coins.py	/^    price_usd = DecimalField()$/;"	v	class:Coins
@@ -587,6 +590,7 @@ timestamp_epoc	cryptocoins/models/currencies.py	/^    timestamp_epoc = DecimalFi
 timestamp_epoc	cryptocoins/models/currency_pairs_history.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:CurrencyPairsHistory
 timestamp_epoc	cryptocoins/models/exchanges_history.py	/^    timestamp_epoc = DecimalField()$/;"	v	class:ExchangesHistory
 timestamp_epoc	scripts/crypto_compare/collect_daily.py	/^timestamp_epoc = time()$/;"	v
+timestamps	cryptocoins/models/coins_price_history.py	/^    def timestamps(cls, from_symbol, to_symbol=None):$/;"	m	class:CoinsPriceHistory
 timestamps	cryptocoins/models/currency_pairs_history.py	/^    def timestamps(cls):$/;"	m	class:CurrencyPairsHistory
 timestamps	cryptocoins/models/exchanges_history.py	/^    def timestamps(cls):$/;"	m	class:ExchangesHistory
 timestamps	hydrogen_notebooks/crypto_compare/query_notebook.py	/^timestamps = CurrencyPairsHistory.timestamps()$/;"	v
