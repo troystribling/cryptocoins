@@ -4,11 +4,6 @@ from cryptocoins.collect_data import fetch_url_and_upload_to_s3
 
 # fetchers
 @fetch_url_and_upload_to_s3
-def fetch_and_return(params):
-    return [params['response']]
-
-
-@fetch_url_and_upload_to_s3
 def fetch_and_timestamp(params):
     parsed_response = json.loads(params['response'])
     parsed_response['timestamp_epoc'] = params['timestamp_epoc']

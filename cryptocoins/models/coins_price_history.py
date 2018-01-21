@@ -20,7 +20,6 @@ class CoinsPriceHistory(BaseModel):
     high_price_24_hour = DecimalField()
     low_price_24_hour = DecimalField()
     open_price_24_hour = DecimalField()
-    timestamp = DateTimeField()
     timestamp_epoc = BigIntegerField()
     to_symbol = TextField(index=True)
     volume_from_24_hour = DecimalField()
