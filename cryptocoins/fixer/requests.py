@@ -5,27 +5,29 @@ from cryptocoins.collect_data import fetch_url_and_upload_to_s3
 
 # fetchers
 @fetch_url_and_upload_to_s3
-def fetch_and_timestamp(params):
-    parsed_response = json.loads(params['response'])
-    parsed_response['timestamp_epoc'] = params['timestamp_epoc']
-    new_result = json.dumps(parsed_response)
-    return [new_result]
+def fetch(params):
+    return [[params['response']]]
+
 
 # request urls
-def latest_from_usd_url():
-    return 'https://api.fixer.io/latest?base=USD'
+def latest_exchange_rate_url(from_symbol):
+    return f"https://api.fixer.io/latest?base={from_symbol}"
 
-def date_from_usd_url(date):
+
+def exchange_rate_for_date_url(date, from_symbol):
     request_date = date.strftime('%Y-%m-%d')
-    return f"https://api.fixer.io/{request_date}?base=USD"
+    return f"https://api.fixer.io/{request_date}?base={from_symbol}"
 
 # requests
-def request_latest_from_usd(bucket_name, timestamp_epoc):
-    url = latest_from_usd_url()
-    path = "forex/fixer/usd_rates"
-    fetch_and_timestamp(url=url, bucket_name=bucket_name, path=path, timestamp_epoc=timestamp_epoc)
+def request_latest_exchange_rate(bucket_name, from_symbol):
+    url = latest_exchange_rate_url(from_symbol)
+    path = "forex/fixer/exchange_rates"
+    meta = f"{from_symbol}"
+    fetch_and_timestamp(url=url, bucket_name=bucket_name, path=path)
 
-def request_for_date_from_usd(bucket_name, date, timestamp_epoc):
-    url = date_from_usd_url(date)
-    path = "forex/fixer/usd_rates"
-    fetch_and_timestamp(url=url, bucket_name=bucket_name, path=path, timestamp_epoc=timestamp_epoc)
+
+def request_exchange_rate(bucket_name, date, from_symbol):
+    url = exchange_rate_for_date_url(date, from_symbol)
+    path = "forex/fixer/exchange_rates"
+    meta = f"{from_symbol}"
+    fetch(url=url, bucket_name=bucket_name, path=path, meta=meta)

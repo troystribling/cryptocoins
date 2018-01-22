@@ -55,8 +55,7 @@ def fetch_url_and_upload_to_s3(process):
     def wrapper(**params):
         logger.info(f"FETCH FROM: {params['url']}")
         meta = params['meta'] if 'meta' in params else None
-        created_collection = Collections.create_collection(path=params['path'], url=params['url'], meta=meta)
-        collection = Collections.get_for_id(created_collection.id)
+        collection = Collections.create_collection(path=params['path'], url=params['url'], meta=meta)
         if collection is None:
             logger.error(f"Collection with {params['url']} exists")
             return

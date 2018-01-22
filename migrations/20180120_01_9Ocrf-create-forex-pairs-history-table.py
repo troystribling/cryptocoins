@@ -17,4 +17,5 @@ steps = [
          " timestamp_epoc BIGINT NOT NULL"
          ")", "DROP TABLE forex_pairs_history"),
     step("CREATE INDEX forex_pairs_history_from_symbol_idx ON forex_pairs_history (from_symbol)", "DROP INDEX forex_pairs_history_from_symbol_idx"),
+    step("CREATE UNIQUE INDEX forex_pairs_history_from_to_symbol_timestamp_epoc_idx ON forex_pairs_history (from_symbol, to_symbol, timestamp_epoc)", "DROP INDEX forex_pairs_history_from_to_symbol_timestamp_epoc_idx")
 ]

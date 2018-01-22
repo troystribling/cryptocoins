@@ -1,7 +1,10 @@
-
 # %%
 import time
+from datetime import datetime
+import os
+
 int(time.time())
+datetime.strptime('2000-01-03', '%Y-%m-%d').timestamp()
 
 # %%
 
@@ -43,3 +46,9 @@ def process_kwargs(data):
 
 
 process_kwargs()
+
+# %%
+file_name = os.path.join(os.environ['HOME'], '.1forge', 'apikey')
+with open(file_name, 'r') as file:
+    apikey = file.read()
+print(apikey.rstrip())

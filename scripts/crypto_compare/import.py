@@ -16,22 +16,20 @@ from cryptocoins.models.imports import Imports
 
 from cryptocoins.utils import setup_logging
 
-logger = setup_logging()
 
 start_date = parse(sys.argv[1]) if len(sys.argv) > 1 else None
 end_date = parse(sys.argv[2]) if len(sys.argv) > 2 else start_date
 bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish'
 
+logger = setup_logging()
+
 
 def start_date_from_last_import(path):
     if start_date is not None:
         return start_date
-
-    import_date = Imports.last_import_date_for_path('cryptocoins/cryptocompare/coin_list')
+    import_date = Imports.last_import_date_for_path(path)
     if import_date is None:
         return datetime.utcnow()
-
-
     return import_date + timedelta(days=1)
 
 
