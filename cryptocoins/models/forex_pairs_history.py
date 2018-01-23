@@ -52,9 +52,9 @@ class ForexPairsHistory(BaseModel):
             logger.error("fixer_exchange_rate KEYS INVALID")
             return
         with database.atomic():
-            for i in range(0, len(), batch_size):
+            for i in range(0, len(params), batch_size):
                 try:
-                    cls.insert_many(params[i:i + batch_size])
+                    cls.insert_many(params[i:i + batch_size]).execute()
                 except (IntegrityError, InternalError, DataError) as error:
                     logger.error(f"DATABASE ERROR for ForexPairsHistory: {error}")
                     continue
@@ -68,10 +68,10 @@ class ForexPairsHistory(BaseModel):
         timestamp_epoc = datetime.strptime(data['date'], '%Y-%m-%d').timestamp()
         from_symbol = data['base']
         params = []
-        for to_symbol, rate in data['rates']:
+        for to_symbol, rate in data['rates'].items():
             model_params = {'from_symbol': from_symbol,
-                           'to_symbol': to_symbol,
-                           'price': rate,
-                           'timestamp_epoc': timestamp_epoc}
+                            'to_symbol': to_symbol,
+                            'price': rate,
+                            'timestamp_epoc': timestamp_epoc}
             params.append(model_params)
         return params

@@ -6,7 +6,7 @@ from cryptocoins.collect_data import fetch_url_and_upload_to_s3
 # fetchers
 @fetch_url_and_upload_to_s3
 def fetch(params):
-    return [[params['response']]]
+    return [params['response']]
 
 
 # request urls
