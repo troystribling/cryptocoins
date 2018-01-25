@@ -186,6 +186,7 @@ bucket_name	scripts/crypto_compare/collect_histoday.py	/^bucket_name = sys.argv[
 bucket_name	scripts/crypto_compare/import.py	/^bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish'$/;"	v
 bucket_name	scripts/crypto_compare/import_coins.py	/^bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish'$/;"	v
 bucket_name	scripts/fixer/collect_history.py	/^bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish'$/;"	v
+bucket_name	scripts/fixer/collect_latest.py	/^bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish'$/;"	v
 bucket_name	scripts/fixer/import.py	/^bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish'$/;"	v
 call	cryptocoins/collect_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
@@ -205,6 +206,9 @@ coin_snapshot_to_model_parameters	cryptocoins/models/coins_history.py	/^    def 
 coin_snapshot_url	cryptocoins/crypto_compare/requests.py	/^def coin_snapshot_url(from_currency, to_currency):$/;"	f
 coins	hydrogen_notebooks/crypto_compare/download_data.py	/^coins = coin_data[0]['Data']$/;"	v
 coins	hydrogen_notebooks/fixer/download_data.py	/^coins = coin_data[0]['Data']$/;"	v
+collection_end	scripts/fixer/collect_history.py	/^    collection_end = datetime.utcnow()$/;"	v
+collection_start	scripts/fixer/collect_history.py	/^collection_start = datetime.utcnow()$/;"	v
+collection_start	scripts/fixer/collect_latest.py	/^collection_start = datetime.utcnow()$/;"	v
 collection_successful	cryptocoins/models/collections.py	/^    def collection_successful(self):$/;"	m	class:Collections
 compare_data	hydrogen_notebooks/crypto_compare/download_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 count_and_rank	coin_plots/rank_plots.py	/^def count_and_rank(data_frame, aggregated_column, count_column):$/;"	f
@@ -233,6 +237,7 @@ created_at	cryptocoins/models/imports.py	/^    created_at = DateTimeField()$/;"	
 crypto_compare_rank	cryptocoins/models/coins.py	/^    crypto_compare_rank = BigIntegerField()$/;"	v	class:Coins
 cryptocoins	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
 cryptocoins	scripts/fixer/collect_history.py	/^import cryptocoins.utils as utils$/;"	i
+cryptocoins	scripts/fixer/collect_latest.py	/^import cryptocoins.utils as utils$/;"	i
 cryptocompare_id	cryptocoins/models/coins.py	/^    cryptocompare_id = BigIntegerField()$/;"	v	class:Coins
 currency_pairs_for_coin	cryptocoins/models/currency_pairs_history.py	/^    def currency_pairs_for_coin(cls, coin, limit=None):$/;"	m	class:CurrencyPairsHistory
 currency_type	cryptocoins/models/currencies_info.py	/^    currency_type = TextField()$/;"	v	class:CurrenciesInfo
@@ -290,6 +295,7 @@ datetime	scripts/crypto_compare/collect_histoday.py	/^from datetime import datet
 datetime	scripts/crypto_compare/import.py	/^from datetime import datetime, timedelta$/;"	i
 datetime	scripts/crypto_compare/import_coins.py	/^from datetime import datetime$/;"	i
 datetime	scripts/fixer/collect_history.py	/^from datetime import datetime$/;"	i
+datetime	scripts/fixer/collect_latest.py	/^from datetime import datetime$/;"	i
 datetime	scripts/fixer/import.py	/^from datetime import datetime, timedelta$/;"	i
 day_dir	cryptocoins/utils.py	/^def day_dir(file_date):$/;"	f
 day_dir	hydrogen_notebooks/crypto_compare/download_data.py	/^day_dir = utils.day_dir(folder_date)$/;"	v
@@ -367,6 +373,7 @@ from_symbol	cryptocoins/models/currency_pairs_history.py	/^    from_symbol = Tex
 from_symbol	cryptocoins/models/exchanges_history.py	/^    from_symbol = TextField()$/;"	v	class:ExchangesHistory
 from_symbol	cryptocoins/models/forex_pairs_history.py	/^    from_symbol = TextField(index=True)$/;"	v	class:ForexPairsHistory
 from_symbol	scripts/fixer/collect_history.py	/^from_symbol = sys.argv[2] if len(sys.argv) > 2 else 'USD'$/;"	v
+from_symbol	scripts/fixer/collect_latest.py	/^from_symbol = sys.argv[2] if len(sys.argv) > 2 else 'USD'$/;"	v
 from_symbol_count	hydrogen_notebooks/python/stats_plots_examples.py	/^from_symbol_count = rank_plots.count_and_rank(pairs_data_frame, 'from_symbol', 'to_symbol')$/;"	v
 full_name	cryptocoins/models/coins.py	/^    full_name = TextField()$/;"	v	class:Coins
 get_for_id	cryptocoins/models/collections.py	/^    def get_for_id(cls, id):$/;"	m	class:Collections
@@ -454,6 +461,7 @@ logger	scripts/crypto_compare/collect_histoday.py	/^    logger = setup_logging(f
 logger	scripts/crypto_compare/import.py	/^logger = setup_logging()$/;"	v
 logger	scripts/crypto_compare/import_coins.py	/^logger = setup_logging()$/;"	v
 logger	scripts/fixer/collect_history.py	/^logger = setup_logging()$/;"	v
+logger	scripts/fixer/collect_latest.py	/^logger = setup_logging()$/;"	v
 logger	scripts/fixer/import.py	/^logger = setup_logging()$/;"	v
 logging	cryptocoins/1forge/imports.py	/^import logging$/;"	i
 logging	cryptocoins/collect_data.py	/^import logging$/;"	i
@@ -484,7 +492,6 @@ max_exchanges	scripts/crypto_compare/collect_histoday.py	/^max_exchanges = sys.a
 max_pairs	scripts/crypto_compare/collect_daily.py	/^max_pairs = sys.argv[3] if len(sys.argv) > 3 else 300$/;"	v
 max_pairs	scripts/crypto_compare/collect_histoday.py	/^max_pairs = sys.argv[3] if len(sys.argv) > 3 else 300$/;"	v
 meta	cryptocoins/models/collections.py	/^    meta = TextField()$/;"	v	class:Collections
-meta	scripts/fixer/collect_history.py	/^    meta = f"{from_symbol}"$/;"	v
 model_params_from_1forge_exchange_rate	cryptocoins/models/forex_pairs_history.py	/^    def model_params_from_1forge_exchange_rate(cls, data):$/;"	m	class:ForexPairsHistory
 model_params_from_fixer_exchange_rate	cryptocoins/models/forex_pairs_history.py	/^    def model_params_from_fixer_exchange_rate(cls, data):$/;"	m	class:ForexPairsHistory
 name	cryptocoins/models/coins.py	/^    name = TextField()$/;"	v	class:Coins
@@ -515,6 +522,7 @@ os	scripts/crypto_compare/import.py	/^import os$/;"	i
 os	scripts/crypto_compare/import_coins.py	/^import os$/;"	i
 os	scripts/crypto_compare/poll.py	/^import os$/;"	i
 os	scripts/fixer/collect_history.py	/^import os$/;"	i
+os	scripts/fixer/collect_latest.py	/^import os$/;"	i
 os	scripts/fixer/import.py	/^import os$/;"	i
 pairs_data_frame	hydrogen_notebooks/crypto_compare/query_notebook.py	/^pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0], limit=20)$/;"	v
 pairs_data_frame	hydrogen_notebooks/python/stats_plots_examples.py	/^pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0])$/;"	v
@@ -540,6 +548,7 @@ parse	hydrogen_notebooks/fixer/download_data.py	/^from dateutil.parser import pa
 parse	scripts/crypto_compare/import.py	/^from dateutil.parser import parse$/;"	i
 parse	scripts/crypto_compare/import_coins.py	/^from dateutil.parser import parse$/;"	i
 parse	scripts/fixer/collect_history.py	/^from dateutil.parser import parse$/;"	i
+parse	scripts/fixer/collect_latest.py	/^from dateutil.parser import parse$/;"	i
 parse	scripts/fixer/import.py	/^from dateutil.parser import parse$/;"	i
 path	cryptocoins/models/collections.py	/^    path = TextField(index=True)$/;"	v	class:Collections
 path	cryptocoins/models/imports.py	/^    path = TextField()$/;"	v	class:Imports
@@ -547,7 +556,6 @@ path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cr
 path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cryptocompare\/coin_snapshot"$/;"	v
 path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cryptocompare\/histoday"$/;"	v
 path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cryptocompare\/top_pairs"$/;"	v
-path	scripts/fixer/collect_history.py	/^    path = "forex\/fixer\/exchange_rates"$/;"	v
 poll_coin_list	scripts/crypto_compare/poll.py	/^async def poll_coin_list():$/;"	f
 poll_coin_snapshot	scripts/crypto_compare/poll.py	/^async def poll_coin_snapshot(coin_limit):$/;"	f
 price	cryptocoins/models/forex_pairs_history.py	/^    price = DecimalField()$/;"	v	class:ForexPairsHistory
@@ -584,6 +592,7 @@ request_exchange_rate	cryptocoins/1forge/requests.py	/^def request_exchange_rate
 request_exchange_rate	cryptocoins/fixer/requests.py	/^def request_exchange_rate(bucket_name, date, from_symbol):$/;"	f
 request_exchange_rate	scripts/fixer/collect_history.py	/^from cryptocoins.fixer.requests import request_exchange_rate$/;"	i
 request_latest_exchange_rate	cryptocoins/fixer/requests.py	/^def request_latest_exchange_rate(bucket_name, from_symbol):$/;"	f
+request_latest_exchange_rate	scripts/fixer/collect_latest.py	/^from cryptocoins.fixer.requests import request_latest_exchange_rate$/;"	i
 request_top_currency_pairs	cryptocoins/crypto_compare/requests.py	/^def request_top_currency_pairs(bucket_name, from_currency, timestamp_epoc, limit=100):$/;"	f
 request_top_currency_pairs	scripts/crypto_compare/collect_daily.py	/^from cryptocoins.crypto_compare.requests import request_top_currency_pairs$/;"	i
 request_top_currency_pairs	scripts/crypto_compare/poll.py	/^from cryptocoins.crypto_compare.requests import request_top_currency_pairs$/;"	i
@@ -606,11 +615,13 @@ setup_logging	scripts/crypto_compare/collect_histoday.py	/^from cryptocoins.util
 setup_logging	scripts/crypto_compare/import.py	/^from cryptocoins.utils import setup_logging$/;"	i
 setup_logging	scripts/crypto_compare/import_coins.py	/^from cryptocoins.utils import setup_logging$/;"	i
 setup_logging	scripts/fixer/collect_history.py	/^from cryptocoins.utils import setup_logging$/;"	i
+setup_logging	scripts/fixer/collect_latest.py	/^from cryptocoins.utils import setup_logging$/;"	i
 setup_logging	scripts/fixer/import.py	/^from cryptocoins.utils import setup_logging$/;"	i
 shutil	cryptocoins/import_data.py	/^import shutil$/;"	i
 sleep	scripts/crypto_compare/collect_daily.py	/^from time import sleep, time$/;"	i
 sleep	scripts/crypto_compare/collect_histoday.py	/^from time import sleep$/;"	i
 sleep	scripts/fixer/collect_history.py	/^from time import sleep$/;"	i
+sleep	scripts/fixer/collect_latest.py	/^from time import sleep$/;"	i
 spread_btc	cryptocoins/models/coins.py	/^    spread_btc = DecimalField()$/;"	v	class:Coins
 spread_usd	cryptocoins/models/coins.py	/^    spread_usd = DecimalField()$/;"	v	class:Coins
 start_date	hydrogen_notebooks/crypto_compare/import_data.py	/^start_date = parse('20171230')$/;"	v
@@ -657,6 +668,7 @@ sys	scripts/crypto_compare/import.py	/^import sys$/;"	i
 sys	scripts/crypto_compare/import_coins.py	/^import sys$/;"	i
 sys	scripts/crypto_compare/poll.py	/^import sys$/;"	i
 sys	scripts/fixer/collect_history.py	/^import sys$/;"	i
+sys	scripts/fixer/collect_latest.py	/^import sys$/;"	i
 sys	scripts/fixer/import.py	/^import sys$/;"	i
 tempdir	hydrogen_notebooks/crypto_compare/download_data.py	/^tempdir = tempfile.gettempdir()$/;"	v
 tempdir	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^tempdir = tempfile.gettempdir()$/;"	v
@@ -718,6 +730,7 @@ utils	cryptocoins/import_data.py	/^import cryptocoins.utils as utils$/;"	i
 utils	hydrogen_notebooks/crypto_compare/download_data.py	/^from cryptocoins import utils$/;"	i
 utils	hydrogen_notebooks/fixer/download_data.py	/^from cryptocoins import utils$/;"	i
 utils	scripts/fixer/collect_history.py	/^import cryptocoins.utils as utils$/;"	i
+utils	scripts/fixer/collect_latest.py	/^import cryptocoins.utils as utils$/;"	i
 valid_params	cryptocoins/models/coins.py	/^from cryptocoins.utils import valid_params$/;"	i
 valid_params	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params, null_param_if_missing$/;"	i
 valid_params	cryptocoins/models/coins_price_history.py	/^from cryptocoins.utils import valid_params$/;"	i
@@ -745,6 +758,7 @@ wd	scripts/crypto_compare/import.py	/^wd = os.getcwd()$/;"	v
 wd	scripts/crypto_compare/import_coins.py	/^wd = os.getcwd()$/;"	v
 wd	scripts/crypto_compare/poll.py	/^wd = os.getcwd()$/;"	v
 wd	scripts/fixer/collect_history.py	/^wd = os.getcwd()$/;"	v
+wd	scripts/fixer/collect_latest.py	/^wd = os.getcwd()$/;"	v
 wd	scripts/fixer/import.py	/^wd = os.getcwd()$/;"	v
 wrapper	cryptocoins/collect_data.py	/^    def wrapper(**params):$/;"	f	function:fetch_url_and_upload_to_s3
 wrapper	cryptocoins/import_data.py	/^        def wrapper(bucket_name, start_date, end_date):$/;"	f	function:import_from_s3.decorator
