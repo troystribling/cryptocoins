@@ -13,11 +13,15 @@ from cryptocoins.utils import setup_logging
 
 from_symbol = sys.argv[1] if len(sys.argv) > 1 else 'USD'
 bucket_name = sys.argv[2] if len(sys.argv) > 2 else 'gly.fish'
+log_out = sys.argv[3] if len(sys.argv) > 3 else '/var/log/apps/cryptocoins/one_forge_daily.log'
 
 to_symbols = ['XAU', 'XAG']
 collection_start = datetime.utcnow()
 
-logger = setup_logging()
+if log_out == 'stdout':
+    logger = setup_logging()
+else:
+    logger = setup_logging(file_name=log_out)
 
 api_key_file = os.path.join(os.environ["HOME"], '.one_forge', 'apikey')
 api_key = open(api_key_file, 'r').read()

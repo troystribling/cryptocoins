@@ -23,7 +23,7 @@ def request_latest_exchange_rate(bucket_name, from_symbol):
     url = latest_exchange_rate_url(from_symbol)
     path = "forex/fixer/exchange_rates"
     meta = f"{from_symbol}"
-    fetch_and_timestamp(url=url, bucket_name=bucket_name, path=path)
+    fetch(url=url, bucket_name=bucket_name, path=path)
 
 
 def request_exchange_rate(bucket_name, date, from_symbol):
