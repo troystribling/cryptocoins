@@ -1,5 +1,3 @@
-from time import sleep
-from dateutil.parser import parse
 from datetime import datetime
 
 import sys
@@ -9,8 +7,7 @@ wd = os.getcwd()
 sys.path.append(wd)
 
 from cryptocoins.fixer.imports import import_exchange_rates
-from cryptocoins.fixer.requests import request_latest_exchange_rate
-import cryptocoins.utils as utils
+from cryptocoins.fixer.requests import request_exchange_rate
 from cryptocoins.utils import setup_logging
 
 from_symbol = sys.argv[2] if len(sys.argv) > 2 else 'USD'

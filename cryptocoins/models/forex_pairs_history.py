@@ -8,9 +8,11 @@ from cryptocoins.utils import valid_params
 logger = logging.getLogger(__name__)
 database = PostgresqlDatabase('cryptocoins', **{'user': 'cryptocoins'})
 
+
 class BaseModel(Model):
     class Meta:
         database = database
+
 
 class ForexPairsHistory(BaseModel):
     created_at = DateTimeField()
@@ -23,8 +25,18 @@ class ForexPairsHistory(BaseModel):
         db_table = 'forex_pairs_history'
 
     @classmethod
-    def create_from_1forge_exchange_rate(cls, data):
-        exchange_rate = cls.model_params_from_1forge_exchange_rate(data)
+    def create_from_model_params(cls, data, batch_size=100):
+        with database.atomic():
+            for i in range(0, len(data), batch_size):
+                try:
+                    cls.insert_many(data[i:i + batch_size]).execute()
+                except (IntegrityError, InternalError, DataError) as error:
+                    logger.error(f"DATABASE ERROR for ForexPairsHistory: {error}")
+                    continue
+
+    @classmethod
+    def create_from_one_forge_exchange_rate(cls, data):
+        exchange_rate = cls.model_params_from_one_forge_exchange_rate(data)
         if exchange_rate is None:
             return
         with database.atomic():
@@ -34,7 +46,7 @@ class ForexPairsHistory(BaseModel):
                 logger.error(f"DATABASE ERROR for ForexPairsHistory: {error}")
 
     @classmethod
-    def model_params_from_1forge_exchange_rate(cls, data):
+    def model_params_from_one_forge_exchange_rate(cls, data):
         expected_keys = ['value', 'timestamp', 'from_symbol', 'to_symbol']
         if not valid_params(expected_params=expected_keys, params=data):
             logger.error("1forge_exchange_rate KEYS INVALID")
@@ -43,7 +55,6 @@ class ForexPairsHistory(BaseModel):
                 'to_symbol': data['to_symbol'],
                 'price': data['value'],
                 'timestamp_epoc': data['timestamp']}
-
 
     @classmethod
     def create_from_fixer_exchange_rate(cls, data, batch_size=100):
