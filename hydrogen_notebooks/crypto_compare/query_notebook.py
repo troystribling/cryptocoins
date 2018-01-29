@@ -1,8 +1,6 @@
 # %%
 from datetime import datetime, timedelta
 from dateutil.parser import parse
-import numpy
-import pandas
 
 from cryptocoins.models.currency_pairs_history import CurrencyPairsHistory
 from cryptocoins.models.coins import Coins
