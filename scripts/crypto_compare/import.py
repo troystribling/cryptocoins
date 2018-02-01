@@ -38,6 +38,7 @@ def end_date_from_start_date():
         return end_date
     return datetime.utcnow()
 
+pyenv
 if __name__ == "__main__":
     start_date = start_date_from_last_import('cryptocoins/cryptocompare/coin_list')
     end_date = end_date_from_start_date()

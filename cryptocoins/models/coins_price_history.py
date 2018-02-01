@@ -147,8 +147,12 @@ class CoinsPriceHistory(BaseModel):
     @classmethod
     def exchange_distribution(cls, timestamp_epoc, from_symbol, to_symbol):
         return cls.raw("SELECT exchange, close_price_24_hour, volume_to_24_hour, volume_from_24_hour FROM coins_price_history"
-                       " WHERE from_symbol = %s AND to_symbol = %s"
+                       " WHERE from_symbol = %s"
+                       "  AND to_symbol = %s"
                        "  AND timestamp_epoc = %s"
+                       "  AND exchange != 'CCCAGG'"
+                       "  AND volume_to_24_hour > 0.0"
+                       "  AND volume_from_24_hour > 0.0"
                        " ORDER BY close_price_24_hour", from_symbol, to_symbol, timestamp_epoc)
 
     @classmethod
