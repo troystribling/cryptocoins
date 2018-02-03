@@ -88,7 +88,7 @@ class ForexPairsHistory(BaseModel):
         return params
 
         @classmethod
-        def history(cls, to_symbol, from_symbol='USD', limit=None):
+        def pairs(cls, to_symbol, from_symbol='USD', limit=None):
             if limit is None:
                 return cls.raw("SELECT * FROM forex_pairs_history"
                                " WHERE from_symbol = %s AND to_symbol = %s"
@@ -99,7 +99,10 @@ class ForexPairsHistory(BaseModel):
                                " ORDER BY timestamp_epoc DESC LIMIT %s", from_symbol, to_symbol, limit)
 
         @classmethod
-        def history_data_frame(cls, to_symbol, from_symbol='USD', limit=None):
+        def pairs_data_frame(cls, to_symbol, from_symbol='USD', limit=None):
             records = [record for record in cls.history(to_symbol, from_symbol, limit).dicts()]
             index = [record['timestamp_epoc'] for record in records]
-            return pandas.DataFrame(records, index=index)
+            data_frame = pandas.DataFrame(records, index=index)
+            data_frame.from_symbol = from_symbol
+            data_frame.to_symbol = to_symbol
+            return data_frame

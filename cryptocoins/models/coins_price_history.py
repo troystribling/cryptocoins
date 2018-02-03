@@ -153,9 +153,13 @@ class CoinsPriceHistory(BaseModel):
                        "  AND exchange != 'CCCAGG'"
                        "  AND volume_to_24_hour > 0.0"
                        "  AND volume_from_24_hour > 0.0"
-                       " ORDER BY close_price_24_hour", from_symbol, to_symbol, timestamp_epoc)
+                       " ORDER BY close_price_24_hour ASC", from_symbol, to_symbol, timestamp_epoc)
 
     @classmethod
     def exchange_distribution_data_frame(cls, timestamp_epoc, from_symbol, to_symbol):
         records = [record for record in cls.exchange_distribution(timestamp_epoc, from_symbol, to_symbol).dicts()]
-        return pandas.DataFrame(records)
+        data_frame = pandas.DataFrame(records)
+        data_frame.timestamp_epoc = timestamp_epoc
+        data_frame.from_symbol = from_symbol
+        data_frame.to_symbol = to_symbol
+        return data_frame

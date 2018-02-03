@@ -32,7 +32,7 @@ for currency in CurrencyPairsHistory.fiat_currencies():
 # %%
 # create currency_pairs data_frame
 timestamps = CurrencyPairsHistory.timestamps()
-pairs_data_frame = CurrencyPairsHistory.pairs_for_timestamp_epoc_data_frame(timestamps[0], limit=20)
+pairs_data_frame = CurrencyPairsHistory.pairs_data_frame(timestamps[0], limit=20)
 type(pairs_data_frame)
 pairs_data_frame
 type(pairs_data_frame.to_symbol)

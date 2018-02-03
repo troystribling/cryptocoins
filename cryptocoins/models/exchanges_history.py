@@ -122,7 +122,7 @@ class ExchangesHistory(BaseModel):
         return [timestamp.timestamp_epoc for timestamp in query]
 
     @classmethod
-    def for_timestamp_epoc(cls, timestamp_epoc, from_symbol=None, to_symbol=None):
+    def exchanges(cls, timestamp_epoc, from_symbol=None, to_symbol=None):
         if from_symbol is None and to_symbol is None:
             return cls.raw("SELECT * FROM exchanges_history WHERE timestamp_epoc = %s"
                            " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc)
@@ -140,7 +140,11 @@ class ExchangesHistory(BaseModel):
                            " ORDER BY from_symbol, volume_from_24_hour DESC", timestamp_epoc, from_symbol, to_symbol)
 
     @classmethod
-    def for_timestamp_epoc_data_frame(cls, timestamp_epoc, from_symbol=None, to_symbol=None):
+    def exchanges_data_frame(cls, timestamp_epoc, from_symbol=None, to_symbol=None):
         records = [record for record in cls.for_timestamp_epoc(timestamp_epoc, from_symbol, to_symbol).dicts()]
         index = [record['name'] for record in records]
-        return pandas.DataFrame(records, index=index)
+        data_frame = pandas.DataFrame(records, index=index)
+        data_frame.timestamp_epoc = timestamp_epoc
+        data_frame.from_symbol = from_symbol
+        data_frame.to_symbol = to_symbol
+        return data_frame
