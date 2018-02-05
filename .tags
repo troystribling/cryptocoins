@@ -172,6 +172,8 @@ __depends__	migrations/20171123_01_Upsf5-create-collections-table.py	/^__depends
 __depends__	migrations/20171231_01_vM90r-create-currencies-table.py	/^__depends__ = {}$/;"	v
 __depends__	migrations/20180106_01_tL6CR-create-currencies-info-table.py	/^__depends__ = {'20171110_01_sMLWW-create-coins-table'}$/;"	v
 __depends__	migrations/20180120_01_9Ocrf-create-forex-pairs-history-table.py	/^__depends__ = {}$/;"	v
+a	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^a = numpy.arange(0.0, 4.0, 0.1)$/;"	v
+a	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^a = numpy.arange(16)$/;"	v
 algorithm	cryptocoins/models/coins_history.py	/^    algorithm = TextField(null=True)$/;"	v	class:CoinsHistory
 allData	hydrogen_notebooks/crypto_compare/request_data.py	/^allData = True$/;"	v
 api_key	scripts/one_forge/collect_daily.py	/^api_key = open(api_key_file, 'r').read()$/;"	v
@@ -217,9 +219,11 @@ collection_start	scripts/fixer/collect_daily.py	/^collection_start = datetime.ut
 collection_start	scripts/fixer/collect_history.py	/^collection_start = datetime.utcnow()$/;"	v
 collection_start	scripts/one_forge/collect_daily.py	/^collection_start = datetime.utcnow()$/;"	v
 collection_successful	cryptocoins/models/collections.py	/^    def collection_successful(self):$/;"	m	class:Collections
+colors	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^colors = ["#348ABD", "#A60628"]$/;"	v
 compare_data	hydrogen_notebooks/crypto_compare/download_data.py	/^compare_data = import_data.read_from_file(os.path.join(local_dir, day_dir, files[0]))$/;"	v
 count_and_rank	coin_plots/rank_plots.py	/^def count_and_rank(data_frame, aggregated_column, count_column):$/;"	f
 count_and_rank_plot	coin_plots/rank_plots.py	/^def count_and_rank_plot(data_frame):$/;"	f
+count_data	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^count_data = numpy.loadtxt("hydrogen_notebooks\/pymc\/data\/texts.csv")$/;"	v
 create_collection	cryptocoins/models/collections.py	/^    def create_collection(cls, path, url, meta):$/;"	m	class:Collections
 create_for_symbols	cryptocoins/models/currencies.py	/^    def create_for_symbols(cls, symbols, batch_size=100):$/;"	m	class:Currencies
 create_for_symbols	cryptocoins/models/currencies_info.py	/^    def create_for_symbols(cls, symbols, currency_type, batch_size=100):$/;"	m	class:CurrenciesInfo
@@ -328,6 +332,8 @@ decorator	hydrogen_notebooks/python/python_exaples.py	/^    def decorator(proces
 decorator_with_args	hydrogen_notebooks/python/python_exaples.py	/^def decorator_with_args(a, b):$/;"	f
 decorator_with_kwargs	hydrogen_notebooks/python/python_exaples.py	/^def decorator_with_kwargs(**kwargs):$/;"	f
 description	cryptocoins/models/currencies_info.py	/^    description = TextField(null=True)$/;"	v	class:CurrenciesInfo
+dist	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^dist = stats.expon$/;"	v
+dist	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^dist = stats.poisson$/;"	v
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket_name, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
 end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20171230')$/;"	v
 end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20180101')$/;"	v
@@ -516,6 +522,7 @@ max_exchanges	scripts/crypto_compare/collect_daily.py	/^max_exchanges = sys.argv
 max_exchanges	scripts/crypto_compare/collect_histoday.py	/^max_exchanges = sys.argv[4] if len(sys.argv) > 4 else 100$/;"	v
 max_pairs	scripts/crypto_compare/collect_daily.py	/^max_pairs = sys.argv[3] if len(sys.argv) > 3 else 300$/;"	v
 max_pairs	scripts/crypto_compare/collect_histoday.py	/^max_pairs = sys.argv[3] if len(sys.argv) > 3 else 300$/;"	v
+mean	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^def mean(τ, λ1, λ2):$/;"	f
 meta	cryptocoins/models/collections.py	/^    meta = TextField()$/;"	v	class:Collections
 model_params	scripts/perth_mint/import.py	/^            model_params = {'from_symbol': 'USD',$/;"	v
 model_params_from_fixer_exchange_rate	cryptocoins/models/forex_pairs_history.py	/^    def model_params_from_fixer_exchange_rate(cls, data):$/;"	m	class:ForexPairsHistory
@@ -530,8 +537,10 @@ null_param_if_missing	cryptocoins/utils.py	/^def null_param_if_missing(expected_
 numpy	coin_plots/exchange_plots.py	/^import numpy$/;"	i
 numpy	coin_plots/rank_plots.py	/^import numpy$/;"	i
 numpy	coin_plots/timeseries_plots.py	/^import numpy$/;"	i
+numpy	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^import numpy$/;"	i
 numpy	hydrogen_notebooks/python/pandas_examples.py	/^import numpy$/;"	i
 numpy	hydrogen_notebooks/python/stats_plots_examples.py	/^%aimport numpy$/;"	i
+observation	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^    observation = pymc.Poisson("observation", process_mean, observed=count_data)$/;"	v
 open_price_24_hour	cryptocoins/models/coins_history.py	/^    open_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 open_price_24_hour	cryptocoins/models/coins_price_history.py	/^    open_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 open_price_24_hour	cryptocoins/models/exchanges_history.py	/^    open_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
@@ -598,10 +607,13 @@ price_usd	cryptocoins/models/coins.py	/^    price_usd = DecimalField()$/;"	v	cla
 price_usd	cryptocoins/models/currencies.py	/^    price_usd = DecimalField()$/;"	v	class:Currencies
 process_args	hydrogen_notebooks/python/python_exaples.py	/^def process_args(data):$/;"	f
 process_kwargs	hydrogen_notebooks/python/python_exaples.py	/^def process_kwargs(data):$/;"	f
+process_mean	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^    process_mean = mean(τ, λ1, λ2)$/;"	v
 proof_type	cryptocoins/models/coins_history.py	/^    proof_type = TextField(null=True)$/;"	v	class:CoinsHistory
+pymc	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^import pymc3 as pymc$/;"	i
 pyplot	coin_plots/exchange_plots.py	/^from matplotlib import pyplot$/;"	i
 pyplot	coin_plots/rank_plots.py	/^from matplotlib import pyplot$/;"	i
 pyplot	coin_plots/timeseries_plots.py	/^from matplotlib import pyplot$/;"	i
+pyplot	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^from matplotlib import pyplot$/;"	i
 query	hydrogen_notebooks/crypto_compare/query_notebook.py	/^query = "SELECT symbol, crypto_compare_rank FROM coins ORDER BY crypto_compare_rank ASC LIMIT %s"$/;"	v
 rank_plots	hydrogen_notebooks/python/stats_plots_examples.py	/^from coin_plots import rank_plots$/;"	i
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
@@ -673,6 +685,7 @@ start_date	scripts/one_forge/import.py	/^start_date = parse(sys.argv[1]) if len(
 start_date_from_last_import	scripts/crypto_compare/import.py	/^def start_date_from_last_import(path):$/;"	f
 start_date_from_last_import	scripts/fixer/import.py	/^def start_date_from_last_import(path):$/;"	f
 start_date_from_last_import	scripts/one_forge/import.py	/^def start_date_from_last_import(path):$/;"	f
+stats	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^from scipy import stats$/;"	i
 step	migrations/20171110_01_sMLWW-create-coins-table.py	/^from yoyo import step$/;"	i
 step	migrations/20171111_01_ryOd4-create-imports-table.py	/^from yoyo import step$/;"	i
 step	migrations/20171118_01_Qe1O7-create-coins-price-history-table.py	/^from yoyo import step$/;"	i
@@ -721,6 +734,9 @@ tempfile	cryptocoins/import_data.py	/^import tempfile$/;"	i
 tempfile	hydrogen_notebooks/crypto_compare/download_data.py	/^import tempfile$/;"	i
 tempfile	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^import tempfile$/;"	i
 tempfile	hydrogen_notebooks/fixer/download_data.py	/^import tempfile$/;"	i
+tensor	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^import theano.tensor as tensor$/;"	i
+theano	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^import theano$/;"	i
+theano	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^import theano.tensor as tensor$/;"	i
 thread_pool	scripts/crypto_compare/poll.py	/^thread_pool = ThreadPoolExecutor(max_workers=20)$/;"	v
 time	cryptocoins/models/currencies.py	/^import time$/;"	i
 time	cryptocoins/models/currency_pairs_history.py	/^import time$/;"	i
