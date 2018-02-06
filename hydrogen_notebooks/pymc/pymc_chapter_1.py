@@ -70,10 +70,16 @@ def mean(τ, λ1, λ2):
     return out
 
 
-with pymc.Model() as basic_model:
+basic_model = pymc.Model()
+with basic_model:
     α = 1 / count_data.mean()
     λ1 = pymc.Exponential("λ1", α)
     λ2 = pymc.Exponential("λ2", α)
     τ = pymc.DiscreteUniform("τ", lower=0.0, upper=len(count_data))
     process_mean = mean(τ, λ1, λ2)
     observation = pymc.Poisson("observation", process_mean, observed=count_data)
+    start = {"λ1": 10.0, "λ2": 30.0}
+    step1 = pymc.Slice([λ1, λ2])
+    step2 = pymc.Metropolis([τ])
+    trace = pymc.sample(20000, tune=500, start=start, step=[step1, step2], cores=2)
+    pymc.traceplot(trace)

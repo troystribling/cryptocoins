@@ -179,6 +179,7 @@ allData	hydrogen_notebooks/crypto_compare/request_data.py	/^allData = True$/;"	v
 api_key	scripts/one_forge/collect_daily.py	/^api_key = open(api_key_file, 'r').read()$/;"	v
 api_key_file	scripts/one_forge/collect_daily.py	/^api_key_file = os.path.join(os.environ["HOME"], '.one_forge', 'apikey')$/;"	v
 asyncio	scripts/crypto_compare/poll.py	/^import asyncio$/;"	i
+basic_model	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^basic_model = pymc.Model()$/;"	v
 block_number	cryptocoins/models/coins_history.py	/^    block_number = BigIntegerField(null=True)$/;"	v	class:CoinsHistory
 block_reward	cryptocoins/models/coins_history.py	/^    block_reward = DecimalField(null=True)$/;"	v	class:CoinsHistory
 boto3	cryptocoins/collect_data.py	/^import boto3$/;"	i
