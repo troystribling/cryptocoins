@@ -198,6 +198,7 @@ bucket_name	scripts/one_forge/collect_daily.py	/^bucket_name = sys.argv[2] if le
 bucket_name	scripts/one_forge/import.py	/^bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish'$/;"	v
 call	cryptocoins/collect_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
+cauchy	hydrogen_notebooks/pymc/metropolis.py	/^def cauchy(x):$/;"	f
 close_price_24_hour	cryptocoins/models/coins_history.py	/^    close_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 close_price_24_hour	cryptocoins/models/coins_price_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 close_price_24_hour	cryptocoins/models/exchanges_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
@@ -362,6 +363,7 @@ exchanges	cryptocoins/models/exchanges_history.py	/^    def exchanges(cls, times
 exchanges	hydrogen_notebooks/crypto_compare/download_data.py	/^exchanges = data['Exchanges']$/;"	v
 exchanges	hydrogen_notebooks/python/stats_plots_examples.py	/^exchanges = ExchangesHistory.for_timestamp_epoc_data_frame(timestamps[3], from_symbol='BTC')$/;"	v
 exchanges_data_frame	cryptocoins/models/exchanges_history.py	/^    def exchanges_data_frame(cls, timestamp_epoc, from_symbol=None, to_symbol=None):$/;"	m	class:ExchangesHistory
+exp	hydrogen_notebooks/pymc/metropolis.py	/^def exp(x):$/;"	f
 fetch	cryptocoins/fixer/requests.py	/^def fetch(params):$/;"	f
 fetch_and_timestamp	cryptocoins/crypto_compare/requests.py	/^def fetch_and_timestamp(params):$/;"	f
 fetch_coin_list	hydrogen_notebooks/crypto_compare/request_data.py	/^def fetch_coin_list(params):$/;"	f
@@ -526,7 +528,7 @@ max_pairs	scripts/crypto_compare/collect_daily.py	/^max_pairs = sys.argv[3] if l
 max_pairs	scripts/crypto_compare/collect_histoday.py	/^max_pairs = sys.argv[3] if len(sys.argv) > 3 else 300$/;"	v
 mean	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^def mean(τ, λ1, λ2):$/;"	f
 meta	cryptocoins/models/collections.py	/^    meta = TextField()$/;"	v	class:Collections
-metropolis	hydrogen_notebooks/pymc/metropolis.py	/^def metropolis(p, nsample=10000):$/;"	f
+metropolis	hydrogen_notebooks/pymc/metropolis.py	/^def metropolis(p, nsample=10000, x0=0.0):$/;"	f
 model_params	scripts/perth_mint/import.py	/^            model_params = {'from_symbol': 'USD',$/;"	v
 model_params_from_fixer_exchange_rate	cryptocoins/models/forex_pairs_history.py	/^    def model_params_from_fixer_exchange_rate(cls, data):$/;"	m	class:ForexPairsHistory
 model_params_from_one_forge_exchange_rate	cryptocoins/models/forex_pairs_history.py	/^    def model_params_from_one_forge_exchange_rate(cls, data):$/;"	m	class:ForexPairsHistory
@@ -583,6 +585,7 @@ pandas	cryptocoins/models/exchanges_history.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/forex_pairs_history.py	/^import pandas$/;"	i
 pandas	hydrogen_notebooks/python/pandas_examples.py	/^import pandas$/;"	i
 parabola	hydrogen_notebooks/pymc/metropolis.py	/^def parabola(x):$/;"	f
+pareto	hydrogen_notebooks/pymc/metropolis.py	/^def pareto(x):$/;"	f
 parse	cryptocoins/models/imports.py	/^from dateutil.parser import parse$/;"	i
 parse	hydrogen_notebooks/crypto_compare/download_data.py	/^from dateutil.parser import parse$/;"	i
 parse	hydrogen_notebooks/crypto_compare/import_data.py	/^from dateutil.parser import parse$/;"	i
@@ -649,9 +652,13 @@ request_top_currency_pairs	scripts/crypto_compare/poll.py	/^from cryptocoins.cry
 requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 result	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^result = run_model()$/;"	v
 run_model	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^def run_model(steps=10000):$/;"	f
-sample_plot	hydrogen_notebooks/pymc/metropolis.py	/^def sample_plot(samples):$/;"	f
+sample_plot	hydrogen_notebooks/pymc/metropolis.py	/^def sample_plot(samples, sampled_function):$/;"	f
+samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(cauchy, nsample=10000)$/;"	v
+samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(exp, nsample=10000)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(gauss, nsample=10000)$/;"	v
-samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(linear, nsample=100000)$/;"	v
+samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(linear, nsample=100000, x0=0.5)$/;"	v
+samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(parabola, nsample=100000, x0=0.5)$/;"	v
+samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(pareto, nsample=10000, x0=10.0)$/;"	v
 seaborn	coin_plots/exchange_plots.py	/^import seaborn$/;"	i
 seaborn	coin_plots/rank_plots.py	/^import seaborn$/;"	i
 seaborn	coin_plots/timeseries_plots.py	/^import seaborn$/;"	i
