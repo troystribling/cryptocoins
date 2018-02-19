@@ -207,6 +207,8 @@ call	cryptocoins/collect_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 cauchy	hydrogen_notebooks/pymc/metropolis.py	/^def cauchy(x):$/;"	f
 cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf = sum(steps) \/ 6$/;"	v
+cdf_value	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf_value = 0.0$/;"	v
+cdf_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf_values = [float(cdf.subs(x, i)) for i in range(0, 6)]$/;"	v
 close_price_24_hour	cryptocoins/models/coins_history.py	/^    close_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 close_price_24_hour	cryptocoins/models/coins_price_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 close_price_24_hour	cryptocoins/models/exchanges_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
@@ -449,7 +451,7 @@ indexes	cryptocoins/models/coins_price_history.py	/^        indexes = ($/;"	v	cl
 indexes	cryptocoins/models/collections.py	/^        indexes = ($/;"	v	class:Collections.Meta
 indexes	cryptocoins/models/currencies.py	/^        indexes = ($/;"	v	class:Currencies.Meta
 indexes	cryptocoins/models/currency_pairs_history.py	/^        indexes = ($/;"	v	class:CurrencyPairsHistory.Meta
-intervals	hydrogen_notebooks/pymc/rejection_sampling.py	/^intervals = [(0, x < 0),$/;"	v
+intervals	hydrogen_notebooks/pymc/rejection_sampling.py	/^intervals = [(1, sympy.Interval(0, 1 \/ 6, False, True).contains(x)), (2, sympy.Interval(1 \/ 6, 2 \/ 6, False, True).contains(x)), (3, sympy.Interval(2 \/ 6, 3 \/ 6, False, True).contains(x)), (4, sympy.Interval(3 \/ 6, 4 \/ 6, False, True).contains(x)), (5, sympy.Interval(4 \/ 6, 5 \/ 6, False, True).contains(x)), (6, sympy.Interval(5 \/ 6, 1, False, False).contains(x))]$/;"	v
 inv_cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^inv_cdf = sympy.Piecewise(*intervals)$/;"	v
 is	cryptocoins/import_data.py	/^                    if data_import is None:$/;"	i
 json	cryptocoins/crypto_compare/requests.py	/^import json$/;"	i
@@ -644,6 +646,8 @@ pyplot	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^from matplotlib import pyplot
 pyplot	hydrogen_notebooks/pymc/rejection_sampling.py	/^from matplotlib import pyplot$/;"	i
 pyplot	hydrogen_notebooks/pymc/sympy.py	/^from matplotlib import pyplot$/;"	i
 query	hydrogen_notebooks/crypto_compare/query_notebook.py	/^query = "SELECT symbol, crypto_compare_rank FROM coins ORDER BY crypto_compare_rank ASC LIMIT %s"$/;"	v
+random_variable_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^random_variable_values = [i + 0.2 for i in range(1, 7)]$/;"	v
+random_variable_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^random_variable_values = [i - 0.2 for i in range(1, 7)]$/;"	v
 rank_plots	hydrogen_notebooks/python/stats_plots_examples.py	/^from coin_plots import rank_plots$/;"	i
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
 reader	scripts/perth_mint/import.py	/^        reader = csv.reader(csv_file)$/;"	v
@@ -675,13 +679,14 @@ requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 result	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^result = run_model()$/;"	v
 run_model	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^def run_model(steps=10000):$/;"	f
 sample_plot	hydrogen_notebooks/pymc/metropolis.py	/^def sample_plot(samples, sampled_function):$/;"	f
+sampled_cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^sampled_cdf = numpy.zeros(len(n))$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(cauchy, nsample=10000)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(exp, nsample=10000)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(gauss, nsample=10000)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(linear, nsample=100000, x0=0.5)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(parabola, nsample=100000, x0=0.5)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(pareto, nsample=10000, x0=10.0)$/;"	v
-samples_plot	hydrogen_notebooks/pymc/rejection_sampling.py	/^def samples_plot(cdf, x):$/;"	f
+samples	hydrogen_notebooks/pymc/rejection_sampling.py	/^samples = [int(inv_cdf.subs(x, i)) for i in numpy.random.rand(10000)]$/;"	v
 seaborn	coin_plots/exchange_plots.py	/^import seaborn$/;"	i
 seaborn	coin_plots/rank_plots.py	/^import seaborn$/;"	i
 seaborn	coin_plots/timeseries_plots.py	/^import seaborn$/;"	i
