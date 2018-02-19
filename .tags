@@ -376,6 +376,7 @@ exchanges	hydrogen_notebooks/python/stats_plots_examples.py	/^exchanges = Exchan
 exchanges_data_frame	cryptocoins/models/exchanges_history.py	/^    def exchanges_data_frame(cls, timestamp_epoc, from_symbol=None, to_symbol=None):$/;"	m	class:ExchangesHistory
 exp	hydrogen_notebooks/pymc/metropolis.py	/^def exp(x):$/;"	f
 f	hydrogen_notebooks/pymc/sympy.py	/^f = Function('f')$/;"	v
+f_inv	hydrogen_notebooks/pymc/rejection_sampling.py	/^f_inv = lambda v: numpy.log(1.0 \/ (1.0 - v))$/;"	v
 fetch	cryptocoins/fixer/requests.py	/^def fetch(params):$/;"	f
 fetch_and_timestamp	cryptocoins/crypto_compare/requests.py	/^def fetch_and_timestamp(params):$/;"	f
 fetch_coin_list	hydrogen_notebooks/crypto_compare/request_data.py	/^def fetch_coin_list(params):$/;"	f
@@ -679,6 +680,7 @@ requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 result	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^result = run_model()$/;"	v
 run_model	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^def run_model(steps=10000):$/;"	f
 sample_plot	hydrogen_notebooks/pymc/metropolis.py	/^def sample_plot(samples, sampled_function):$/;"	f
+sample_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^sample_values = [numpy.exp(-v) for v in bins]$/;"	v
 sampled_cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^sampled_cdf = numpy.zeros(len(n))$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(cauchy, nsample=10000)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(exp, nsample=10000)$/;"	v
@@ -686,6 +688,7 @@ samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(gauss, nsam
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(linear, nsample=100000, x0=0.5)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(parabola, nsample=100000, x0=0.5)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(pareto, nsample=10000, x0=10.0)$/;"	v
+samples	hydrogen_notebooks/pymc/rejection_sampling.py	/^samples = [f_inv(v) for v in numpy.random.rand(10000)]$/;"	v
 samples	hydrogen_notebooks/pymc/rejection_sampling.py	/^samples = [int(inv_cdf.subs(x, i)) for i in numpy.random.rand(10000)]$/;"	v
 seaborn	coin_plots/exchange_plots.py	/^import seaborn$/;"	i
 seaborn	coin_plots/rank_plots.py	/^import seaborn$/;"	i
