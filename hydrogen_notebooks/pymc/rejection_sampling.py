@@ -11,20 +11,6 @@ from scipy import stats
 %matplotlib inline
 
 # %%
-
-
-def parabola(x):
-    if x < 0.0 or x > 1.0:
-        return None
-    return 3.0 * numpy.power(x, 2)
-
-
-def linear(x):
-    if x < 0.0 or x > 1.0:
-        return None
-    return 2.0 * x
-
-# %%
 # Inverse CDF Descrete random variables
 
 
@@ -50,12 +36,7 @@ n, bins, _ = pyplot.hist(samples, bins=[1, 2, 3, 4, 5, 6, 7], density=True, alig
 pyplot.title("Simulated PDF")
 
 # %%
-cdf_value = 0.0
-sampled_cdf = numpy.zeros(len(n))
-for i in range(0, len(n)):
-    cdf_value += n[i]
-    sampled_cdf[i] = cdf_value
-
+sampled_cdf = numpy.cumsum(n)
 cdf_values = [float(cdf.subs(x, i)) for i in range(0, 6)]
 
 figure, axis = pyplot.subplots(figsize=(12, 5))
@@ -83,4 +64,22 @@ axis.grid(True, zorder=5)
 _, bins, _ = axis.hist(samples, 50, density=True, color="#348ABD", alpha=0.6, label=f"Sampled Density", edgecolor="#348ABD", lw="3", zorder=10)
 sample_values = [numpy.exp(-v) for v in bins]
 axis.plot(bins, sample_values, color="#A60628", label=f"Sampled Function", lw="3", zorder=10)
+axis.legend()
+
+
+# %%
+# Rejection method sampled function
+
+f = lambda v: numpy.exp(-(v-1.0)**2 / (2.0 * v)) * (v + 1) / 12.0
+x = numpy.linspace(0.001, 10, 100)
+pdf = f(x)
+cdf = numpy.cumsum(pdf) * 0.1
+
+figure, axis = pyplot.subplots(figsize=(12, 5))
+axis.set_xlabel("Value")
+axis.set_ylabel("Sampled")
+axis.set_title("Rejection Method Sampled Functions")
+axis.grid(True, zorder=5)
+axis.plot(x, pdf, color="#A60628", label=f"Sampled PDF", lw="3", zorder=10)
+axis.plot(x, cdf, color="#348ABD", label=f"Sampled CDF", lw="3", zorder=10)
 axis.legend()

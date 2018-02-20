@@ -206,8 +206,8 @@ bucket_name	scripts/one_forge/import.py	/^bucket_name = sys.argv[3] if len(sys.a
 call	cryptocoins/collect_data.py	/^from subprocess import call$/;"	i
 call	cryptocoins/import_data.py	/^from subprocess import call$/;"	i
 cauchy	hydrogen_notebooks/pymc/metropolis.py	/^def cauchy(x):$/;"	f
+cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf = numpy.cumsum(pdf) * 0.1$/;"	v
 cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf = sum(steps) \/ 6$/;"	v
-cdf_value	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf_value = 0.0$/;"	v
 cdf_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf_values = [float(cdf.subs(x, i)) for i in range(0, 6)]$/;"	v
 close_price_24_hour	cryptocoins/models/coins_history.py	/^    close_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 close_price_24_hour	cryptocoins/models/coins_price_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
@@ -375,6 +375,7 @@ exchanges	hydrogen_notebooks/crypto_compare/download_data.py	/^exchanges = data[
 exchanges	hydrogen_notebooks/python/stats_plots_examples.py	/^exchanges = ExchangesHistory.for_timestamp_epoc_data_frame(timestamps[3], from_symbol='BTC')$/;"	v
 exchanges_data_frame	cryptocoins/models/exchanges_history.py	/^    def exchanges_data_frame(cls, timestamp_epoc, from_symbol=None, to_symbol=None):$/;"	m	class:ExchangesHistory
 exp	hydrogen_notebooks/pymc/metropolis.py	/^def exp(x):$/;"	f
+f	hydrogen_notebooks/pymc/rejection_sampling.py	/^f = lambda v: numpy.exp(-(v-1.0)**2 \/ (2.0 * v)) * (v + 1) \/ 12.0$/;"	v
 f	hydrogen_notebooks/pymc/sympy.py	/^f = Function('f')$/;"	v
 f_inv	hydrogen_notebooks/pymc/rejection_sampling.py	/^f_inv = lambda v: numpy.log(1.0 \/ (1.0 - v))$/;"	v
 fetch	cryptocoins/fixer/requests.py	/^def fetch(params):$/;"	f
@@ -474,7 +475,6 @@ latest_for_symbol	cryptocoins/models/currencies.py	/^    def latest_for_symbol(c
 limit	hydrogen_notebooks/crypto_compare/request_data.py	/^limit = 100$/;"	v
 linear	coin_plots/timeseries_plots.py	/^def linear(series, title):$/;"	f
 linear	hydrogen_notebooks/pymc/metropolis.py	/^def linear(x):$/;"	f
-linear	hydrogen_notebooks/pymc/rejection_sampling.py	/^def linear(x):$/;"	f
 local_dir	hydrogen_notebooks/crypto_compare/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 local_dir	hydrogen_notebooks/fixer/download_data.py	/^local_dir = os.path.join(tempdir, remote_dir)$/;"	v
 local_file_path	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^local_file_path = "\/var\/folders\/hc\/xc94zvls2pq_pw366sdbqlhr0000gn\/T\/cryptocoins\/cryptocompare\/coin_snapshot\/20171224\/20171224-154510-r5mlt7cj"$/;"	v
@@ -606,7 +606,6 @@ pandas	cryptocoins/models/exchanges_history.py	/^import pandas$/;"	i
 pandas	cryptocoins/models/forex_pairs_history.py	/^import pandas$/;"	i
 pandas	hydrogen_notebooks/python/pandas_examples.py	/^import pandas$/;"	i
 parabola	hydrogen_notebooks/pymc/metropolis.py	/^def parabola(x):$/;"	f
-parabola	hydrogen_notebooks/pymc/rejection_sampling.py	/^def parabola(x):$/;"	f
 pareto	hydrogen_notebooks/pymc/metropolis.py	/^def pareto(x):$/;"	f
 parse	cryptocoins/models/imports.py	/^from dateutil.parser import parse$/;"	i
 parse	hydrogen_notebooks/crypto_compare/download_data.py	/^from dateutil.parser import parse$/;"	i
@@ -625,6 +624,7 @@ path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cr
 path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cryptocompare\/coin_snapshot"$/;"	v
 path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cryptocompare\/histoday"$/;"	v
 path	hydrogen_notebooks/crypto_compare/request_data.py	/^path = "cryptocoins\/cryptocompare\/top_pairs"$/;"	v
+pdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^pdf = f(x)$/;"	v
 plot	hydrogen_notebooks/pymc/sympy.py	/^from sympy import Function, Symbol, S, oo, I, sin, Heaviside, plot$/;"	i
 poll_coin_list	scripts/crypto_compare/poll.py	/^async def poll_coin_list():$/;"	f
 poll_coin_snapshot	scripts/crypto_compare/poll.py	/^async def poll_coin_snapshot(coin_limit):$/;"	f
@@ -681,7 +681,7 @@ result	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^result = run_model()$/;"	v
 run_model	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^def run_model(steps=10000):$/;"	f
 sample_plot	hydrogen_notebooks/pymc/metropolis.py	/^def sample_plot(samples, sampled_function):$/;"	f
 sample_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^sample_values = [numpy.exp(-v) for v in bins]$/;"	v
-sampled_cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^sampled_cdf = numpy.zeros(len(n))$/;"	v
+sampled_cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^sampled_cdf = numpy.cumsum(n)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(cauchy, nsample=10000)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(exp, nsample=10000)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(gauss, nsample=10000)$/;"	v
@@ -883,6 +883,7 @@ wrapper	cryptocoins/import_data.py	/^        def wrapper(bucket_name, start_date
 wrapper	hydrogen_notebooks/python/python_exaples.py	/^        def wrapper():$/;"	f	function:decorator_with_args.decorator
 wrapper	hydrogen_notebooks/python/python_exaples.py	/^        def wrapper():$/;"	f	function:decorator_with_kwargs.decorator
 write_to_compressed_file	cryptocoins/collect_data.py	/^def write_to_compressed_file(data):$/;"	f
+x	hydrogen_notebooks/pymc/rejection_sampling.py	/^x = numpy.linspace(0.001, 10, 100)$/;"	v
 x	hydrogen_notebooks/pymc/rejection_sampling.py	/^x = sympy.symbols('x')$/;"	v
 x	hydrogen_notebooks/pymc/sympy.py	/^x = Symbol('x')$/;"	v
 x	hydrogen_notebooks/python/pandas_examples.py	/^    x = series['g']$/;"	v
