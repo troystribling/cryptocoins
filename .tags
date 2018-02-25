@@ -113,6 +113,7 @@ IntegrityError	cryptocoins/models/imports.py	/^from peewee import Model, Postgre
 InternalError	cryptocoins/models/coins_price_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
 InternalError	cryptocoins/models/currency_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, IntegrityError, InternalError, DataError, DateTimeField, TextField, DecimalField, BigIntegerField$/;"	i
 InternalError	cryptocoins/models/forex_pairs_history.py	/^from peewee import Model, PostgresqlDatabase, InternalError, IntegrityError, DataError, DateTimeField, TextField, BigIntegerField, DecimalField$/;"	i
+M	hydrogen_notebooks/pymc/rejection_sampling.py	/^M = 0.3$/;"	v
 Meta	cryptocoins/models/coins.py	/^    class Meta:$/;"	c	class:BaseModel
 Meta	cryptocoins/models/coins.py	/^    class Meta:$/;"	c	class:Coins
 Meta	cryptocoins/models/coins_history.py	/^    class Meta:$/;"	c	class:BaseModel
@@ -181,6 +182,9 @@ __depends__	migrations/20180120_01_9Ocrf-create-forex-pairs-history-table.py	/^_
 _eval_is_real	hydrogen_notebooks/pymc/sympy.py	/^    def _eval_is_real(self):$/;"	m	class:h
 a	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^a = numpy.arange(0.0, 4.0, 0.1)$/;"	v
 a	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^a = numpy.arange(16)$/;"	v
+accepted_mask	hydrogen_notebooks/pymc/rejection_sampling.py	/^accepted_mask = (y_samples < f(x_samples) \/ M)$/;"	v
+accepted_mask	hydrogen_notebooks/pymc/rejection_sampling.py	/^accepted_mask = (y_samples <= h(x_samples) \/ hmax)$/;"	v
+accepted_samples	hydrogen_notebooks/pymc/rejection_sampling.py	/^accepted_samples = x_samples[accepted_mask]$/;"	v
 algorithm	cryptocoins/models/coins_history.py	/^    algorithm = TextField(null=True)$/;"	v	class:CoinsHistory
 allData	hydrogen_notebooks/crypto_compare/request_data.py	/^allData = True$/;"	v
 api_key	scripts/one_forge/collect_daily.py	/^api_key = open(api_key_file, 'r').read()$/;"	v
@@ -209,6 +213,7 @@ cauchy	hydrogen_notebooks/pymc/metropolis.py	/^def cauchy(x):$/;"	f
 cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf = numpy.cumsum(pdf) * 0.1$/;"	v
 cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf = sum(steps) \/ 6$/;"	v
 cdf_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^cdf_values = [float(cdf.subs(x, i)) for i in range(0, 6)]$/;"	v
+chi	hydrogen_notebooks/pymc/rejection_sampling.py	/^chi = stats.chi2(4)$/;"	v
 close_price_24_hour	cryptocoins/models/coins_history.py	/^    close_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 close_price_24_hour	cryptocoins/models/coins_price_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
 close_price_24_hour	cryptocoins/models/exchanges_history.py	/^    close_price_24_hour = DecimalField()$/;"	v	class:ExchangesHistory
@@ -346,6 +351,8 @@ description	cryptocoins/models/currencies_info.py	/^    description = TextField(
 dist	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^dist = stats.expon$/;"	v
 dist	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^dist = stats.poisson$/;"	v
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket_name, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
+efficiency	hydrogen_notebooks/pymc/rejection_sampling.py	/^efficiency = 100.0 * (len(accepted_samples) \/ nsamples)$/;"	v
+efficiency	hydrogen_notebooks/pymc/rejection_sampling.py	/^efficiency = 100.0 * (len(x_samples[accepted_mask]) \/ nsamples)$/;"	v
 end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20171230')$/;"	v
 end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20180101')$/;"	v
 end_date	hydrogen_notebooks/crypto_compare/import_data_debug.py	/^end_date = parse('20171210')$/;"	v
@@ -420,6 +427,7 @@ g	hydrogen_notebooks/pymc/sympy.py	/^g = Function('g')(x)$/;"	v
 gauss	hydrogen_notebooks/pymc/metropolis.py	/^def gauss(x):$/;"	f
 get_for_id	cryptocoins/models/collections.py	/^    def get_for_id(cls, id):$/;"	m	class:Collections
 get_for_symbol	cryptocoins/models/currencies_info.py	/^        def get_for_symbol(cls, symbol):$/;"	f	function:CurrenciesInfo.create_for_symbols
+h	hydrogen_notebooks/pymc/rejection_sampling.py	/^h = lambda x: f(x) \/ chi.pdf(x)$/;"	v
 h	hydrogen_notebooks/pymc/sympy.py	/^class h(Function):$/;"	c
 high_price_24_hour	cryptocoins/models/coins_history.py	/^    high_price_24_hour = DecimalField(null=True)$/;"	v	class:CoinsHistory
 high_price_24_hour	cryptocoins/models/coins_price_history.py	/^    high_price_24_hour = DecimalField()$/;"	v	class:CoinsPriceHistory
@@ -433,6 +441,7 @@ history	cryptocoins/models/exchanges_history.py	/^    def history(cls, from_symb
 history_data_frame	cryptocoins/models/coins_history.py	/^    def history_data_frame(cls, from_symbol, to_symbol=None):$/;"	m	class:CoinsHistory
 history_data_frame	cryptocoins/models/coins_price_history.py	/^    def history_data_frame(cls, from_symbol, to_symbol, exchange='CCCAGG', limit=None):$/;"	m	class:CoinsPriceHistory
 history_data_frame	cryptocoins/models/exchanges_history.py	/^    def history_data_frame(cls, from_symbol, to_symbol=None, exchange=None):$/;"	m	class:ExchangesHistory
+hmax	hydrogen_notebooks/pymc/rejection_sampling.py	/^hmax = h(x_values).max()$/;"	v
 import_coin_list	cryptocoins/crypto_compare/imports.py	/^def import_coin_list(data):$/;"	f
 import_coin_list	hydrogen_notebooks/crypto_compare/import_data.py	/^def import_coin_list(data):$/;"	f
 import_coin_price_history	cryptocoins/crypto_compare/imports.py	/^def import_coin_price_history(data):$/;"	f
@@ -555,6 +564,7 @@ name	cryptocoins/models/currencies.py	/^    name = TextField(null=True)$/;"	v	cl
 name	cryptocoins/models/currencies_info.py	/^    name = TextField(null=True)$/;"	v	class:CurrenciesInfo
 name	cryptocoins/models/exchanges_history.py	/^    name = TextField(index=True)$/;"	v	class:ExchangesHistory
 net_hashes_per_second	cryptocoins/models/coins_history.py	/^    net_hashes_per_second = DecimalField(null=True)$/;"	v	class:CoinsHistory
+nsamples	hydrogen_notebooks/pymc/rejection_sampling.py	/^nsamples = 10000$/;"	v
 null_param_if_missing	cryptocoins/models/coins_history.py	/^from cryptocoins.utils import valid_params, null_param_if_missing$/;"	i
 null_param_if_missing	cryptocoins/utils.py	/^def null_param_if_missing(expected_params, params):$/;"	f
 numpy	coin_plots/exchange_plots.py	/^import numpy$/;"	i
@@ -652,6 +662,7 @@ random_variable_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^random_va
 rank_plots	hydrogen_notebooks/python/stats_plots_examples.py	/^from coin_plots import rank_plots$/;"	i
 read_from_file	cryptocoins/import_data.py	/^def read_from_file(file_name):$/;"	f
 reader	scripts/perth_mint/import.py	/^        reader = csv.reader(csv_file)$/;"	v
+rejected_mask	hydrogen_notebooks/pymc/rejection_sampling.py	/^rejected_mask = numpy.logical_not(accepted_mask)$/;"	v
 remote_dir	hydrogen_notebooks/crypto_compare/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_list'$/;"	v
 remote_dir	hydrogen_notebooks/crypto_compare/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/coin_snapshot'$/;"	v
 remote_dir	hydrogen_notebooks/crypto_compare/download_data.py	/^remote_dir = 'cryptocoins\/cryptocompare\/histoday'$/;"	v
@@ -680,6 +691,7 @@ requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 result	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^result = run_model()$/;"	v
 run_model	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^def run_model(steps=10000):$/;"	f
 sample_plot	hydrogen_notebooks/pymc/metropolis.py	/^def sample_plot(samples, sampled_function):$/;"	f
+sample_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^sample_values = [f(v) \/ M for v in x_values]$/;"	v
 sample_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^sample_values = [numpy.exp(-v) for v in bins]$/;"	v
 sampled_cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^sampled_cdf = numpy.cumsum(n)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(cauchy, nsample=10000)$/;"	v
@@ -887,3 +899,6 @@ x	hydrogen_notebooks/pymc/rejection_sampling.py	/^x = numpy.linspace(0.001, 10, 
 x	hydrogen_notebooks/pymc/rejection_sampling.py	/^x = sympy.symbols('x')$/;"	v
 x	hydrogen_notebooks/pymc/sympy.py	/^x = Symbol('x')$/;"	v
 x	hydrogen_notebooks/python/pandas_examples.py	/^    x = series['g']$/;"	v
+x_samples	hydrogen_notebooks/pymc/rejection_sampling.py	/^x_samples = chi.rvs(nsamples)$/;"	v
+x_samples	hydrogen_notebooks/pymc/rejection_sampling.py	/^x_samples = numpy.random.rand(nsamples) * 10$/;"	v
+y_samples	hydrogen_notebooks/pymc/rejection_sampling.py	/^y_samples = numpy.random.rand(nsamples)$/;"	v
