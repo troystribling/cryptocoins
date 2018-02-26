@@ -351,7 +351,6 @@ description	cryptocoins/models/currencies_info.py	/^    description = TextField(
 dist	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^dist = stats.expon$/;"	v
 dist	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^dist = stats.poisson$/;"	v
 download_from_s3_to_files	cryptocoins/import_data.py	/^def download_from_s3_to_files(bucket_name, remote_dir, local_dir, download_limit=None, start_date=None, end_date=None):$/;"	f
-efficiency	hydrogen_notebooks/pymc/rejection_sampling.py	/^efficiency = 100.0 * (len(accepted_samples) \/ nsamples)$/;"	v
 efficiency	hydrogen_notebooks/pymc/rejection_sampling.py	/^efficiency = 100.0 * (len(x_samples[accepted_mask]) \/ nsamples)$/;"	v
 end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20171230')$/;"	v
 end_date	hydrogen_notebooks/crypto_compare/import_data.py	/^end_date = parse('20180101')$/;"	v
@@ -691,7 +690,6 @@ requests	cryptocoins/collect_data.py	/^import requests$/;"	i
 result	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^result = run_model()$/;"	v
 run_model	hydrogen_notebooks/pymc/pymc_chapter_1.py	/^def run_model(steps=10000):$/;"	f
 sample_plot	hydrogen_notebooks/pymc/metropolis.py	/^def sample_plot(samples, sampled_function):$/;"	f
-sample_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^sample_values = [f(v) \/ M for v in x_values]$/;"	v
 sample_values	hydrogen_notebooks/pymc/rejection_sampling.py	/^sample_values = [numpy.exp(-v) for v in bins]$/;"	v
 sampled_cdf	hydrogen_notebooks/pymc/rejection_sampling.py	/^sampled_cdf = numpy.cumsum(n)$/;"	v
 samples	hydrogen_notebooks/pymc/metropolis.py	/^samples = metropolis(cauchy, nsample=10000)$/;"	v

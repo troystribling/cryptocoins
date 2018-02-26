@@ -48,10 +48,9 @@ def metropolis(p, nsample=10000, x0=0.0):
         reject = numpy.random.rand()
         px_star = p(x_star)
         px = p(x)
-        if px is None or px_star is None:
-            continue
-        if reject < px_star / px:
-            x = x_star
+        if px is not None and px_star is not None:
+            if reject < px_star / px:
+                x = x_star
         samples[i] = x
         i += 1
 
