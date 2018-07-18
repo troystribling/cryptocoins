@@ -17,7 +17,7 @@ from cryptocoins.models.collections import Collections
 
 from cryptocoins.utils import setup_logging
 
-bucket_name = sys.argv[1] if len(sys.argv) > 1 else 'gly.fish'
+bucket_name = sys.argv[1] if len(sys.argv) > 1 else 'gly.fish.data'
 max_coins = sys.argv[2] if len(sys.argv) > 2 else 300
 max_pairs = sys.argv[3] if len(sys.argv) > 3 else 300
 max_exchanges = sys.argv[4] if len(sys.argv) > 4 else 100
