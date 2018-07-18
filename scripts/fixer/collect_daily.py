@@ -11,7 +11,7 @@ from cryptocoins.fixer.requests import request_latest_exchange_rate
 from cryptocoins.utils import setup_logging
 
 from_symbol = sys.argv[1] if len(sys.argv) > 1 else 'USD'
-bucket_name = sys.argv[2] if len(sys.argv) > 2 else 'gly.fish'
+bucket_name = sys.argv[2] if len(sys.argv) > 2 else 'gly.fish.data'
 log_out = sys.argv[3] if len(sys.argv) > 3 else '/var/log/apps/cryptocoins/fixer_daily.log'
 
 collection_start = datetime.utcnow()

@@ -15,7 +15,7 @@ from cryptocoins.utils import setup_logging
 
 start_date = parse(sys.argv[1]) if len(sys.argv) > 1 else datetime.utcnow()
 from_symbol = sys.argv[2] if len(sys.argv) > 2 else 'USD'
-bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish'
+bucket_name = sys.argv[3] if len(sys.argv) > 3 else 'gly.fish.data'
 end_date = datetime.utcnow()
 collection_start = datetime.utcnow()
 
