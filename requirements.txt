@@ -90,7 +90,7 @@ Theano==1.0.1
 tornado==4.5.1
 tqdm==4.19.5
 traitlets==4.3.2
-Twisted==17.5.0
+Twisted==19.7.0
 txaio==2.8.0
 Unidecode==0.4.21
 urllib3==1.22
