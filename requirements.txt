@@ -2,7 +2,7 @@ aiohttp==2.2.3
 appnope==0.1.0
 async-timeout==1.2.1
 attrs==17.2.0
-autobahn==17.6.2
+autobahn==20.12.3
 Automat==0.6.0
 bleach==2.0.0
 boto3==1.4.4
